@@ -20,4 +20,9 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testClientList(){
+        $this->get(route('clients'))
+             ->assertResponseOk();
+    }
 }
