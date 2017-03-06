@@ -12,13 +12,21 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Breed::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name' => $faker->string
+    ];
+});
+
+$factory->define(App\Client::class, function (Faker\Generator $faker) {    
+
+    return [
+        'first_name' => $faker->string,
+        'last_name' => $faker->string,
+        'address' => $faker->string,
+        'company' => $faker->string,
+        'phone' => $faker->string
     ];
 });

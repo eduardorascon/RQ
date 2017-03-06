@@ -26,8 +26,13 @@ Route::get('breedsAll', ['as' => 'breeds', function () {
 }]);
 
 
+/*Clients*/
+Route::get('clients', 'ClientController@index');
+
 Route::get('client/{id}', 'ClientController@getClient');
+
 Route::get('breed/{id}', 'BreedController@getBreed');
+
 
 
 //Api, revisar la clase existente
