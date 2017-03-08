@@ -18,11 +18,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/admin', [
-	'uses' => 'AdminController@index',
-	'as' => 'admin',
-	'middleware' => 'roles',
-	'roles' => ['Admin']]);
+Route::get('/admin', 'AdminController@index');
 
 //Routes test
 
