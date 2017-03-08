@@ -16,7 +16,7 @@ class ClientController extends Controller
 		return view('clients.index', ['clients' => $clients]);
     }
 
- 	public function getClient($id)
+ 	public function show($id)
     {
 		return Client::findOrFail($id);
     }
@@ -31,6 +31,7 @@ class ClientController extends Controller
     		'company' => $request->input('name'),
     		'phone' => $request->input('name')
     		]);
+    	return redirect()->route('clients.index');
     }
 
     public function update(Request $request, $id)
@@ -44,5 +45,12 @@ class ClientController extends Controller
 	    		'company' => $request->input('name'),
 	    		'phone' => $request->input('name')
     		]);
+    	return redirect()->route('clients.index');
+    }
+
+    public function destroy($id){
+    	$client = Client::findOrFail($id);
+    	$client->delete();
+    	return redirect()->route('clients.index');
     }
 }
