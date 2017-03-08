@@ -21,14 +21,18 @@
                 <div class="panel-body">
                     <table class="table table-striped user-table">
                         <thead>
-                            <th>Usuario</th>
-                            <th>&nbsp;</th>
+                            <th>Nombre</th>
+                            <th>Es administrador</th>
+                            <th>Es vendedor</th>
+                            <th>Es capturista</th>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
                                     <td class="table-text"><div>{{ $user->name }}</div></td>
-                                    <td></td>
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option1" {{ $user->hasRole('Admin') ? 'checked' : '' }}></td>
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option2" {{ $user->hasRole('Salesman') ? 'checked' : '' }}></td>
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option3" {{ $user->hasRole('User') ? 'checked' : '' }}></td>
                                     <!-- User Delete Button 
                                     <td>
                                         <form action="{{ url('admin/'.$user->id) }}" method="POST">
