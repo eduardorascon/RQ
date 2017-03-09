@@ -25,26 +25,25 @@
                             <th>Es administrador</th>
                             <th>Es vendedor</th>
                             <th>Es capturista</th>
+                            <th></th>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
                                     <td class="table-text"><div>{{ $user->name }}</div></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option1" {{ $user->hasRole('Admin') ? 'checked' : '' }}></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option2" {{ $user->hasRole('Salesman') ? 'checked' : '' }}></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="option3" {{ $user->hasRole('User') ? 'checked' : '' }}></td>
-                                    <!-- User Delete Button 
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="Admin" {{ $user->hasRole('Admin') ? 'checked' : '' }}></td>
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="Salesman" {{ $user->hasRole('Salesman') ? 'checked' : '' }}></td>
+                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="User" {{ $user->hasRole('User') ? 'checked' : '' }}></td>
+                                    <!-- User Delete Button -->
                                     <td>
-                                        <form action="{{ url('admin/'.$user->id) }}" method="POST">
+                                        <form action="{{ url('admin.assign') }}" method="POST">
                                             {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Delete
+                                            <input type="hidden" name="email" value="{{ $user->email }}">
+                                            <button type="submit" class="btn">
+                                                <i class="fa fa-btn fa-trash"></i>Actualizar
                                             </button>
                                         </form>
                                     </td>
-                                    -->
                                 </tr>
                             @endforeach
                         </tbody>
