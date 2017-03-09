@@ -11,7 +11,7 @@
       <div>
         <label for="name">Nombre:</label>
         <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{$breed->name}}">        
-      </div>
+      </div>    
 
       <div>
         <input type="submit" class="btn btn-primary" value="Guardar">

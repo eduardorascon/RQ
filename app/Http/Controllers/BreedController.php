@@ -9,22 +9,52 @@ class BreedController extends Controller
 {
     public function index()
     {
-    	return Breed::all();
+		$breeds = Breed::all();
+		
+		return view('breeds.index', ['breeds' => $breeds]);
     }
 
- 	public function getBreed($id)
+ 	public function show($id)
     {
-		return Breed::findOrFail($id);
+		return Client::findOrFail($id);
+    }
+	
+	public function create()
+    {
+        return view('breeds.create');
     }
 
     public function store(Request $request)
     {
-
+    	
+    	$this->validate($request,[
+		      'name'=> 'required'
+		    ]);
+    	Breed::create([
+    		'name' => $request->input('name')
+    		]);
+    	return redirect()->route('breeds.index');
     }
 
-    public function update(Request $request)
-    {
+    public function edit($id){
+    	$breed = Breed::findOrFail($id);
+    	return view("breeds.edit", compact('breed'));
+    }
 
+    public function update(Request $request, $id)
+    {
+    	$breed = Breed::findOrFail($id);
+
+    	$breed->update([
+    			'name' => $request->input('name')	    
+    		]);
+    	return redirect()->route('breeds.index');
+    }
+
+    public function destroy($id){
+    	$breed = Breed::findOrFail($id);
+    	$breed->delete();
+    	return redirect()->route('breeds.index');
     }
 
 }

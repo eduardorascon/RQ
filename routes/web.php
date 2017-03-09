@@ -19,3 +19,7 @@ Route::group(['middleware' => ['web']], function() {
   Route::resource('clients','ClientController');  
 });
 
+Route::group(['middleware' => ['web']], function() {
+  Route::resource('breeds','BreedController');  
+});
+
