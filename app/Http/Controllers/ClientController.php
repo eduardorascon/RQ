@@ -25,13 +25,18 @@ class ClientController extends Controller
     public function store(Request $request)
     {
     	return Client::create([
-    		'first_name' => $request->input('name'),
-    		'last_name' => $request->input('name'),
-    		'address' => $request->input('name'),
-    		'company' => $request->input('name'),
-    		'phone' => $request->input('name')
+    		'first_name' => $request->input('first_name'),
+    		'last_name' => $request->input('last_name'),
+    		'address' => $request->input('address'),
+    		'company' => $request->input('company'),
+    		'phone' => $request->input('phone')
     		]);
     	return redirect()->route('clients.index');
+    }
+
+    public function edit($id){
+    	$client = Client::findOrFail($id);
+    	return view("clients.edit", compact('client'));
     }
 
     public function update(Request $request, $id)
@@ -39,11 +44,11 @@ class ClientController extends Controller
     	$client = Client::findOrFail($id);
 
     	$client->update([
-    			'first_name' => $request->input('name'),
-	    		'last_name' => $request->input('name'),
-	    		'address' => $request->input('name'),
-	    		'company' => $request->input('name'),
-	    		'phone' => $request->input('name')
+    			'first_name' => $request->input('first_name'),
+	    		'last_name' => $request->input('last_name'),
+	    		'address' => $request->input('address'),
+	    		'company' => $request->input('company'),
+	    		'phone' => $request->input('phone')
     		]);
     	return redirect()->route('clients.index');
     }
