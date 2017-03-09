@@ -20,11 +20,23 @@ class ClientController extends Controller
     {
 		return Client::findOrFail($id);
     }
-
+	
+	public function create()
+    {
+        return view('clients.create');
+    }
 
     public function store(Request $request)
     {
-    	return Client::create([
+    	
+    	$this->validate($request,[
+		      'first_name'=> 'required',
+		      'last_name' => 'required',
+		      'address' => 'required',
+		      'company' => 'required',
+		      'phone' => 'required'
+		    ]);
+    	Client::create([
     		'first_name' => $request->input('first_name'),
     		'last_name' => $request->input('last_name'),
     		'address' => $request->input('address'),
