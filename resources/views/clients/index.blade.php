@@ -1,7 +1,8 @@
 <html>
     <body>
         <h1>Clientes, {{ count($clients) }}</h1>
-
+		<a href="{{route('clients.create')}}" >Agregar nuevo cliente</a><br><br>
+      
         <table>
         	<thead>
         		<tr>
