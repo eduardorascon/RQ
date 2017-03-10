@@ -15,11 +15,11 @@ class AdminController extends Controller
 		return view('admin.index', ['users' => $users]);
     }
 
-    public function postAdminAssignRoles(Request $request)
+    public function assign_role(Request $request)
     {
         $user = User::where('email', $request['email'])->first();
         $user->roles()->detach();
-        $user->roles()->attach(Role::where('name', $request['optionsRadios'.$request['id']])->first());
+        $user->roles()->attach(Role::where('name', $request['optionsRadios'])->first());
         return redirect()->back();
     }
 

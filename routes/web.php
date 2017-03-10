@@ -30,6 +30,11 @@ Route::post('/admin.create_new_user', [
 	'middleware' => 'roles',
 	'roles' => ['Admin']]);
 
+Route::post('/admin.assign_role', [
+	'uses' => 'AdminController@assign_role',
+	'as' => 'assign_role',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
 //Routes test
 
 Route::get('clientsAll', function () {

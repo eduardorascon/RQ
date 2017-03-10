@@ -77,30 +77,27 @@
                             <th></th>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td class="table-text"><div>{{ $user->name }}</div></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="Admin" {{ $user->hasRole('Admin') ? 'checked' : '' }}></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="Salesman" {{ $user->hasRole('Salesman') ? 'checked' : '' }}></td>
-                                    <td><input type="radio" name="optionsRadios{{ $user->id }}" value="User" {{ $user->hasRole('User') ? 'checked' : '' }}></td>
-                                    <!-- User Delete Button -->
-                                    <td>
-                                        <form action="{{ url('admin.assign') }}" method="POST">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="email" value="{{ $user->email }}">
-                                            <button type="submit" class="btn">
-                                                <i class="fa fa-btn fa-trash"></i>Actualizar
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td colspan="4">
+                                    <form action="{{ route('assign_role') }}" method="POST">
+                                        <input type="radio" name="optionsRadios" value="Admin" {{ $user->hasRole('Admin') ? 'checked' : '' }} />
+                                        <input type="radio" name="optionsRadios" value="Salesman" {{ $user->hasRole('Salesman') ? 'checked' : '' }} />
+                                        <input type="radio" name="optionsRadios" value="User" {{ $user->hasRole('User') ? 'checked' : '' }} />
+                                        <input type="hidden" name="email" value="{{ $user->email }}" />
+                                        {{ csrf_field() }}
+                                        <!-- User Role Button -->
+                                        <button type="submit" class="btn"><i class="fa fa-btn fa-trash"></i>Cambiar permiso</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
             @endif
-
         </div>
     </div>
 </div>
