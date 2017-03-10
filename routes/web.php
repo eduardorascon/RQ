@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+Auth::routes();
+
 
 Route::group(['middleware' => ['web']], function() {
   Route::resource('clients','ClientController');  
@@ -21,5 +23,26 @@ Route::group(['middleware' => ['web']], function() {
 
 Route::group(['middleware' => ['web']], function() {
   Route::resource('breeds','BreedController');  
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('/admin', [
+	'uses' => 'AdminController@index',
+	'as' => 'admin',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
+
+Route::post('/admin.create_new_user', [
+	'uses' => 'AdminController@create_new_user',
+	'as' => 'create_new_user',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
+
+Route::post('/admin.assign_role', [
+	'uses' => 'AdminController@assign_role',
+	'as' => 'assign_role',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
+
 });
 
