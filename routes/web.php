@@ -12,9 +12,29 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+Auth::routes();
 
+Route::get('/home', 'HomeController@index');
+
+Route::get('/admin', [
+	'uses' => 'AdminController@index',
+	'as' => 'admin',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
+
+Route::post('/admin.create_new_user', [
+	'uses' => 'AdminController@create_new_user',
+	'as' => 'create_new_user',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
+
+Route::post('/admin.assign_role', [
+	'uses' => 'AdminController@assign_role',
+	'as' => 'assign_role',
+	'middleware' => 'roles',
+	'roles' => ['Admin']]);
 //Routes test
 
 Route::get('clientsAll', function () {
@@ -27,7 +47,9 @@ Route::get('breedsAll', ['as' => 'breeds', function () {
 
 
 /*Clients*/
-Route::get('clients', 'ClientController@index');
+Route::get('/clients', [
+	'uses' => 'ClientController@index',
+	'as' => 'clients']);
 
 Route::get('client/{id}', 'ClientController@getClient');
 
