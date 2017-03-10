@@ -25,11 +25,12 @@ class AdminController extends Controller
 
     public function create_new_user(Request $request)
     {
-        $new_user = new User;
-        $new_user->name = $request->name;
-        $new_user->email = $request->email;
-        $new_user->password = bcrypt($request->password);
-        $new_user->save();
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'User')->first());
         return redirect('/admin');
     }
 }
