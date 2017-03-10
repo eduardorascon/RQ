@@ -4,13 +4,13 @@
     </div>
   </div>
   <div class="row">
-    <form class="" action="{{route('breeds.update',$breed->id)}}" method="post">
+    <form class="" action="{{ route('clients.update',$client->id) }}" method="post">
       <input name="_method" type="hidden" value="PATCH">
       {{csrf_field()}}      
       
       <div>
         <label for="name">Nombre:</label>
-        <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{$breed->name}}">        
+        <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{ $client->name }}">        
       </div>
 
       <div>
