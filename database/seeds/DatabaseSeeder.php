@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         //USED
         //$this->call(BreedsTableSeeder::class);
-        //$this->call(ClientsTableSeeder::class);
+        $this->call(ClientsTableSeeder::class);
 
     }
 }

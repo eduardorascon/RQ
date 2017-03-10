@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Breed extends Model
 {
-    //
+    protected $fillable = [
+        'name'
+    ];
 }

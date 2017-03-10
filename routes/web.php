@@ -16,6 +16,14 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+
+Route::group(['middleware' => ['web']], function() {
+  Route::resource('clients','ClientController');  
+});
+
+Route::group(['middleware' => ['web']], function() {
+  Route::resource('breeds','BreedController');  
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/admin', [
@@ -35,42 +43,6 @@ Route::post('/admin.assign_role', [
 	'as' => 'assign_role',
 	'middleware' => 'roles',
 	'roles' => ['Admin']]);
-//Routes test
 
-Route::get('clientsAll', function () {
-	return App\Client::all();
 });
-
-Route::get('breedsAll', ['as' => 'breeds', function () {
-	return App\Breed::all();
-}]);
-
-
-/*Clients*/
-Route::get('/clients', [
-	'uses' => 'ClientController@index',
-	'as' => 'clients']);
-
-Route::get('client/{id}', 'ClientController@getClient');
-
-Route::get('breed/{id}', 'BreedController@getBreed');
-
-
-
-//Api, revisar la clase existente
-Route::group(['prefix' => 'api'], function(){
-/*	
-	Route::get('breeds', ['as'=>'breeds', function(){
-			return App\Breed::all();
-	}]);
-*/	
-
-	Route::resource('clients', 'ClientController', ['only' =>
-															['index','client','store','update']
-													]);
-	Route::resource('breeds', 'BreedController', ['only' =>
-															['index','breed','store','update']
-													]);
-});
-
 
