@@ -40,6 +40,15 @@
                             </div>
                         </div>
 
+                        <!-- User Pass -->
+                        <div class="form-group">
+                            <label for="user-password" class="col-md-3 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input type="password" name="password" id="user-password" class="form-control"  required>
+                            </div>
+                        </div>
+
                         <!-- Add User Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">

@@ -22,4 +22,14 @@ class AdminController extends Controller
         $user->roles()->attach(Role::where('name', $request['optionsRadios'.$request['id']])->first());
         return redirect()->back();
     }
+
+    public function create_new_user(Request $request)
+    {
+        $new_user = new User;
+        $new_user->name = $request->name;
+        $new_user->email = $request->email;
+        $new_user->password = bcrypt($request->password);
+        $new_user->save();
+        return redirect('/admin');
+    }
 }
