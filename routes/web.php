@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Auth::routes();
 
@@ -47,7 +47,9 @@ Route::get('breedsAll', ['as' => 'breeds', function () {
 
 
 /*Clients*/
-Route::get('clients', 'ClientController@index');
+Route::get('/clients', [
+	'uses' => 'ClientController@index',
+	'as' => 'clients']);
 
 Route::get('client/{id}', 'ClientController@getClient');
 
