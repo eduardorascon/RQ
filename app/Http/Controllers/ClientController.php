@@ -8,11 +8,9 @@ use View;
 
 class ClientController extends Controller
 {
-	
     public function index()
     {
 		$clients = Client::all();
-		
 		return view('clients.index', ['clients' => $clients]);
     }
 
@@ -28,7 +26,6 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-    	
     	$this->validate($request,[
 		      'first_name'=> 'required',
 		      'last_name' => 'required',

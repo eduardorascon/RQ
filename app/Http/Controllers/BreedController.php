@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Breed;
+use View;
 
 class BreedController extends Controller
 {
     public function index()
     {
 		$breeds = Breed::all();
-		
 		return view('breeds.index', ['breeds' => $breeds]);
     }
 
@@ -26,14 +26,13 @@ class BreedController extends Controller
 
     public function store(Request $request)
     {
-    	
     	$this->validate($request,[
 		      'name'=> 'required'
 		    ]);
     	Breed::create([
     		'name' => $request->input('name')
     		]);
-    	return redirect()->route('breeds.index');
+    	return redirect()->route('breeds');
     }
 
     public function edit($id){
@@ -54,7 +53,7 @@ class BreedController extends Controller
     public function destroy($id){
     	$breed = Breed::findOrFail($id);
     	$breed->delete();
-    	return redirect()->route('breeds.index');
+    	return redirect()->route('breeds');
     }
 
 }
