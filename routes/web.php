@@ -16,15 +16,25 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-
-Route::group(['middleware' => ['web']], function() {
-  Route::resource('clients','ClientController');  
-});
-
 Route::group(['middleware' => ['web']], function() {
   Route::resource('breeds','BreedController');  
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/clients', [
+	'uses' => 'ClientController@index',
+	'as' => 'clients'
+	]);
+
+Route::get('/clients.create', [
+	'uses' => 'ClientController@create',
+	'as' => 'clients.create'
+	]);
+
+Route::get('/clients.edit', [
+	'uses' => 'ClientController@edit',
+	'as' => 'clients.edit'
+	]);
 
 Route::get('/admin', [
 	'uses' => 'AdminController@index',
