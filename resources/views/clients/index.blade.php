@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Clientes, {{ count($clients) }}
-                    <a href="{{route('clients.create')}}" >Agregar nuevo cliente</a><br><br>
+                    <a href="{{route('clients.create')}}" >Agregar nuevo cliente</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
