@@ -52,7 +52,7 @@
                         <!-- Add User Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-success">
                                     <i class="fa fa-btn fa-plus"></i>Agregar usuario
                                 </button>
                             </div>
@@ -88,7 +88,7 @@
                                         <input type="hidden" name="email" value="{{ $user->email }}" />
                                         {{ csrf_field() }}
                                         <!-- User Role Button -->
-                                        <button type="submit" class="btn"><i class="fa fa-btn fa-trash"></i>Cambiar permiso</button>
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-trash"></i>Cambiar permiso</button>
                                     </form>
                                 </td>
                             </tr>
