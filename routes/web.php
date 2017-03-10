@@ -16,15 +16,57 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-
-Route::group(['middleware' => ['web']], function() {
-  Route::resource('clients','ClientController');  
-});
-
-Route::group(['middleware' => ['web']], function() {
-  Route::resource('breeds','BreedController');  
-
 Route::get('/home', 'HomeController@index');
+
+Route::get('/breeds', [
+	'uses' => 'BreedController@index',
+	'as' => 'breeds'
+	]);
+
+Route::get('/breeds.create', [
+	'uses' => 'BreedController@create',
+	'as' => 'breeds.create'
+	]);
+
+Route::get('/breeds.edit', [
+	'uses' => 'BreedController@edit',
+	'as' => 'breeds.edit'
+	]);
+
+Route::post('/breeds.store', [
+	'uses' => 'BreedController@store',
+	'as' => 'breeds.store'
+	]);
+
+Route::post('/breeds.destroy', [
+	'uses' => 'BreedController@destroy',
+	'as' => 'breeds.destroy'
+	]);
+
+Route::get('/clients', [
+	'uses' => 'ClientController@index',
+	'as' => 'clients'
+	]);
+
+Route::get('/clients.create', [
+	'uses' => 'ClientController@create',
+	'as' => 'clients.create'
+	]);
+
+Route::get('/clients.edit', [
+	'uses' => 'ClientController@edit',
+	'as' => 'clients.edit'
+	]);
+
+Route::post('/clients.store', [
+	'uses' => 'ClientController@store',
+	'as' => 'clients.store'
+	]);
+
+Route::post('/clients.destroy', [
+	'uses' => 'ClientController@destroy',
+	'as' => 'clients.destroy'
+	]);
 
 Route::get('/admin', [
 	'uses' => 'AdminController@index',
@@ -43,6 +85,3 @@ Route::post('/admin.assign_role', [
 	'as' => 'assign_role',
 	'middleware' => 'roles',
 	'roles' => ['Admin']]);
-
-});
-

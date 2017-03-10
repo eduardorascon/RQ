@@ -8,11 +8,9 @@ use View;
 
 class ClientController extends Controller
 {
-	
     public function index()
     {
 		$clients = Client::all();
-		
 		return view('clients.index', ['clients' => $clients]);
     }
 
@@ -28,7 +26,6 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-    	
     	$this->validate($request,[
 		      'first_name'=> 'required',
 		      'last_name' => 'required',
@@ -43,7 +40,7 @@ class ClientController extends Controller
     		'company' => $request->input('company'),
     		'phone' => $request->input('phone')
     		]);
-    	return redirect()->route('clients.index');
+    	return redirect()->route('clients');
     }
 
     public function edit($id){
@@ -62,12 +59,12 @@ class ClientController extends Controller
 	    		'company' => $request->input('company'),
 	    		'phone' => $request->input('phone')
     		]);
-    	return redirect()->route('clients.index');
+    	return redirect()->route('clients');
     }
 
     public function destroy($id){
     	$client = Client::findOrFail($id);
     	$client->delete();
-    	return redirect()->route('clients.index');
+    	return redirect()->route('clients');
     }
 }
