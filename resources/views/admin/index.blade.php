@@ -71,24 +71,27 @@
                     <table class="table table-striped user-table">
                         <thead>
                             <th>Nombre</th>
-                            <th>Es administrador</th>
-                            <th>Es vendedor</th>
-                            <th>Es capturista</th>
-                            <th></th>
+                            <th colspan="3"></th>
                         </thead>
                         <tbody>
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->name }}</td>
-                                <td colspan="4">
+                                <td colspan="3">
                                     <form action="{{ route('assign_role') }}" method="POST">
-                                        <input type="radio" name="optionsRadios" value="Admin" {{ $user->hasRole('Admin') ? 'checked' : '' }} />
-                                        <input type="radio" name="optionsRadios" value="Salesman" {{ $user->hasRole('Salesman') ? 'checked' : '' }} />
-                                        <input type="radio" name="optionsRadios" value="User" {{ $user->hasRole('User') ? 'checked' : '' }} />
+                                        <label class="radio-inline">
+                                        <input type="radio" name="optionsRadios" value="Admin" {{ $user->hasRole('Admin') ? 'checked' : '' }} />Administrador
+                                        </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="optionsRadios" value="Salesman" {{ $user->hasRole('Salesman') ? 'checked' : '' }} />Vendedor
+                                        </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="optionsRadios" value="User" {{ $user->hasRole('User') ? 'checked' : '' }} />Capturista
+                                        </label>
                                         <input type="hidden" name="email" value="{{ $user->email }}" />
                                         {{ csrf_field() }}
                                         <!-- User Role Button -->
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-trash"></i>Cambiar permiso</button>
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-trash"></i>Actualizar</button>
                                     </form>
                                 </td>
                             </tr>
