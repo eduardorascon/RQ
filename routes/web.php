@@ -36,9 +36,14 @@ Route::get('/clients.edit', [
 	'as' => 'clients.edit'
 	]);
 
-Route::get('/clients.store', [
+Route::post('/clients.store', [
 	'uses' => 'ClientController@store',
 	'as' => 'clients.store'
+	]);
+
+Route::post('/clients.destroy', [
+	'uses' => 'ClientController@destroy',
+	'as' => 'clients.destroy'
 	]);
 
 Route::get('/admin', [
