@@ -21,15 +21,18 @@
                 	@foreach($breeds as $breed)
                 		<tr>
                 			<td>{{ $breed->name }}</td>        			
-                			<td>
-                            <!--
+                			<td>                            
                 				<form class="" action="{{route('breeds.destroy', $breed->id)}}" method="post">
-                					<input type="hidden" name="_method" value="delete">
+                					
+                                    <input type="hidden" name="_method" value="delete">
+
                 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                					<a href="{{route('breeds.edit',$breed->id)}}" class="btn btn-primary">Editar</a>
-                					<input type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
-                				</form>
-                            -->
+
+                					<a href="{{route('breeds.edit',$breed->id)}}" class="btn btn-primary btn-xs">Editar</a>
+                					
+                                    <input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+
+                				</form>                            
                 			</td>
                 		</tr>
         			@endforeach        	
