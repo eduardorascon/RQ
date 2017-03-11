@@ -16,7 +16,9 @@ class CreateCattlesTable extends Migration
         Schema::create('cattle', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-
+            $table->string('tag');
+            $table->date('purchase_date');
+            $table->date('birth');
             $table->integer('breed_id')->unsigned();
             $table->foreign('breed_id')->references('id')->on('breeds');
         });
@@ -29,6 +31,6 @@ class CreateCattlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cattles');
+        Schema::dropIfExists('cattle');
     }
 }
