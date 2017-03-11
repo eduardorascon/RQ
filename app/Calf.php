@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Calf extends Model
+class Calf extends Cattle
 {
     //
 }
