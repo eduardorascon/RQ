@@ -32,7 +32,7 @@ class BreedController extends Controller
     	Breed::create([
     		'name' => $request->input('name')
     		]);
-    	return redirect()->route('breeds');
+    	return redirect()->route('breeds.index');
     }
 
     public function edit($id){
@@ -53,7 +53,7 @@ class BreedController extends Controller
     public function destroy($id){
     	$breed = Breed::findOrFail($id);
     	$breed->delete();
-    	return redirect()->route('breeds');
+    	return redirect()->route('breeds.index');
     }
 
 }

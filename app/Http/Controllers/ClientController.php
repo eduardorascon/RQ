@@ -40,7 +40,7 @@ class ClientController extends Controller
     		'company' => $request->input('company'),
     		'phone' => $request->input('phone')
     		]);
-    	return redirect()->route('clients');
+    	return redirect()->route('clients.index');
     }
 
     public function edit($id){
@@ -59,12 +59,12 @@ class ClientController extends Controller
 	    		'company' => $request->input('company'),
 	    		'phone' => $request->input('phone')
     		]);
-    	return redirect()->route('clients');
+    	return redirect()->route('clients.index');
     }
 
     public function destroy($id){
     	$client = Client::findOrFail($id);
     	$client->delete();
-    	return redirect()->route('clients');
+    	return redirect()->route('clients.index');
     }
 }

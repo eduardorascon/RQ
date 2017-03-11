@@ -29,15 +29,13 @@
                 			<td>{{ $client->address }}</td>
                 			<td>{{ $client->phone }}</td>
                 			<td>{{ $client->company }}</td>
-                			<td>
-                            <!--
+                			<td>                            
                 				<form class="" action="{{ route('clients.destroy', $client->id) }}" method="post">
                 					<input type="hidden" name="_method" value="delete">
                 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
                 					<a class="btn btn-primary" href="{{ route('clients.edit',$client->id) }}">Editar</a>
                 					<input class="btn btn-danger" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
                 				</form>
-                            -->
                 			</td>
                 		</tr>
         			@endforeach        	
