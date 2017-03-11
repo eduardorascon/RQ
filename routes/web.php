@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::resource('cows', 'CowsController');
+Route::resource('bulls', 'BullController');
+Route::resource('calfs', 'CalfController');
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/breeds', [
