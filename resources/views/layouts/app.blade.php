@@ -44,8 +44,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                     @if (Auth::guest()==false)
-                        <li><a href="{{ route('clients') }}">Catalogo de clientes</a></li>
-                        <li><a href="{{ route('breeds') }}">Catalogo de razas</a></li>
+                        <li><a href="{{ route('clients.index') }}">Catalogo de clientes</a></li>
+                        <li><a href="{{ route('breeds.index') }}">Catalogo de razas</a></li>
                     @endif
                     </ul>
                     <!-- Right Side Of Navbar -->
