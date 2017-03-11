@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cattle extends Model
 {
+	protected $table = 'cattle';
+
     public function breed()
     {
     	return $this->hasOne('App\Breed');

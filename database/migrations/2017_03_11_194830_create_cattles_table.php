@@ -13,9 +13,12 @@ class CreateCattlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cattles', function (Blueprint $table) {
+        Schema::create('cattle', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('breed_id')->unsigned();
+            $table->foreign('breed_id')->references('id')->on('breeds');
         });
     }
 
