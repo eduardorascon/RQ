@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bull;
+use App\Cattle;
 use App\Breed;
 
 class BullController extends Controller
@@ -20,15 +21,20 @@ class BullController extends Controller
         return view('bulls.create', ['breed_list'=>$breed_list]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $cattle = new Cattle;
+        $cattle->tag = $request->cattle_tag;
+        $cattle->birth = $request->cattle_birth_date;
+        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->breed_id = $request->cattle_breed;
+        $cattle->save();
+
+        $bull = new Bull;
+        $bull->cattle_id = $cattle->id;
+        $bull->save();
+
+        return redirect()->route('bulls.index');
     }
 
     /**

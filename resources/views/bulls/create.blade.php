@@ -9,7 +9,7 @@
 					Captura de toros
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="#" method="post">
+					<form class="form-horizontal" action="{{ route('bulls.store') }}" method="post">
 						{{ csrf_field() }}
 
 						<div class="form-group">
@@ -39,7 +39,7 @@
 							<select class="form-control" name="cattle_breed">
 								@foreach ($breed_list as $b)
 								{
-								<option value="{{ $b->name }}">{{ $b->name }}</option>
+								<option value="{{ $b->id }}">{{ $b->name }}</option>
 								}
 								@endforeach
 							</select>
