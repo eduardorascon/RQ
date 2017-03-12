@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cow extends Cattle
+class Cow extends Model
 {
-    //
+    public function cattle()
+	{
+		return $this->hasOne('App\Cattle' , 'id', 'cattle_id');
+	}
 }
