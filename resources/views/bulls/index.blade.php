@@ -7,7 +7,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Toros, {{ count($bulls) }}
-					<a href="#">Agregar nuevo toro</a>
+					<a href="{{ route('bulls.create') }}">Agregar nuevo toro</a>
+				</div>
+				<div class="panel-body">
 				</div>
 			</div>
 		</div>
