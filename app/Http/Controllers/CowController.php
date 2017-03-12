@@ -6,35 +6,34 @@ use Illuminate\Http\Request;
 
 class CowController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $cows = Cow::all();
+        return view('cows.index', ['cows' => $cows]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        return view('cows.create', ['breed_list'=>$breed_list]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function () {
+            $cattle = new Cattle;
+            $cattle->tag = $request->cattle_tag;
+            $cattle->birth = $request->cattle_birth_date;
+            $cattle->purchase_date = $request->cattle_purchase_date;
+            $cattle->breed_id = $request->cattle_breed;
+            $cattle->save();
+
+            $cow = new Cow;
+            $cow->cattle_id = $cattle->id;
+            $cow->save();
+        });
+
+        return redirect()->route('cows.index');
     }
 
     /**

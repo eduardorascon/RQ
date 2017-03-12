@@ -6,35 +6,34 @@ use Illuminate\Http\Request;
 
 class CalfController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $calfs = Calf::all();
+        return view('calfs.index', ['calfs' => $calfs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        return view('calfs.create', ['breed_list'=>$breed_list]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function () {
+            $cattle = new Cattle;
+            $cattle->tag = $request->cattle_tag;
+            $cattle->birth = $request->cattle_birth_date;
+            $cattle->purchase_date = $request->cattle_purchase_date;
+            $cattle->breed_id = $request->cattle_breed;
+            $cattle->save();
+
+            $calf = new Calf;
+            $calf->cattle_id = $cattle->id;
+            $calf->save();
+        });
+
+        return redirect()->route('calfs.index');
     }
 
     /**
