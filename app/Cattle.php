@@ -10,6 +10,6 @@ class Cattle extends Model
 
     public function breed()
     {
-    	return $this->hasOne('App\Breed');
+    	return $this->hasOne('App\Breed', 'id', 'breed_id');
     }
 }

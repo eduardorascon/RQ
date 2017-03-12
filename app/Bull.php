@@ -8,6 +8,6 @@ class Bull extends Model
 {
 	public function cattle()
 	{
-		return $this->hasOne('App\Cattle');
+		return $this->hasOne('App\Cattle' , 'id', 'cattle_id');
 	}
 }
