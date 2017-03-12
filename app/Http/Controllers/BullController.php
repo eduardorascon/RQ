@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bull;
+use App\Breed;
 
 class BullController extends Controller
 {
@@ -15,7 +16,8 @@ class BullController extends Controller
 
     public function create()
     {
-        return view('bulls.create');
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        return view('bulls.create', ['breed_list'=>$breed_list]);
     }
 
     /**

@@ -22,21 +22,33 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento">
+							<input type="date" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento">
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">							
+							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">							
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattla_breed">Raza</label>
+						<label class="col-sm-2 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattla_breed" class="form-control" placeholder="Raza">							
+							<select class="form-control" name="cattle_breed">
+								@foreach ($breed_list as $b)
+								{
+								<option value="{{ $b->name }}">{{ $b->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
 						</div>
 					</form>
