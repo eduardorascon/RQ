@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::resource('cows', 'CowController');
+Route::resource('bulls', 'BullController');
+Route::resource('calfs', 'CalfController');
+
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['web']], function() {
