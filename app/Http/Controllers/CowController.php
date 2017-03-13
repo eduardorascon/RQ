@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cow;
+use App\Cattle;
+use App\Breed;
 
 class CowController extends Controller
 {
