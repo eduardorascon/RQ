@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::resource('cows', 'CowsController');
+Route::resource('cows', 'CowController');
 Route::resource('bulls', 'BullController');
 Route::resource('calfs', 'CalfController');
 
