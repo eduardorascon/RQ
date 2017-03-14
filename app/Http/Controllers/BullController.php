@@ -48,27 +48,26 @@ class BullController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $bull = Bull::findOrFail($id);
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        return view('bulls.edit', [
+            'bull'=>$bull,
+            'breed_list'=>$breed_list]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $bull = Bull::findOrFail($id);
+        $cattle = $bull->cattle;
+        $cattle->tag = $request->cattle_tag;
+        $cattle->birth = $request->cattle_birth_date;
+        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->breed_id = $request->cattle_breed;
+        $cattle->update();
+
+        return redirect()->route('bulls.index');
     }
 
     /**

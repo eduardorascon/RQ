@@ -28,7 +28,14 @@
 								<td>{{ $bull->cattle->purchase_date }}</td>
 								<td>{{ $bull->cattle->birth }}</td>
 								<td>{{ $bull->cattle->breed->name }}</td>
-								<td></td>
+								<td>
+									<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
+										<input type="hidden" name="_method" value="delete">
+                    					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    					<a class="btn btn-primary btn-xs" href="{{ route('bulls.edit', $bull->id) }}">Editar</a>
+                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+									</form>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
