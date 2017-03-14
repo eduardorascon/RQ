@@ -23,18 +23,16 @@ class CalfController extends Controller
 
     public function store(Request $request)
     {
-        DB::transaction(function () {
-            $cattle = new Cattle;
-            $cattle->tag = $request->cattle_tag;
-            $cattle->birth = $request->cattle_birth_date;
-            $cattle->purchase_date = $request->cattle_purchase_date;
-            $cattle->breed_id = $request->cattle_breed;
-            $cattle->save();
+        $cattle = new Cattle;
+        $cattle->tag = $request->cattle_tag;
+        $cattle->birth = $request->cattle_birth_date;
+        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->breed_id = $request->cattle_breed;
+        $cattle->save();
 
-            $calf = new Calf;
-            $calf->cattle_id = $cattle->id;
-            $calf->save();
-        });
+        $calf = new Calf;
+        $calf->cattle_id = $cattle->id;
+        $calf->save();
 
         return redirect()->route('calfs.index');
     }

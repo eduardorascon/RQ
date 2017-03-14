@@ -23,18 +23,16 @@ class CowController extends Controller
 
     public function store(Request $request)
     {
-        DB::transaction(function () {
-            $cattle = new Cattle;
-            $cattle->tag = $request->cattle_tag;
-            $cattle->birth = $request->cattle_birth_date;
-            $cattle->purchase_date = $request->cattle_purchase_date;
-            $cattle->breed_id = $request->cattle_breed;
-            $cattle->save();
+        $cattle = new Cattle;
+        $cattle->tag = $request->cattle_tag;
+        $cattle->birth = $request->cattle_birth_date;
+        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->breed_id = $request->cattle_breed;
+        $cattle->save();
 
-            $cow = new Cow;
-            $cow->cattle_id = $cattle->id;
-            $cow->save();
-        });
+        $cow = new Cow;
+        $cow->cattle_id = $cattle->id;
+        $cow->save();
 
         return redirect()->route('cows.index');
     }
