@@ -15,7 +15,7 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">							
+							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
 						</div>
 						</div>
 
@@ -29,7 +29,7 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-10">
-							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">							
+							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">
 						</div>
 						</div>
 

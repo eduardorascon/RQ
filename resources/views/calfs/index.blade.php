@@ -6,7 +6,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Toros, {{ count($calfs) }}
+					Becerros, {{ count($calfs) }}
 					<a href="{{ route('calfs.create') }}">Agregar nuevo becerro</a>
 				</div>
 				<div class="panel-body">
@@ -28,7 +28,14 @@
 								<td>{{ $calf->cattle->purchase_date }}</td>
 								<td>{{ $calf->cattle->birth }}</td>
 								<td>{{ $calf->cattle->breed->name }}</td>
-								<td></td>
+								<td>
+									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
+										<input type="hidden" name="_method" value="delete">
+                    					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    					<a class="btn btn-primary btn-xs" href="{{ route('calfs.edit', $calf->id) }}">Editar</a>
+                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+									</form>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
