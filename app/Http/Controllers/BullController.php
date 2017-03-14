@@ -70,14 +70,10 @@ class BullController extends Controller
         return redirect()->route('bulls.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $bull = Bull::findOrFail($id);
+        $bull->delete();
+        return redirect()->route('bulls.index');
     }
 }
