@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
+use App\WeightLog;
 
 class BullController extends Controller
 {
@@ -75,8 +76,15 @@ class BullController extends Controller
         return redirect()->route('bulls.index');
     }
 
-    public function log_weight(Request $request, $id){
+    public function log_weight(Request $request, $id)
+    {
         $bull = Bull::findOrFail($id);
+        $log = new WeightLog;
+        $log->weight = $request->weight;
+        $log->weight_date = $request->weight_date;
+        $log->cattle_id = $bull->cattle_id;
+        $log->save();
+
         return redirect('/bulls');
     }
 }

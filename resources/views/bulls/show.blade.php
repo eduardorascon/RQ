@@ -55,6 +55,10 @@
 						<label for="weight">Peso</label>
 						<input type="number" step="any" class="form-control" name="weight" id="weight" placeholder="Peso">
 						</div>
+						<div class="form-group">
+						<label for="weight">Fecha</label>
+						<input type="date" class="form-control" name="weight_date" id="weight_date" placeholder="Fecha">
+						</div>
 						<button type="submit" class="btn btn-default">Guardar</button>
 					</form>
 				</div>

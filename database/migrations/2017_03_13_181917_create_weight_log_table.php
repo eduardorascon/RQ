@@ -9,14 +9,14 @@ class CreateWeightLogTable extends Migration
 
     public function up()
     {
-        /*Schema::create('weight_log', function(Blueprint $table) {
+        Schema::create('weight_logs', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->float('wight', 8, 3);
+            $table->float('weight', 8, 3);
             $table->date('weight_date');
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
-        });*/
+        });
     }
 
     /**
