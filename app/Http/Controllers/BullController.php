@@ -37,15 +37,13 @@ class BullController extends Controller
         return redirect()->route('bulls.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $bull = Bull::findOrFail($id);
+        $breed = Breed::findOrFail($bull->cattle->breed_id);
+        return view('bulls.show', [
+            'bull'=>$bull,
+            'breed'=>$breed->name]);
     }
 
     public function edit($id)
