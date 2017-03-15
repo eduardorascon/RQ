@@ -74,4 +74,9 @@ class BullController extends Controller
         $bull->delete();
         return redirect()->route('bulls.index');
     }
+
+    public function log_weight(Request $request, $id){
+        $bull = Bull::findOrFail($id);
+        return redirect('/bulls');
+    }
 }

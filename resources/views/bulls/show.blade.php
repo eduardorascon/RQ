@@ -43,6 +43,24 @@
 					</form>
 				</div>
 			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Registro de peso
+				</div>
+				<div class="panel-body">
+					<form class="form-inline" action="{{ route('log_weight', $bull->id) }}" method="post">
+						{{ csrf_field() }}
+						<div class="form-group">
+						<label for="weight">Peso</label>
+						<input type="text" class="form-control" name="weight" id="weight" placeholder="Peso">
+						</div>
+						<button type="submit" class="btn btn-default">Guardar</button>
+					</form>
+				</div>
+				<div class="panel-body">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
