@@ -63,6 +63,26 @@
 					</form>
 				</div>
 				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-condensed">
+						<thead>
+							<tr>
+								<th>Peso</th>
+								<th>Fecha de pesaje</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($weight_logs as $log)
+							<tr>
+								<td>{{ $log->weight }}</td>
+								<td>{{ $log->weight_date }}</td>
+								<td></td>
+							</tr>
+						@endforeach
+						</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

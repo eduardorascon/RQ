@@ -41,10 +41,10 @@ class BullController extends Controller
     public function show($id)
     {
         $bull = Bull::findOrFail($id);
-        $breed = Breed::findOrFail($bull->cattle->breed_id);
         return view('bulls.show', [
             'bull'=>$bull,
-            'breed'=>$breed->name]);
+            'breed'=>$bull->cattle->breed->name,
+            'weight_logs'=>$bull->cattle->weightLog->sortBy("weight")]);
     }
 
     public function edit($id)
@@ -85,6 +85,6 @@ class BullController extends Controller
         $log->cattle_id = $bull->cattle_id;
         $log->save();
 
-        return redirect('/bulls');
+        return redirect()->route('bulls.show', $bull->id);
     }
 }
