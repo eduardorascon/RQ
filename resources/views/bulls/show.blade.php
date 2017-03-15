@@ -53,7 +53,7 @@
 						{{ csrf_field() }}
 						<div class="form-group">
 						<label for="weight">Peso</label>
-						<input type="text" class="form-control" name="weight" id="weight" placeholder="Peso">
+						<input type="number" step="any" class="form-control" name="weight" id="weight" placeholder="Peso">
 						</div>
 						<button type="submit" class="btn btn-default">Guardar</button>
 					</form>
