@@ -13,7 +13,8 @@ class CreateWeightLogTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->float('weight', 8, 3);
-            $table->date('weight_date');
+            $table->date('date');
+            $table->string('comment');
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
         });
