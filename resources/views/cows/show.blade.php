@@ -43,7 +43,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de peso</div>
 				<div class="panel-body">
-					<form class="form-inline" action="{{ route('log_weight', $cow->id) }}" method="post">
+					<form class="form-inline" action="{{ route('cow_log_weight', $cow->id) }}" method="post">
 						{{ csrf_field() }}
 						<div class="row">
 							<div class="col-sm-10">

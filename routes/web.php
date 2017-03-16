@@ -28,19 +28,19 @@ Route::group(['middleware' => ['web']], function() {
 
 	Route::post('/cows/{id}/log_weight', [
 		'uses' => 'CowController@log_weight',
-		'as' => 'log_weight']);
+		'as' => 'cow_log_weight']);
 
 	Route::resource('cows', 'CowController');
 
 	Route::post('/bulls/{id}/log_weight', [
 		'uses' => 'BullController@log_weight',
-		'as' => 'log_weight']);
+		'as' => 'bull_log_weight']);
 
 	Route::resource('bulls', 'BullController');
 
 	Route::post('/calfs/{id}/log_weight', [
 		'uses' => 'CalfController@log_weight',
-		'as' => 'log_weight']);
+		'as' => 'calf_log_weight']);
 
 	Route::resource('calfs', 'CalfController');
 });
