@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Toro
@@ -51,16 +51,29 @@
 				<div class="panel-body">
 					<form class="form-inline" action="{{ route('log_weight', $bull->id) }}" method="post">
 						{{ csrf_field() }}
-						<div class="form-group">
-						<label for="weight">Peso</label>
-						<input type="number" step="any" class="form-control" name="weight" id="weight" placeholder="Peso">
+						<div class="row">
+							<div class="col-sm-10">
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="weight">Peso</label>
+								<input type="number" step="any" class="form-control col-sm-offset-2 col-sm-2" name="weight" id="weight" placeholder="Peso">
+								</div>
+
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="weight_date">Fecha</label>
+								<input type="date" class="form-control col-sm-offset-2 col-sm-2" name="date" id="date" placeholder="Fecha">
+								</div>
+
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="weight_comment">Comentario</label>
+								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<button type="submit" class="btn btn-default">Guardar</button>
+							</div>
 						</div>
-						<div class="form-group">
-						<label for="weight">Fecha</label>
-						<input type="date" class="form-control" name="weight_date" id="weight_date" placeholder="Fecha">
-						</div>
-						<button type="submit" class="btn btn-default">Guardar</button>
 					</form>
+					</div>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
