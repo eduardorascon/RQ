@@ -75,6 +75,7 @@
 							<tr>
 								<th>Peso</th>
 								<th>Fecha de pesaje</th>
+								<th>Comentario</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -82,7 +83,8 @@
 						@foreach($weight_logs as $log)
 							<tr>
 								<td>{{ $log->weight }}</td>
-								<td>{{ $log->weight_date }}</td>
+								<td>{{ $log->date }}</td>
+								<td>{{ $log->comment }}</td>
 								<td></td>
 							</tr>
 						@endforeach
