@@ -25,6 +25,11 @@ Route::group(['middleware' => ['web']], function() {
 Route::group(['middleware' => ['web']], function() {
 	Route::resource('breeds','BreedController');
 	Route::resource('vaccines','VaccineController');
+
+	Route::post('/cows/{id}/log_weight', [
+		'uses' => 'CowController@log_weight',
+		'as' => 'log_weight']);
+
 	Route::resource('cows', 'CowController');
 
 	Route::post('/bulls/{id}/log_weight', [
