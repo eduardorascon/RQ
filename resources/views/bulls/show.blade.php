@@ -5,9 +5,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Toro
-				</div>
+				<div class="panel-heading">Toro</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
 
@@ -43,9 +41,7 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Registro de peso
-				</div>
+				<div class="panel-heading">Registro de peso</div>
 				<div class="panel-body">
 					<form class="form-inline" action="{{ route('log_weight', $bull->id) }}" method="post">
 						{{ csrf_field() }}
@@ -57,12 +53,12 @@
 								</div>
 
 								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="weight_date">Fecha</label>
+								<label class="col-sm-2" for="date">Fecha</label>
 								<input type="date" class="form-control col-sm-offset-2 col-sm-2" name="date" id="date" placeholder="Fecha">
 								</div>
 
 								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="weight_comment">Comentario</label>
+								<label class="col-sm-2" for="comment">Comentario</label>
 								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
 								</div>
 							</div>
