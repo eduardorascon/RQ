@@ -81,7 +81,8 @@ class BullController extends Controller
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
-        $log->weight_date = $request->weight_date;
+        $log->date = $request->date;
+        $log->comment = $request->comment;
         $log->cattle_id = $bull->cattle_id;
         $log->save();
 
