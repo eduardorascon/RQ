@@ -9,9 +9,7 @@
 					Toro
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="{{ route('bulls.update', $bull->id) }}" method="post">
-						<input type="hidden" name="_method" value="PATCH" />
-						{{ csrf_field() }}
+					<div class="form-horizontal">
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>
@@ -40,7 +38,7 @@
 							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
 						</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 
