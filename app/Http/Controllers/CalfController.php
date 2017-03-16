@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
+use App\WeightLog;
 
 class CalfController extends Controller
 {
@@ -37,15 +38,13 @@ class CalfController extends Controller
         return redirect()->route('calfs.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $calf = Calf::findOrFail($id);
+        return view('calfs.show', [
+            'calf'=>$calf,
+            'breed'=>$calf->cattle->breed->name,
+            'weight_logs'=>$calf->cattle->weightLog->sortBy("weight")]);
     }
 
     public function edit($id)
@@ -75,5 +74,18 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $calf->delete();
         return redirect()->route('calfs.index');
+    }
+
+    public function log_weight(Request $request, $id)
+    {
+        $calf = Calf::findOrFail($id);
+        $log = new WeightLog;
+        $log->weight = $request->weight;
+        $log->date = $request->date;
+        $log->comment = $request->comment;
+        $log->cattle_id = $calf->cattle_id;
+        $log->save();
+
+        return redirect()->route('calfs.show', $calf->id);
     }
 }
