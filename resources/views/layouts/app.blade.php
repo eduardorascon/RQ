@@ -44,8 +44,21 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                     @if (Auth::guest()==false)
-                        <li><a href="{{ route('clients.index') }}">Catalogo de clientes</a></li>
-                        <li><a href="{{ route('breeds.index') }}">Catalogo de razas</a></li>
+                        <li><a href="{{ route('clients.index') }}">Clientes</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ganado<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('bulls.index') }}">Toros</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catálgos<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('breeds.index') }}">Razas</a></li>
+                            </ul>
+                        </li>
                     @endif
                     </ul>
                     <!-- Right Side Of Navbar -->
