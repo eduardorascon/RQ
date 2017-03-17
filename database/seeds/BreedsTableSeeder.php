@@ -17,7 +17,7 @@ class BreedsTableSeeder extends Seeder
         	$now = date('Y-m-d H:i:s', strtotime('now'));
 
         	DB::table('breeds')->insert([
-        			'name'=>$name, 
+        			'name'=>$name,
         			'created_at' => $now,
         			'updated_at' => $now
         		]);

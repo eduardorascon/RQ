@@ -16,10 +16,6 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::resource('cows', 'CowController');
-Route::resource('bulls', 'BullController');
-Route::resource('calfs', 'CalfController');
-
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['web']], function() {
@@ -27,7 +23,26 @@ Route::group(['middleware' => ['web']], function() {
 });
 
 Route::group(['middleware' => ['web']], function() {
-  Route::resource('breeds','BreedController');  
+	Route::resource('breeds','BreedController');
+	Route::resource('vaccines','VaccineController');
+
+	Route::post('/cows/{id}/log_weight', [
+		'uses' => 'CowController@log_weight',
+		'as' => 'cow_log_weight']);
+
+	Route::resource('cows', 'CowController');
+
+	Route::post('/bulls/{id}/log_weight', [
+		'uses' => 'BullController@log_weight',
+		'as' => 'bull_log_weight']);
+
+	Route::resource('bulls', 'BullController');
+
+	Route::post('/calfs/{id}/log_weight', [
+		'uses' => 'CalfController@log_weight',
+		'as' => 'calf_log_weight']);
+
+	Route::resource('calfs', 'CalfController');
 });
 
 Route::get('/admin', [

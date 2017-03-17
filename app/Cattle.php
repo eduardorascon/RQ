@@ -12,4 +12,9 @@ class Cattle extends Model
     {
     	return $this->hasOne('App\Breed', 'id', 'breed_id');
     }
+
+    public function weightLog()
+    {
+    	return $this->hasMany('App\WeightLog');
+    }
 }

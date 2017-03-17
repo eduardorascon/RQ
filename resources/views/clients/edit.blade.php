@@ -7,11 +7,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           Editar
-        </div>        
+        </div>
         <div class="panel-body">
-          <form class="form-horizontal" action="{{route('clients.update',$client->id)}}" method="post">
+          <form class="form-horizontal" action="{{ route('clients.update', $client->id) }}" method="post">
             <input name="_method" type="hidden" value="PATCH">
-            {{csrf_field()}}      
+            {{csrf_field()}}
 
             <div class="form-group">
               <label class="col-sm-2 control-label" for="first_name">Nombre:</label>
@@ -23,20 +23,20 @@
             <div class="form-group">
               <label class="col-sm-2 control-label" for="last_name">Apellidos:</label>
               <div class="col-sm-10">
-                <input type="text" name="last_name" class="form-control" placeholder="Apellidos" value="{{$client->last_name}}">        
+                <input type="text" name="last_name" class="form-control" placeholder="Apellidos" value="{{$client->last_name}}">
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2 control-label" for="address">Dirección:</label>
               <div class="col-sm-10">
-                <input type="text" name="address" class="form-control" placeholder="Dirección" value="{{$client->address}}">       
+                <input type="text" name="address" class="form-control" placeholder="Dirección" value="{{$client->address}}">
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-2 control-label" for="company">Empresa: </label>
-              <div class="col-sm-10"> 
+              <div class="col-sm-10">
                 <input type="text" name="company" class="form-control" placeholder="Empresa" value="{{$client->company}}">
               </div>
             </div>

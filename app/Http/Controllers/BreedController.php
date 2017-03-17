@@ -18,7 +18,7 @@ class BreedController extends Controller
     {
 		return Client::findOrFail($id);
     }
-	
+
 	public function create()
     {
         return view('breeds.create');
@@ -45,7 +45,7 @@ class BreedController extends Controller
     	$breed = Breed::findOrFail($id);
 
     	$breed->update([
-    			'name' => $request->input('name')	    
+    			'name' => $request->input('name')
     		]);
     	return redirect()->route('breeds.index');
     }
