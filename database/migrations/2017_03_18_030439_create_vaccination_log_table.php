@@ -21,7 +21,7 @@ class CreateVaccinationLogTable extends Migration
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
             $table->integer('vaccine_id')->unsigned();
-            $table->foreign('vaccine_id')->references('id')->on('vaccine');
+            $table->foreign('vaccine_id')->references('id')->on('vaccines');
         });
     }
 
