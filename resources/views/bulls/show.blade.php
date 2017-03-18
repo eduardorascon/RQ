@@ -130,6 +130,32 @@
 						</div>
 					</form>
 				</div>
+				@if($vaccine_logs->count() > 0)
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-condensed">
+						<thead>
+							<tr>
+								<th>Vacuna</th>
+								<th>Fecha de vacunación</th>
+								<th>Comentario</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($vaccine_logs as $log)
+							<tr>
+								<td></td>
+								<td>{{ $log->date }}</td>
+								<td>{{ $log->comment }}</td>
+								<td></td>
+							</tr>
+						@endforeach
+						</tbody>
+						</table>
+					</div>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>

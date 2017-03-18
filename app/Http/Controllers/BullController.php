@@ -47,8 +47,9 @@ class BullController extends Controller
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
-            'weight_logs'=>$bull->cattle->weightLog->sortBy("weight"),
-            'vaccine_list'=>$vaccine_list]);
+            'vaccine_list'=>$vaccine_list,
+            'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
+            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date")]);
     }
 
     public function edit($id)
