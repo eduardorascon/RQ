@@ -36,6 +36,10 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'BullController@log_weight',
 		'as' => 'bull_log_weight']);
 
+	Route::post('/bulls/{id}/log_vaccine', [
+		'uses' => 'BullController@log_vaccine',
+		'as' => 'bull_log_vaccine']);
+
 	Route::resource('bulls', 'BullController');
 
 	Route::post('/calfs/{id}/log_weight', [
