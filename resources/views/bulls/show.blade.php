@@ -68,6 +68,7 @@
 						</div>
 					</form>
 				</div>
+				@if($weight_logs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped table-condensed">
@@ -92,6 +93,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>
