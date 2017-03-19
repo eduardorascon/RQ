@@ -145,7 +145,7 @@
 						<tbody>
 						@foreach($vaccine_logs as $log)
 							<tr>
-								<td></td>
+								<td>{{ $log->vaccine->name }}</td>
 								<td>{{ $log->date }}</td>
 								<td>{{ $log->comment }}</td>
 								<td></td>

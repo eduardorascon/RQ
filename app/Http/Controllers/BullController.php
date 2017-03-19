@@ -101,7 +101,7 @@ class BullController extends Controller
         $log->date = $request->date;
         $log->comment = $request->comment;
         $log->cattle_id = $bull->cattle_id;
-        $log->vaccine_id = $request->weight;
+        $log->vaccine_id = $request->vaccine;
         $log->save();
 
         return redirect()->route('bulls.show', $bull->id);
