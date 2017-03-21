@@ -10,6 +10,11 @@ class Calf extends Model
 
     public function cattle()
 	{
-		return $this->hasOne('App\Cattle' , 'id', 'cattle_id');
+		return $this->hasOne('App\Cattle', 'id', 'cattle_id');
+	}
+
+	public function mother()
+	{
+		return $this->belongsTo('App\Cow', 'cow_id', 'id');
 	}
 }
