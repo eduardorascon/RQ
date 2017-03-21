@@ -10,6 +10,16 @@
 					<div class="form-horizontal">
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
+						<div class="col-sm-8">
+							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
+						</div>
+						<div class="col-sm-2">
+							<a class="btn btn-info" href="{{ route('cows.show', $calf->mother->id) }}">Información</a>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>
 						<div class="col-sm-10">
 							<input type="text" name="cattle_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}" />

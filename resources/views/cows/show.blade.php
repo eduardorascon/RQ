@@ -180,7 +180,9 @@
 								<td>{{ $o->cattle->birth }}</td>
 								<td>{{ $o->cattle->purchase_date }}</td>
 								<th>{{ $o->cattle->breed->name }}</th>
-								<td></td>
+								<td>
+									<a class="btn btn-info btn-xs" href="{{ route('calfs.show', $o->id) }}">Información</a>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
