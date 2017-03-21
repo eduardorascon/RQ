@@ -5,12 +5,17 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Captura de becerros
-				</div>
+				<div class="panel-heading">Captura de becerros</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('calfs.store') }}" method="post">
 						{{ csrf_field() }}
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="">Madre</label>
+						<div class="col-sm-10">
+							<input type="text" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
+						</div>
+						</div>
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>

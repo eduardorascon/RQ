@@ -49,7 +49,8 @@ class CowController extends Controller
             'breed'=>$cow->cattle->breed->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date")]);
+            'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
+            'offspring'=>$cow->offspring]);
     }
 
     public function edit($id)

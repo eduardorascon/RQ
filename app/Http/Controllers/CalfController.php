@@ -9,6 +9,7 @@ use App\Breed;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
+use App\Cow;
 
 class CalfController extends Controller
 {
@@ -22,6 +23,15 @@ class CalfController extends Controller
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
         return view('calfs.create', ['breed_list'=>$breed_list]);
+    }
+
+    public function create_offspring($cow_id)
+    {
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        $cow = Cow::findOrFail($cow_id);
+        return view('calfs.create', [
+            'breed_list'=>$breed_list,
+            'cow'=>$cow]);
     }
 
     public function store(Request $request)

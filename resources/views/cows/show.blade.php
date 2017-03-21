@@ -157,6 +157,11 @@
 				</div>
 				@endif
 			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Crías ({{ count($offspring) }}), <a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a></div>
+			</div>
+
 		</div>
 	</div>
 </div>
