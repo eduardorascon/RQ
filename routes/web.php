@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['web']], function() {
-  Route::resource('clients','ClientController');  
+  Route::resource('clients','ClientController');
 });
 
 Route::group(['middleware' => ['web']], function() {
@@ -29,6 +29,10 @@ Route::group(['middleware' => ['web']], function() {
 	Route::post('/cows/{id}/log_weight', [
 		'uses' => 'CowController@log_weight',
 		'as' => 'cow_log_weight']);
+
+	Route::post('/cows/{id}/log_vaccine', [
+		'uses' => 'CowController@log_vaccine',
+		'as' => 'cow_log_vaccine']);
 
 	Route::resource('cows', 'CowController');
 

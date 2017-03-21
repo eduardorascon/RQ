@@ -71,7 +71,7 @@
 				@if($weight_logs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-condensed">
+						<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>Peso</th>
@@ -133,7 +133,7 @@
 				@if($vaccine_logs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-condensed">
+						<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>Vacuna</th>
