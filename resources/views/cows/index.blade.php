@@ -9,6 +9,7 @@
 					Vacas, {{ count($cows) }}
 					<a href="{{ route('cows.create') }}">Agregar nueva vaca</a>
 				</div>
+				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -43,6 +44,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>

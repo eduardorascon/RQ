@@ -9,6 +9,7 @@
 					Becerros, {{ count($calfs) }}
 					<a href="{{ route('calfs.create') }}">Agregar nuevo becerro</a>
 				</div>
+				@if($calfs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -43,6 +44,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>

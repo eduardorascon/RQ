@@ -9,6 +9,7 @@
 					Toros, {{ count($bulls) }}
 					<a href="{{ route('bulls.create') }}">Agregar nuevo toro</a>
 				</div>
+				@if($bulls->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -43,6 +44,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>
