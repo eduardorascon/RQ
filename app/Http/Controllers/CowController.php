@@ -7,6 +7,8 @@ use App\Cow;
 use App\Cattle;
 use App\Breed;
 use App\WeightLog;
+use App\Vaccine;
+use App\VaccineLog;
 
 class CowController extends Controller
 {
