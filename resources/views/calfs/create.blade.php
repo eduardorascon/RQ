@@ -11,9 +11,10 @@
 						{{ csrf_field() }}
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="">Madre</label>
+						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
 						<div class="col-sm-10">
-							<input type="text" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
+							<input type="hidden" name="cow_id" value="{{ $cow->id }}" />
+							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
 						</div>
 						</div>
 

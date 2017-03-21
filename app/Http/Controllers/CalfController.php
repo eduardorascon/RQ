@@ -45,6 +45,7 @@ class CalfController extends Controller
 
         $calf = new Calf;
         $calf->cattle_id = $cattle->id;
+        $calf->cow_id = $request->cow_id;
         $calf->save();
 
         return redirect()->route('calfs.index');
