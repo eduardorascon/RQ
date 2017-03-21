@@ -50,6 +50,10 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'CalfController@log_weight',
 		'as' => 'calf_log_weight']);
 
+	Route::post('/calfs/{id}/log_vaccine', [
+		'uses' => 'CalfController@log_vaccine',
+		'as' => 'calf_log_vaccine']);
+
 	Route::resource('calfs', 'CalfController');
 });
 

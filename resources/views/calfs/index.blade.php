@@ -32,6 +32,7 @@
 									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
 										<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    					<a class="btn btn-primary btn-xs" href="{{ route('calfs.show', $calf->id) }}">Peso</a>
                     					<a class="btn btn-primary btn-xs" href="{{ route('calfs.edit', $calf->id) }}">Editar</a>
                     					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
 									</form>
