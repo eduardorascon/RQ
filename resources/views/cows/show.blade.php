@@ -160,6 +160,34 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">Crías ({{ count($offspring) }}), <a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a></div>
+				@if($offspring->count() > 0)
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Etiqueta</th>
+								<th>Fecha de nacimiento</th>
+								<th>Fecha de compra</th>
+								<th>Raza</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($offspring as $o)
+							<tr>
+								<td>{{ $o->cattle->tag }}</td>
+								<td>{{ $o->cattle->birth }}</td>
+								<td>{{ $o->cattle->purchase_date }}</td>
+								<th>{{ $o->cattle->breed->name }}</th>
+								<td></td>
+							</tr>
+						@endforeach
+						</tbody>
+						</table>
+					</div>
+				</div>
+				@endif
 			</div>
 
 		</div>
