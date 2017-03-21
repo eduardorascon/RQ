@@ -57,7 +57,7 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'CalfController@log_vaccine',
 		'as' => 'calf_log_vaccine']);
 
-	Route::get('calfs/create_offspring/{id}', [
+	Route::get('calfs/create_offspring/c={id}', [
 		'uses' => 'CalfController@create_offspring',
 		'as' => 'calf_create_offspring'
 		]);

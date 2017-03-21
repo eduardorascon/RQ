@@ -13,8 +13,18 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
 						<div class="col-sm-10">
+							@if(!empty($cow))
 							<input type="hidden" name="cow_id" value="{{ $cow->id }}" />
 							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
+							@else
+							<select class="form-control" name="cow_id">
+								@foreach ($cow_list as $c)
+								{
+								<option value="{{ $c->id }}">{{ $c->tag }}</option>
+								}
+								@endforeach
+							</select>
+							@endif
 						</div>
 						</div>
 

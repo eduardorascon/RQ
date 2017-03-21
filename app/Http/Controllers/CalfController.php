@@ -22,7 +22,10 @@ class CalfController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('calfs.create', ['breed_list'=>$breed_list]);
+        $cow_list = Cow::with('cattle')->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
+        return view('calfs.create', [
+            'breed_list'=>$breed_list,
+            'cow_list'=>$cow_list]);
     }
 
     public function create_offspring($cow_id)
