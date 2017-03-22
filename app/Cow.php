@@ -15,4 +15,9 @@ class Cow extends Model
 	{
 		return $this->hasMany('App\Calf');
 	}
+
+	public function palpationLog()
+    {
+    	return $this->hasMany('App\PalpationLog');
+    }
 }
