@@ -7,6 +7,8 @@ use App\Bull;
 use App\Cattle;
 use App\Breed;
 use App\WeightLog;
+use App\Vaccine;
+use App\VaccineLog;
 
 class BullController extends Controller
 {
@@ -41,10 +43,13 @@ class BullController extends Controller
     public function show($id)
     {
         $bull = Bull::findOrFail($id);
+        $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
-            'weight_logs'=>$bull->cattle->weightLog->sortBy("weight")]);
+            'vaccine_list'=>$vaccine_list,
+            'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
+            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date")]);
     }
 
     public function edit($id)
@@ -84,6 +89,19 @@ class BullController extends Controller
         $log->date = $request->date;
         $log->comment = $request->comment;
         $log->cattle_id = $bull->cattle_id;
+        $log->save();
+
+        return redirect()->route('bulls.show', $bull->id);
+    }
+
+    public function log_vaccine(Request $request, $id)
+    {
+        $bull = Bull::findOrFail($id);
+        $log = new VaccineLog;
+        $log->date = $request->date;
+        $log->comment = $request->comment;
+        $log->cattle_id = $bull->cattle_id;
+        $log->vaccine_id = $request->vaccine;
         $log->save();
 
         return redirect()->route('bulls.show', $bull->id);

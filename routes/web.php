@@ -19,28 +19,48 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['web']], function() {
-  Route::resource('clients','ClientController');  
+  Route::resource('clients','ClientController');
 });
 
 Route::group(['middleware' => ['web']], function() {
 	Route::resource('breeds','BreedController');
 	Route::resource('vaccines','VaccineController');
 
+	//Cows
 	Route::post('/cows/{id}/log_weight', [
 		'uses' => 'CowController@log_weight',
 		'as' => 'cow_log_weight']);
 
+	Route::post('/cows/{id}/log_vaccine', [
+		'uses' => 'CowController@log_vaccine',
+		'as' => 'cow_log_vaccine']);
+
 	Route::resource('cows', 'CowController');
 
+	//Bulls
 	Route::post('/bulls/{id}/log_weight', [
 		'uses' => 'BullController@log_weight',
 		'as' => 'bull_log_weight']);
 
+	Route::post('/bulls/{id}/log_vaccine', [
+		'uses' => 'BullController@log_vaccine',
+		'as' => 'bull_log_vaccine']);
+
 	Route::resource('bulls', 'BullController');
 
+	//Calves
 	Route::post('/calfs/{id}/log_weight', [
 		'uses' => 'CalfController@log_weight',
 		'as' => 'calf_log_weight']);
+
+	Route::post('/calfs/{id}/log_vaccine', [
+		'uses' => 'CalfController@log_vaccine',
+		'as' => 'calf_log_vaccine']);
+
+	Route::get('calfs/create_offspring/c={id}', [
+		'uses' => 'CalfController@create_offspring',
+		'as' => 'calf_create_offspring'
+		]);
 
 	Route::resource('calfs', 'CalfController');
 });

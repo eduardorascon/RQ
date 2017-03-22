@@ -9,11 +9,11 @@ class CreateVaccinesTable extends Migration
 
     public function up()
     {
-        /*Schema::create('vaccines', function (Blueprint $table) {
+        Schema::create('vaccines', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->timestamps();
-        });*/
+            $table->string('name');
+        });
     }
 
     public function down()

@@ -7,6 +7,9 @@ use App\Calf;
 use App\Cattle;
 use App\Breed;
 use App\WeightLog;
+use App\Vaccine;
+use App\VaccineLog;
+use App\Cow;
 
 class CalfController extends Controller
 {
@@ -19,7 +22,19 @@ class CalfController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('calfs.create', ['breed_list'=>$breed_list]);
+        $cow_list = Cow::with('cattle')->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
+        return view('calfs.create', [
+            'breed_list'=>$breed_list,
+            'cow_list'=>$cow_list]);
+    }
+
+    public function create_offspring($cow_id)
+    {
+        $breed_list = Breed::orderBy('name', 'asc')->get();
+        $cow = Cow::findOrFail($cow_id);
+        return view('calfs.create', [
+            'breed_list'=>$breed_list,
+            'cow'=>$cow]);
     }
 
     public function store(Request $request)
@@ -33,6 +48,7 @@ class CalfController extends Controller
 
         $calf = new Calf;
         $calf->cattle_id = $cattle->id;
+        $calf->cow_id = $request->cow_id;
         $calf->save();
 
         return redirect()->route('calfs.index');
@@ -41,10 +57,13 @@ class CalfController extends Controller
     public function show($id)
     {
         $calf = Calf::findOrFail($id);
+        $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
         return view('calfs.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
-            'weight_logs'=>$calf->cattle->weightLog->sortBy("weight")]);
+            'vaccine_list'=>$vaccine_list,
+            'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
+            'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date")]);
     }
 
     public function edit($id)
@@ -84,6 +103,19 @@ class CalfController extends Controller
         $log->date = $request->date;
         $log->comment = $request->comment;
         $log->cattle_id = $calf->cattle_id;
+        $log->save();
+
+        return redirect()->route('calfs.show', $calf->id);
+    }
+
+    public function log_vaccine(Request $request, $id)
+    {
+        $calf = Calf::findOrFail($id);
+        $log = new VaccineLog;
+        $log->date = $request->date;
+        $log->comment = $request->comment;
+        $log->cattle_id = $calf->cattle_id;
+        $log->vaccine_id = $request->vaccine;
         $log->save();
 
         return redirect()->route('calfs.show', $calf->id);

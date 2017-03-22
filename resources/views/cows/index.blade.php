@@ -5,10 +5,8 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Vacas, {{ count($cows) }}
-					<a href="{{ route('cows.create') }}">Agregar nueva vaca</a>
-				</div>
+				<div class="panel-heading">Vacas, {{ count($cows) }}<a href="{{ route('cows.create') }}">Agregar nueva vaca</a></div>
+				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped">
@@ -32,7 +30,8 @@
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
 										<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-primary btn-xs" href="{{ route('cows.edit', $cow->id) }}">Editar</a>
+                    					<a class="btn btn-info btn-xs" href="{{ route('cows.show', $cow->id) }}">Información</a>
+                    					<a class="btn btn-warning btn-xs" href="{{ route('cows.edit', $cow->id) }}">Editar</a>
                     					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
 									</form>
 								</td>
@@ -42,6 +41,7 @@
 						</table>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>

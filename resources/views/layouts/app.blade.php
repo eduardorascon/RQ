@@ -58,6 +58,9 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('breeds.index') }}">Razas</a></li>
                             </ul>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('vaccines.index') }}">Vacunas</a></li>
+                            </ul>
                         </li>
                     @endif
                     </ul>

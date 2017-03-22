@@ -10,6 +10,16 @@
 					<div class="form-horizontal">
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
+						<div class="col-sm-8">
+							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
+						</div>
+						<div class="col-sm-2">
+							<a class="btn btn-info" href="{{ route('cows.show', $calf->mother->id) }}">Información</a>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>
 						<div class="col-sm-10">
 							<input type="text" name="cattle_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}" />
@@ -68,9 +78,10 @@
 						</div>
 					</form>
 				</div>
+				@if($weight_logs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped table-condensed">
+						<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>Peso</th>
@@ -92,6 +103,69 @@
 						</table>
 					</div>
 				</div>
+				@endif
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Registro de vacunación</div>
+				<div class="panel-body">
+					<form class="form-inline" action="{{ route('calf_log_vaccine', $calf->id) }}" method="post">
+						{{ csrf_field() }}
+						<div class="row">
+							<div class="col-sm-10">
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="vaccine">Vacuna</label>
+								<select class="form-control col-sm-offset-2 col-sm-2" name="vaccine">
+								@foreach ($vaccine_list as $v)
+								{
+								<option value="{{ $v->id }}">{{ $v->name }}</option>
+								}
+								@endforeach
+								</select>
+								</div>
+
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="date">Fecha</label>
+								<input type="date" class="form-control col-sm-offset-2 col-sm-2" name="date" id="date" placeholder="Fecha">
+								</div>
+
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="comment">Comentario</label>
+								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<button type="submit" class="btn btn-default">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				@if($vaccine_logs->count() > 0)
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Vacuna</th>
+								<th>Fecha de vacunación</th>
+								<th>Comentario</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($vaccine_logs as $log)
+							<tr>
+								<td>{{ $log->vaccine->name }}</td>
+								<td>{{ $log->date }}</td>
+								<td>{{ $log->comment }}</td>
+								<td></td>
+							</tr>
+						@endforeach
+						</tbody>
+						</table>
+					</div>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>

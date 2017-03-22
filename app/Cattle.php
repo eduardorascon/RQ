@@ -17,4 +17,9 @@ class Cattle extends Model
     {
     	return $this->hasMany('App\WeightLog');
     }
+
+    public function vaccinationLog()
+    {
+    	return $this->hasMany('App\VaccineLog');
+    }
 }
