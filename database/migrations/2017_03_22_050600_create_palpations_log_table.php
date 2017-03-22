@@ -16,7 +16,7 @@ class CreatePalpationsLogTable extends Migration
         Schema::create('palpation_logs', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->float('weight', 8, 1);
+            $table->float('months', 8, 1);
             $table->date('date');
             $table->string('comment');
             $table->integer('cow_id')->unsigned();
