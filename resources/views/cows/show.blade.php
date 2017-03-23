@@ -19,14 +19,14 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
 						<div class="col-sm-10">
-							<input type="date" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->birth }}" />
+							<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->birth }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-10">
-							<input type="date" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->purchase_date }}" />
+							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->purchase_date }}" />
 						</div>
 						</div>
 

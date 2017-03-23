@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Cattle extends Model
 {
@@ -21,5 +22,17 @@ class Cattle extends Model
     public function vaccinationLog()
     {
     	return $this->hasMany('App\VaccineLog');
+    }
+
+    public function getBirthAttribute($value)
+    {
+        setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
+        return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
+    }
+
+    public function getPurchaseDateAttribute($value)
+    {
+        setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
+        return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
     }
 }
