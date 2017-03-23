@@ -195,7 +195,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de palpaciones</div>
 				<div class="panel-body">
-					<form class="form-inline" action="" method="post">
+					<form class="form-inline" action="{{ route('cow_log_palpation', $cow->id) }}" method="post">
 						{{ csrf_field() }}
 						<div class="row">
 							<div class="col-sm-10">
@@ -220,6 +220,32 @@
 						</div>
 					</form>
 				</div>
+				@if($palpations->count() > 0)
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Meses</th>
+								<th>Fecha de palpación</th>
+								<th>Comentarios</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach($palpations as $p)
+							<tr>
+								<td>{{ $p->months }}</td>
+								<td>{{ $p->date }}</td>
+								<td>{{ $p->comment }}</td>
+								<td></td>
+							</tr>
+						@endforeach
+						</tbody>
+						</table>
+					</div>
+				</div>
+				@endif
 			</div>
 
 		</div>

@@ -9,6 +9,7 @@ use App\Breed;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
+use App\PalpationLog;
 
 class CowController extends Controller
 {
@@ -50,7 +51,8 @@ class CowController extends Controller
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
-            'offspring'=>$cow->offspring]);
+            'offspring'=>$cow->offspring,
+            'palpations'=>$cow->palpationLog]);
     }
 
     public function edit($id)
@@ -106,5 +108,17 @@ class CowController extends Controller
         $log->save();
 
         return redirect()->route('cows.show', $cow->id);
+    }
+
+    public function log_palpation(Request $request, $id)
+    {
+        $log = new PalpationLog;
+        $log->months = $request->months;
+        $log->date = $request->date;
+        $log->comment = $request->comment;
+        $log->cow_id = $id;
+        $log->save();
+
+        return redirect()->route('cows.show', $id);
     }
 }
