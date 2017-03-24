@@ -5,10 +5,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Toros, {{ count($bulls) }}
-					<a href="{{ route('bulls.create') }}">Agregar nuevo toro</a>
-				</div>
+				<div class="panel-heading">Toros ({{ count($bulls) }}), <a href="{{ route('bulls.create') }}">Agregar nuevo toro</a></div>
 				@if($bulls->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">

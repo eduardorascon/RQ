@@ -5,9 +5,7 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Vacunas, {{ count($vaccines) }}
-                    <a href="{{ route('vaccines.create') }}">Agregar nueva vacuna</a>
+                <div class="panel-heading">Vacunas ({{ count($vaccines) }}), <a href="{{ route('vaccines.create') }}">Agregar nueva vacuna</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
