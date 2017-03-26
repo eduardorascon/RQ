@@ -40,7 +40,7 @@
 				</div>
 				<div class="panel-heading">Fotografias</div>
 				<div class="panel-body">
-					<form class="form-inline" action="{{ route('bull_save_picture', $bull->id) }}" method="post">
+					<form class="form-inline" action="{{ route('bull_save_picture', $bull->id) }}" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="row">
 							<div class="col-sm-10">

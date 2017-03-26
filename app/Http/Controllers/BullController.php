@@ -113,7 +113,12 @@ class BullController extends Controller
     public function save_picture(Request $request, $id)
     {
         $bull = Bull::findOrFail($id);
-        
+
+        if($request->hasFile('picture')) {
+            $imageName = $bull->id . '.' . $request->file('picture')->getClientOriginalExtension();
+            $request->file('picture')->move(base_path() . '/public/images/bulls/', $imageName);
+        }
+
         return redirect()->route('bulls.show', $bull->id);
     }
 }
