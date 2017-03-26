@@ -15,7 +15,7 @@ class CowController extends Controller
 {
     public function index()
     {
-        $cows = Cow::paginate(2);
+        $cows = Cow::paginate(12);
         $total_cows = Cow::count();
         return view('cows.index', [
             'cows' => $cows,
