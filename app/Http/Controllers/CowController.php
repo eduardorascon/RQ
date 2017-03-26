@@ -15,8 +15,11 @@ class CowController extends Controller
 {
     public function index()
     {
-        $cows = Cow::all();
-        return view('cows.index', ['cows' => $cows]);
+        $cows = Cow::paginate(2);
+        $total_cows = Cow::count();
+        return view('cows.index', [
+            'cows' => $cows,
+            'total_cows' => $total_cows]);
     }
 
     public function create()
