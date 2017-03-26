@@ -15,8 +15,11 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = Calf::all();
-        return view('calfs.index', ['calfs' => $calfs]);
+        $calfs = Calf::paginate(12);
+        $total_calves = Calf::count();
+        return view('calfs.index', [
+            'calfs' => $calfs,
+            'total_calves' => $total_calves]);
     }
 
     public function create()

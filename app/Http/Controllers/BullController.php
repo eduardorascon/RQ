@@ -14,8 +14,11 @@ class BullController extends Controller
 {
     public function index()
     {
-        $bulls = Bull::all();
-        return view('bulls.index', ['bulls' => $bulls]);
+        $bulls = Bull::paginate(12);
+        $total_bulls = Bull::count();
+        return view('bulls.index', [
+            'bulls' => $bulls,
+            'total_bulls' => $total_bulls]);
     }
 
     public function create()
