@@ -109,4 +109,11 @@ class BullController extends Controller
 
         return redirect()->route('bulls.show', $bull->id);
     }
+
+    public function save_picture(Request $request, $id)
+    {
+        $bull = Bull::findOrFail($id);
+        
+        return redirect()->route('bulls.show', $bull->id);
+    }
 }

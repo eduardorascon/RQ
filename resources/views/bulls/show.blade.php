@@ -38,6 +38,23 @@
 						</div>
 					</div>
 				</div>
+				<div class="panel-heading">Fotografias</div>
+				<div class="panel-body">
+					<form class="form-inline" action="{{ route('bull_save_picture', $bull->id) }}" method="post">
+						{{ csrf_field() }}
+						<div class="row">
+							<div class="col-sm-10">
+								<div class="form-group col-sm-5">
+								<input type="file" name="picture">
+								</div>
+
+								<div class="col-sm-5">
+									<button type="submit" class="btn btn-default">Guardar</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 
 			<div class="panel panel-default">
