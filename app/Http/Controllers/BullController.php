@@ -9,6 +9,7 @@ use App\Breed;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
+use Carbon\Carbon;
 
 class BullController extends Controller
 {
@@ -115,7 +116,7 @@ class BullController extends Controller
         $bull = Bull::findOrFail($id);
 
         if($request->hasFile('picture')) {
-            $imageName = $bull->id . '.' . $request->file('picture')->getClientOriginalExtension();
+            $imageName = $bull->id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
             $request->file('picture')->move(base_path() . '/public/images/bulls/', $imageName);
         }
 
