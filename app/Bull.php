@@ -10,4 +10,9 @@ class Bull extends Model
 	{
 		return $this->hasOne('App\Cattle' , 'id', 'cattle_id');
 	}
+
+	public function pictures()
+	{
+		return $this->hasMany('App\Picture');
+	}
 }
