@@ -16,7 +16,7 @@ class CreatePicturesTable extends Migration
         Schema::create('pictures', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->date('date');
+            $table->string('filename');
             $table->string('comment');
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');

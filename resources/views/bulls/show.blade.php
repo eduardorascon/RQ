@@ -48,9 +48,13 @@
 								<input type="file" name="picture">
 								</div>
 
-								<div class="col-sm-5">
-									<button type="submit" class="btn btn-default">Guardar</button>
+								<div class="form-group col-sm-5">
+								<label class="col-sm-2" for="comment">Comentario</label>
+								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
 								</div>
+							</div>
+							<div class="col-sm-2">
+								<button type="submit" class="btn btn-default">Guardar</button>
 							</div>
 						</div>
 					</form>
