@@ -118,6 +118,12 @@ class BullController extends Controller
         if($request->hasFile('picture')) {
             $imageName = $bull->id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
             $request->file('picture')->move(base_path() . '/public/images/bulls/', $imageName);
+
+            $picure = new Picure;
+            $picure->filename = $imageName;
+            $picure->comment = $request->comment;
+            $picure->cattle_id = $bull->cattle_id;
+            $picure->save();
         }
 
         return redirect()->route('bulls.show', $bull->id);
