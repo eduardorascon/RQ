@@ -13,7 +13,14 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('pictures', function(Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+            $table->date('date');
+            $table->string('comment');
+            $table->integer('cattle_id')->unsigned();
+            $table->foreign('cattle_id')->references('id')->on('cattle');
+        });
     }
 
     /**
