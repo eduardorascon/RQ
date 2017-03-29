@@ -119,7 +119,7 @@ class BullController extends Controller
 
         if($request->hasFile('picture')) {
             $imageName = $bull->id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
-            $request->file('picture')->move(base_path() . '/public/images/bulls/', $imageName);
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
 
             $pic = new Picture;
             $pic->filename = $imageName;
