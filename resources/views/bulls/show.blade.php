@@ -8,7 +8,6 @@
 				<div class="panel-heading">Toro</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
-
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Etiqueta</label>
 						<div class="col-sm-10">
@@ -60,6 +59,15 @@
 					</form>
 				</div>
 				<div class="panel-body">
+					@if($pictures->count() > 0)
+					<div class="row">
+						@foreach($pictures as $pic)
+						<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
+			                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive">
+			            </a>
+			            @endforeach
+					</div>
+					@endif
 			        <div class="row">
 			            <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
 			                <img src="https://unsplash.it/600.jpg?image=251" class="img-responsive">
@@ -71,8 +79,6 @@
 			                <img src="https://unsplash.it/600.jpg?image=253" class="img-responsive">
 			            </a>
 			        </div>
-
-
 				</div>
 			</div>
 
