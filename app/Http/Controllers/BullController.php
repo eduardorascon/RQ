@@ -9,6 +9,7 @@ use App\Breed;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
+use App\Picture;
 use Carbon\Carbon;
 
 class BullController extends Controller
@@ -120,11 +121,11 @@ class BullController extends Controller
             $imageName = $bull->id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
             $request->file('picture')->move(base_path() . '/public/images/bulls/', $imageName);
 
-            $picure = new Picure;
-            $picure->filename = $imageName;
-            $picure->comment = $request->comment;
-            $picure->cattle_id = $bull->cattle_id;
-            $picure->save();
+            $pic = new Picture;
+            $pic->filename = $imageName;
+            $pic->comment = $request->comment;
+            $pic->cattle_id = $bull->cattle_id;
+            $pic->save();
         }
 
         return redirect()->route('bulls.show', $bull->id);
