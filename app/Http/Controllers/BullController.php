@@ -53,7 +53,8 @@ class BullController extends Controller
             'breed'=>$bull->cattle->breed->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date")]);
+            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
+            'pictures'=>$bull->cattle->pictures->sortBy('filename')]);
     }
 
     public function edit($id)
