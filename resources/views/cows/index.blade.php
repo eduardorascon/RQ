@@ -5,14 +5,14 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Vacas ({{ count($cows) }}), <a href="{{ route('cows.create') }}">Agregar nueva vaca</a></div>
+				<div class="panel-heading">Vacas ({{ $total_cows }}), <a href="{{ route('cows.create') }}">Agregar nueva vaca</a></div>
 				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Etiqueta</th>
+								<th>Arete Siniga</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de nacimiento</th>
 								<th>Raza</th>
@@ -40,6 +40,7 @@
 						</tbody>
 						</table>
 					</div>
+					<div>{{ $cows->links() }}</div>
 				</div>
 				@endif
 			</div>

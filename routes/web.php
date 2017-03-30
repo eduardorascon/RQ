@@ -50,6 +50,10 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'BullController@log_vaccine',
 		'as' => 'bull_log_vaccine']);
 
+	Route::post('/bulls/{id}/bull_save_picture', [
+		'uses' => 'BullController@save_picture',
+		'as' => 'bull_save_picture']);
+
 	Route::resource('bulls', 'BullController');
 
 	//Calves

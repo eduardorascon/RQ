@@ -9,13 +9,18 @@ use App\Breed;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
+use App\Picture;
+use Carbon\Carbon;
 
 class BullController extends Controller
 {
     public function index()
     {
-        $bulls = Bull::all();
-        return view('bulls.index', ['bulls' => $bulls]);
+        $bulls = Bull::paginate(12);
+        $total_bulls = Bull::count();
+        return view('bulls.index', [
+            'bulls' => $bulls,
+            'total_bulls' => $total_bulls]);
     }
 
     public function create()
@@ -49,7 +54,8 @@ class BullController extends Controller
             'breed'=>$bull->cattle->breed->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date")]);
+            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
+            'pictures'=>$bull->cattle->pictures->sortBy('filename')]);
     }
 
     public function edit($id)
@@ -103,6 +109,24 @@ class BullController extends Controller
         $log->cattle_id = $bull->cattle_id;
         $log->vaccine_id = $request->vaccine;
         $log->save();
+
+        return redirect()->route('bulls.show', $bull->id);
+    }
+
+    public function save_picture(Request $request, $id)
+    {
+        $bull = Bull::findOrFail($id);
+
+        if($request->hasFile('picture')) {
+            $imageName = $bull->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
+
+            $pic = new Picture;
+            $pic->filename = $imageName;
+            $pic->comment = $request->comment;
+            $pic->cattle_id = $bull->cattle_id;
+            $pic->save();
+        }
 
         return redirect()->route('bulls.show', $bull->id);
     }

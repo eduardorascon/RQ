@@ -24,6 +24,11 @@ class Cattle extends Model
     	return $this->hasMany('App\VaccineLog');
     }
 
+    public function pictures()
+    {
+        return $this->hasMany('App\Picture');
+    }
+
     public function getBirthAttribute($value)
     {
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
