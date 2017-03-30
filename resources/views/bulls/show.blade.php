@@ -62,8 +62,8 @@
 					@if($pictures->count() > 0)
 					<div class="row">
 						@foreach($pictures as $pic)
-						<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2">
-			                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive">
+						<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="{{ $bull->cattle->tag }}" data-footer="{{ $pic->comment }}">
+			                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive img-thumbnail" >
 			            </a>
 			            @endforeach
 					</div>
