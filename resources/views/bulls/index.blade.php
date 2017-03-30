@@ -12,7 +12,7 @@
 						<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Etiqueta</th>
+								<th>Arete Siniga</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de nacimiento</th>
 								<th>Raza</th>
