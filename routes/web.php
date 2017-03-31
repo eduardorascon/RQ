@@ -71,6 +71,10 @@ Route::group(['middleware' => ['web']], function() {
 		]);
 
 	Route::resource('calfs', 'CalfController');
+
+	Route::get('/calves_sales', [
+		'uses' => 'CalfSaleController@index',
+		'as' => 'calves_sales']);
 });
 
 Route::get('/admin', [
