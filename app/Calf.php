@@ -17,4 +17,9 @@ class Calf extends Model
 	{
 		return $this->belongsTo('App\Cow', 'cow_id', 'id');
 	}
+
+	public function sale()
+	{
+		return $this->hasOne('App\CalfSale', 'id', 'sale_id');
+	}
 }
