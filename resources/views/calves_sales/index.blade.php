@@ -24,9 +24,29 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">Becerros ({{ count($calves) }})</div>
+				@if($calves->count() > 0)
 				<div class="panel-body">
-					
+					<div class="table table-responsive">
+						<table class="table table-striped">
+						<thead>
+							<tr>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<form class="" action="" method="post">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<a class="btn btn-info btn-xs" href="">Registrar venta</a>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>
