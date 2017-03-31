@@ -30,18 +30,26 @@
 						<table class="table table-striped">
 						<thead>
 							<tr>
+								<th>Becerro</th>
+								<th>Raza</th>
+								<th>Madre</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
+						@foreach($calves as $calf)
 							<tr>
+								<td>{{ $calf->cattle->tag }}</td>
+								<td>{{ $calf->cattle->breed->name }}</td>
+								<td>{{ $calf->mother->cattle->tag }}</td>
 								<td>
 									<form class="" action="" method="post">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-									<a class="btn btn-info btn-xs" href="">Registrar venta</a>
+									<a class="btn btn-warning btn-xs" href="">Registrar venta</a>
 									</form>
 								</td>
 							</tr>
+						@endforeach
 						</tbody>
 						</table>
 					</div>
