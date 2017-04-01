@@ -53,6 +53,7 @@
 						</tbody>
 						</table>
 					</div>
+					<div>{{ $calves->links() }}</div>
 				</div>
 				@endif
 			</div>

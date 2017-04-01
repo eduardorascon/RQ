@@ -9,14 +9,14 @@ class CalfSaleController extends Controller
 {
     public function index()
     {
-    	$calves = Calf::all();
+    	$calves = Calf::paginate(12);
 
 		$is_search = isset($_GET['s']);
     	if($is_search)
     	{
     		$calves = Calf::whereHas('cattle', function ($q) {
     			$q->where('tag', 'LIKE', '%' . $_GET['s'] . '%');
-    		})->get();
+    		})->get()->paginate(12);
     	}
 
     	return view('calves_sales.index', ['calves' => $calves]);
