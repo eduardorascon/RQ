@@ -74,6 +74,10 @@ Route::group(['middleware' => ['web']], function() {
 		'as' => 'calf_create_offspring'
 		]);
 
+	Route::post('/calfs/{id}/calf_save_picture', [
+		'uses' => 'CalfController@save_picture',
+		'as' => 'calf_save_picture']);
+
 	Route::resource('calfs', 'CalfController');
 
 	//Sales
