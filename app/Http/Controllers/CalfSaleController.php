@@ -46,4 +46,10 @@ class CalfSaleController extends Controller
 
         return view('calves_sales.index');
     }
+
+    public function show($id)
+    {
+        $calf = Calf::findOrFail($id);
+        return view('calves_sales.show', ['calf'=>$calf]);
+    }
 }
