@@ -9,16 +9,17 @@ class CalfSaleController extends Controller
 {
     public function index()
     {
-    	$calves = Calf::paginate(12);
-
-		$is_search = isset($_GET['s']);
-    	if($is_search)
+		$is_search = isset($_GET['search']);
+    	if($is_search == false)
     	{
-    		$calves = Calf::whereHas('cattle', function ($q) {
-    			$q->where('tag', 'LIKE', '%' . $_GET['s'] . '%');
-    		})->get()->paginate(12);
+            $calves = Calf::paginate(12);
     	}
+        else{
+            $calves = Calf::whereHas('cattle', function ($q) {
+                $q->where('tag', 'LIKE', '%' . $_GET['search'] . '%');
+            })->paginate(12);
+        }
 
-    	return view('calves_sales.index', ['calves' => $calves]);
+        return view('calves_sales.index', ['calves' => $calves]);
     }
 }

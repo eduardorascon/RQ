@@ -10,12 +10,16 @@
 
 					<div class="row">
 						<div class="col-lg-6">
+							<form class="" action="{{ route('calves_sales') }}" method="get">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Buscar...">
+								<input type="text" class="form-control" name="search" placeholder="Buscar...">
 								<span class="input-group-btn">
-									<button class="btn btn-default btn-info" type="button">Buscar</button>
+									<button type="submit" class="btn btn-info">
+									<span class="glyphicon glyphicon-search"></span>
+									</button>
 								</span>
 							</div>
+							</form>
 						</div>
 					</div>
 
