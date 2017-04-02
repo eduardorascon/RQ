@@ -20,7 +20,7 @@ class CreateCalvesTable extends Migration
             $table->foreign('cattle_id')->references('id')->on('cattle');
             $table->integer('cow_id')->unsigned();
             $table->foreign('cow_id')->references('id')->on('cows');
-            $table->integer('sale_id')->unsigned();
+            $table->integer('sale_id')->unsigned()->nullable();
             $table->foreign('sale_id')->references('id')->on('calves_sales');
         });
     }
