@@ -63,6 +63,8 @@
                                 <li><a href="{{ route('vaccines.index') }}">Vacunas</a></li>
                             </ul>
                         </li>
+
+                        <li><a href="{{ route('calves_sales.index') }}">Ventas</a></li>
                     @endif
                     </ul>
                     <!-- Right Side Of Navbar -->
