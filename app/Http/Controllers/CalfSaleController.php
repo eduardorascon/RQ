@@ -26,15 +26,14 @@ class CalfSaleController extends Controller
 
     public function create(Request $request)
     {
-        //$this->getQueryString()
-        $calf_id = $request->getQueryString();
+        $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
         return view('calves_sales.create', ['calf'=>$calf]);
     }
 
     public function store(Request $request)
     {
-        $calf_id = $request->getQueryString();
+        $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
 
         $sale = new CalfSale;

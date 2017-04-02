@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de venta</div>
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calves_sales.store', $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('calves_sales.store', 'calf=' . $calf->id) }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
