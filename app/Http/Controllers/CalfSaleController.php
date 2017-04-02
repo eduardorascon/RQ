@@ -24,16 +24,18 @@ class CalfSaleController extends Controller
         return view('calves_sales.index', ['calves' => $calves]);
     }
 
-    public function register_sale($calf_id)
+    public function create(Request $request)
     {
+        //$this->getQueryString()
+        $calf_id = $request->getQueryString();
         $calf = Calf::findOrFail($calf_id);
-        return view('calves_sales.create', [
-            'calf'=>$calf]);
+        return view('calves_sales.create', ['calf'=>$calf]);
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $calf = Calf::findOrFail($id);
+        $calf_id = $request->getQueryString();
+        $calf = Calf::findOrFail($calf_id);
 
         $sale = new CalfSale;
         $sale->sale_date = $request->sale_date;
@@ -44,7 +46,7 @@ class CalfSaleController extends Controller
         $calf->sale_id = $sale->id;
         $calf->update();
 
-        return view('calves_sales.index');
+        return redirect()->route('calves_sales.index');
     }
 
     public function show($id)

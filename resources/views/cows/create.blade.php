@@ -5,9 +5,7 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Captura de vacas
-				</div>
+				<div class="panel-heading">Captura de vacas</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('cows.store') }}" method="post">
 						{{ csrf_field() }}
