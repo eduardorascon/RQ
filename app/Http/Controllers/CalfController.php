@@ -15,7 +15,7 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = Calf::paginate(12);
+        $calfs = Calf::join('cattle', 'cattle.id', '=', 'calves.cattle_id')->orderBy('cattle.tag', 'asc')->paginate(12);
         $total_calves = Calf::count();
         return view('calfs.index', [
             'calfs' => $calfs,
