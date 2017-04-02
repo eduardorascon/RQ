@@ -22,4 +22,11 @@ class CalfSaleController extends Controller
 
         return view('calves_sales.index', ['calves' => $calves]);
     }
+
+    public function register_sale($calf_id)
+    {
+        $calf = Calf::findOrFail($calf_id);
+        return view('calves_sales.create', [
+            'calf'=>$calf]);
+    }
 }

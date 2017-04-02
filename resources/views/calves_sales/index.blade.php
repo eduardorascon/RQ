@@ -47,10 +47,7 @@
 								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>{{ $calf->mother->cattle->tag }}</td>
 								<td>
-									<form class="" action="" method="post">
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-									<a class="btn btn-warning btn-xs" href="">Registrar venta</a>
-									</form>
+									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_register', $calf->id) }}">Registrar venta</a>
 								</td>
 							</tr>
 						@endforeach
