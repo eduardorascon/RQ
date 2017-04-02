@@ -10,6 +10,8 @@ use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
 use App\Cow;
+use App\Picture;
+use Carbon\Carbon;
 
 class CalfController extends Controller
 {
@@ -72,7 +74,8 @@ class CalfController extends Controller
             'breed'=>$calf->cattle->breed->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date")]);
+            'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date"),
+            'pictures'=>$calf->cattle->pictures->sortBy('filename')]);
     }
 
     public function edit($id)
@@ -126,6 +129,24 @@ class CalfController extends Controller
         $log->cattle_id = $calf->cattle_id;
         $log->vaccine_id = $request->vaccine;
         $log->save();
+
+        return redirect()->route('calfs.show', $calf->id);
+    }
+
+    public function save_picture(Request $request, $id)
+    {
+        $calf = Calf::findOrFail($id);
+
+        if($request->hasFile('picture')) {
+            $imageName = $calf->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
+
+            $pic = new Picture;
+            $pic->filename = $imageName;
+            $pic->comment = $request->comment;
+            $pic->cattle_id = $calf->cattle_id;
+            $pic->save();
+        }
 
         return redirect()->route('calfs.show', $calf->id);
     }

@@ -10,6 +10,8 @@ use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
 use App\PalpationLog;
+use App\Picture;
+use Carbon\Carbon;
 
 class CowController extends Controller
 {
@@ -55,7 +57,8 @@ class CowController extends Controller
             'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
             'offspring'=>$cow->offspring,
-            'palpations'=>$cow->palpationLog]);
+            'palpations'=>$cow->palpationLog,
+            'pictures'=>$cow->cattle->pictures->sortBy('filename')]);
     }
 
     public function edit($id)
@@ -123,5 +126,23 @@ class CowController extends Controller
         $log->save();
 
         return redirect()->route('cows.show', $id);
+    }
+
+    public function save_picture(Request $request, $id)
+    {
+        $cow = Cow::findOrFail($id);
+
+        if($request->hasFile('picture')) {
+            $imageName = $cow->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
+
+            $pic = new Picture;
+            $pic->filename = $imageName;
+            $pic->comment = $request->comment;
+            $pic->cattle_id = $cow->cattle_id;
+            $pic->save();
+        }
+
+        return redirect()->route('cows.show', $cow->id);
     }
 }
