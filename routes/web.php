@@ -39,6 +39,10 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'CowController@log_palpation',
 		'as' => 'cow_log_palpation']);
 
+	Route::post('/cows/{id}/cow_save_picture', [
+		'uses' => 'CowController@save_picture',
+		'as' => 'cow_save_picture']);
+
 	Route::resource('cows', 'CowController');
 
 	//Bulls
