@@ -18,9 +18,9 @@
 						<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
 						@else
 						<select class="form-control" name="cow_id">
-							@foreach ($cow_list as $c)
+							@foreach ($cow_list as $cow)
 							{
-							<option value="{{ $c->id }}">{{ $c->tag }}</option>
+							<option value="{{ $cow->id }}">{{ $cow->cattle->tag }}</option>
 							}
 							@endforeach
 						</select>
