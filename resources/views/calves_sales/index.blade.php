@@ -51,6 +51,7 @@
 									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_register', $calf->id) }}">Registrar venta</a>
 									@else
 									<a class="btn btn-info btn-xs" href="{{ route('calves_sales_show', $calf->id) }}">Información</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_edit_sale', $calf->id) }}">Editar</a>
 									@endif
 								</td>
 							</tr>

@@ -52,4 +52,24 @@ class CalfSaleController extends Controller
         $calf = Calf::findOrFail($id);
         return view('calves_sales.show', ['calf'=>$calf]);
     }
+
+    public function edit($id)
+    {
+        $calf = Calf::findOrFail($id);
+        return view('calves_sales.edit', [
+            'calf'=>$calf]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $calf = Calf::findOrFail($id);
+
+        $sale = $calf->sale;
+        $sale->sale_date = $request->sale_date;
+        $sale->sale_weight = $request->sale_weight;
+        $sale->price_per_kilo = $request->price_per_kilo;
+        $sale->update();
+
+        return redirect()->route('calves_sales.index');
+    }
 }
