@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class PalpationLog extends Model
 {
 	protected $table = 'palpation_logs';
+	public $timestamps = false;
 
 	public function getDateAttribute($value)
     {

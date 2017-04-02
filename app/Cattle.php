@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class Cattle extends Model
 {
 	protected $table = 'cattle';
+    public $timestamps = false;
 
     public function breed()
     {

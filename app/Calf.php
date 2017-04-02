@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Calf extends Model
 {
 	protected $table = 'calves';
+	public $timestamps = false;
 
     public function cattle()
 	{

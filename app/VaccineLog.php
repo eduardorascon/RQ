@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class VaccineLog extends Model
 {
     protected $table = 'vaccination_logs';
+    public $timestamps = false;
 
     public function vaccine()
     {
