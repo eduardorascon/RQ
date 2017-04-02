@@ -14,18 +14,12 @@ class CowsTableSeeder extends Seeder
         $now = date('Y-m-d H:i:s', strtotime('now'));
 
         DB::table('cows')->insert([
-			'cattle_id'=> 3,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'cattle_id'=> 3]);
 
         DB::table('cows')->insert([
-            'cattle_id'=> 4,
-            'created_at' => $now,
-            'updated_at' => $now]);
+            'cattle_id'=> 4]);
 
         DB::table('cows')->insert([
-            'cattle_id'=> 5,
-            'created_at' => $now,
-            'updated_at' => $now]);
+            'cattle_id'=> 5]);
     }
 }

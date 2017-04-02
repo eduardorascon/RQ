@@ -11,16 +11,10 @@ class BullsTableSeeder extends Seeder
      */
     public function run()
     {
-        $now = date('Y-m-d H:i:s', strtotime('now'));
+        DB::table('bulls')->insert([
+			'cattle_id'=> 1]);
 
         DB::table('bulls')->insert([
-			'cattle_id'=> 1,
-			'created_at' => $now,
-			'updated_at' => $now]);
-
-        DB::table('bulls')->insert([
-            'cattle_id'=> 2,
-            'created_at' => $now,
-            'updated_at' => $now]);
+            'cattle_id'=> 2]);
     }
 }
