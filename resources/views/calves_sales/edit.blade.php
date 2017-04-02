@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de venta</div>
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calves_sales_update_sale', $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('calves_sales.update', $calf->id) }}" method="post">
 					<input type="hidden" name="_method" value="PATCH" />
 					{{ csrf_field() }}
 
