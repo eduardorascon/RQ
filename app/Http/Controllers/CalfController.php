@@ -15,7 +15,7 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = Calf::paginate(12);
+        $calfs = Calf::join('cattle', 'cattle.id', '=', 'calves.cattle_id')->orderBy('cattle.tag', 'asc')->paginate(12);
         $total_calves = Calf::count();
         return view('calfs.index', [
             'calfs' => $calfs,
@@ -25,7 +25,10 @@ class CalfController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        $cow_list = Cow::with('cattle')->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
+        $cow_list = Cow::whereHas('cattle', function ($q) {
+            $q->orderBy('tag', 'asc');
+        })->with('cattle')->get();
+
         return view('calfs.create', [
             'breed_list'=>$breed_list,
             'cow_list'=>$cow_list]);
@@ -42,6 +45,9 @@ class CalfController extends Controller
 
     public function store(Request $request)
     {
+        $cow_id = $request->cow_id;
+        $cow = Cow::findOrFail($cow_id);
+
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
@@ -51,7 +57,7 @@ class CalfController extends Controller
 
         $calf = new Calf;
         $calf->cattle_id = $cattle->id;
-        $calf->cow_id = $request->cow_id;
+        $calf->cow_id = $cow->id;
         $calf->save();
 
         return redirect()->route('calfs.index');

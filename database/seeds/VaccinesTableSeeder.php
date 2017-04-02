@@ -14,13 +14,8 @@ class VaccinesTableSeeder extends Seeder
         $vaccines = ['Vacuna 1','Vacuna 2','Vacuna 3'];
 
         array_map(function($name){
-        	$now = date('Y-m-d H:i:s', strtotime('now'));
-
         	DB::table('vaccines')->insert([
-        			'name'=>$name,
-        			'created_at' => $now,
-        			'updated_at' => $now
-        		]);
+        			'name'=>$name]);
         }, $vaccines);
     }
 }

@@ -14,12 +14,8 @@ class BreedsTableSeeder extends Seeder
         $breeds = ['Holstein','Angus','Hereford'];
 
         array_map(function($name){
-        	$now = date('Y-m-d H:i:s', strtotime('now'));
-
         	DB::table('breeds')->insert([
-        			'name'=>$name,
-        			'created_at' => $now,
-        			'updated_at' => $now
+        			'name'=>$name
         		]);
         }, $breeds);
     }

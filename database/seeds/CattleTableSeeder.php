@@ -14,43 +14,33 @@ class CattleTableSeeder extends Seeder
         $now = date('Y-m-d H:i:s', strtotime('now'));
 
         DB::table('cattle')->insert([
-			'tag'=> 'TAG 1',
+			'tag'=> 'TORO1',
 			'purchase_date' => $now,
 			'birth' => $now,
-			'breed_id' => 1,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
-			'tag'=> 'TAG 2',
+			'tag'=> 'TORO2',
 			'purchase_date' => $now,
 			'birth' => $now,
-			'breed_id' => 2,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'breed_id' => 2]);
 
         DB::table('cattle')->insert([
-			'tag'=> 'TAG 3',
+			'tag'=> 'VACA1',
 			'purchase_date' => $now,
 			'birth' => $now,
-			'breed_id' => 3,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'breed_id' => 3]);
 
         DB::table('cattle')->insert([
-			'tag'=> 'TAG 4',
+			'tag'=> 'VACA2',
 			'purchase_date' => $now,
 			'birth' => $now,
-			'breed_id' => 1,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
-			'tag'=> 'TAG 5',
+			'tag'=> 'VACA3',
 			'purchase_date' => $now,
 			'birth' => $now,
-			'breed_id' => 2,
-			'created_at' => $now,
-			'updated_at' => $now]);
+			'breed_id' => 2]);
     }
 }

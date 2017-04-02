@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class WeightLog extends Model
 {
 	protected $table = 'weight_logs';
+	public $timestamps = false;
 
 	public function getDateAttribute($value)
     {
