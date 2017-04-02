@@ -10,7 +10,7 @@
 
 					<div class="row">
 						<div class="col-lg-6">
-							<form class="" action="{{ route('calves_sales') }}" method="get">
+							<form class="" action="{{ route('calves_sales.index') }}" method="get">
 							<div class="input-group">
 								<input type="text" class="form-control" name="search" placeholder="Buscar...">
 								<span class="input-group-btn">
@@ -48,10 +48,10 @@
 								<td>{{ $calf->mother->cattle->tag }}</td>
 								<td>
 									@if(count($calf->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_register', $calf->id) }}">Registrar venta</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.create', $calf->id) }}">Registrar venta</a>
 									@else
-									<a class="btn btn-info btn-xs" href="{{ route('calves_sales_show', $calf->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_edit_sale', $calf->id) }}">Editar</a>
+									<a class="btn btn-info btn-xs" href="{{ route('calves_sales.show', $calf->id) }}">Información</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.edit', $calf->id) }}">Editar</a>
 									@endif
 								</td>
 							</tr>
