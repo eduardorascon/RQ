@@ -11,6 +11,20 @@
 					{{ csrf_field() }}
 
 					<div class="form-group">
+					<label class="col-sm-2 control-label" for="calf_tag">Arete Siniga</label>
+					<div class="col-sm-10">
+						<input type="text" name="calf_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}">
+					</div>
+					</div>
+
+					<div class="form-group">
+					<label class="col-sm-2 control-label" for="calf_tag">Raza</label>
+					<div class="col-sm-10">
+						<input type="text" name="calf_breed" class="form-control" readonly="readonly" value="{{ $calf->cattle->breed->name }}">
+					</div>
+					</div>
+
+					<div class="form-group">
 					<label class="col-sm-2 control-label" for="sale_date">Fecha</label>
 					<div class="col-sm-10">
 						<input type="date" name="sale_date" class="form-control" placeholder="Fecha...">
