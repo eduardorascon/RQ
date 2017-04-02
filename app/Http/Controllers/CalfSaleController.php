@@ -44,6 +44,6 @@ class CalfSaleController extends Controller
         $calf->sale_id = $sale->id;
         $calf->update();
 
-        return redirect()->route('calves_sales.index');
+        return view('calves_sales.index');
     }
 }
