@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Calf;
+use App\CalfSale;
 
 class CalfSaleController extends Controller
 {
@@ -28,5 +29,21 @@ class CalfSaleController extends Controller
         $calf = Calf::findOrFail($calf_id);
         return view('calves_sales.create', [
             'calf'=>$calf]);
+    }
+
+    public function store(Request $request, $id)
+    {
+        $calf::findOrFail($id);
+
+        $sale = new CalfSale;
+        $sale->sale_date = $request->sale_date;
+        $sale->sale_weight = $request->sale_weight;
+        $sale->price_per_kilo = $request->price_per_kilo;
+        $sale->save();
+
+        $calf->sale_id = $sale->id;
+        $calf->update();
+
+        return redirect()->route('calves_sales.index');
     }
 }

@@ -79,6 +79,10 @@ Route::group(['middleware' => ['web']], function() {
 	Route::get('calves_sales/register_sale/c={id}', [
 		'uses' => 'CalfSaleController@register_sale',
 		'as' => 'calves_sales_register']);
+
+	Route::post('calves_sales/{id}/register_sale', [
+		'uses' => 'CalfSaleController@store',
+		'as' => 'calves_sales_log_sale']);
 });
 
 Route::get('/admin', [
