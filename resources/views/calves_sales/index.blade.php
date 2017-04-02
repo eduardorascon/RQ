@@ -47,7 +47,11 @@
 								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>{{ $calf->mother->cattle->tag }}</td>
 								<td>
+									@if(count($calf->sale) == 0)
 									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales_register', $calf->id) }}">Registrar venta</a>
+									@else
+									<a class="btn btn-info btn-xs" href="{{ route('calves_sales_show', $calf->id) }}">Información</a>
+									@endif
 								</td>
 							</tr>
 						@endforeach

@@ -72,9 +72,14 @@ Route::group(['middleware' => ['web']], function() {
 
 	Route::resource('calfs', 'CalfController');
 
-	Route::get('/calves_sales', [
+	//Sales
+	Route::get('calves_sales', [
 		'uses' => 'CalfSaleController@index',
 		'as' => 'calves_sales']);
+
+	Route::get('calves_sales/{id}', [
+		'uses' => 'CalfSaleController@show',
+		'as' => 'calves_sales_show']);
 
 	Route::get('calves_sales/register_sale/c={id}', [
 		'uses' => 'CalfSaleController@register_sale',
