@@ -73,29 +73,7 @@ Route::group(['middleware' => ['web']], function() {
 	Route::resource('calfs', 'CalfController');
 
 	//Sales
-	Route::get('calves_sales', [
-		'uses' => 'CalfSaleController@index',
-		'as' => 'calves_sales']);
-
-	Route::get('calves_sales/{id}', [
-		'uses' => 'CalfSaleController@show',
-		'as' => 'calves_sales_show']);
-
-	Route::get('calves_sales/register_sale/c={id}', [
-		'uses' => 'CalfSaleController@register_sale',
-		'as' => 'calves_sales_register']);
-
-	Route::post('calves_sales/{id}/register_sale', [
-		'uses' => 'CalfSaleController@store',
-		'as' => 'calves_sales_log_sale']);
-
-	Route::get('calves_sales/{id}/edit', [
-		'uses' => 'CalfSaleController@edit',
-		'as' => 'calves_sales_edit_sale']);
-
-	Route::post('calves_sales/{id}/edit', [
-		'uses' => 'CalfSaleController@update',
-		'as' => 'calves_sales_update_sale']);
+	Route::resource('calves_sales', 'CalfSaleController');
 });
 
 Route::get('/admin', [
