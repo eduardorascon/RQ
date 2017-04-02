@@ -33,7 +33,7 @@ class CalfSaleController extends Controller
 
     public function store(Request $request, $id)
     {
-        $calf::findOrFail($id);
+        $calf = Calf::findOrFail($id);
 
         $sale = new CalfSale;
         $sale->sale_date = $request->sale_date;
