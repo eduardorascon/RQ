@@ -14,6 +14,8 @@ class CreateCalvesSalesTable extends Migration
             $table->date('sale_date');
             $table->float('sale_weight', 8, 3);
             $table->float('price_per_kilo', 8, 3);
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 
