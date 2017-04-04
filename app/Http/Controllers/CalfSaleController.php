@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Calf;
 use App\CalfSale;
+use App\Client;
 
 class CalfSaleController extends Controller
 {
@@ -28,7 +29,10 @@ class CalfSaleController extends Controller
     {
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
-        return view('calves_sales.create', ['calf'=>$calf]);
+        $client_list = Client::all();
+        return view('calves_sales.create', [
+            'calf' => $calf,
+            'client_list' => $client_list]);
     }
 
     public function store(Request $request)
