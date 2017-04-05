@@ -13,8 +13,8 @@
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
-								<th>Fecha de compra</th>
 								<th>Fecha de nacimiento</th>
+								<th>Fecha de compra</th>
 								<th>Raza</th>
 								<th></th>
 							</tr>
@@ -23,8 +23,8 @@
 						@foreach($bulls as $bull)
 							<tr>
 								<td>{{ $bull->cattle->tag }}</td>
-								<td>{{ $bull->cattle->purchase_date }}</td>
-								<td>{{ $bull->cattle->birth }}</td>
+								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
+								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $bull->cattle->breed->name }}</td>
 								<td>
 									<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
