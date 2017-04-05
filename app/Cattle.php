@@ -30,15 +30,15 @@ class Cattle extends Model
         return $this->hasMany('App\Picture');
     }
 
-    public function getBirthAttribute($value)
+    public function getBirthWithFormat()
     {
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
-        return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
+        return Carbon::parse($this->birth)->formatLocalized('%d/%B/%Y');
     }
 
-    public function getPurchaseDateAttribute($value)
+    public function getPurchaseDateWithFormat()
     {
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
-        return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
+        return Carbon::parse($this->purchase_date)->formatLocalized('%d/%B/%Y');
     }
 }
