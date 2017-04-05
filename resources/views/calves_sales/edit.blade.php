@@ -17,7 +17,11 @@
 						<select class="form-control" name="client_id">
 						@foreach ($client_list as $client)
 						{
+							@if($calf->sale->client_id == $client->id)
+							<option value="{{ $client->id }}" selected="selected">{{ $client->first_name . ' ' . $client->last_name . ' (' . $client->company . ')' }}</option>
+							@else
 							<option value="{{ $client->id }}">{{ $client->first_name . ' ' . $client->last_name . ' (' . $client->company . ')' }}</option>
+							@endif
 						}
 						@endforeach
 						</select>
