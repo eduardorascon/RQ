@@ -15,9 +15,9 @@ class CalfSale extends Model
     	return $this->belongsTo('App\Client', 'client_id', 'id');
     }
 
-    public function getSaleDateAttribute($value)
+    public function getSaleDateWithFormat()
     {
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
-        return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
+        return Carbon::parse($this->sale_date)->formatLocalized('%d/%B/%Y');
     }
 }

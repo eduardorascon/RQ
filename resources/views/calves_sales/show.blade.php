@@ -33,7 +33,7 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="sale_date">Fecha</label>
 						<div class="col-sm-10">
-							<input type="text" name="sale_date" class="form-control" readonly="readonly" value="{{ $calf->sale->sale_date  }}">
+							<input type="text" name="sale_date" class="form-control" readonly="readonly" value="{{ $calf->sale->getSaleDateWithFormat()  }}">
 						</div>
 						</div>
 
