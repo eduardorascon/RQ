@@ -12,6 +12,19 @@
 					{{ csrf_field() }}
 
 					<div class="form-group">
+					<label class="col-sm-2 control-label" for="client_id">Cliente</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="client_id">
+						@foreach ($client_list as $client)
+						{
+							<option value="{{ $client->id }}">{{ $client->first_name . ' ' . $client->last_name . ' (' . $client->company . ')' }}</option>
+						}
+						@endforeach
+						</select>
+					</div>
+					</div>
+
+					<div class="form-group">
 					<label class="col-sm-2 control-label" for="calf_tag">Arete Siniga</label>
 					<div class="col-sm-10">
 						<input type="text" name="calf_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}">

@@ -8,6 +8,14 @@
 				<div class="panel-heading">Venta</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="client">Cliente</label>
+						<div class="col-sm-10">
+							<input type="text" name="client" class="form-control" readonly="readonly" value="{{ $calf->sale->client->company }}" />
+						</div>
+						</div>
+
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="calf_tag">Arete Siniga</label>
 						<div class="col-sm-10">
