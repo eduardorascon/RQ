@@ -18,14 +18,14 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->birth }}" />
+							<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->getBirthWithFormat() }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-10">
-							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->purchase_date }}" />
+							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->getPurchaseDateWithFormat() }}" />
 						</div>
 						</div>
 
@@ -93,8 +93,8 @@
 						@foreach($offspring as $o)
 							<tr>
 								<td>{{ $o->cattle->tag }}</td>
-								<td>{{ $o->cattle->birth }}</td>
-								<td>{{ $o->cattle->purchase_date }}</td>
+								<td>{{ $o->cattle->getBirthWithFormat() }}</td>
+								<td>{{ $o->cattle->getPurchaseDateWithFormat() }}</td>
 								<th>{{ $o->cattle->breed->name }}</th>
 								<td>
 									<a class="btn btn-info btn-xs" href="{{ route('calfs.show', $o->id) }}">Información</a>
