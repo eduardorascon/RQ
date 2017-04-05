@@ -56,14 +56,19 @@ class CalfSaleController extends Controller
     public function show($id)
     {
         $calf = Calf::findOrFail($id);
-        return view('calves_sales.show', ['calf' => $calf]);
+        $client = $calf->sale->client->first_name . ' ' . $calf->sale->client->last_name . ' (' . $calf->sale->client->company . ')';
+        return view('calves_sales.show', [
+            'calf' => $calf,
+            'client' => $client]);
     }
 
     public function edit($id)
     {
         $calf = Calf::findOrFail($id);
+        $client_list = Client::all();
         return view('calves_sales.edit', [
-            'calf'=>$calf]);
+            'calf'=>$calf,
+            'client_list' => $client_list]);
     }
 
     public function update(Request $request, $id)

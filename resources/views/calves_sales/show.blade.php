@@ -12,7 +12,7 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="client">Cliente</label>
 						<div class="col-sm-10">
-							<input type="text" name="client" class="form-control" readonly="readonly" value="{{ $calf->sale->client->company }}" />
+							<input type="text" name="client" class="form-control" readonly="readonly" value="{{ $client }}" />
 						</div>
 						</div>
 
