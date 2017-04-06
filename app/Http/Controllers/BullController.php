@@ -31,6 +31,12 @@ class BullController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'breed_id' => 'required']);
+
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
