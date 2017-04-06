@@ -18,7 +18,7 @@ class ClientController extends Controller
     {
 		return Client::findOrFail($id);
     }
-	
+
 	public function create()
     {
         return view('clients.create');
