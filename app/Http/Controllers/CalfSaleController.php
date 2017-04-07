@@ -37,6 +37,12 @@ class CalfSaleController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+              'sale_date'=> 'required',
+              'sale_weight' => 'required',
+              'price_per_kilo' => 'required',
+              'client_id' => 'required']);
+
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
 
@@ -73,8 +79,12 @@ class CalfSaleController extends Controller
 
     public function update(Request $request, $id)
     {
-        $calf = Calf::findOrFail($id);
+        $this->validate($request, [
+              'sale_date'=> 'required',
+              'sale_weight' => 'required',
+              'price_per_kilo' => 'required']);
 
+        $calf = Calf::findOrFail($id);
         $sale = $calf->sale;
         $sale->sale_date = $request->sale_date;
         $sale->sale_weight = $request->sale_weight;
