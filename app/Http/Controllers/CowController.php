@@ -32,6 +32,12 @@ class CowController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'cattle_breed' => 'required']);
+
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
@@ -72,6 +78,12 @@ class CowController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'cattle_breed' => 'required']);
+
         $cow = Cow::findOrFail($id);
         $cattle = $cow->cattle;
         $cattle->tag = $request->cattle_tag;
@@ -92,6 +104,12 @@ class CowController extends Controller
 
     public function log_weight(Request $request, $id)
     {
+        $this->validate($request, [
+              'weight'=> 'required',
+              'date' => 'required',
+              'comment' => 'required',
+              'cattle_id' => 'required']);
+
         $cow = Cow::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
@@ -105,6 +123,12 @@ class CowController extends Controller
 
     public function log_vaccine(Request $request, $id)
     {
+        $this->validate($request, [
+              'date'=> 'required',
+              'comment' => 'required',
+              'cattle_id' => 'required',
+              'vaccine' => 'required']);
+
         $cow = Cow::findOrFail($id);
         $log = new VaccineLog;
         $log->date = $request->date;
@@ -118,6 +142,11 @@ class CowController extends Controller
 
     public function log_palpation(Request $request, $id)
     {
+        $this->validate($request, [
+              'date'=> 'required',
+              'comment' => 'required',
+              'months' => 'required']);
+
         $log = new PalpationLog;
         $log->months = $request->months;
         $log->date = $request->date;
@@ -130,6 +159,8 @@ class CowController extends Controller
 
     public function save_picture(Request $request, $id)
     {
+        $this->validate($request, ['comment'=> 'required']);
+
         $cow = Cow::findOrFail($id);
 
         if($request->hasFile('picture')) {
