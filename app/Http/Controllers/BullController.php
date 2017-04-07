@@ -35,7 +35,7 @@ class BullController extends Controller
               'cattle_tag'=> 'required',
               'cattle_birth_date' => 'required',
               'cattle_purchase_date' => 'required',
-              'breed_id' => 'required']);
+              'cattle_breed' => 'required']);
 
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
@@ -79,7 +79,7 @@ class BullController extends Controller
               'cattle_tag'=> 'required',
               'cattle_birth_date' => 'required',
               'cattle_purchase_date' => 'required',
-              'breed_id' => 'required']);
+              'cattle_breed' => 'required']);
 
         $bull = Bull::findOrFail($id);
         $cattle = $bull->cattle;
