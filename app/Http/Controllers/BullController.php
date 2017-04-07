@@ -75,6 +75,12 @@ class BullController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'breed_id' => 'required']);
+
         $bull = Bull::findOrFail($id);
         $cattle = $bull->cattle;
         $cattle->tag = $request->cattle_tag;
@@ -95,6 +101,12 @@ class BullController extends Controller
 
     public function log_weight(Request $request, $id)
     {
+        $this->validate($request, [
+              'weight'=> 'required',
+              'date' => 'required',
+              'comment' => 'required',
+              'cattle_id' => 'required']);
+
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
@@ -108,6 +120,12 @@ class BullController extends Controller
 
     public function log_vaccine(Request $request, $id)
     {
+        $this->validate($request, [
+              'date'=> 'required',
+              'comment' => 'required',
+              'cattle_id' => 'required',
+              'vaccine' => 'required']);
+
         $bull = Bull::findOrFail($id);
         $log = new VaccineLog;
         $log->date = $request->date;
@@ -121,6 +139,8 @@ class BullController extends Controller
 
     public function save_picture(Request $request, $id)
     {
+        $this->validate($request, ['comment'=> 'required']);
+
         $bull = Bull::findOrFail($id);
 
         if($request->hasFile('picture')) {
