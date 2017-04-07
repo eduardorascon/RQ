@@ -104,8 +104,7 @@ class BullController extends Controller
         $this->validate($request, [
               'weight'=> 'required',
               'date' => 'required',
-              'comment' => 'required',
-              'cattle_id' => 'required']);
+              'comment' => 'required']);
 
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
@@ -123,7 +122,6 @@ class BullController extends Controller
         $this->validate($request, [
               'date'=> 'required',
               'comment' => 'required',
-              'cattle_id' => 'required',
               'vaccine' => 'required']);
 
         $bull = Bull::findOrFail($id);

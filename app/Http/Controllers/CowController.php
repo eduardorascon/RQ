@@ -107,8 +107,7 @@ class CowController extends Controller
         $this->validate($request, [
               'weight'=> 'required',
               'date' => 'required',
-              'comment' => 'required',
-              'cattle_id' => 'required']);
+              'comment' => 'required']);
 
         $cow = Cow::findOrFail($id);
         $log = new WeightLog;
@@ -126,7 +125,6 @@ class CowController extends Controller
         $this->validate($request, [
               'date'=> 'required',
               'comment' => 'required',
-              'cattle_id' => 'required',
               'vaccine' => 'required']);
 
         $cow = Cow::findOrFail($id);
