@@ -25,6 +25,8 @@ class VaccineController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, ['name'=> 'required']);
+
     	$vaccine = new Vaccine;
     	$vaccine->name = $request->name;
     	$vaccine->save();
@@ -40,6 +42,8 @@ class VaccineController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['name'=> 'required']);
+
     	$vaccine = Vaccine::findOrFail($id);
     	$vaccine->name = $request->name;
     	$vaccine->update();

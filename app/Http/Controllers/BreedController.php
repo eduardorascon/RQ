@@ -27,6 +27,7 @@ class BreedController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request, ['name' => 'required']);
+
     	Breed::create(['name' => $request->input('name')]);
     	return redirect()->route('breeds.index');
     }
@@ -38,6 +39,8 @@ class BreedController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['name' => 'required']);
+
     	$breed = Breed::findOrFail($id);
     	$breed->update(['name' => $request->input('name')]);
     	return redirect()->route('breeds.index');
