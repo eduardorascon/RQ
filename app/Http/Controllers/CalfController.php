@@ -49,6 +49,12 @@ class CalfController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'cattle_breed' => 'required']);
+
         $cow_id = $request->cow_id;
         $cow = Cow::findOrFail($cow_id);
 
@@ -91,6 +97,12 @@ class CalfController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+              'cattle_tag'=> 'required',
+              'cattle_birth_date' => 'required',
+              'cattle_purchase_date' => 'required',
+              'cattle_breed' => 'required']);
+
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
         $cattle->tag = $request->cattle_tag;
@@ -111,6 +123,11 @@ class CalfController extends Controller
 
     public function log_weight(Request $request, $id)
     {
+        $this->validate($request, [
+              'weight'=> 'required',
+              'date' => 'required',
+              'comment' => 'required']);
+
         $calf = Calf::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
@@ -124,6 +141,11 @@ class CalfController extends Controller
 
     public function log_vaccine(Request $request, $id)
     {
+        $this->validate($request, [
+              'date'=> 'required',
+              'comment' => 'required',
+              'vaccine' => 'required']);
+
         $calf = Calf::findOrFail($id);
         $log = new VaccineLog;
         $log->date = $request->date;
@@ -137,6 +159,8 @@ class CalfController extends Controller
 
     public function save_picture(Request $request, $id)
     {
+        $this->validate($request, ['comment'=> 'required']);
+
         $calf = Calf::findOrFail($id);
 
         if($request->hasFile('picture')) {
