@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateVaccine;
 use App\Vaccine;
 
 class VaccineController extends Controller
@@ -23,10 +24,8 @@ class VaccineController extends Controller
         return view('vaccines.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateVaccine $request)
     {
-        $this->validate($request, ['name'=> 'required']);
-
     	$vaccine = new Vaccine;
     	$vaccine->name = $request->name;
     	$vaccine->save();
@@ -40,10 +39,8 @@ class VaccineController extends Controller
     		'vaccine'=>$vaccine]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateVaccine $request, $id)
     {
-        $this->validate($request, ['name'=> 'required']);
-
     	$vaccine = Vaccine::findOrFail($id);
     	$vaccine->name = $request->name;
     	$vaccine->update();
