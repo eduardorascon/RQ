@@ -8,6 +8,15 @@
                 <div class="panel-heading">
                   Captura de vacunas
                 </div>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="panel-body">
                     <form class="form-horizontal" action="{{ route('vaccines.store') }}" method="post">
                         {{ csrf_field() }}
