@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class StoreUpdateVaccine extends FormRequest
 {
@@ -24,5 +25,12 @@ class StoreUpdateVaccine extends FormRequest
     public function rules()
     {
         return ['name' => 'required'];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre de la vacuna es necesario.'
+        ];
     }
 }
