@@ -79,6 +79,7 @@ class CalfSaleController extends Controller
         $sale->sale_date = $request->sale_date;
         $sale->sale_weight = $request->sale_weight;
         $sale->price_per_kilo = $request->price_per_kilo;
+        $sale->client_id = $request->client_id;
         $sale->update();
 
         return redirect()->route('calves_sales.index');
