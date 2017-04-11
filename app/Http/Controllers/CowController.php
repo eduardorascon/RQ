@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
+use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Cow;
 use App\Cattle;
 use App\Breed;
@@ -105,13 +106,8 @@ class CowController extends Controller
         return redirect()->route('cows.show', $cow->id);
     }
 
-    public function log_vaccine(Request $request, $id)
+    public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
-        $this->validate($request, [
-              'date'=> 'required',
-              'comment' => 'required',
-              'vaccine' => 'required']);
-
         $cow = Cow::findOrFail($id);
         $log = new VaccineLog;
         $log->date = $request->date;

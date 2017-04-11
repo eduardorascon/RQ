@@ -13,7 +13,7 @@ class StoreUpdateLogVaccineRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoreUpdateLogVaccineRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            'date'=> 'required',
+            'comment' => 'required',
+            'vaccine' => 'required'];
     }
 }
