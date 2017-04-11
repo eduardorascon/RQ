@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
@@ -29,14 +30,8 @@ class BullController extends Controller
         return view('bulls.create', ['breed_list'=>$breed_list]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCattleRequest $request)
     {
-        $this->validate($request, [
-              'cattle_tag'=> 'required',
-              'cattle_birth_date' => 'required',
-              'cattle_purchase_date' => 'required',
-              'cattle_breed' => 'required']);
-
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
@@ -73,14 +68,8 @@ class BullController extends Controller
             'breed_list'=>$breed_list]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCattleRequest $request, $id)
     {
-        $this->validate($request, [
-              'cattle_tag'=> 'required',
-              'cattle_birth_date' => 'required',
-              'cattle_purchase_date' => 'required',
-              'cattle_breed' => 'required']);
-
         $bull = Bull::findOrFail($id);
         $cattle = $bull->cattle;
         $cattle->tag = $request->cattle_tag;

@@ -13,7 +13,7 @@ class StoreUpdateCattleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreUpdateCattleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            'cattle_tag'=> 'required',
+            'cattle_birth_date' => 'required',
+            'cattle_purchase_date' => 'required',
+            'cattle_breed' => 'required'];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
@@ -47,14 +48,8 @@ class CalfController extends Controller
             'cow'=>$cow]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCattleRequest $request)
     {
-        $this->validate($request, [
-              'cattle_tag'=> 'required',
-              'cattle_birth_date' => 'required',
-              'cattle_purchase_date' => 'required',
-              'cattle_breed' => 'required']);
-
         $cow_id = $request->cow_id;
         $cow = Cow::findOrFail($cow_id);
 
@@ -95,14 +90,8 @@ class CalfController extends Controller
             'breed_list'=>$breed_list]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCattleRequest $request, $id)
     {
-        $this->validate($request, [
-              'cattle_tag'=> 'required',
-              'cattle_birth_date' => 'required',
-              'cattle_purchase_date' => 'required',
-              'cattle_breed' => 'required']);
-
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
         $cattle->tag = $request->cattle_tag;
