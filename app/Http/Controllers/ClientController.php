@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateClientRequest;
 use App\Client;
 use View;
 
@@ -24,15 +25,8 @@ class ClientController extends Controller
         return view('clients.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateClientRequest $request)
     {
-    	$this->validate($request,[
-		      'first_name'=> 'required',
-		      'last_name' => 'required',
-		      'address' => 'required',
-		      'company' => 'required',
-		      'phone' => 'required'
-		    ]);
     	Client::create([
     		'first_name' => $request->input('first_name'),
     		'last_name' => $request->input('last_name'),
@@ -48,7 +42,7 @@ class ClientController extends Controller
     	return view("clients.edit", compact('client'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateClientRequest $request, $id)
     {
     	$client = Client::findOrFail($id);
 
