@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
+use App\Http\Requests\StoreLogPalpationRequest;
 use App\Cow;
 use App\Cattle;
 use App\Breed;
@@ -120,13 +121,8 @@ class CowController extends Controller
         return redirect()->route('cows.show', $cow->id);
     }
 
-    public function log_palpation(Request $request, $id)
+    public function log_palpation(StoreLogPalpationRequest $request, $id)
     {
-        $this->validate($request, [
-              'date'=> 'required',
-              'comment' => 'required',
-              'months' => 'required']);
-
         $log = new PalpationLog;
         $log->months = $request->months;
         $log->date = $request->date;
