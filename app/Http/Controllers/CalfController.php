@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
@@ -110,13 +111,8 @@ class CalfController extends Controller
         return redirect()->route('calfs.index');
     }
 
-    public function log_weight(Request $request, $id)
+    public function log_weight(StoreUpdateLogWeightRequest $request, $id)
     {
-        $this->validate($request, [
-              'weight'=> 'required',
-              'date' => 'required',
-              'comment' => 'required']);
-
         $calf = Calf::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;

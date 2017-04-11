@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
@@ -88,13 +89,8 @@ class BullController extends Controller
         return redirect()->route('bulls.index');
     }
 
-    public function log_weight(Request $request, $id)
+    public function log_weight(StoreUpdateLogWeightRequest $request, $id)
     {
-        $this->validate($request, [
-              'weight'=> 'required',
-              'date' => 'required',
-              'comment' => 'required']);
-
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
