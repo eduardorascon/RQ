@@ -13,7 +13,7 @@ class StoreUpdateCalfSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreUpdateCalfSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-        ];
+            'sale_date'=> 'required',
+            'sale_weight' => 'required',
+            'price_per_kilo' => 'required',
+            'client_id' => 'required'];
     }
 }
