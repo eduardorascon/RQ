@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
+use App\Http\Requests\StorePictureRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
@@ -138,7 +139,7 @@ class CalfController extends Controller
         return redirect()->route('calfs.show', $calf->id);
     }
 
-    public function save_picture(Request $request, $id)
+    public function save_picture(StorePictureRequest $request, $id)
     {
         $this->validate($request, ['comment'=> 'required']);
 

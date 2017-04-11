@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateCattleRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
+use App\Http\Requests\StorePictureRequest;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
@@ -116,10 +117,8 @@ class BullController extends Controller
         return redirect()->route('bulls.show', $bull->id);
     }
 
-    public function save_picture(Request $request, $id)
+    public function save_picture(StorePictureRequest $request, $id)
     {
-        $this->validate($request, ['comment'=> 'required']);
-
         $bull = Bull::findOrFail($id);
 
         if($request->hasFile('picture')) {
