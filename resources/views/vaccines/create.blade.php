@@ -5,9 +5,7 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                  Captura de vacunas
-                </div>
+                <div class="panel-heading">Captura de vacunas</div>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
