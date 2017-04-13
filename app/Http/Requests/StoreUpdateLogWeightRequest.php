@@ -25,4 +25,13 @@ class StoreUpdateLogWeightRequest extends FormRequest
             'date' => 'required',
             'comment' => 'required'];
     }
+
+    public function messages()
+    {
+        return [
+            'weight.required' => 'El peso del toro es necesario para el registro.',
+            'date.required' => 'La fecha de pesaje es necesaria para el registro.',
+            'comment.required' => 'Los comentarios son necesarios para el registro.'
+        ];
+    }
 }
