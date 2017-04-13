@@ -76,6 +76,18 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de peso</div>
+				@if (count($errors->log_weight_errors) > 0)
+					<div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <ul>
+                            @foreach ($errors->log_weight_errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+				@endif
 				<div class="panel-body">
 					<form class="form-inline" action="{{ route('bull_log_weight', $bull->id) }}" method="post">
 						{{ csrf_field() }}
