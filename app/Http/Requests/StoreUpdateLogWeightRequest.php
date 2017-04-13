@@ -16,11 +16,8 @@ class StoreUpdateLogWeightRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    protected $errorBag = 'log_weight_errors';
+
     public function rules()
     {
         return [
