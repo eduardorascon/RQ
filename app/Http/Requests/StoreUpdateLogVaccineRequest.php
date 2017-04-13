@@ -16,16 +16,22 @@ class StoreUpdateLogVaccineRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    protected $errorBag = 'log_vaccine_errors';
+
     public function rules()
     {
         return [
+            'vaccine' => 'required',
             'date'=> 'required',
-            'comment' => 'required',
-            'vaccine' => 'required'];
+            'comment' => 'required'];
+    }
+
+    public function messages()
+    {
+        return [
+            'vaccine.required' => 'La vacuna aplicada es necesaria para el registro.',
+            'date.required' => 'La fecha de vacunacion es necesaria para el registro.',
+            'comment.required' => 'Los comentarios son necesarios para el registro.'
+        ];
     }
 }
