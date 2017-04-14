@@ -16,13 +16,15 @@ class StoreUpdateBreedRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return ['name' => 'required'];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre de la raza es necesario.'
+        ];
     }
 }
