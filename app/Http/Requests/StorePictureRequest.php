@@ -16,13 +16,15 @@ class StorePictureRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    protected $errorBag = 'save_picture_errors';
+
     public function rules()
     {
         return ['comment' => 'required'];
+    }
+
+    public function messages()
+    {
+        return ['comment.required' => 'Los comentarios son necesarios para el registro.'];
     }
 }
