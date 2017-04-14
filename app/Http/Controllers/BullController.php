@@ -93,10 +93,6 @@ class BullController extends Controller
 
     public function log_weight(StoreUpdateLogWeightRequest $request, $id)
     {
-        $validator = Validator::make($request->all());
-        if ($validator->fails())
-            return redirect()->back()->withErrors($validator->messages(), 'log_weight_errors');
-
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
