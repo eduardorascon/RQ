@@ -16,16 +16,22 @@ class StoreLogPalpationRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    protected $errorBag = 'log_palpation_errors';
+
     public function rules()
     {
         return [
             'date'=> 'required',
             'comment' => 'required',
             'months' => 'required'];
+    }
+
+    public function messages()
+    {
+        return [
+            'date.required' => 'La fecha de palpación es necesario para el registro.',
+            'comment.required' => 'Los comentarios son necesarios para el registro.',
+            'months.required' => 'El numero de meses de gestación es necesario para el registro.'
+        ];
     }
 }
