@@ -26,7 +26,7 @@ class CalfSaleController extends Controller
         return view('calves_sales.index', ['calves' => $calves]);
     }
 
-    public function create(StoreUpdateCalfSaleRequest $request)
+    public function create()
     {
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
@@ -36,7 +36,7 @@ class CalfSaleController extends Controller
             'client_list' => $client_list]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCalfSaleRequest $request)
     {
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
