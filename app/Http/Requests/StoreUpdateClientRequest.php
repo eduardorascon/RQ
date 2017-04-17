@@ -16,11 +16,6 @@ class StoreUpdateClientRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
@@ -29,5 +24,16 @@ class StoreUpdateClientRequest extends FormRequest
             'address' => 'required',
             'company' => 'required',
             'phone' => 'required'];
+    }
+
+    public function messages()
+    {
+        return [
+            'first_name.required' => 'El nombre es necesario para el registro.',
+            'last_name.required' => 'El apellido es necesario para el registro.',
+            'address.required' => 'La dirección es necesaria para el registro.',
+            'company.required' => 'El nombre de la compañia es necesaria para el registro.',
+            'phone.required' => 'El teléfono es necesario para el registro.'
+        ];
     }
 }
