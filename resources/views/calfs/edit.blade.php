@@ -24,6 +24,13 @@
 						{{ csrf_field() }}
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
+						<div class="col-sm-10">
+							<input type="text" name="mother_tag" class="form-control" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-10">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" value="{{ $calf->cattle->tag }}" />
