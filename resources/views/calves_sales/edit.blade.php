@@ -6,6 +6,18 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de venta</div>
+				@if (count($errors) > 0)
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 				<div class="panel-body">
 				<form class="form-horizontal" action="{{ route('calves_sales.update', $calf->id) }}" method="post">
 					<input type="hidden" name="_method" value="PATCH" />
@@ -43,14 +55,14 @@
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-2 control-label" for="sale_date">Fecha</label>
+					<label class="col-sm-2 control-label" for="sale_date">Fecha de venta</label>
 					<div class="col-sm-10">
 						<input type="date" name="sale_date" class="form-control" value="{{ $calf->sale->sale_date }}">
 					</div>
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-2 control-label" for="sale_weight">Peso</label>
+					<label class="col-sm-2 control-label" for="sale_weight">Peso de venta</label>
 					<div class="col-sm-10">
 						<input type="number" step="any" name="sale_weight" class="form-control" placeholder="Peso..." value="{{ $calf->sale->sale_weight }}">
 					</div>
