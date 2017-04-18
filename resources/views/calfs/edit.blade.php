@@ -5,13 +5,30 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					Captura de becerros
-				</div>
+				<div class="panel-heading">Captura de becerros</div>
+				@if (count($errors) > 0)
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('calfs.update', $calf->id) }}" method="post">
 						<input type="hidden" name="_method" value="PATCH" />
 						{{ csrf_field() }}
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
+						<div class="col-sm-10">
+							<input type="text" name="mother_tag" class="form-control" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
+						</div>
+						</div>
 
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>

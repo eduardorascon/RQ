@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateLogWeightRequest;
+use App\Http\Requests\StoreUpdateLogVaccineRequest;
+use App\Http\Requests\StorePictureRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
@@ -47,7 +51,7 @@ class CalfController extends Controller
             'cow'=>$cow]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCattleRequest $request)
     {
         $cow_id = $request->cow_id;
         $cow = Cow::findOrFail($cow_id);
@@ -89,7 +93,7 @@ class CalfController extends Controller
             'breed_list'=>$breed_list]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCattleRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
@@ -109,7 +113,7 @@ class CalfController extends Controller
         return redirect()->route('calfs.index');
     }
 
-    public function log_weight(Request $request, $id)
+    public function log_weight(StoreUpdateLogWeightRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);
         $log = new WeightLog;
@@ -122,7 +126,7 @@ class CalfController extends Controller
         return redirect()->route('calfs.show', $calf->id);
     }
 
-    public function log_vaccine(Request $request, $id)
+    public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);
         $log = new VaccineLog;
@@ -135,8 +139,10 @@ class CalfController extends Controller
         return redirect()->route('calfs.show', $calf->id);
     }
 
-    public function save_picture(Request $request, $id)
+    public function save_picture(StorePictureRequest $request, $id)
     {
+        $this->validate($request, ['comment'=> 'required']);
+
         $calf = Calf::findOrFail($id);
 
         if($request->hasFile('picture')) {

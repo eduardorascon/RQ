@@ -10,6 +10,10 @@ class Cattle extends Model
 	protected $table = 'cattle';
     public $timestamps = false;
 
+    protected $fillable = [
+        'tag', 'purchase_date', 'birth', 'breed_id'
+    ];
+
     public function breed()
     {
     	return $this->hasOne('App\Breed', 'id', 'breed_id');

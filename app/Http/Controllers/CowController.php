@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateLogWeightRequest;
+use App\Http\Requests\StoreUpdateLogVaccineRequest;
+use App\Http\Requests\StorePictureRequest;
+use App\Http\Requests\StoreLogPalpationRequest;
 use App\Cow;
 use App\Cattle;
 use App\Breed;
@@ -30,7 +35,7 @@ class CowController extends Controller
         return view('cows.create', ['breed_list'=>$breed_list]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCattleRequest $request)
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
@@ -70,7 +75,7 @@ class CowController extends Controller
             'breed_list'=>$breed_list]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCattleRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
         $cattle = $cow->cattle;
@@ -90,7 +95,7 @@ class CowController extends Controller
         return redirect()->route('cows.index');
     }
 
-    public function log_weight(Request $request, $id)
+    public function log_weight(StoreUpdateLogWeightRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
         $log = new WeightLog;
@@ -103,7 +108,7 @@ class CowController extends Controller
         return redirect()->route('cows.show', $cow->id);
     }
 
-    public function log_vaccine(Request $request, $id)
+    public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
         $log = new VaccineLog;
@@ -116,7 +121,7 @@ class CowController extends Controller
         return redirect()->route('cows.show', $cow->id);
     }
 
-    public function log_palpation(Request $request, $id)
+    public function log_palpation(StoreLogPalpationRequest $request, $id)
     {
         $log = new PalpationLog;
         $log->months = $request->months;
@@ -128,7 +133,7 @@ class CowController extends Controller
         return redirect()->route('cows.show', $id);
     }
 
-    public function save_picture(Request $request, $id)
+    public function save_picture(StorePictureRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
 

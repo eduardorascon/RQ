@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateBreedRequest;
 use App\Breed;
 use View;
 
@@ -24,14 +25,9 @@ class BreedController extends Controller
         return view('breeds.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateBreedRequest $request)
     {
-    	$this->validate($request,[
-		      'name'=> 'required'
-		    ]);
-    	Breed::create([
-    		'name' => $request->input('name')
-    		]);
+    	Breed::create(['name' => $request->input('name')]);
     	return redirect()->route('breeds.index');
     }
 
@@ -40,13 +36,10 @@ class BreedController extends Controller
     	return view("breeds.edit", compact('breed'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateBreedRequest $request, $id)
     {
     	$breed = Breed::findOrFail($id);
-
-    	$breed->update([
-    			'name' => $request->input('name')
-    		]);
+    	$breed->update(['name' => $request->input('name')]);
     	return redirect()->route('breeds.index');
     }
 
@@ -55,5 +48,4 @@ class BreedController extends Controller
     	$breed->delete();
     	return redirect()->route('breeds.index');
     }
-
 }

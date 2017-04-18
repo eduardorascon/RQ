@@ -10,7 +10,7 @@ class Client extends Model
 	public $timestamps = false;
 
     protected $fillable = [
-        'first_name', 'last_name', 'address','company', 'phone'
+        'first_name', 'last_name', 'address', 'company', 'phone'
     ];
 
     public function purchases()

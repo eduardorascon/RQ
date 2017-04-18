@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCalfSaleRequest;
 use App\Calf;
 use App\CalfSale;
 use App\Client;
@@ -25,7 +26,7 @@ class CalfSaleController extends Controller
         return view('calves_sales.index', ['calves' => $calves]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
@@ -35,7 +36,7 @@ class CalfSaleController extends Controller
             'client_list' => $client_list]);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateCalfSaleRequest $request)
     {
         $calf_id = $_GET['calf'];
         $calf = Calf::findOrFail($calf_id);
@@ -71,14 +72,14 @@ class CalfSaleController extends Controller
             'client_list' => $client_list]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCalfSaleRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);
-
         $sale = $calf->sale;
         $sale->sale_date = $request->sale_date;
         $sale->sale_weight = $request->sale_weight;
         $sale->price_per_kilo = $request->price_per_kilo;
+        $sale->client_id = $request->client_id;
         $sale->update();
 
         return redirect()->route('calves_sales.index');
