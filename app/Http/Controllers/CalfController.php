@@ -61,6 +61,7 @@ class CalfController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->gender = $request->cattle_gender;
         $cattle->save();
 
         $calf = new Calf;

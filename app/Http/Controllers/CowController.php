@@ -42,6 +42,7 @@ class CowController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->gender = 'Hembra';
         $cattle->save();
 
         $cow = new Cow;
