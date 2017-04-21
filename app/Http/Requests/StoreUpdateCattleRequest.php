@@ -34,7 +34,7 @@ class StoreUpdateCattleRequest extends FormRequest
             'cattle_birth_date.required' => 'La fecha de nacimiento es necesaria para el registro.',
             'cattle_purchase_date.required' => 'La fecha de compra es necesaria para el registro.',
             'cattle_breed.required' => 'La raza es necesaria para el registro.',
-            'cattle_gender' => 'El sexo es necesario para el registro.'
+            'cattle_gender.required' => 'El sexo es necesario para el registro.'
         ];
     }
 }
