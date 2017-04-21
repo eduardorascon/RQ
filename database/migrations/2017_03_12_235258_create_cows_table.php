@@ -16,6 +16,7 @@ class CreateCowsTable extends Migration
         Schema::create('cows', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('is_fertile');
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
         });
