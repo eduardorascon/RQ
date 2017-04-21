@@ -45,6 +45,13 @@
 							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
 						</div>
 						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cattle_gender">Sexo</label>
+						<div class="col-sm-10">
+							<input type="text" name="cattle_gender" class="form-control" readonly="readonly" value="{{ $calf->cattle->gender }}" />
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
