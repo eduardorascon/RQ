@@ -78,7 +78,7 @@
 					<label class="col-sm-2 control-label" for="cattle_gender">Sexo</label>
 					<div class="col-sm-10">
 						<select class="form-control" name="cattle_gender">
-							<option value="" selected="selected">Elegir Sexo del Becerro</option>
+							<option value="" selected="selected">Elegir sexo de la cría</option>
 							<option value="Macho">Macho</option>
 							<option value="Hembra">Hembra</option>
 						</select>
