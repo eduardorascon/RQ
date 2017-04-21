@@ -68,6 +68,13 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus</label>
+						<div class="col-sm-10">
+							<input type="text" name="cow_pregnancy_status" class="form-control" readonly="readonly" text="Vacia" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>

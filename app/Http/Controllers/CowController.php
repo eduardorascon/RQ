@@ -48,6 +48,7 @@ class CowController extends Controller
         $cow = new Cow;
         $cow->cattle_id = $cattle->id;
         $cow->is_fertile = $request->cow_fertility;
+        $cow->pregnancy_status = 'Vacia';
         $cow->save();
 
         return redirect()->route('cows.index');
@@ -65,7 +66,8 @@ class CowController extends Controller
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
             'offspring'=>$cow->offspring,
             'palpations'=>$cow->palpationLog,
-            'pictures'=>$cow->cattle->pictures->sortBy('filename')]);
+            'pictures'=>$cow->cattle->pictures->sortBy('filename')
+        ]);
     }
 
     public function edit($id)
@@ -74,13 +76,15 @@ class CowController extends Controller
         $breed_list = Breed::orderBy('name', 'asc')->get();
         return view('cows.edit', [
             'cow'=>$cow,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list
+        ]);
     }
 
     public function update(StoreUpdateCowRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
         $cow->is_fertile = $request->cow_fertility;
+        $cow->pregnancy_status = $request->cow_pregnancy_status;
         $cow->update();
 
         $cattle = $cow->cattle;
