@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCattlesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('cattle', function (Blueprint $table) {
@@ -19,16 +15,12 @@ class CreateCattlesTable extends Migration
             $table->string('tag');
             $table->date('purchase_date');
             $table->date('birth');
+            $table->string('gender');
             $table->integer('breed_id')->unsigned();
             $table->foreign('breed_id')->references('id')->on('breeds');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('cattle');
