@@ -22,7 +22,9 @@ class StoreUpdateCattleRequest extends FormRequest
             'cattle_tag'=> 'required',
             'cattle_birth_date' => 'required',
             'cattle_purchase_date' => 'required',
-            'cattle_breed' => 'required'];
+            'cattle_breed' => 'required',
+            'cattle_gender' => 'required'
+        ];
     }
 
     public function messages()
@@ -31,7 +33,8 @@ class StoreUpdateCattleRequest extends FormRequest
             'cattle_tag.required' => 'El valor del arete siniga es necesario para el registro.',
             'cattle_birth_date.required' => 'La fecha de nacimiento es necesaria para el registro.',
             'cattle_purchase_date.required' => 'La fecha de compra es necesaria para el registro.',
-            'cattle_breed.required' => 'La raza es necesaria para el registro.'
+            'cattle_breed.required' => 'La raza es necesaria para el registro.',
+            'cattle_gender' => 'El sexo es necesario para el registro.'
         ];
     }
 }
