@@ -77,6 +77,34 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="cow_pregnancy_status">
+								@if($cow->pregnancy_status == 'Vacia')
+									<option value="Vacia" selected="selected">Vacia</option>
+									<option value="Preñada">Preñada</option>
+									<option value="Parida">Parida</option>
+								@elseif($cow->pregnancy_status = 'Preñada')
+									<option value="Vacia">Vacia</option>
+									<option value="Preñada" selected="selected">Preñada</option>
+									<option value="Parida">Parida</option>
+								@else
+									<option value="Vacia">Vacia</option>
+									<option value="Preñada">Preñada</option>
+									<option value="Parida" selected="selected">Parida</option>
+								@endif
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_last_pregnancy_check">Fecha de revision</label>
+						<div class="col-sm-10">
+							<input type="date" name="cow_last_pregnancy_check" class="form-control" value="{{ $cow->last_pregnancy_checked_date }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
