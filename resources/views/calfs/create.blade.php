@@ -75,6 +75,17 @@
 					</div>
 
 					<div class="form-group">
+					<label class="col-sm-2 control-label" for="cattle_gender">Sexo</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="cattle_gender">
+							<option value="" selected="selected">Elegir Sexo del Becerro</option>
+							<option value="Macho">Macho</option>
+							<option value="Hembra">Hembra</option>
+						</select>
+					</div>
+					</div>
+
+					<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<input type="submit" class="btn btn-primary" value="Guardar">
 					</div>
