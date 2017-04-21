@@ -69,6 +69,21 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cattle_gender">Sexo</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="cattle_gender">
+								@if($calf->cattle->gender == 'Macho')
+									<option value="Macho" selected="selected">Macho</option>
+									<option value="Hembra">Hembra</option>
+								@else
+									<option value="Macho">Macho</option>
+									<option value="Hembra" selected="selected">Hembra</option>
+								@endif
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
