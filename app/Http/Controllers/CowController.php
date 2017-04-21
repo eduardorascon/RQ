@@ -35,7 +35,7 @@ class CowController extends Controller
         return view('cows.create', ['breed_list'=>$breed_list]);
     }
 
-    public function store(StoreUpdateCattleRequest $request)
+    public function store(StoreUpdateCowRequest $request)
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
@@ -47,6 +47,7 @@ class CowController extends Controller
 
         $cow = new Cow;
         $cow->cattle_id = $cattle->id;
+        $cow->is_fertile = $request->cow_fertility;
         $cow->save();
 
         return redirect()->route('cows.index');
@@ -76,9 +77,12 @@ class CowController extends Controller
             'breed_list'=>$breed_list]);
     }
 
-    public function update(StoreUpdateCattleRequest $request, $id)
+    public function update(StoreUpdateCowRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
+        $cow->is_fertile = $request->cow_fertility;
+        $cow->update();
+
         $cattle = $cow->cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
