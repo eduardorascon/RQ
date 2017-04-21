@@ -14,12 +14,15 @@ class CowsTableSeeder extends Seeder
         $now = date('Y-m-d H:i:s', strtotime('now'));
 
         DB::table('cows')->insert([
+            'is_fertile'=> 'Si',
 			'cattle_id'=> 3]);
 
         DB::table('cows')->insert([
+            'is_fertile'=> 'No',
             'cattle_id'=> 4]);
 
         DB::table('cows')->insert([
+            'is_fertile'=> 'Si',
             'cattle_id'=> 5]);
     }
 }
