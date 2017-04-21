@@ -17,30 +17,35 @@ class CattleTableSeeder extends Seeder
 			'tag'=> 'TORO1',
 			'purchase_date' => $now,
 			'birth' => $now,
+			'gender' => 'Macho',
 			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
 			'tag'=> 'TORO2',
 			'purchase_date' => $now,
 			'birth' => $now,
+			'gender' => 'Macho',
 			'breed_id' => 2]);
 
         DB::table('cattle')->insert([
 			'tag'=> 'VACA1',
 			'purchase_date' => $now,
 			'birth' => $now,
+			'gender' => 'Hembra',
 			'breed_id' => 3]);
 
         DB::table('cattle')->insert([
 			'tag'=> 'VACA2',
 			'purchase_date' => $now,
 			'birth' => $now,
+			'gender' => 'Hembra',
 			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
 			'tag'=> 'VACA3',
 			'purchase_date' => $now,
 			'birth' => $now,
+			'gender' => 'Hembra',
 			'breed_id' => 2]);
     }
 }
