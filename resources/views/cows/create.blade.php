@@ -57,6 +57,17 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label">¿Es fertil?</label>
+						<div class="col-sm-10">
+							<select class="form-control" name="cow_fertility">
+								<option value="">Eligir fertilidad de la vaca</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
