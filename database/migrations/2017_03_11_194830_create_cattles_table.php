@@ -15,6 +15,7 @@ class CreateCattlesTable extends Migration
             $table->string('tag');
             $table->date('purchase_date');
             $table->date('birth');
+            $table->date('is_dead');
             $table->string('gender');
             $table->integer('breed_id')->unsigned();
             $table->foreign('breed_id')->references('id')->on('breeds');
