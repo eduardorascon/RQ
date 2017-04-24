@@ -18,6 +18,7 @@ class CattleTableSeeder extends Seeder
 			'purchase_date' => $now,
 			'birth' => $now,
 			'gender' => 'Macho',
+			'is_dead' => 'No',
 			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
@@ -25,6 +26,7 @@ class CattleTableSeeder extends Seeder
 			'purchase_date' => $now,
 			'birth' => $now,
 			'gender' => 'Macho',
+			'is_dead' => 'No',
 			'breed_id' => 2]);
 
         DB::table('cattle')->insert([
@@ -32,6 +34,7 @@ class CattleTableSeeder extends Seeder
 			'purchase_date' => $now,
 			'birth' => $now,
 			'gender' => 'Hembra',
+			'is_dead' => 'No',
 			'breed_id' => 3]);
 
         DB::table('cattle')->insert([
@@ -39,6 +42,7 @@ class CattleTableSeeder extends Seeder
 			'purchase_date' => $now,
 			'birth' => $now,
 			'gender' => 'Hembra',
+			'is_dead' => 'No',
 			'breed_id' => 1]);
 
         DB::table('cattle')->insert([
@@ -46,6 +50,7 @@ class CattleTableSeeder extends Seeder
 			'purchase_date' => $now,
 			'birth' => $now,
 			'gender' => 'Hembra',
+			'is_dead' => 'No',
 			'breed_id' => 2]);
     }
 }
