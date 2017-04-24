@@ -70,7 +70,12 @@
 						<div class="form-group">
 						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus</label>
 						<div class="col-sm-10">
-							<input type="text" name="cow_pregnancy_status" class="form-control" readonly="readonly" text="Vacia" />
+							<select class="form-control" name="cow_pregnancy_status">
+								<option value="">Elegir el estatus de la vaca</option>
+								<option value="Vacia">Vacia</option>
+								<option value="Preñada">Preñada</option>
+								<option value="Parida">Parida</option>
+							</select>
 						</div>
 						</div>
 
