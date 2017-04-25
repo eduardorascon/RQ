@@ -77,7 +77,7 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus</label>
+						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
 						<div class="col-sm-10">
 							<select class="form-control" name="cow_pregnancy_status">
 								@if($cow->pregnancy_status == 'Vacia')
