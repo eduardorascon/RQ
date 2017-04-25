@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateCowRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
@@ -26,7 +26,8 @@ class CowController extends Controller
         $total_cows = Cow::count();
         return view('cows.index', [
             'cows' => $cows,
-            'total_cows' => $total_cows]);
+            'total_cows' => $total_cows
+        ]);
     }
 
     public function create()
@@ -43,6 +44,7 @@ class CowController extends Controller
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
         $cattle->gender = 'Hembra';
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $cow = new Cow;
