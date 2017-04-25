@@ -60,7 +60,7 @@
 						<label class="col-sm-2 control-label">¿Es fertil?</label>
 						<div class="col-sm-10">
 							<select class="form-control" name="cow_fertility">
-								<option value="">Eligir fertilidad de la vaca</option>
+								<option value="">Eligir fertilidad</option>
 								<option value="Si">Si</option>
 								<option value="No">No</option>
 							</select>
@@ -68,10 +68,10 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus</label>
+						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
 						<div class="col-sm-10">
 							<select class="form-control" name="cow_pregnancy_status">
-								<option value="">Elegir el estatus de la vaca</option>
+								<option value="">Elegir el estatus de gestación</option>
 								<option value="Vacia">Vacia</option>
 								<option value="Preñada">Preñada</option>
 								<option value="Parida">Parida</option>

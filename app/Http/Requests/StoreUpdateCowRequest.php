@@ -33,7 +33,7 @@ class StoreUpdateCowRequest extends FormRequest
             'cattle_purchase_date.required' => 'La fecha de compra es necesaria para el registro.',
             'cattle_breed.required' => 'La raza es necesaria para el registro.',
             'cow_fertility.required' => 'La fertilidad de la vaca es necesaria para el registro.',
-            'cow_pregnancy_status.required' => 'El estatus de preñes es necesario para el registro.',
+            'cow_pregnancy_status.required' => 'El estatus de gestación es necesario para el registro.',
             'cattle_is_alive.required' => 'El estatus ¿Esta vivo? es necesario para el registro.'
         ];
     }
