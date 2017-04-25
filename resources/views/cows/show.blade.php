@@ -35,6 +35,27 @@
 							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
 						</div>
 						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_fertility">¿Es fertil?</label>
+						<div class="col-sm-10">
+							<input type="text" name="cow_fertility" class="form-control" readonly="readonly" value="{{ $cow->is_fertile }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
+						<div class="col-sm-10">
+							<input type="text" name="cow_pregnancy_status" class="form-control" readonly="readonly" value="{{ $cow->pregnancy_status }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cattle_is_alive">¿Esta viva?</label>
+						<div class="col-sm-10">
+							<input type="text" name="cattle_is_alive" class="form-control" readonly="readonly" value="{{ $cow->cattle->is_alive }}">
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
