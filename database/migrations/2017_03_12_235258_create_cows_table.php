@@ -14,7 +14,7 @@ class CreateCowsTable extends Migration
             $table->timestamps();
             $table->string('is_fertile');
             $table->string('pregnancy_status');
-            $table->date('last_pregnancy_check');
+            $table->date('last_pregnancy_check')->nullable();
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
         });
