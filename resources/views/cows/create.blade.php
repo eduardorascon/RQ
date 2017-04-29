@@ -91,6 +91,13 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_number_of_calves">Arete Siniga</label>
+						<div class="col-sm-10">
+							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros">
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
