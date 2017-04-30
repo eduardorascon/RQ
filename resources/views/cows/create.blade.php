@@ -91,9 +91,9 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cow_number_of_calves">Arete Siniga</label>
+						<label class="col-sm-2 control-label" for="cow_number_of_calves">Numero de becerros</label>
 						<div class="col-sm-10">
-							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros">
+							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
 						</div>
 						</div>
 
