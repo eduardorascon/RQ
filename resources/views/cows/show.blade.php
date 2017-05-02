@@ -56,6 +56,13 @@
 							<input type="text" name="cattle_is_alive" class="form-control" readonly="readonly" value="{{ $cow->cattle->is_alive }}">
 						</div>
 						</div>
+
+						<div class="form-group">
+						<label class="col-sm-2 control-label" for="cow_number_of_calves">Numero de becerros</label>
+						<div class="col-sm-10">
+							<input type="number" name="cow_number_of_calves" class="form-control" readonly="readonly" placeholder="Numero de becerros" value="{{ $cow->number_of_calves}}">
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
