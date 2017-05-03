@@ -51,6 +51,7 @@ class CowController extends Controller
         $cow->cattle_id = $cattle->id;
         $cow->is_fertile = $request->cow_fertility;
         $cow->pregnancy_status = 'Vacia';
+        $cow->number_of_calves = $request->cow_number_of_calves;
         $cow->save();
 
         return redirect()->route('cows.index');
@@ -87,6 +88,7 @@ class CowController extends Controller
         $cow = Cow::findOrFail($id);
         $cow->is_fertile = $request->cow_fertility;
         $cow->pregnancy_status = $request->cow_pregnancy_status;
+        $cow->number_of_calves = $request->cow_number_of_calves;
         $cow->update();
 
         $cattle = $cow->cattle;
@@ -94,6 +96,7 @@ class CowController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('cows.index');
