@@ -23,29 +23,29 @@
 						{{ csrf_field() }}
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_breed">Raza</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
 								@foreach ($breed_list as $b)
 								{
@@ -57,8 +57,8 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label">¿Es fertil?</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label">¿Es fertil?</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cow_fertility">
 								<option value="">Eligir fertilidad</option>
 								<option value="Si">Si</option>
@@ -68,8 +68,8 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cow_pregnancy_status">
 								<option value="">Elegir el estatus de gestación</option>
 								<option value="Vacia">Vacia</option>
@@ -80,8 +80,8 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_is_alive">¿Esta viva?</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta viva?</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
 								<option value="">Elige la opcion.</option>
 								<option value="Si">Si</option>
@@ -91,8 +91,8 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cow_number_of_calves">Numero de becerros</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cow_number_of_calves">Numero de becerros</label>
+						<div class="col-sm-9">
 							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
 						</div>
 						</div>
