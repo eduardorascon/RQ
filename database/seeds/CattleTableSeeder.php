@@ -7,46 +7,9 @@ class CattleTableSeeder extends Seeder
 
     public function run()
     {
-        $now = date('Y-m-d H:i:s', strtotime('now'));
-
-        DB::table('cattle')->insert([
-			'tag' => 'TORO1',
-			'purchase_date' => $now,
-			'birth' => $now,
-			'gender' => 'Macho',
-			'is_alive' => 'Si',
-			'breed_id' => 1]);
-
-        DB::table('cattle')->insert([
-			'tag' => 'TORO2',
-			'purchase_date' => $now,
-			'birth' => $now,
-			'gender' => 'Macho',
-			'is_alive' => 'Si',
-			'breed_id' => 2]);
-
-        DB::table('cattle')->insert([
-			'tag' => 'VACA1',
-			'purchase_date' => $now,
-			'birth' => $now,
-			'gender' => 'Hembra',
-			'is_alive' => 'Si',
-			'breed_id' => 3]);
-
-        DB::table('cattle')->insert([
-			'tag' => 'VACA2',
-			'purchase_date' => $now,
-			'birth' => $now,
-			'gender' => 'Hembra',
-			'is_alive' => 'Si',
-			'breed_id' => 1]);
-
-        DB::table('cattle')->insert([
-			'tag' => 'VACA3',
-			'purchase_date' => $now,
-			'birth' => $now,
-			'gender' => 'Hembra',
-			'is_alive' => 'Si',
-			'breed_id' => 2]);
+    	Eloquent::unguard();
+    	DB::disableQueryLog();
+    	$path = 'database/seeds/sql/cattle.sql';
+    	DB::unprepared(file_get_contents($path));
     }
 }
