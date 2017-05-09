@@ -27,7 +27,13 @@ Route::group(['middleware' => ['web']], function() {
 	Route::resource('vaccines','VaccineController');
 
 	Route::get('/cow_filters', [
-		'uses' => 'CowFilterController@index'
+		'uses' => 'CowFilterController@index',
+		'as' => 'cow_filters.index'
+	]);
+
+	Route::post('/cow_filters', [
+		'uses' => 'CowFilterController@search',
+		'as' => 'cow_filters.search'
 	]);
 
 	//Cows
