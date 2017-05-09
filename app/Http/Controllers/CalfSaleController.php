@@ -17,7 +17,8 @@ class CalfSaleController extends Controller
     	{
             $calves = Calf::paginate(12);
     	}
-        else{
+        else
+        {
             $calves = Calf::whereHas('cattle', function ($q) {
                 $q->where('tag', 'LIKE', '%' . $_GET['search'] . '%');
             })->paginate(12);
