@@ -19,16 +19,17 @@ class CowFilterController extends Controller
             $cows = (new Cow)->newQuery()->
                 join('cattle', 'cows.cattle_id', '=', 'cattle.id');
 
+            //search by cow fertility
+            if($request->has('cow_fertility'))
+                $cows->where('cows.is_fertile', $request->cow_fertility);
+
             //search by cattle tag
             if($request->has('cattle_tag'))
-            {
                 $cows->where('cattle.tag', $request->cattle_tag);
-            }
 
+            //search by cattle breed
             if($request->has('cattle_breed'))
-            {
                 $cows->where('cattle.breed_id', $request->cattle_breed);
-            }
         }
 
     	return view('cow_filters.index', [

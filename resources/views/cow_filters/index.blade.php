@@ -19,12 +19,23 @@
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
-								<option value="">TODAS LAS RAZAS</option>
+								<option value="">TODAS LAS OPCIONES</option>
 								@foreach ($breed_list as $b)
 								{
 								<option value="{{ $b->id }}">{{ $b->name }}</option>
 								}
 								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_fertility">Fertilidad</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cow_fertility">
+								<option value="">TODAS LAS OPCIONES</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
 							</select>
 						</div>
 						</div>
