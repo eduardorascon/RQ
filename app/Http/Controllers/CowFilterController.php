@@ -12,7 +12,8 @@ class CowFilterController extends Controller
     {
 
         if($_GET == false)
-    	   $cows = Cow::getAll();
+    	   $cows = Cow::join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
+                orderBy('cattle.tag', 'asc');
         else
         {
             $cows = (new Cow)->newQuery();
@@ -26,20 +27,5 @@ class CowFilterController extends Controller
         }
 
     	return view('cow_filters.index', ['cows' => $cows->paginate(12)]);
-    }
-
-    public function search(Request $request)
-    {
-    	$cows = (new Cow)->newQuery();
-
-    	//search by cattle tag
-    	if($request->has('cattle_tag'))
-    	{
-    		$cows->
-                join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
-                where('cattle.tag', $request->cattle_tag);
-    	}
-
-        return redirect()->route('cow_filters.index', ['cows' => $cows->get()]);
     }
 }
