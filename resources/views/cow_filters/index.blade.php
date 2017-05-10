@@ -8,8 +8,6 @@
 				<div class="panel-heading">Filtros para vacas</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('cow_filters.search') }}" method="get">
-						{{ csrf_field() }}
-
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-9">
@@ -45,11 +43,7 @@
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>
-									<form class="">
-										<input type="hidden" name="_method" value="delete">
-                    					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-info btn-xs" href="{{ route('cows.show', $cow->id) }}">Información</a>
-									</form>
+                    				<a class="btn btn-info btn-xs" href="{{ route('cows.show', $cow->id) }}">Información</a>
 								</td>
 							</tr>
 						@endforeach
