@@ -16,6 +16,20 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_breed">
+								<option value="">TODAS LAS RAZAS</option>
+								@foreach ($breed_list as $b)
+								{
+								<option value="{{ $b->id }}">{{ $b->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Buscar">
 						</div>
