@@ -23,8 +23,13 @@ class CowFilterController extends Controller
             if($request->has('cow_fertility'))
                 $cows->where('cows.is_fertile', $request->cow_fertility);
 
+            //search by cow pregnancy status
             if($request->has('cow_pregnancy_status'))
                 $cows->where('cows.pregnancy_status', $request->cow_pregnancy_status);
+
+            //search by number of calves
+            if($request->has('cow_number_of_calves'))
+                $cows->where('cows.number_of_calves', $request->cow_number_of_calves);
 
             //search by cattle tag
             if($request->has('cattle_tag'))

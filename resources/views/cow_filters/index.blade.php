@@ -64,6 +64,13 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
+						<div class="col-sm-9">
+							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Buscar">
 						</div>
