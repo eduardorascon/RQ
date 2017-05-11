@@ -19,7 +19,7 @@
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
-								<option value="">TODAS LAS OPCIONES</option>
+								<option value="">Todas las opciones</option>
 								@foreach ($breed_list as $b)
 								{
 								<option value="{{ $b->id }}">{{ $b->name }}</option>
@@ -33,7 +33,7 @@
 						<label class="col-sm-3 control-label" for="cow_fertility">Fertilidad</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cow_fertility">
-								<option value="">TODAS LAS OPCIONES</option>
+								<option value="">Todas las opciones</option>
 								<option value="Si">Si</option>
 								<option value="No">No</option>
 							</select>
@@ -41,13 +41,24 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
+						<label class="col-sm-3 control-label" for="cow_pregnancy_status">Estado de gestación</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cow_pregnancy_status">
-								<option value="">TODAS LAS OPCIONES</option>
+								<option value="">Todas las opciones</option>
 								<option value="Vacia">Vacia</option>
 								<option value="Preñada">Preñada</option>
 								<option value="Parida">Parida</option>
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta viva?</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_is_alive">
+								<option value="">Todas las opciones</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
 							</select>
 						</div>
 						</div>
