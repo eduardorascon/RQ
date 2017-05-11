@@ -109,7 +109,7 @@
 				</div>
 				@else
 				<div class="panel-body">
-					Sin resultados
+					<div class="alert alert-danger">Sin resultados</div>
 				</div>
 				@endif
 			</div>
