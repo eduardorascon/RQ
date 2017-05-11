@@ -31,9 +31,9 @@ Route::group(['middleware' => ['web']], function() {
 		'as' => 'cow_filters.index'
 	]);
 
-	Route::post('/cow_filters', [
-		'uses' => 'CowFilterController@search',
-		'as' => 'cow_filters.search'
+	Route::get('bull_filters', [
+		'uses' => 'BullFilterController@index',
+		'as' => 'bull_filters.index'
 	]);
 
 	//Cows
