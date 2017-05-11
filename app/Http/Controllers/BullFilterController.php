@@ -19,6 +19,18 @@ class BullFilterController extends Controller
     		$bulls = (new Bull)->newQuery()->
     			join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
 
+            //search by cattle tag
+            if($request->has('cattle_tag'))
+                $bulls->where('cattle.tag', $request->cattle_tag);
+
+            //search by cattle breed
+            if($request->has('cattle_breed'))
+                $bulls->where('cattle.breed_id', $request->cattle_breed);
+
+            //search by cattle is_alive
+            if($request->has('cattle_is_alive'))
+                $cows->where('cattle.is_alive', $request->cattle_is_alive);
+
             $bulls->orderBy('cattle.tag', 'asc');
     	}
 
