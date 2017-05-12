@@ -12,7 +12,7 @@ class CowFilterController extends Controller
     public function index(Request $request)
     {
         if($_GET == false)
-    	   $cows = Cow::join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
+            $cows = Cow::join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
                 orderBy('cattle.tag', 'asc');
         else
         {
