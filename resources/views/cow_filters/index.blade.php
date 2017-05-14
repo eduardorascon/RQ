@@ -7,7 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Filtros para vacas</div>
 				<div class="panel-body">
-					<form class="form-horizontal" action="{{ route('cow_filters.search') }}" method="get">
+					<form class="form-horizontal" action="{{ route('cow_filters.index') }}" method="get">
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-9">

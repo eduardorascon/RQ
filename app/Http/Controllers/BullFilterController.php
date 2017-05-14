@@ -29,7 +29,7 @@ class BullFilterController extends Controller
 
             //search by cattle is_alive
             if($request->has('cattle_is_alive'))
-                $cows->where('cattle.is_alive', $request->cattle_is_alive);
+                $bulls->where('cattle.is_alive', $request->cattle_is_alive);
 
             $bulls->orderBy('cattle.tag', 'asc');
     	}
