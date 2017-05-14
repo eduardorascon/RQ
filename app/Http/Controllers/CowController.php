@@ -33,7 +33,9 @@ class CowController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('cows.create', ['breed_list'=>$breed_list]);
+        return view('cows.create', [
+            'breed_list'=>$breed_list
+        ]);
     }
 
     public function store(StoreUpdateCowRequest $request)

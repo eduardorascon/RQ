@@ -24,13 +24,16 @@ class BullController extends Controller
         $total_bulls = Bull::count();
         return view('bulls.index', [
             'bulls' => $bulls,
-            'total_bulls' => $total_bulls]);
+            'total_bulls' => $total_bulls
+        ]);
     }
 
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('bulls.create', ['breed_list'=>$breed_list]);
+        return view('bulls.create', [
+            'breed_list'=>$breed_list
+        ]);
     }
 
     public function store(StoreUpdateCattleRequest $request)
@@ -60,7 +63,8 @@ class BullController extends Controller
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
-            'pictures'=>$bull->cattle->pictures->sortBy('filename')]);
+            'pictures'=>$bull->cattle->pictures->sortBy('filename')
+        ]);
     }
 
     public function edit($id)
@@ -69,7 +73,8 @@ class BullController extends Controller
         $breed_list = Breed::orderBy('name', 'asc')->get();
         return view('bulls.edit', [
             'bull'=>$bull,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list
+        ]);
     }
 
     public function update(StoreUpdateCattleRequest $request, $id)
