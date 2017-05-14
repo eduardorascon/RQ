@@ -23,29 +23,29 @@
 						{{ csrf_field() }}
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_breed">Raza</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
 								@foreach ($breed_list as $b)
 								{
