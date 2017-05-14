@@ -12,11 +12,12 @@ class BullFilterController extends Controller
     public function index(Request $request)
     {
     	if($_GET == false)
-    		$bulls = Bull::join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+    		$bulls = Bull::select('bulls.*')->
+                join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
     			orderBy('cattle.tag', 'asc');
     	else
     	{
-    		$bulls = (new Bull)->newQuery()->
+    		$bulls = (new Bull)->newQuery()->select('bulls.*')->
     			join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
 
             //search by cattle tag

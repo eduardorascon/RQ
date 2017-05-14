@@ -12,11 +12,12 @@ class CowFilterController extends Controller
     public function index(Request $request)
     {
         if($_GET == false)
-            $cows = Cow::join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
+            $cows = Cow::select('cows.*')->
+                join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
                 orderBy('cattle.tag', 'asc');
         else
         {
-            $cows = (new Cow)->newQuery()->
+            $cows = (new Cow)->newQuery()->select('cows.*')->
                 join('cattle', 'cows.cattle_id', '=', 'cattle.id');
 
             //search by cow fertility
