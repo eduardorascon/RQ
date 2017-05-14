@@ -64,6 +64,14 @@
                             </ul>
                         </li>
 
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Filtros <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('cow_filters.index') }}">Vacas</a></li>
+                                <li><a href="{{ route('bull_filters.index') }}">Toros</a></li>
+                            </ul>
+                        </li>
+
                         <li><a href="{{ route('calves_sales.index') }}">Ventas</a></li>
                     @endif
                     </ul>
