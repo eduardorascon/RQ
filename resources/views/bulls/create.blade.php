@@ -57,6 +57,17 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_is_alive">
+								<option value="">Elige la opción.</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input type="submit" class="btn btn-primary" value="Guardar">
 						</div>
