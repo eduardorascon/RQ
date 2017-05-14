@@ -44,6 +44,7 @@ class BullController extends Controller
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
         $cattle->gender = 'Macho';
+        $cattle->is_alive =$request->cattle_is_alive;
         $cattle->save();
 
         $bull = new Bull;
@@ -85,6 +86,7 @@ class BullController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('bulls.index');
