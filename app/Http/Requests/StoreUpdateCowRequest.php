@@ -22,7 +22,7 @@ class StoreUpdateCowRequest extends FormRequest
             'cow_fertility' => 'required',
             'cow_pregnancy_status' => 'required',
             'cattle_is_alive' => 'required',
-            'cow_number_of_claves' => 'required'
+            'cow_number_of_calves' => 'required'
         ];
     }
 
@@ -36,7 +36,7 @@ class StoreUpdateCowRequest extends FormRequest
             'cow_fertility.required' => 'La fertilidad de la vaca es necesaria para el registro.',
             'cow_pregnancy_status.required' => 'El estatus de gestación es necesario para el registro.',
             'cattle_is_alive.required' => 'El estatus ¿Esta vivo? es necesario para el registro.',
-            'cow_number_of_claves.required' => 'El numero de becerros es necesario para el registro.'
+            'cow_number_of_calves.required' => 'El numero de becerros es necesario para el registro.'
         ];
     }
 }
