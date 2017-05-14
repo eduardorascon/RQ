@@ -108,17 +108,22 @@
 						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta viva?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
-								<option value="">Elige la opcion.</option>
-								<option value="Si">Si</option>
-								<option value="No">No</option>
+								<option value="">Elige la opción.</option>
+								@if($cow->cattle->is_alive == 'Si')
+									<option value="Si" selected="selected">Si</option>
+									<option value="No">No</option>
+								@else
+									<option value="Si">Si</option>
+									<option value="No" selected="selected">No</option>
+								@endif
 							</select>
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_number_of_calves">Numero de becerros</label>
+						<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
 						<div class="col-sm-9">
-							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
+							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="{{ $cow->number_of_calves }}">
 						</div>
 						</div>
 
