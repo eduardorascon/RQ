@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBullsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('bulls', function (Blueprint $table) {
@@ -21,11 +16,6 @@ class CreateBullsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         //

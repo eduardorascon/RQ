@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateVaccinationLogTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('vaccination_logs', function(Blueprint $table) {
@@ -25,11 +21,6 @@ class CreateVaccinationLogTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         //

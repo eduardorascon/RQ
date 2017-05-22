@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBreedTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('breeds', function (Blueprint $table) {
@@ -20,11 +15,6 @@ class CreateBreedTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('breeds');

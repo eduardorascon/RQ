@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCowsTable extends Migration
 {
-
     public function up()
     {
         Schema::create('cows', function (Blueprint $table) {
