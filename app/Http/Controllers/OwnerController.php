@@ -7,7 +7,6 @@ use App\Owner;
 
 class OwnerController extends Controller
 {
-
     public function index()
     {
         $owners = Owner::all();
