@@ -54,6 +54,6 @@ class PaddockController extends Controller
     {
         $paddock = Paddock::findOrFail($id);
         $paddock->delete();
-        return redirect()->route('paddocks.index')
+        return redirect()->route('paddocks.index');
     }
 }
