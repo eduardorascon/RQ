@@ -18,6 +18,10 @@ class CreateCattlesTable extends Migration
             $table->string('gender');
             $table->integer('breed_id')->unsigned();
             $table->foreign('breed_id')->references('id')->on('breeds');
+            $table->integer('owner_id')->unsigned();
+            $table->foreign('owner_id')->references('id')->on('owners');
+            $table->integer('paddock_id')->unsigned();
+            $table->foreign('paddock_id')->references('id')->on('paddocks');
         });
     }
 
