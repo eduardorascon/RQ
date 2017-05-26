@@ -16,11 +16,11 @@ class CreateCattlesTable extends Migration
             $table->date('birth');
             $table->string('is_alive');
             $table->string('gender');
-            $table->integer('breed_id')->unsigned();
+            $table->integer('breed_id')->unsigned()->nullable();
             $table->foreign('breed_id')->references('id')->on('breeds');
-            $table->integer('owner_id')->unsigned();
+            $table->integer('owner_id')->unsigned()->nullable();
             $table->foreign('owner_id')->references('id')->on('owners');
-            $table->integer('paddock_id')->unsigned();
+            $table->integer('paddock_id')->unsigned()->nullable();
             $table->foreign('paddock_id')->references('id')->on('paddocks');
         });
     }
