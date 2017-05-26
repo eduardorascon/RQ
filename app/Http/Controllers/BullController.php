@@ -10,6 +10,8 @@ use App\Http\Requests\StorePictureRequest;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
@@ -31,8 +33,12 @@ class BullController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('bulls.create', [
-            'breed_list'=>$breed_list
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
         ]);
     }
 
