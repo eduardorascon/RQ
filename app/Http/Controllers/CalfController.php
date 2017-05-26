@@ -10,6 +10,8 @@ use App\Http\Requests\StorePictureRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
@@ -33,13 +35,18 @@ class CalfController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         $cow_list = Cow::whereHas('cattle', function ($q) {
             $q->orderBy('tag', 'asc');
         })->with('cattle')->get();
 
         return view('calfs.create', [
             'breed_list'=>$breed_list,
-            'cow_list'=>$cow_list]);
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list,
+            'cow_list'=>$cow_list
+        ]);
     }
 
     public function create_offspring($cow_id)
