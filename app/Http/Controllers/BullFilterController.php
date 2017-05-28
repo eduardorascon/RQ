@@ -26,8 +26,13 @@ class BullFilterController extends Controller
             if($request->has('cattle_tag'))
                 $bulls->where('cattle.tag', $request->cattle_tag);
 
+            //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
                 $bulls->whereBetween('cattle.birth', array($request->cattle_birth_since, $request->cattle_birth_until));
+
+            //search by cattle purchase date
+            if($request->has('cattle_purchase_date_since') && $request->has('cattle_purchase_date_until'))
+                $bulls->whereBetween('cattle.purchase_date', array($request->cattle_purchase_date_since, $request->cattle_purchase_date_until));
 
             //search by cattle breed
             if($request->has('cattle_breed'))
@@ -48,13 +53,15 @@ class BullFilterController extends Controller
             $bulls->orderBy('cattle.tag', 'asc');
     	}
 
-        $cattle_births = Bull::select('cattle.*')->
-                join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
+        $cattle = Bull::select('cattle.*')->
+            join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(12),
-            'birth_since' => $cattle_births->min('birth'),
-            'birth_until' => $cattle_births->max('birth'),
+            'birth_since' => $cattle->min('birth'),
+            'birth_until' => $cattle->max('birth'),
+            'purchase_since' => $cattle->min('purchase_date'),
+            'purchase_until' => $cattle->max('purchase_date'),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get()

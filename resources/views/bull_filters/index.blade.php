@@ -31,6 +31,20 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_purchase_date_since" class="form-control" value="{{ $purchase_since }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date_until">Fecha de compra (hasta)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_purchase_date_until" class="form-control" value="{{ $purchase_until }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
