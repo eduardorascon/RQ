@@ -8,10 +8,25 @@
 				<div class="panel-heading">Filtros para toros</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('bull_filters.index') }}" method="get">
+
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-9">
-							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
+							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_birth_since" class="form-control" value="{{ $birth_since }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_birth_until">Fecha de nacimiento (hasta)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_birth_until" class="form-control" value="{{ $birth_until }}" />
 						</div>
 						</div>
 
