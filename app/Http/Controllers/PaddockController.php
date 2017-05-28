@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Paddock;
+use App\Http\Requests\StoreUpdatePaddockRequest;
 use Illuminate\Http\Request;
 
 class PaddockController extends Controller
@@ -20,7 +21,7 @@ class PaddockController extends Controller
         return view('paddocks.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdatePaddockRequest $request)
     {
         Paddock::create([
             'name' => $request->input('name')
@@ -41,7 +42,7 @@ class PaddockController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdatePaddockRequest $request, $id)
     {
         $paddock = Paddock::findOrFail($id);
         $paddock->update([

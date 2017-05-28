@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateOwnerRequest;
 use App\Owner;
 
 class OwnerController extends Controller
@@ -20,7 +21,7 @@ class OwnerController extends Controller
         return view('owners.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateOwnerRequest $request)
     {
         Owner::create([
             'name' => $request->input('name')
@@ -39,7 +40,7 @@ class OwnerController extends Controller
         return view('owners.edit', compact('owner'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateOwnerRequest $request, $id)
     {
         $owner = Owner::findOrFail($id);
         $owner->update([
