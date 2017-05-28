@@ -67,6 +67,8 @@ class BullController extends Controller
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
+            'owner'=>$bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
+            'paddock'=>$bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
@@ -78,9 +80,13 @@ class BullController extends Controller
     {
         $bull = Bull::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('bulls.edit', [
             'bull'=>$bull,
-            'breed_list'=>$breed_list
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
         ]);
     }
 
