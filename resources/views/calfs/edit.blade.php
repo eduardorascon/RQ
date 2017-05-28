@@ -24,36 +24,36 @@
 						{{ csrf_field() }}
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="mother_tag">Madre</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="mother_tag">Madre</label>
+						<div class="col-sm-9">
 							<input type="text" name="mother_tag" class="form-control" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" value="{{ $calf->cattle->tag }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento" value="{{ $calf->cattle->birth }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
+						<div class="col-sm-9">
 							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra" value="{{ $calf->cattle->purchase_date }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_breed">Raza</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
 								@foreach ($breed_list as $b)
 								{
@@ -69,8 +69,42 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_gender">Sexo</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_owner">
+								@foreach ($owner_list as $o)
+								{
+									@if($calf->cattle->owner_id == $o->id)
+									<option value="{{ $o->id }}" selected="selected">{{ $o->name }}</option>
+									@else
+									<option value="{{ $o->id }}">{{ $o->name }}</option>
+									@endif
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_paddock">
+								@foreach ($paddock_list as $p)
+								{
+									@if($calf->cattle->paddock_id == $p->id)
+									<option value="{{ $p->id }}" selected="sel">{{ $p->name }}</option>
+									@else
+									<option value="{{ $p->id }}">{{ $p->name }}</option>
+									@endif
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_gender">Sexo</label>
+						<div class="col-sm-9">
 							<select class="form-control" name="cattle_gender">
 								@if($calf->cattle->gender == 'Macho')
 									<option value="Macho" selected="selected">Macho</option>

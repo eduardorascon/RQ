@@ -86,6 +86,8 @@ class CalfController extends Controller
         return view('calfs.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
+            'owner'=>$calf->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
+            'paddock'=>$calf->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date"),
@@ -96,9 +98,14 @@ class CalfController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('calfs.edit', [
             'calf'=>$calf,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
     public function update(StoreUpdateCattleRequest $request, $id)
