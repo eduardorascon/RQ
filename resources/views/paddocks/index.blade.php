@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Potrero ({{ count($paddocks) }}), <a href="{{ route('paddocks.create') }}">Agregar nuevo dueño</a></div>
+                <div class="panel-heading">Potrero ({{ count($paddocks) }}), <a href="{{ route('paddocks.create') }}">Agregar nuevo potrero</a></div>
                 <div class="panel-body">
                     <table class="table table-striped">
                 	<thead>

@@ -10,7 +10,7 @@ class PaddockController extends Controller
 {
     public function index()
     {
-        $paddock = Paddock::all();
+        $paddocks = Paddock::all();
         return view('paddocks.index', [
             'paddocks' => $paddocks
         ]);
