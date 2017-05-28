@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Paddock extends Model
 {
     public $timestamps = false;
+
+    protected $fillable = [
+        'name'
+    ];
 }
