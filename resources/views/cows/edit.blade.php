@@ -62,6 +62,40 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_owner">
+								@foreach ($owner_list as $o)
+								{
+									@if($bull->cattle->owner_id == $o->id)
+									<option value="{{ $o->id }}" selected="selected">{{ $o->name }}</option>
+									@else
+									<option value="{{ $o->id }}">{{ $o->name }}</option>
+									@endif
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_paddock">
+								@foreach ($paddock_list as $p)
+								{
+									@if($bull->cattle->paddock_id == $p->id)
+									<option value="{{ $p->id }}" selected="sel">{{ $p->name }}</option>
+									@else
+									<option value="{{ $p->id }}">{{ $p->name }}</option>
+									@endif
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cow_fertility">¿Es fertil?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cow_fertility">

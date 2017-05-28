@@ -37,6 +37,20 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_owner" class="form-control" readonly="readonly" value="{{ $owner }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_paddock" class="form-control" readonly="readonly" value="{{ $paddock }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cow_fertility">¿Es fertil?</label>
 						<div class="col-sm-9">
 							<input type="text" name="cow_fertility" class="form-control" readonly="readonly" value="{{ $cow->is_fertile }}" />

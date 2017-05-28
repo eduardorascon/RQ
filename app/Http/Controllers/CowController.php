@@ -72,6 +72,8 @@ class CowController extends Controller
         return view('cows.show', [
             'cow'=>$cow,
             'breed'=>$cow->cattle->breed->name,
+            'owner'=>$cow->cattle->owner === NULL ? '' : $cow->cattle->owner->name,
+            'paddock'=>$cow->cattle->paddock === NULL ? '' : $cow->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
@@ -85,9 +87,13 @@ class CowController extends Controller
     {
         $cow = Cow::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('cows.edit', [
             'cow'=>$cow,
-            'breed_list'=>$breed_list
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
         ]);
     }
 
