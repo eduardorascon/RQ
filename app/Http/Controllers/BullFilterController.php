@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 
 class BullFilterController extends Controller
 {
@@ -28,6 +30,14 @@ class BullFilterController extends Controller
             if($request->has('cattle_breed'))
                 $bulls->where('cattle.breed_id', $request->cattle_breed);
 
+            //search by cattle owner
+            if($request->has('cattle_owner'))
+                $bulls->where('cattle.owner_id', $request->cattle_owner);
+
+            //search by cattle paddock
+            if($request->has('cattle_paddock'))
+                $bulls->where('cattle.paddock_id', $request->cattle_paddock);
+
             //search by cattle is_alive
             if($request->has('cattle_is_alive'))
                 $bulls->where('cattle.is_alive', $request->cattle_is_alive);
@@ -37,7 +47,9 @@ class BullFilterController extends Controller
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(12),
-    		'breed_list' => Breed::orderBy('name', 'asc')->get()
+    		'breed_list' => Breed::orderBy('name', 'asc')->get(),
+            'owner_list' => Owner::orderBy('name', 'asc')->get(),
+            'paddock_list' => Paddock::orderBy('name', 'asc')->get()
     	]);
     }
 }

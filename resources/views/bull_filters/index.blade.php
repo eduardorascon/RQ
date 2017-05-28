@@ -30,6 +30,34 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_owner">
+								<option value="">Todas las opciones</option>
+								@foreach ($owner_list as $o)
+								{
+								<option value="{{ $o->id }}">{{ $o->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_paddock">
+								<option value="">Todas las opciones</option>
+								@foreach ($paddock_list as $p)
+								{
+								<option value="{{ $p->id }}">{{ $p->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
