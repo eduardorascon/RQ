@@ -8,10 +8,39 @@
 				<div class="panel-heading">Filtros para vacas</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('cow_filters.index') }}" method="get">
+
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_birth_since" class="form-control" value="{{ $birth_since }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_birth_until">Fecha de nacimiento (hasta)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_birth_until" class="form-control" value="{{ $birth_until }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_purchase_date_since" class="form-control" value="{{ $purchase_since }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date_until">Fecha de compra (hasta)</label>
+						<div class="col-sm-9">
+							<input type="date" name="cattle_purchase_date_until" class="form-control" value="{{ $purchase_until }}" />
 						</div>
 						</div>
 
@@ -23,6 +52,34 @@
 								@foreach ($breed_list as $b)
 								{
 								<option value="{{ $b->id }}">{{ $b->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_owner">
+								<option value="">Todas las opciones</option>
+								@foreach ($owner_list as $o)
+								{
+								<option value="{{ $o->id }}">{{ $o->name }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_paddock">
+								<option value="">Todas las opciones</option>
+								@foreach ($paddock_list as $p)
+								{
+								<option value="{{ $p->id }}">{{ $p->name }}</option>
 								}
 								@endforeach
 							</select>
