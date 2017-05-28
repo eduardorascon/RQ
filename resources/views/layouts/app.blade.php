@@ -61,6 +61,8 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('breeds.index') }}">Razas</a></li>
                                 <li><a href="{{ route('vaccines.index') }}">Vacunas</a></li>
+                                <li><a href="{{ route('paddocks.index') }}">Potreros</a></li>
+                                <li><a href="{{ route('owners.index') }}">Dueños</a></li>
                             </ul>
                         </li>
 
