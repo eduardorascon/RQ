@@ -49,6 +49,8 @@ class BullController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = 'Macho';
         $cattle->is_alive =$request->cattle_is_alive;
         $cattle->save();
@@ -98,6 +100,8 @@ class BullController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
         $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
