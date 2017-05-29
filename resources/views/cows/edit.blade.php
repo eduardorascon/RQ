@@ -48,6 +48,7 @@
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
+								<option value="">Elige una opción.</option>
 								@foreach ($breed_list as $b)
 								{
 									@if($cow->cattle->breed_id == $b->id)
@@ -65,9 +66,10 @@
 						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_owner">
+								<option value="">Elige una opción.</option>
 								@foreach ($owner_list as $o)
 								{
-									@if($bull->cattle->owner_id == $o->id)
+									@if($cow->cattle->owner_id == $o->id)
 									<option value="{{ $o->id }}" selected="selected">{{ $o->name }}</option>
 									@else
 									<option value="{{ $o->id }}">{{ $o->name }}</option>
@@ -82,10 +84,11 @@
 						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_paddock">
+								<option value="">Elige una opción.</option>
 								@foreach ($paddock_list as $p)
 								{
-									@if($bull->cattle->paddock_id == $p->id)
-									<option value="{{ $p->id }}" selected="sel">{{ $p->name }}</option>
+									@if($cow->cattle->paddock_id == $p->id)
+									<option value="{{ $p->id }}" selected="selected">{{ $p->name }}</option>
 									@else
 									<option value="{{ $p->id }}">{{ $p->name }}</option>
 									@endif
@@ -99,6 +102,7 @@
 						<label class="col-sm-3 control-label" for="cow_fertility">¿Es fertil?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cow_fertility">
+								<option value="">Elige una opción.</option>
 								@if($cow->is_fertile == 'Si')
 									<option value="Si" selected="selected">Si</option>
 									<option value="No">No</option>
@@ -114,6 +118,7 @@
 						<label class="col-sm-3 control-label" for="cow_pregnancy_status">Estatus de gestación</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cow_pregnancy_status">
+								<option value="">Elige una opción.</option>
 								@if($cow->pregnancy_status == 'Vacia')
 									<option value="Vacia" selected="selected">Vacia</option>
 									<option value="Preñada">Preñada</option>
@@ -142,7 +147,7 @@
 						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta viva?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
-								<option value="">Elige la opción.</option>
+								<option value="">Elige una opción.</option>
 								@if($cow->cattle->is_alive == 'Si')
 									<option value="Si" selected="selected">Si</option>
 									<option value="No">No</option>

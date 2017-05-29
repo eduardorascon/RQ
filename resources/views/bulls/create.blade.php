@@ -47,6 +47,7 @@
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
+								<option value="">Elige una opción.</option>
 								@foreach ($breed_list as $b)
 								{
 								<option value="{{ $b->id }}">{{ $b->name }}</option>
@@ -60,6 +61,7 @@
 						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_owner">
+								<option value="">Elige una opción.</option>
 								@foreach ($owner_list as $o)
 								{
 								<option value="{{ $o->id }}">{{ $o->name }}</option>
@@ -73,6 +75,7 @@
 						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_paddock">
+								<option value="">Elige una opción.</option>
 								@foreach ($paddock_list as $p)
 								{
 								<option value="{{ $p->id }}">{{ $p->name }}</option>
@@ -86,7 +89,7 @@
 						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
-								<option value="">Elige la opción.</option>
+								<option value="">Elige una opción.</option>
 								<option value="Si">Si</option>
 								<option value="No">No</option>
 							</select>
