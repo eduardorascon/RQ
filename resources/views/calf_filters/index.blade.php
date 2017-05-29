@@ -125,7 +125,7 @@
 								<td>{{ $calf->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>
-                    				<a class="btn btn-info btn-xs" href="{{ route('calves.show', $calf->id) }}">Información</a>
+                    				<a class="btn btn-info btn-xs" href="{{ route('calfs.show', $calf->id) }}">Información</a>
 								</td>
 							</tr>
 						@endforeach

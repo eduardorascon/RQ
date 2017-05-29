@@ -14,12 +14,12 @@ class CalfFilterController extends Controller
     public function index(Request $request)
     {
     	if($_GET == false)
-    		$calves == Calf::select('calves.*')->
+    		$calves = Calf::select('calves.*')->
     			join('cattle', 'calves.cattle_id', '=', 'cattle.id')->
     			orderBy('cattle.tag', 'asc');
     	else
     	{
-    		$calves = (new Bull)->newQuery()->select('calves.*')->
+    		$calves = (new Calf)->newQuery()->select('calves.*')->
     			join('cattle', 'calves.cattle_id', '=', 'cattle.id');
 
             //search by cattle tag
