@@ -68,7 +68,10 @@ class CalfController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = $request->cattle_gender;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $calf = new Calf;
@@ -116,7 +119,10 @@ class CalfController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = $request->cattle_gender;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('calfs.index');

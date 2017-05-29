@@ -68,6 +68,13 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_is_alive" class="form-control" readonly="readonly" value="{{ $calf->cattle->is_alive }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_gender">Sexo</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_gender" class="form-control" readonly="readonly" value="{{ $calf->cattle->gender }}" />

@@ -55,6 +55,7 @@
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
+								<option value="">Elige una opción.</option>
 								@foreach ($breed_list as $b)
 								{
 									@if($calf->cattle->breed_id == $b->id)
@@ -72,6 +73,7 @@
 						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_owner">
+								<option value="">Elige una opción.</option>
 								@foreach ($owner_list as $o)
 								{
 									@if($calf->cattle->owner_id == $o->id)
@@ -89,6 +91,7 @@
 						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_paddock">
+								<option value="">Elige una opción.</option>
 								@foreach ($paddock_list as $p)
 								{
 									@if($calf->cattle->paddock_id == $p->id)
@@ -103,9 +106,26 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cattle_is_alive">
+								<option value="">Elige una opción.</option>
+								@if($calf->cattle->is_alive == 'Si')
+									<option value="Si" selected="selected">Si</option>
+									<option value="No">No</option>
+								@else
+									<option value="Si">Si</option>
+									<option value="No" selected="selected">No</option>
+								@endif
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_gender">Sexo</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_gender">
+								<option value="">Elige una opción.</option>
 								@if($calf->cattle->gender == 'Macho')
 									<option value="Macho" selected="selected">Macho</option>
 									<option value="Hembra">Hembra</option>

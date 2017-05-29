@@ -52,7 +52,7 @@ class BullController extends Controller
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = 'Macho';
-        $cattle->is_alive =$request->cattle_is_alive;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $bull = new Bull;
