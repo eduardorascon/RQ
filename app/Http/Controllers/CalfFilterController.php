@@ -8,6 +8,7 @@ use App\Cattle;
 use App\Breed;
 use App\Owner;
 use App\Paddock;
+use App\Cow;
 
 class CalfFilterController extends Controller
 {
@@ -21,6 +22,10 @@ class CalfFilterController extends Controller
     	{
     		$calves = (new Calf)->newQuery()->select('calves.*')->
     			join('cattle', 'calves.cattle_id', '=', 'cattle.id');
+
+            //search by calf mother
+            if($request->has('cow_id'))
+                $calves->where('calves.cow_id', $request->cow_id);
 
             //search by cattle tag
             if($request->has('cattle_tag'))
@@ -56,8 +61,13 @@ class CalfFilterController extends Controller
     	$cattle = Calf::select('cattle.*')->
             join('cattle', 'calves.cattle_id', '=', 'cattle.id');
 
+        $cow_list = Cow::whereHas('cattle', function ($q) {
+            $q->orderBy('tag', 'asc');
+        })->with('cattle')->get();
+
     	return view('calf_filters.index', [
     		'calves' => $calves->paginate(12),
+            'cow_list' => $cow_list,
             'birth_since' => $cattle->min('birth'),
             'birth_until' => $cattle->max('birth'),
             'purchase_since' => $cattle->min('purchase_date'),

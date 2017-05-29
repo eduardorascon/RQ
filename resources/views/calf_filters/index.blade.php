@@ -10,6 +10,20 @@
 					<form class="form-horizontal" action="{{ route('calf_filters.index') }}" method="get">
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_id">Madre</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="cow_id">
+								<option value="">Todas las opciones</option>
+								@foreach ($cow_list as $cow)
+								{
+								<option value="{{ $cow->id }}">{{ $cow->cattle->tag }}</option>
+								}
+								@endforeach
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" />
