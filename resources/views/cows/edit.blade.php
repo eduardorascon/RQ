@@ -137,13 +137,6 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_last_pregnancy_check">Fecha de revision</label>
-						<div class="col-sm-9">
-							<input type="date" name="cow_last_pregnancy_check" class="form-control" value="{{ $cow->last_pregnancy_checked_date }}" />
-						</div>
-						</div>
-
-						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta viva?</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_is_alive">
