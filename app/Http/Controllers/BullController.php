@@ -170,7 +170,7 @@ class BullController extends Controller
                     ->addNumberColumn('Official');
 
         // Random Data For Example
-        for ($a = 1; $a < 30; $a++) {
+        for ($a = 1; $a < 10; $a++) {
             $stocksTable->addRow([
               '2015-10-' . $a, rand(800,1000), rand(800,1000)
             ]);
