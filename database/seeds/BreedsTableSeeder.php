@@ -11,7 +11,7 @@ class BreedsTableSeeder extends Seeder
      */
     public function run()
     {
-        $breeds = ['Holstein','Angus','Hereford'];
+        $breeds = ['CORRIENTES', 'BRANGUS'];
 
         array_map(function($name){
         	DB::table('breeds')->insert([

@@ -10,6 +10,8 @@ use App\Http\Requests\StorePictureRequest;
 use App\Bull;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
@@ -24,13 +26,20 @@ class BullController extends Controller
         $total_bulls = Bull::count();
         return view('bulls.index', [
             'bulls' => $bulls,
-            'total_bulls' => $total_bulls]);
+            'total_bulls' => $total_bulls
+        ]);
     }
 
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('bulls.create', ['breed_list'=>$breed_list]);
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
+        return view('bulls.create', [
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
     public function store(StoreUpdateCattleRequest $request)
@@ -40,6 +49,10 @@ class BullController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->gender = 'Macho';
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $bull = new Bull;
@@ -56,19 +69,27 @@ class BullController extends Controller
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
+            'owner'=>$bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
+            'paddock'=>$bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
-            'pictures'=>$bull->cattle->pictures->sortBy('filename')]);
+            'pictures'=>$bull->cattle->pictures->sortBy('filename')
+        ]);
     }
 
     public function edit($id)
     {
         $bull = Bull::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('bulls.edit', [
             'bull'=>$bull,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
     public function update(StoreUpdateCattleRequest $request, $id)
@@ -79,6 +100,9 @@ class BullController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('bulls.index');

@@ -10,6 +10,8 @@ use App\Http\Requests\StorePictureRequest;
 use App\Calf;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
@@ -33,13 +35,18 @@ class CalfController extends Controller
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         $cow_list = Cow::whereHas('cattle', function ($q) {
             $q->orderBy('tag', 'asc');
         })->with('cattle')->get();
 
         return view('calfs.create', [
             'breed_list'=>$breed_list,
-            'cow_list'=>$cow_list]);
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list,
+            'cow_list'=>$cow_list
+        ]);
     }
 
     public function create_offspring($cow_id)
@@ -61,6 +68,10 @@ class CalfController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->gender = $request->cattle_gender;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $calf = new Calf;
@@ -78,6 +89,8 @@ class CalfController extends Controller
         return view('calfs.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
+            'owner'=>$calf->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
+            'paddock'=>$calf->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date"),
@@ -88,9 +101,14 @@ class CalfController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('calfs.edit', [
             'calf'=>$calf,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
     public function update(StoreUpdateCattleRequest $request, $id)
@@ -101,6 +119,10 @@ class CalfController extends Controller
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->gender = $request->cattle_gender;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('calfs.index');

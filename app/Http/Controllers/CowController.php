@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateCowRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
@@ -11,6 +11,8 @@ use App\Http\Requests\StoreLogPalpationRequest;
 use App\Cow;
 use App\Cattle;
 use App\Breed;
+use App\Owner;
+use App\Paddock;
 use App\WeightLog;
 use App\Vaccine;
 use App\VaccineLog;
@@ -26,26 +28,40 @@ class CowController extends Controller
         $total_cows = Cow::count();
         return view('cows.index', [
             'cows' => $cows,
-            'total_cows' => $total_cows]);
+            'total_cows' => $total_cows
+        ]);
     }
 
     public function create()
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
-        return view('cows.create', ['breed_list'=>$breed_list]);
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
+        return view('cows.create', [
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
-    public function store(StoreUpdateCattleRequest $request)
+    public function store(StoreUpdateCowRequest $request)
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->gender = 'Hembra';
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->save();
 
         $cow = new Cow;
         $cow->cattle_id = $cattle->id;
+        $cow->is_fertile = $request->cow_fertility;
+        $cow->pregnancy_status = 'Vacia';
+        $cow->number_of_calves = $request->cow_number_of_calves;
         $cow->save();
 
         return redirect()->route('cows.index');
@@ -58,31 +74,47 @@ class CowController extends Controller
         return view('cows.show', [
             'cow'=>$cow,
             'breed'=>$cow->cattle->breed->name,
+            'owner'=>$cow->cattle->owner === NULL ? '' : $cow->cattle->owner->name,
+            'paddock'=>$cow->cattle->paddock === NULL ? '' : $cow->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
             'offspring'=>$cow->offspring,
             'palpations'=>$cow->palpationLog,
-            'pictures'=>$cow->cattle->pictures->sortBy('filename')]);
+            'pictures'=>$cow->cattle->pictures->sortBy('filename')
+        ]);
     }
 
     public function edit($id)
     {
         $cow = Cow::findOrFail($id);
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('cows.edit', [
             'cow'=>$cow,
-            'breed_list'=>$breed_list]);
+            'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list
+        ]);
     }
 
-    public function update(StoreUpdateCattleRequest $request, $id)
+    public function update(StoreUpdateCowRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
+        $cow->is_fertile = $request->cow_fertility;
+        $cow->pregnancy_status = $request->cow_pregnancy_status;
+        $cow->number_of_calves = $request->cow_number_of_calves;
+        $cow->update();
+
         $cattle = $cow->cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = $request->cattle_birth_date;
         $cattle->purchase_date = $request->cattle_purchase_date;
         $cattle->breed_id = $request->cattle_breed;
+        $cattle->owner_id = $request->cattle_owner;
+        $cattle->paddock_id = $request->cattle_paddock;
+        $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
         return redirect()->route('cows.index');

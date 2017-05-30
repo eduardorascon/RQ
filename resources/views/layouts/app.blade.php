@@ -61,6 +61,17 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('breeds.index') }}">Razas</a></li>
                                 <li><a href="{{ route('vaccines.index') }}">Vacunas</a></li>
+                                <li><a href="{{ route('paddocks.index') }}">Potreros</a></li>
+                                <li><a href="{{ route('owners.index') }}">Dueños</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Filtros <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('cow_filters.index') }}">Vacas</a></li>
+                                <li><a href="{{ route('calf_filters.index') }}">Becerros</a></li>
+                                <li><a href="{{ route('bull_filters.index') }}">Toros</a></li>
                             </ul>
                         </li>
 

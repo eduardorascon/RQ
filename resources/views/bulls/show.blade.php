@@ -9,30 +9,51 @@
 				<div class="panel-body">
 					<div class="form-horizontal">
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_tag">Arete Siniga</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_tag">Arete Siniga</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_tag" class="form-control" readonly="readonly" value="{{ $bull->cattle->tag }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $bull->cattle->getBirthWithFormat() }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_purchase_date">Fecha de compra</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $bull->cattle->getPurchaseDateWithFormat() }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-2 control-label" for="cattle_breed">Raza</label>
-						<div class="col-sm-10">
+						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
+						<div class="col-sm-9">
 							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_owner" class="form-control" readonly="readonly" value="{{ $owner }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_paddock">Potrero</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_paddock" class="form-control" readonly="readonly" value="{{ $paddock }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_is_alive">¿Esta vivo?</label>
+						<div class="col-sm-9">
+							<input type="text" name="cattle_is_alive" class="form-control" readonly="readonly" value="{{ $bull->cattle->is_alive }}" />
 						</div>
 						</div>
 					</div>

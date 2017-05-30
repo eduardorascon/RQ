@@ -25,6 +25,23 @@ Route::group(['middleware' => ['web']], function() {
 Route::group(['middleware' => ['web']], function() {
 	Route::resource('breeds','BreedController');
 	Route::resource('vaccines','VaccineController');
+	Route::resource('owners', 'OwnerController');
+	Route::resource('paddocks', 'PaddockController');
+
+	Route::get('/cow_filters', [
+		'uses' => 'CowFilterController@index',
+		'as' => 'cow_filters.index'
+	]);
+
+	Route::get('bull_filters', [
+		'uses' => 'BullFilterController@index',
+		'as' => 'bull_filters.index'
+	]);
+
+	Route::get('calf_filters', [
+		'uses' => 'CalfFilterController@index',
+		'as' => 'calf_filters.index'
+	]);
 
 	//Cows
 	Route::post('/cows/{id}/log_weight', [
