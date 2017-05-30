@@ -17,6 +17,7 @@ use App\Vaccine;
 use App\VaccineLog;
 use App\Picture;
 use Carbon\Carbon;
+use Khill\Lavacharts\Lavacharts;
 
 class BullController extends Controller
 {
@@ -66,6 +67,7 @@ class BullController extends Controller
     {
         $bull = Bull::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
+        $this->exampleChart();
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
@@ -157,5 +159,23 @@ class BullController extends Controller
         }
 
         return redirect()->route('bulls.show', $bull->id);
+    }
+
+    public function exampleChart()
+    {
+        $stocksTable = \Lava::DataTable();
+
+        $stocksTable->addDateColumn('Day of Month')
+                    ->addNumberColumn('Projected')
+                    ->addNumberColumn('Official');
+
+        // Random Data For Example
+        for ($a = 1; $a < 30; $a++) {
+            $stocksTable->addRow([
+              '2015-10-' . $a, rand(800,1000), rand(800,1000)
+            ]);
+        }
+
+        $chart = \Lava::LineChart('MyStocks', $stocksTable);
     }
 }
