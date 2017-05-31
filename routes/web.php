@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/test', 'TestChartController@index');
+
 Route::group(['middleware' => ['web']], function() {
   Route::resource('clients','ClientController');
 });
