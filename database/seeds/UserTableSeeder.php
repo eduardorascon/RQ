@@ -6,11 +6,6 @@ use App\Role;
 
 class UserTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $role_user = Role::where('name', 'User')->first();
