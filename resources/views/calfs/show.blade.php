@@ -163,7 +163,7 @@
 						@foreach($weight_logs as $log)
 							<tr>
 								<td>{{ $log->weight }}</td>
-								<td>{{ $log->date }}</td>
+								<td>{{ $log->getDateAttributeWithFormat() }}</td>
 								<td>{{ $log->comment }}</td>
 								<td></td>
 							</tr>
