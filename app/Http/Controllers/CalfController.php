@@ -180,4 +180,22 @@ class CalfController extends Controller
 
         return redirect()->route('calfs.show', $calf->id);
     }
+
+    public function weight_chart(Cattle $cattle)
+    {
+        $stocksTable = \Lava::DataTable();
+
+        $stocksTable->addDateColumn('Fecha de pesaje')
+                    ->addNumberColumn('Peso');
+
+        $weight_logs = $cattle->weightLog->sortBy("date");
+        foreach($weight_logs as $log)
+        {
+            $stocksTable->addRow([
+                $log->date, $log->weight
+            ]);
+        }
+
+        $chart = \Lava::LineChart('MyStocks', $stocksTable);
+    }
 }

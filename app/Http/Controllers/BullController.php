@@ -67,7 +67,7 @@ class BullController extends Controller
     {
         $bull = Bull::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
-        $this->exampleChart($bull->cattle);
+        $this->weight_chart($bull->cattle);
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
@@ -161,7 +161,7 @@ class BullController extends Controller
         return redirect()->route('bulls.show', $bull->id);
     }
 
-    public function exampleChart(Cattle $cattle)
+    public function weight_chart(Cattle $cattle)
     {
         $stocksTable = \Lava::DataTable();
 
