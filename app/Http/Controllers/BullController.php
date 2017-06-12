@@ -67,7 +67,7 @@ class BullController extends Controller
     {
         $bull = Bull::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
-        $this->exampleChart();
+        $this->exampleChart($bull->cattle);
         return view('bulls.show', [
             'bull'=>$bull,
             'breed'=>$bull->cattle->breed->name,
@@ -161,18 +161,18 @@ class BullController extends Controller
         return redirect()->route('bulls.show', $bull->id);
     }
 
-    public function exampleChart()
+    public function exampleChart(Cattle $cattle)
     {
         $stocksTable = \Lava::DataTable();
 
-        $stocksTable->addDateColumn('Day of Month')
-                    ->addNumberColumn('Projected')
-                    ->addNumberColumn('Official');
+        $stocksTable->addDateColumn('Fecha de pesaje')
+                    ->addNumberColumn('Peso');
 
-        // Random Data For Example
-        for ($a = 1; $a < 10; $a++) {
+        $weight_logs = $cattle->weightLog->sortBy("date");
+        foreach($weight_logs as $log)
+        {
             $stocksTable->addRow([
-              '2015-10-' . $a, rand(800,1000), rand(800,1000)
+                $log->date, $log->weight
             ]);
         }
 
