@@ -36,7 +36,7 @@ class CowFilterController extends Controller
 
             //search by cattle tag
             if($request->has('cattle_tag'))
-                $cows->where('cattle.tag', $request->cattle_tag);
+                $cows->where('cattle.tag', $request->cattle_tag)->orWhere('cattle.tag', 'like', '%' . $request->cattle_tag . '%');
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
