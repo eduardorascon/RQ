@@ -24,8 +24,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name">Nombre:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{$owner->name}}">
+                            <label class="col-sm-3 control-label" for="name">Nombre:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{$owner->name}}">
+                            </div>
                         </div>
 
                         <div>
