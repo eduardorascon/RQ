@@ -22,8 +22,8 @@
                     <form class="form-horizontal" action="{{ route('vaccines.store') }}" method="post">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="name">Nombre:</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 control-label" for="name">Nombre:</label>
+                            <div class="col-sm-9">
                                 <input type="text" name="name" class="form-control" placeholder="Nombre" >
                             </div>
                         </div>
