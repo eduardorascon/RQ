@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreUpdateCalfRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
@@ -58,7 +58,7 @@ class CalfController extends Controller
             'cow'=>$cow]);
     }
 
-    public function store(StoreUpdateCattleRequest $request)
+    public function store(StoreUpdateCalfRequest $request)
     {
         $cow_id = $request->cow_id;
         $cow = Cow::findOrFail($cow_id);
@@ -111,7 +111,7 @@ class CalfController extends Controller
         ]);
     }
 
-    public function update(StoreUpdateCattleRequest $request, $id)
+    public function update(StoreUpdateCalfRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
