@@ -27,7 +27,7 @@ class StoreUpdateCattleRequest extends FormRequest
     public function messages()
     {
         return [
-            'cattle_tag.required' => 'El valor del arete siniga es necesario para el registro.',
+            'cattle_tag.required' => 'El arete siniga es necesario para el registro.',
             'cattle_birth_date.required' => 'La fecha de nacimiento es necesaria para el registro.',
             'cattle_purchase_date.required' => 'La fecha de compra es necesaria para el registro.',
             'cattle_breed.required' => 'La raza es necesaria para el registro.',
