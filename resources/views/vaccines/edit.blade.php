@@ -19,15 +19,21 @@
                     </div>
                 @endif
                 <div class="panel-body">
-                    <form class="" action="{{ route('vaccines.update',$vaccine->id) }}" method="post">
+                    <form class="form-horizontal" action="{{ route('vaccines.update', $vaccine->id) }}" method="post">
                         <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
+
                         <div class="form-group">
-                            <label for="name">Nombre:</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{ $vaccine->name }}">
+                            <label class="col-sm-3 control-label" for="name">Nombre:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{ $vaccine->name }}" />
+                            </div>
                         </div>
-                        <div>
-                            <input type="submit" class="btn btn-primary" value="Guardar">
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="submit" class="btn btn-primary" value="Guardar" />
+                            </div>
                         </div>
                     </form>
               </div>
