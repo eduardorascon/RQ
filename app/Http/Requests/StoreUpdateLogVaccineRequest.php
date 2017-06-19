@@ -19,7 +19,8 @@ class StoreUpdateLogVaccineRequest extends FormRequest
         return [
             'vaccine' => 'required',
             'date'=> 'required',
-            'comment' => 'required'];
+            'comment' => 'required'
+        ];
     }
 
     public function messages()

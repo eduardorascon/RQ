@@ -18,7 +18,8 @@ class StoreLogPalpationRequest extends FormRequest
         return [
             'date'=> 'required',
             'comment' => 'required',
-            'months' => 'required'];
+            'months' => 'required'
+        ];
     }
 
     public function messages()

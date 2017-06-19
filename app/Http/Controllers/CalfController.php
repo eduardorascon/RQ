@@ -27,9 +27,11 @@ class CalfController extends Controller
                 $q;
             })->paginate(12);
         $total_calves = Calf::count();
+
         return view('calfs.index', [
             'calfs' => $calfs,
-            'total_calves' => $total_calves]);
+            'total_calves' => $total_calves
+        ]);
     }
 
     public function create()
@@ -53,9 +55,11 @@ class CalfController extends Controller
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
         $cow = Cow::findOrFail($cow_id);
+
         return view('calfs.create', [
             'breed_list'=>$breed_list,
-            'cow'=>$cow]);
+            'cow'=>$cow
+        ]);
     }
 
     public function store(StoreUpdateCalfRequest $request)

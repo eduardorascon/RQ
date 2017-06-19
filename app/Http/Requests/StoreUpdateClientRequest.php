@@ -18,7 +18,8 @@ class StoreUpdateClientRequest extends FormRequest
             'last_name' => 'required',
             'address' => 'required',
             'company' => 'required',
-            'phone' => 'required'];
+            'phone' => 'required'
+        ];
     }
 
     public function messages()

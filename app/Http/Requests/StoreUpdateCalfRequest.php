@@ -14,6 +14,7 @@ class StoreUpdateCalfRequest extends FormRequest
     public function rules()
     {
         return [
+            'cow_id' => 'required',
             'cattle_birth_date' => 'required',
             'cattle_breed' => 'required',
             'cattle_gender' => 'required',
@@ -24,6 +25,7 @@ class StoreUpdateCalfRequest extends FormRequest
     public function messages()
     {
         return [
+            'cow_id.required' => 'La madre del becerro es necesaria para el registro.',
             'cattle_birth_date.required' => 'La fecha de nacimiento es necesaria para el registro.',
             'cattle_breed.required' => 'La raza es necesaria para el registro.',
             'cattle_gender.required' => 'El sexo es necesario para el registro.',

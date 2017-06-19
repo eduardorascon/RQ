@@ -19,7 +19,8 @@ class StoreUpdateLogWeightRequest extends FormRequest
         return [
             'weight'=> 'required',
             'date' => 'required',
-            'comment' => 'required'];
+            'comment' => 'required'
+        ];
     }
 
     public function messages()
