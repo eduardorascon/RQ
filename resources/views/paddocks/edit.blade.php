@@ -30,8 +30,10 @@
                             </div>
                         </div>
 
-                        <div>
-                        <input type="submit" class="btn btn-primary" value="Guardar">
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="submit" class="btn btn-primary" value="Guardar" />
+                            </div>
                         </div>
 
                     </form>
