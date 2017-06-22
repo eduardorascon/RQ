@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Clientes ({{ count($clients) }}), <a href="{{route('clients.create')}}" >Agregar nuevo cliente</a></div>
                 <div class="panel-body">
-                    <div class="table-responsive"> 
+                    <div class="table-responsive">
                         <table class="table table-striped">
                     	<thead>
                     		<tr>
@@ -27,7 +27,7 @@
                     			<td>{{ $client->address }}</td>
                     			<td>{{ $client->phone }}</td>
                     			<td>{{ $client->company }}</td>
-                    			<td>                            
+                    			<td>
                     				<form class="" action="{{ route('clients.destroy', $client->id) }}" method="post">
                     					<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -36,7 +36,7 @@
                     				</form>
                     			</td>
                     		</tr>
-            			@endforeach        	
+            			@endforeach
                     	</tbody>
                     	</table>
                     </div>

@@ -19,9 +19,9 @@
             </div>
         @endif
         <div class="panel-body">
-          <form class="form-horizontal" action="{{ route('clients.store') }}" method="post">  
+          <form class="form-horizontal" action="{{ route('clients.store') }}" method="post">
 
-            {{csrf_field()}}      
+            {{csrf_field()}}
 
             <div class="form-group">
               <label class="col-sm-3 control-label" for="first_name">Nombre:</label>
@@ -33,14 +33,14 @@
             <div class="form-group">
               <label class="col-sm-3 control-label" for="last_name">Apellidos:</label>
               <div class="col-sm-9">
-                <input type="text" name="last_name" class="form-control" placeholder="Apellidos" >        
+                <input type="text" name="last_name" class="form-control" placeholder="Apellidos" >
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-3 control-label" for="address">Dirección:</label>
               <div class="col-sm-9">
-                <input type="text" name="address" class="form-control" placeholder="Dirección" >       
+                <input type="text" name="address" class="form-control" placeholder="Dirección" >
               </div>
             </div>
 
@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
+              <div class="col-sm-offset-3 col-sm-9">
                 <input type="submit" class="btn btn-primary" value="Guardar" />
               </div>
             </div>
