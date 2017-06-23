@@ -112,7 +112,7 @@
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
+						<div class="col-sm-offset-3 col-sm-9">
 							<input type="submit" class="btn btn-primary" value="Buscar">
 						</div>
 						</div>
