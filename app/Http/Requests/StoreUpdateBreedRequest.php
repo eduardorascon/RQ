@@ -18,8 +18,6 @@ class StoreUpdateBreedRequest extends FormRequest
 
     public function messages()
     {
-        return [
-            'name.required' => 'El nombre de la raza es necesario.'
-        ];
+        return ['name.required' => 'El nombre de la raza es necesario.'];
     }
 }
