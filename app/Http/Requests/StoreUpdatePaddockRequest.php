@@ -18,8 +18,6 @@ class StoreUpdatePaddockRequest extends FormRequest
 
     public function messages()
     {
-        return [
-            'name.required' => 'El nombre del potrero es necesario.'
-        ];
+        return ['name.required' => 'El nombre del potrero es necesario.'];
     }
 }
