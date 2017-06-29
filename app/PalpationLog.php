@@ -12,6 +12,9 @@ class PalpationLog extends Model
 
 	public function getDateAttribute($value)
     {
+    	if($value === NULL)
+    		return null;
+
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
         return Carbon::parse($value)->formatLocalized('%d/%B/%Y');
     }

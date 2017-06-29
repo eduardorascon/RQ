@@ -17,6 +17,9 @@ class CalfSale extends Model
 
     public function getSaleDateWithFormat()
     {
+        if($this->sale_date === NULL)
+            return null;
+
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
         return Carbon::parse($this->sale_date)->formatLocalized('%d/%B/%Y');
     }
