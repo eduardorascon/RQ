@@ -18,8 +18,6 @@ class StoreUpdateOwnerRequest extends FormRequest
 
     public function messages()
     {
-        return [
-            'name.required' => 'El nombre del dueño es necesario.'
-        ];
+        return ['name.required' => 'El nombre del dueño es necesario.'];
     }
 }

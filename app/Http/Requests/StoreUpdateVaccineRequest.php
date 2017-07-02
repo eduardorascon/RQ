@@ -20,8 +20,6 @@ class StoreUpdateVaccineRequest extends FormRequest
 
     public function messages()
     {
-        return [
-            'name.required' => 'El nombre de la vacuna es necesario.'
-        ];
+        return ['name.required' => 'El nombre de la vacuna es necesario.'];
     }
 }
