@@ -130,6 +130,14 @@
                 alwaysShowClose: true
             });
         });
+
+        $('.input-date').datepicker({
+            format: "dd/mm/yyyy",
+            clearBtn: true,
+            language: "es",
+            orientation: "bottom left",
+            autoclose: true
+        });
     </script>
 </body>
 </html>
