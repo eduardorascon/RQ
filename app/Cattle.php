@@ -19,6 +19,16 @@ class Cattle extends Model
     	return $this->hasOne('App\Breed', 'id', 'breed_id');
     }
 
+    public function owner()
+    {
+        return $this->hasOne('App\Owner', 'id', 'owner_id');
+    }
+
+    public function paddock()
+    {
+        return $this->hasOne('App\Paddock', 'id', 'paddock_id');
+    }
+
     public function weightLog()
     {
     	return $this->hasMany('App\WeightLog');

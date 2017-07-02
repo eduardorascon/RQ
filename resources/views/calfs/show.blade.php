@@ -47,13 +47,6 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
-						</div>
-						</div>
-
-						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_owner" class="form-control" readonly="readonly" value="{{ $owner }}" />
