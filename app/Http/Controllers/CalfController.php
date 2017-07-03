@@ -69,8 +69,8 @@ class CalfController extends Controller
 
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = $request->cattle_birth_date;
-        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
@@ -93,8 +93,8 @@ class CalfController extends Controller
         return view('calfs.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
-            'owner'=>$calf->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
-            'paddock'=>$calf->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
+            'owner'=>$calf->cattle->owner === NULL ? '' : $calf->cattle->owner->name,
+            'paddock'=>$calf->cattle->paddock === NULL ? '' : $calf->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
             'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date"),
@@ -120,8 +120,8 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = $request->cattle_birth_date;
-        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;

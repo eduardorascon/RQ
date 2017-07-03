@@ -19,6 +19,16 @@ class Cattle extends Model
     	return $this->hasOne('App\Breed', 'id', 'breed_id');
     }
 
+    public function owner()
+    {
+        return $this->hasOne('App\Owner', 'id', 'owner_id');
+    }
+
+    public function paddock()
+    {
+        return $this->hasOne('App\Paddock', 'id', 'paddock_id');
+    }
+
     public function weightLog()
     {
     	return $this->hasMany('App\WeightLog');
@@ -36,13 +46,37 @@ class Cattle extends Model
 
     public function getBirthWithFormat()
     {
+        if($this->birth === NULL)
+            return null;
+
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
         return Carbon::parse($this->birth)->formatLocalized('%d/%B/%Y');
     }
 
+    public function getBirthWithFormat2()
+    {
+        if($this->birth === NULL)
+            return null;
+
+        setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
+        return Carbon::parse($this->birth)->formatLocalized('%d/%m/%Y');
+    }
+
     public function getPurchaseDateWithFormat()
     {
+        if($this->purchase_date === NULL)
+            return null;
+
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
         return Carbon::parse($this->purchase_date)->formatLocalized('%d/%B/%Y');
+    }
+
+    public function getPurchaseDateWithFormat2()
+    {
+        if($this->purchase_date === NULL)
+            return null;
+
+        setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
+        return Carbon::parse($this->purchase_date)->formatLocalized('%d/%m/%Y');
     }
 }

@@ -33,14 +33,14 @@
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_birth_date" class="form-control" placeholder="Fecha de nacimiento" value="{{ $cow->cattle->birth }}" />
+							<input type="text" name="cattle_birth_date" class="form-control input-date" placeholder="dd/mm/aaaa" value="{{ $cow->cattle->getBirthWithFormat2() }}" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_purchase_date" class="form-control" placeholder="Fecha de compra" value="{{ $cow->cattle->purchase_date }}" />
+							<input type="text" name="cattle_purchase_date" class="form-control input-date" placeholder="dd/mm/aaaa" value="{{ $cow->cattle->getPurchaseDateWithFormat2() }}" />
 						</div>
 						</div>
 

@@ -37,9 +37,9 @@ class BullController extends Controller
         $owner_list = Owner::orderBy('name', 'asc')->get();
         $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('bulls.create', [
-            'breed_list'=>$breed_list,
-            'owner_list'=>$owner_list,
-            'paddock_list'=>$paddock_list
+            'breed_list' => $breed_list,
+            'owner_list' => $owner_list,
+            'paddock_list' => $paddock_list
         ]);
     }
 
@@ -47,8 +47,8 @@ class BullController extends Controller
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = $request->cattle_birth_date;
-        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
@@ -69,14 +69,14 @@ class BullController extends Controller
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
         $this->weight_chart($bull->cattle);
         return view('bulls.show', [
-            'bull'=>$bull,
-            'breed'=>$bull->cattle->breed->name,
-            'owner'=>$bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
-            'paddock'=>$bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
-            'vaccine_list'=>$vaccine_list,
-            'weight_logs'=>$bull->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$bull->cattle->vaccinationLog->sortBy("date"),
-            'pictures'=>$bull->cattle->pictures->sortBy('filename')
+            'bull' => $bull,
+            'breed' => $bull->cattle->breed->name,
+            'owner' => $bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
+            'paddock' => $bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
+            'vaccine_list' => $vaccine_list,
+            'weight_logs' => $bull->cattle->weightLog->sortBy("date"),
+            'vaccine_logs' => $bull->cattle->vaccinationLog->sortBy("date"),
+            'pictures' => $bull->cattle->pictures->sortBy('filename')
         ]);
     }
 
@@ -87,10 +87,10 @@ class BullController extends Controller
         $owner_list = Owner::orderBy('name', 'asc')->get();
         $paddock_list = Paddock::orderBy('name', 'asc')->get();
         return view('bulls.edit', [
-            'bull'=>$bull,
-            'breed_list'=>$breed_list,
-            'owner_list'=>$owner_list,
-            'paddock_list'=>$paddock_list
+            'bull' => $bull,
+            'breed_list' => $breed_list,
+            'owner_list' => $owner_list,
+            'paddock_list' => $paddock_list
         ]);
     }
 
@@ -99,8 +99,8 @@ class BullController extends Controller
         $bull = Bull::findOrFail($id);
         $cattle = $bull->cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = $request->cattle_birth_date;
-        $cattle->purchase_date = $request->cattle_purchase_date;
+        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
