@@ -144,7 +144,7 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $calf->cattle_id;
         $log->save();
@@ -156,7 +156,7 @@ class CalfController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $log = new VaccineLog;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $calf->cattle_id;
         $log->vaccine_id = $request->vaccine;

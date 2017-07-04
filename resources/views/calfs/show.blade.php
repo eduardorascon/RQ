@@ -126,7 +126,7 @@
 
 								<div class="form-group col-sm-5">
 								<label class="col-sm-2" for="date">Fecha</label>
-								<input type="date" class="form-control col-sm-offset-2 col-sm-2" name="date" id="date" placeholder="Fecha">
+								<input type="text" class="form-control col-sm-offset-2 col-sm-2 input-date" name="date" id="date" placeholder="dd/mm/aaaa">
 								</div>
 
 								<div class="form-group col-sm-5">
@@ -188,7 +188,7 @@
 
 								<div class="form-group col-sm-5">
 								<label class="col-sm-2" for="date">Fecha</label>
-								<input type="date" class="form-control col-sm-offset-2 col-sm-2" name="date" id="date" placeholder="Fecha">
+								<input type="text" class="form-control col-sm-offset-2 col-sm-2 input-date" name="date" id="date" placeholder="dd/mm/aaaa">
 								</div>
 
 								<div class="form-group col-sm-5">
