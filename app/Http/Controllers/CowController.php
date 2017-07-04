@@ -19,6 +19,7 @@ use App\VaccineLog;
 use App\PalpationLog;
 use App\Picture;
 use Carbon\Carbon;
+use Khill\Lavacharts\Lavacharts;
 
 class CowController extends Controller
 {
@@ -71,6 +72,7 @@ class CowController extends Controller
     {
         $cow = Cow::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
+        $this->weight_chart($cow->cattle);
         return view('cows.show', [
             'cow'=>$cow,
             'breed'=>$cow->cattle->breed->name,

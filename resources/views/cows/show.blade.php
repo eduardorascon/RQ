@@ -206,6 +206,7 @@
 							</div>
 							<div class="col-sm-8">
 								<div id="pop_div"></div>
+								<?= \Lava::render('LineChart', 'MyStocks', 'pop_div') ?>
 							</div>
 						</div>
 					</form>
