@@ -191,14 +191,14 @@
 
 								<div class="form-group">
 								<label class="col-sm-3 control-label" for="date">Fecha</label>
-								<div>
+								<div class="col-sm-9">
 									<input type="text" class="form-control input-date" name="date" id="date" placeholder="dd/mm/aaaa">
 								</div>
 								</div>
 
 								<div class="form-group">
-								<label class="col-sm-3 control-label" for="comment">Comentario</label>
-								<div>
+								<label class="col-sm-4 control-label" for="comment">Comentario</label>
+								<div class="col-sm-9">
 									<input type="text" class="form-control" name="comment" id="comment" placeholder="Comentario">
 								</div>
 								</div>
