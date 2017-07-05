@@ -125,8 +125,7 @@
 					<form class="form-horizontal" action="{{ route('bull_log_weight', $bull->id) }}" method="post">
 						{{ csrf_field() }}
 						<div class="row">
-							<div class="col-sm-4">
-
+							<div class="col-sm-5">
 								<div class="form-group">
 								<label class="col-sm-3 control-label" for="weight">Peso</label>
 								<div class="col-sm-9">
@@ -149,39 +148,37 @@
 								</div>
 								<button type="submit" class="btn btn-primary">Guardar</button>
 							</div>
-							<div class="col-sm-8">
-								<div id="pop_div"></div>
-								<?= \Lava::render('LineChart', 'MyStocks', 'pop_div') ?>
+							<div class="col-sm-7">
+								@if($weight_logs->count() > 0)
+									<div class="table-responsive">
+										<table class="table table-striped table-condensed table-bordered">
+										<thead>
+											<tr>
+												<th>Peso</th>
+												<th>Fecha</th>
+												<th>Comentario</th>
+											</tr>
+										</thead>
+										<tbody>
+										@foreach($weight_logs as $log)
+											<tr>
+												<td>{{ $log->weight }}</td>
+												<td>{{ $log->getDateAttributeWithFormat() }}</td>
+												<td>{{ $log->comment }}</td>
+											</tr>
+										@endforeach
+										</tbody>
+										</table>
+									</div>
+								@endif
 							</div>
 						</div>
 					</form>
 				</div>
-				@if($weight_logs->count() > 0)
 				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Peso</th>
-								<th>Fecha de pesaje</th>
-								<th>Comentario</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach($weight_logs as $log)
-							<tr>
-								<td>{{ $log->weight }}</td>
-								<td>{{ $log->getDateAttributeWithFormat() }}</td>
-								<td>{{ $log->comment }}</td>
-								<td></td>
-							</tr>
-						@endforeach
-						</tbody>
-						</table>
-					</div>
+					<div id="pop_div"></div>
+					<?= \Lava::render('LineChart', 'MyStocks', 'pop_div') ?>
 				</div>
-				@endif
 			</div>
 
 			<div class="panel panel-default">
