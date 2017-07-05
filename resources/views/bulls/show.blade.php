@@ -141,16 +141,21 @@
 								</div>
 
 								<div class="form-group">
-								<label class="col-sm-4 control-label" for="comment">Comentario</label>
+								<label class="col-sm-3 control-label" for="comment">Comentario</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" name="comment" id="comment" placeholder="Comentario">
+									<textarea class="form-control" name="comment" id="comment" placeholder="Comentario"></textarea>
 								</div>
 								</div>
-								<button type="submit" class="btn btn-primary">Guardar</button>
+
+								<div class="form-group">
+								<div class="col-sm-12">
+									<button type="submit" class="btn btn-primary pull-right">Guardar peso</button>
+								</div>
+								</div>
 							</div>
 							<div class="col-sm-7">
 								@if($weight_logs->count() > 0)
-									<div class="table-responsive">
+									<div class="panel panel-default">
 										<table class="table table-striped table-condensed table-bordered">
 										<thead>
 											<tr>
@@ -162,7 +167,7 @@
 										<tbody>
 										@foreach($weight_logs as $log)
 											<tr>
-												<td>{{ $log->weight }}</td>
+												<td>{{ $log->weight }} kg</td>
 												<td>{{ $log->getDateAttributeWithFormat() }}</td>
 												<td>{{ $log->comment }}</td>
 											</tr>
