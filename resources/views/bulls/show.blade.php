@@ -183,10 +183,12 @@
 						</div>
 					</form>
 				</div>
+				@if($weight_logs->count() > 0)
 				<div class="panel-body">
 					<div id="pop_div"></div>
 					<?= \Lava::render('LineChart', 'MyStocks', 'pop_div') ?>
 				</div>
+				@endif
 			</div>
 
 			<div class="panel panel-default">
