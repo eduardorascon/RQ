@@ -129,7 +129,10 @@
 								<div class="form-group">
 								<label class="col-sm-3 control-label" for="weight">Peso</label>
 								<div class="col-sm-9">
+									<div class="input-group">
 									<input type="number" step="any" class="form-control" name="weight" id="weight" placeholder="Peso">
+									<div class="input-group-addon">kgs</div>
+									</div>
 								</div>
 								</div>
 
@@ -167,7 +170,7 @@
 										<tbody>
 										@foreach($weight_logs as $log)
 											<tr>
-												<td>{{ $log->weight }} kg</td>
+												<td>{{ $log->weight }} kgs</td>
 												<td>{{ $log->getDateAttributeWithFormat() }}</td>
 												<td>{{ $log->comment }}</td>
 											</tr>
