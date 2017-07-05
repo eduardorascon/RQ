@@ -78,7 +78,19 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Fotografias</div>
+				<div class="panel-heading">Fotográfias</div>
+				@if (count($errors->save_picture_errors) > 0)
+					<div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <ul>
+                            @foreach ($errors->save_picture_errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+				@endif
 				<div class="panel-body">
 					<form class="form-inline" action="{{ route('calf_save_picture', $calf->id) }}" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
