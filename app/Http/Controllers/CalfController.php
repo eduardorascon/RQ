@@ -70,8 +70,10 @@ class CalfController extends Controller
 
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+        if($request->cattle_birth_date != NULL)
+            $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        if($request->purchase_date != NULL)
+            $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
