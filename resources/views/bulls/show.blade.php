@@ -204,63 +204,70 @@
                     </div>
 				@endif
 				<div class="panel-body">
-					<form class="form-inline" action="{{ route('bull_log_vaccine', $bull->id) }}" method="post">
+					<form class="form-horizontal" action="{{ route('bull_log_vaccine', $bull->id) }}" method="post">
 						{{ csrf_field() }}
 						<div class="row">
-							<div class="col-sm-10">
-								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="vaccine">Vacuna</label>
-								<select class="form-control col-sm-offset-2 col-sm-2" name="vaccine">
-								@foreach ($vaccine_list as $v)
-								{
-								<option value="{{ $v->id }}">{{ $v->name }}</option>
-								}
-								@endforeach
-								</select>
+							<div class="col-sm-5">
+								<div class="form-group">
+								<label class="col-sm-3 control-label" for="vaccine">Vacuna</label>
+								<div class="col-sm-9">
+									<select class="form-control" name="vaccine">
+									@foreach ($vaccine_list as $v)
+									{
+										<option value="{{ $v->id }}">{{ $v->name }}</option>
+									}
+									@endforeach
+									</select>
+								</div>
 								</div>
 
-								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="date">Fecha</label>
-								<input type="text" class="form-control col-sm-offset-2 col-sm-2 input-date" name="date" id="date" placeholder="dd/mm/aaaa">
+								<div class="form-group">
+								<label class="col-sm-3 control-label" for="date">Fecha</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control input-date" name="date" id="date" placeholder="dd/mm/aaaa">
+								</div>
 								</div>
 
-								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="comment">Comentario</label>
-								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
+								<div class="form-group">
+								<label class="col-sm-3 control-label" for="comment">Comentario</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" name="comment" id="comment" placeholder="Comentario"></textarea>
+								</div>
+								</div>
+
+								<div class="form-group">
+								<div class="col-sm-12">
+									<button type="submit" class="btn btn-primary pull-right">Guardar vacuna</button>
+								</div>
 								</div>
 							</div>
-							<div class="col-sm-2">
-								<button type="submit" class="btn btn-default">Guardar</button>
+							<div class="col-sm-7">
+								@if($vaccine_logs->count() > 0)
+									<div class="panel panel-default">
+										<table class="table table-striped table-condensed table-bordered">
+										<thead>
+											<tr>
+												<th>Vacuna</th>
+												<th>Fecha</th>
+												<th>Comentario</th>
+											</tr>
+										</thead>
+										<tbody>
+										@foreach($vaccine_logs as $log)
+											<tr>
+												<td>{{ $log->vaccine->name }}</td>
+												<td>{{ $log->date }}</td>
+												<td>{{ $log->comment }}</td>
+											</tr>
+										@endforeach
+										</tbody>
+										</table>
+									</div>
+								@endif
 							</div>
 						</div>
 					</form>
 				</div>
-				@if($vaccine_logs->count() > 0)
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Vacuna</th>
-								<th>Fecha de vacunación</th>
-								<th>Comentario</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach($vaccine_logs as $log)
-							<tr>
-								<td>{{ $log->vaccine->name }}</td>
-								<td>{{ $log->date }}</td>
-								<td>{{ $log->comment }}</td>
-								<td></td>
-							</tr>
-						@endforeach
-						</tbody>
-						</table>
-					</div>
-				</div>
-				@endif
 			</div>
 		</div>
 	</div>
