@@ -30,9 +30,16 @@
 									<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
 										<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-info btn-xs" href="{{ route('bulls.show', $bull->id) }}">Información</a>
-                    					<a class="btn btn-warning btn-xs" href="{{ route('bulls.edit', $bull->id) }}">Editar</a>
-                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+                    					<a class="btn btn-info btn-xs" href="{{ route('bulls.show', $bull->id) }}">
+                    						<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información
+                    					</a>
+                    					<a class="btn btn-success btn-xs" href="{{ route('bulls.edit', $bull->id) }}">
+                    						<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Editar
+                    					</a>
+                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" onclick="return confirm('El registro será eliminado');">
+                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Eliminar
+                    					</button>
+
 									</form>
 								</td>
 							</tr>
