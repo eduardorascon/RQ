@@ -82,7 +82,7 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Fotografias</div>
+				<div class="panel-heading">Fotográfias</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -96,35 +96,47 @@
                     </div>
 				@endif
 				<div class="panel-body">
-					<form class="form-inline" action="{{ route('cow_save_picture', $cow->id) }}" method="post" enctype="multipart/form-data">
+					<form class="form-horizontal" action="{{ route('cow_save_picture', $cow->id) }}" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="row">
-							<div class="col-sm-10">
-								<div class="form-group col-sm-5">
-								<input type="file" name="picture">
+							<div class="col-sm-5">
+								<div class="form-group">
+								<label class="col-sm-3 control-label" for="picture">Fotografia</label>
+								<div class="col-sm-9">
+									<input type="file" name="picture">
+								</div>
 								</div>
 
-								<div class="form-group col-sm-5">
-								<label class="col-sm-2" for="comment">Comentario</label>
-								<input type="text" class="form-control col-sm-offset-2 col-sm-2" name="comment" id="comment" placeholder="Comentario">
+								<div class="form-group">
+								<label class="col-sm-3 control-label" for="comment">Comentario</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" name="comment" id="comment" placeholder="Comentario"></textarea>
+								</div>
+								</div>
+
+								<div class="form-group">
+								<div class="col-sm-12">
+									<button type="submit" class="btn btn-primary pull-right">Guardar fotografia</button>
+								</div>
 								</div>
 							</div>
-							<div class="col-sm-2">
-								<button type="submit" class="btn btn-default">Guardar</button>
+							<div class="col-sm-7">
+								@if($pictures->count() > 0)
+								<div class="row">
+									@foreach($pictures as $pic)
+									<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3" data-title="{{ $bull->cattle->tag }}" data-footer="{{ $pic->comment }}">
+						                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive img-thumbnail" >
+						            </a>
+						            @endforeach
+								</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay fotografias para mostrar.
+				                    </div>
+								@endif
 							</div>
 						</div>
 					</form>
-				</div>
-				<div class="panel-body">
-					@if($pictures->count() > 0)
-					<div class="row">
-						@foreach($pictures as $pic)
-						<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-2" data-title="{{ $cow->cattle->tag }}" data-footer="{{ $pic->comment }}">
-			                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive img-thumbnail" >
-			            </a>
-			            @endforeach
-					</div>
-					@endif
 				</div>
 			</div>
 
@@ -159,6 +171,12 @@
 						</table>
 					</div>
 				</div>
+				@else
+				<div class="panel-body">
+					<div class="alert alert-warning text-center">
+					No hay registros para mostrar.
+                    </div>
+                </div>
 				@endif
 			</div>
 
@@ -233,6 +251,10 @@
 										</tbody>
 										</table>
 									</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay registros para mostrar.
+				                    </div>
 								@endif
 							</div>
 						</div>
@@ -320,6 +342,10 @@
 										</tbody>
 										</table>
 									</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay registros para mostrar.
+				                    </div>
 								@endif
 							</div>
 						</div>
@@ -397,6 +423,10 @@
 											</table>
 										</div>
 									</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay registros para mostrar.
+				                    </div>
 								@endif
 							</div>
 						</div>
