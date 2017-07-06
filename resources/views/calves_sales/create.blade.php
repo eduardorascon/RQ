@@ -52,14 +52,17 @@
 					<div class="form-group">
 					<label class="col-sm-3 control-label" for="sale_date">Fecha de venta</label>
 					<div class="col-sm-9">
-						<input type="date" name="sale_date" class="form-control" placeholder="Fecha...">
+						<input type="text" name="sale_date" class="form-control input-date" placeholder="dd/mm/aaaa">
 					</div>
 					</div>
 
 					<div class="form-group">
 					<label class="col-sm-3 control-label" for="sale_weight">Peso de venta</label>
 					<div class="col-sm-9">
-						<input type="number" step="any" name="sale_weight" class="form-control" placeholder="Peso...">
+						<div class="input-group">
+						<input type="number" step="any" name="sale_weight" id="sale_weight" class="form-control" placeholder="Peso">
+						<div class="input-group-addon">kgs</div>
+						</div>
 					</div>
 					</div>
 

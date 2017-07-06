@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUpdateCalfSaleRequest;
 use App\Calf;
 use App\CalfSale;
 use App\Client;
+use Carbon\Carbon;
 
 class CalfSaleController extends Controller
 {
@@ -43,7 +44,7 @@ class CalfSaleController extends Controller
         $calf = Calf::findOrFail($calf_id);
 
         $sale = new CalfSale;
-        $sale->sale_date = $request->sale_date;
+        $sale->sale_date = Carbon::createFromFormat('d/m/Y', $request->sale_date);
         $sale->sale_weight = $request->sale_weight;
         $sale->price_per_kilo = $request->price_per_kilo;
         $sale->client_id = $request->client_id;
@@ -77,7 +78,7 @@ class CalfSaleController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $sale = $calf->sale;
-        $sale->sale_date = $request->sale_date;
+        $sale->sale_date = Carbon::createFromFormat('d/m/Y', $request->sale_date);
         $sale->sale_weight = $request->sale_weight;
         $sale->price_per_kilo = $request->price_per_kilo;
         $sale->client_id = $request->client_id;
