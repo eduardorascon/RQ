@@ -40,7 +40,10 @@
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="sale_weight">Peso</label>
 						<div class="col-sm-9">
+							<div class="input-group">
 							<input type="text" name="sale_weight" class="form-control" readonly="readonly" value="{{ $calf->sale->sale_weight }}">
+							<div class="input-group-addon">kgs</div>
+							</div>
 						</div>
 						</div>
 
