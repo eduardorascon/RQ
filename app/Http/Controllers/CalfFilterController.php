@@ -9,6 +9,7 @@ use App\Breed;
 use App\Owner;
 use App\Paddock;
 use App\Cow;
+use Carbon\Carbon;
 
 class CalfFilterController extends Controller
 {
@@ -33,11 +34,19 @@ class CalfFilterController extends Controller
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
-                $calves->whereBetween('cattle.birth', array($request->cattle_birth_since, $request->cattle_birth_until));
+            {
+                $birth_since = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_since);
+                $birth_until = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_until);
+                $calves->whereBetween('cattle.birth', array($birth_since, $birth_until));
+            }
 
             //search by cattle purchase date
             if($request->has('cattle_purchase_date_since') && $request->has('cattle_purchase_date_until'))
-                $calves->whereBetween('cattle.purchase_date', array($request->cattle_purchase_date_since, $request->cattle_purchase_date_until));
+            {
+                $purchase_since = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_since);
+                $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
+                $calves->whereBetween('cattle.purchase_date', array($purchase_since, $purchase_until));
+            }
 
             //search by cattle breed
             if($request->has('cattle_breed'))
@@ -68,10 +77,6 @@ class CalfFilterController extends Controller
     	return view('calf_filters.index', [
     		'calves' => $calves->paginate(12),
             'cow_list' => $cow_list,
-            'birth_since' => $cattle->min('birth'),
-            'birth_until' => $cattle->max('birth'),
-            'purchase_since' => $cattle->min('purchase_date'),
-            'purchase_until' => $cattle->max('purchase_date'),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get()

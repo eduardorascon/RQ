@@ -33,28 +33,28 @@
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_birth_since" class="form-control" value="{{ $birth_since }}" />
+							<input type="text" name="cattle_birth_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_birth_until">Fecha de nacimiento (hasta)</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_birth_until" class="form-control" value="{{ $birth_until }}" />
+							<input type="text" name="cattle_birth_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_purchase_date_since" class="form-control" value="{{ $purchase_since }}" />
+							<input type="text" name="cattle_purchase_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_purchase_date_until">Fecha de compra (hasta)</label>
 						<div class="col-sm-9">
-							<input type="date" name="cattle_purchase_date_until" class="form-control" value="{{ $purchase_until }}" />
+							<input type="text" name="cattle_purchase_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 						</div>
 						</div>
 
