@@ -55,10 +55,14 @@ class CalfController extends Controller
     public function create_offspring($cow_id)
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         $cow = Cow::findOrFail($cow_id);
 
         return view('calfs.create', [
             'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list,
             'cow'=>$cow
         ]);
     }
