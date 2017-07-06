@@ -178,6 +178,10 @@
 										</tbody>
 										</table>
 									</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay registros para mostrar.
+				                    </div>
 								@endif
 							</div>
 						</div>
@@ -265,6 +269,10 @@
 										</tbody>
 										</table>
 									</div>
+								@else
+									<div class="alert alert-warning text-center">
+									No hay registros para mostrar.
+				                    </div>
 								@endif
 							</div>
 						</div>
