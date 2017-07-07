@@ -26,6 +26,7 @@
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="mother_tag">Madre</label>
 						<div class="col-sm-9">
+							<input type="hidden" name="cow_id" value="{{ $calf->mother->id }}" />
 							<input type="text" name="mother_tag" class="form-control" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
 						</div>
 						</div>

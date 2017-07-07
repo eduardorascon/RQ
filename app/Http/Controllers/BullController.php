@@ -122,7 +122,7 @@ class BullController extends Controller
         $bull = Bull::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $bull->cattle_id;
         $log->save();
@@ -134,7 +134,7 @@ class BullController extends Controller
     {
         $bull = Bull::findOrFail($id);
         $log = new VaccineLog;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $bull->cattle_id;
         $log->vaccine_id = $request->vaccine;

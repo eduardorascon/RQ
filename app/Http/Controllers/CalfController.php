@@ -18,6 +18,7 @@ use App\VaccineLog;
 use App\Cow;
 use App\Picture;
 use Carbon\Carbon;
+use Khill\Lavacharts\Lavacharts;
 
 class CalfController extends Controller
 {
@@ -54,10 +55,14 @@ class CalfController extends Controller
     public function create_offspring($cow_id)
     {
         $breed_list = Breed::orderBy('name', 'asc')->get();
+        $owner_list = Owner::orderBy('name', 'asc')->get();
+        $paddock_list = Paddock::orderBy('name', 'asc')->get();
         $cow = Cow::findOrFail($cow_id);
 
         return view('calfs.create', [
             'breed_list'=>$breed_list,
+            'owner_list'=>$owner_list,
+            'paddock_list'=>$paddock_list,
             'cow'=>$cow
         ]);
     }
@@ -69,8 +74,10 @@ class CalfController extends Controller
 
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+        if($request->cattle_birth_date != NULL)
+            $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        if($request->cattle_purchase_date != NULL)
+            $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
@@ -90,6 +97,7 @@ class CalfController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
+        $this->weight_chart($calf->cattle);
         return view('calfs.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
@@ -120,8 +128,10 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $cattle = $calf->cattle;
         $cattle->tag = $request->cattle_tag;
-        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+        if($request->cattle_birth_date != NULL)
+            $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+        if($request->cattle_purchase_date != NULL)
+            $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
@@ -144,7 +154,7 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $calf->cattle_id;
         $log->save();
@@ -156,7 +166,7 @@ class CalfController extends Controller
     {
         $calf = Calf::findOrFail($id);
         $log = new VaccineLog;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $calf->cattle_id;
         $log->vaccine_id = $request->vaccine;

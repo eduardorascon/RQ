@@ -26,8 +26,8 @@
 					<label class="col-sm-3 control-label" for="mother_tag">Madre</label>
 					<div class="col-sm-9">
 						@if(!empty($cow))
-						<input type="hidden" name="cow_id" value="{{ $cow->id }}" />
-						<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
+							<input type="hidden" name="cow_id" value="{{ $cow->id }}" />
+							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
 						@else
 						<select class="form-control" name="cow_id">
 							<option value="">Elige una opción.</option>

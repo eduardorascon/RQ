@@ -19,6 +19,7 @@ use App\VaccineLog;
 use App\PalpationLog;
 use App\Picture;
 use Carbon\Carbon;
+use Khill\Lavacharts\Lavacharts;
 
 class CowController extends Controller
 {
@@ -71,6 +72,7 @@ class CowController extends Controller
     {
         $cow = Cow::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
+        $this->weight_chart($cow->cattle);
         return view('cows.show', [
             'cow'=>$cow,
             'breed'=>$cow->cattle->breed->name,
@@ -132,7 +134,7 @@ class CowController extends Controller
         $cow = Cow::findOrFail($id);
         $log = new WeightLog;
         $log->weight = $request->weight;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $cow->cattle_id;
         $log->save();
@@ -144,7 +146,7 @@ class CowController extends Controller
     {
         $cow = Cow::findOrFail($id);
         $log = new VaccineLog;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cattle_id = $cow->cattle_id;
         $log->vaccine_id = $request->vaccine;
@@ -157,7 +159,7 @@ class CowController extends Controller
     {
         $log = new PalpationLog;
         $log->months = $request->months;
-        $log->date = $request->date;
+        $log->date = Carbon::createFromFormat('d/m/Y', $request->date);
         $log->comment = $request->comment;
         $log->cow_id = $id;
         $log->save();
