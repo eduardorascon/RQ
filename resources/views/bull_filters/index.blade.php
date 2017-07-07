@@ -45,6 +45,26 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_weight_from">Peso (desde)</label>
+						<div class="col-sm-9">
+							<div class="input-group">
+							<input type="number" step="any" class="form-control" name="cattle_weight_from" placeholder="Peso">
+							<div class="input-group-addon">kgs</div>
+							</div>
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cattle_weight_to">Peso (hasta)</label>
+						<div class="col-sm-9">
+							<div class="input-group">
+							<input type="number" step="any" class="form-control" name="cattle_weight_to" placeholder="Peso">
+							<div class="input-group-addon">kgs</div>
+							</div>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">

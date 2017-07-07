@@ -39,7 +39,6 @@
                     					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" onclick="return confirm('El registro será eliminado');">
                     						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Eliminar
                     					</button>
-
 									</form>
 								</td>
 							</tr>
