@@ -133,6 +133,7 @@
 								<th>Arete Siniga</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
+								<th>Peso actual</th>
 								<th>Raza</th>
 								<th></th>
 							</tr>
@@ -143,6 +144,7 @@
 								<td>{{ $bull->cattle->tag }}</td>
 								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->cattle->currentWeight() }} kgs</td>
 								<td>{{ $bull->cattle->breed->name }}</td>
 								<td>
                     				<a class="btn btn-info btn-xs" href="{{ route('bulls.show', $bull->id) }}">Información</a>

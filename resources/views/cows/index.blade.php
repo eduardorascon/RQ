@@ -15,6 +15,7 @@
 								<th>Arete Siniga</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
+								<th>Peso actual</th>
 								<th>Raza</th>
 								<th></th>
 							</tr>
@@ -25,6 +26,7 @@
 								<td>{{ $cow->cattle->tag }}</td>
 								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $cow->cattle->currentWeight() }} kgs</td>
 								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
