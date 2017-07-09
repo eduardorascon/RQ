@@ -27,16 +27,15 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Becerros ({{ count($cows) }})</div>
+				<div class="panel-heading">Vacas ({{ count($cows) }})</div>
 				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table table-responsive">
 						<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Becerro</th>
+								<th>Vaca</th>
 								<th>Raza</th>
-								<th>Madre</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -45,7 +44,6 @@
 							<tr>
 								<td>{{ $cow->cattle->tag }}</td>
 								<td>{{ $cow->cattle->breed->name }}</td>
-								<td>{{ $cow->mother->cattle->tag }}</td>
 								<td>
 									@if(count($cow->sale) == 0)
 									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>
