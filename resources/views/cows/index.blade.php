@@ -15,6 +15,7 @@
 								<th>Arete Siniga</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
+								<th>Venta</th>
 								<th>Raza</th>
 								<th></th>
 							</tr>
@@ -25,6 +26,14 @@
 								<td>{{ $cow->cattle->tag }}</td>
 								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
+								<td>
+									@if(count($cow->sale) == 0)
+									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>
+									@else
+									<a class="btn btn-info btn-xs" href="{{ route('cows_sales.show', $cow->id) }}">Información</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.edit', $cow->id) }}">Editar</a>
+									@endif
+								</td>
 								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
