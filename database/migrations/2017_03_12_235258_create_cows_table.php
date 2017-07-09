@@ -17,6 +17,8 @@ class CreateCowsTable extends Migration
             $table->integer('number_of_calves');
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
+            $table->integer('sale_id')->unsigned()->nullable();
+            $table->foreign('sale_id')->references('id')->on('cows_sales');
         });
     }
 
