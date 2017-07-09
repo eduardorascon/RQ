@@ -36,6 +36,7 @@
 							<tr>
 								<th>Vaca</th>
 								<th>Raza</th>
+								<th>Fecha de venta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -44,6 +45,11 @@
 							<tr>
 								<td>{{ $cow->cattle->tag }}</td>
 								<td>{{ $cow->cattle->breed->name }}</td>
+								<td>
+									@if(count($cow->sale) > 0)
+									{{ $cow->sale->getSaleDateWithFormat()}}
+									@endif
+								</td>
 								<td>
 									@if(count($cow->sale) == 0)
 									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>

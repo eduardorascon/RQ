@@ -37,6 +37,7 @@
 								<th>Becerro</th>
 								<th>Raza</th>
 								<th>Madre</th>
+								<th>Fecha de venta</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -46,6 +47,11 @@
 								<td>{{ $calf->cattle->tag }}</td>
 								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>{{ $calf->mother->cattle->tag }}</td>
+								<td>
+									@if(count($calf->sale) > 0)
+									{{ $calf->sale->getSaleDateWithFormat()}}
+									@endif
+								</td>
 								<td>
 									@if(count($calf->sale) == 0)
 									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.create', 'calf=' . $calf->id) }}">Registrar venta</a>
