@@ -19,7 +19,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('cows_sales.store', 'calf=' . $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('cows_sales.store', 'cow=' . $cow->id) }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -36,16 +36,16 @@
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Arete Siniga</label>
+					<label class="col-sm-3 control-label" for="cow_tag">Arete Siniga</label>
 					<div class="col-sm-9">
-						<input type="text" name="calf_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}">
+						<input type="text" name="cow_tag" class="form-control" readonly="readonly" value="{{ $cow->cattle->tag }}">
 					</div>
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Raza</label>
+					<label class="col-sm-3 control-label" for="cow_tag">Raza</label>
 					<div class="col-sm-9">
-						<input type="text" name="calf_breed" class="form-control" readonly="readonly" value="{{ $calf->cattle->breed->name }}">
+						<input type="text" name="cow_breed" class="form-control" readonly="readonly" value="{{ $cow->cattle->breed->name }}">
 					</div>
 					</div>
 

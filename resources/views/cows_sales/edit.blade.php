@@ -19,7 +19,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('cows_sales.update', $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('cows_sales.update', $cow->id) }}" method="post">
 					<input type="hidden" name="_method" value="PATCH" />
 					{{ csrf_field() }}
 
@@ -29,7 +29,7 @@
 						<select class="form-control" name="client_id">
 						@foreach ($client_list as $client)
 						{
-							@if($calf->sale->client_id == $client->id)
+							@if($cow->sale->client_id == $client->id)
 							<option value="{{ $client->id }}" selected="selected">{{ $client->first_name . ' ' . $client->last_name . ' (' . $client->company . ')' }}</option>
 							@else
 							<option value="{{ $client->id }}">{{ $client->first_name . ' ' . $client->last_name . ' (' . $client->company . ')' }}</option>
@@ -41,30 +41,30 @@
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Arete Siniga</label>
+					<label class="col-sm-3 control-label" for="cow_tag">Arete Siniga</label>
 					<div class="col-sm-9">
-						<input type="text" name="calf_tag" class="form-control" readonly="readonly" value="{{ $calf->cattle->tag }}">
+						<input type="text" name="cow_tag" class="form-control" readonly="readonly" value="{{ $cow->cattle->tag }}">
 					</div>
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Raza</label>
+					<label class="col-sm-3 control-label" for="cow_tag">Raza</label>
 					<div class="col-sm-9">
-						<input type="text" name="calf_breed" class="form-control" readonly="readonly" value="{{ $calf->cattle->breed->name }}">
+						<input type="text" name="cow_breed" class="form-control" readonly="readonly" value="{{ $cow->cattle->breed->name }}">
 					</div>
 					</div>
 
 					<div class="form-group">
 					<label class="col-sm-3 control-label" for="sale_date">Fecha de venta</label>
 					<div class="col-sm-9">
-						<input type="text" name="sale_date" class="form-control input-date" value="{{ $calf->sale->getSaleDateWithFormat2() }}">
+						<input type="text" name="sale_date" class="form-control input-date" value="{{ $cow->sale->getSaleDateWithFormat2() }}">
 					</div>
 					</div>
 
 					<div class="form-group">
 					<label class="col-sm-3 control-label" for="sale_weight">Peso de venta</label>
 					<div class="col-sm-9">
-						<input type="number" step="any" name="sale_weight" class="form-control" placeholder="Peso..." value="{{ $calf->sale->sale_weight }}">
+						<input type="number" step="any" name="sale_weight" class="form-control" placeholder="Peso..." value="{{ $cow->sale->sale_weight }}">
 					</div>
 					</div>
 
@@ -73,7 +73,7 @@
 					<div class="col-sm-9">
 						<div class="input-group">
 						<div class="input-group-addon">$</div>
-						<input type="number" step="any" name="price_per_kilo" class="form-control" placeholder="Precio por kilo..." value="{{ $calf->sale->price_per_kilo }}">
+						<input type="number" step="any" name="price_per_kilo" class="form-control" placeholder="Precio por kilo..." value="{{ $cow->sale->price_per_kilo }}">
 						</div>
 					</div>
 					</div>

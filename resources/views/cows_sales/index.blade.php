@@ -41,17 +41,17 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($cows as $calf)
+						@foreach($cows as $cow)
 							<tr>
-								<td>{{ $calf->cattle->tag }}</td>
-								<td>{{ $calf->cattle->breed->name }}</td>
-								<td>{{ $calf->mother->cattle->tag }}</td>
+								<td>{{ $cow->cattle->tag }}</td>
+								<td>{{ $cow->cattle->breed->name }}</td>
+								<td>{{ $cow->mother->cattle->tag }}</td>
 								<td>
-									@if(count($calf->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'calf=' . $calf->id) }}">Registrar venta</a>
+									@if(count($cow->sale) == 0)
+									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>
 									@else
-									<a class="btn btn-info btn-xs" href="{{ route('cows_sales.show', $calf->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.edit', $calf->id) }}">Editar</a>
+									<a class="btn btn-info btn-xs" href="{{ route('cows_sales.show', $cow->id) }}">Información</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.edit', $cow->id) }}">Editar</a>
 									@endif
 								</td>
 							</tr>
