@@ -19,7 +19,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calves_sales.update', $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('cows_sales.update', $calf->id) }}" method="post">
 					<input type="hidden" name="_method" value="PATCH" />
 					{{ csrf_field() }}
 

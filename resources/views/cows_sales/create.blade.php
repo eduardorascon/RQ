@@ -19,7 +19,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calves_sales.store', 'calf=' . $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('cows_sales.store', 'calf=' . $calf->id) }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
