@@ -81,6 +81,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('cows_sales.index') }}">Vacas</a></li>
                                 <li><a href="{{ route('calves_sales.index') }}">Becerros</a></li>
+                                <li><a href="{{ route('bulls_sales.index') }}">Toros</a></li>
                             </ul>
                         </li>
                     @endif
