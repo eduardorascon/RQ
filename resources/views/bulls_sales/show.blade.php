@@ -17,23 +17,23 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_tag">Arete Siniga</label>
+						<label class="col-sm-3 control-label" for="bull_tag">Arete Siniga</label>
 						<div class="col-sm-9">
-							<input type="text" name="cow_tag" class="form-control" readonly="readonly" value="{{ $cow->cattle->tag }}">
+							<input type="text" name="bull_tag" class="form-control" readonly="readonly" value="{{ $bull->cattle->tag }}">
 						</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_tag">Raza</label>
+						<label class="col-sm-3 control-label" for="bull_breed">Raza</label>
 						<div class="col-sm-9">
-							<input type="text" name="cow_breed" class="form-control" readonly="readonly" value="{{ $cow->cattle->breed->name }}">
+							<input type="text" name="bull_breed" class="form-control" readonly="readonly" value="{{ $bull->cattle->breed->name }}">
 						</div>
 						</div>
 
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="sale_date">Fecha</label>
 						<div class="col-sm-9">
-							<input type="text" name="sale_date" class="form-control" readonly="readonly" value="{{ $cow->sale->getSaleDateWithFormat()  }}">
+							<input type="text" name="sale_date" class="form-control" readonly="readonly" value="{{ $bull->sale->getSaleDateWithFormat()  }}">
 						</div>
 						</div>
 
@@ -41,7 +41,7 @@
 						<label class="col-sm-3 control-label" for="sale_weight">Peso</label>
 						<div class="col-sm-9">
 							<div class="input-group">
-							<input type="text" name="sale_weight" class="form-control" readonly="readonly" value="{{ $cow->sale->sale_weight }}">
+							<input type="text" name="sale_weight" class="form-control" readonly="readonly" value="{{ $bull->sale->sale_weight }}">
 							<div class="input-group-addon">kgs</div>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 						<div class="col-sm-9">
 							<div class="input-group">
 							<div class="input-group-addon">$</div>
-							<input type="text" name="price_per_kilo" class="form-control" readonly="readonly" value="{{ $cow->sale->price_per_kilo }}">
+							<input type="text" name="price_per_kilo" class="form-control" readonly="readonly" value="{{ $bull->sale->price_per_kilo }}">
 							</div>
 						</div>
 						</div>

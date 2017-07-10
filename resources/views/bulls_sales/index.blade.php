@@ -10,7 +10,7 @@
 
 					<div class="row">
 						<div class="col-lg-6">
-							<form class="" action="{{ route('cows_sales.index') }}" method="get">
+							<form class="" action="{{ route('bulls_sales.index') }}" method="get">
 							<div class="input-group">
 								<input type="text" class="form-control" name="search" placeholder="Buscar...">
 								<span class="input-group-btn">
@@ -27,8 +27,8 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Vacas ({{ count($cows) }})</div>
-				@if($cows->count() > 0)
+				<div class="panel-heading">Vacas ({{ count($bulls) }})</div>
+				@if($bulls->count() > 0)
 				<div class="panel-body">
 					<div class="table table-responsive">
 						<table class="table table-striped">
@@ -41,21 +41,21 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($cows as $cow)
+						@foreach($bulls as $bull)
 							<tr>
-								<td>{{ $cow->cattle->tag }}</td>
-								<td>{{ $cow->cattle->breed->name }}</td>
+								<td>{{ $bull->cattle->tag }}</td>
+								<td>{{ $bull->cattle->breed->name }}</td>
 								<td>
-									@if(count($cow->sale) > 0)
-									{{ $cow->sale->getSaleDateWithFormat()}}
+									@if(count($bull->sale) > 0)
+									{{ $bull->sale->getSaleDateWithFormat()}}
 									@endif
 								</td>
 								<td>
-									@if(count($cow->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>
+									@if(count($bull->sale) == 0)
+									<a class="btn btn-warning btn-xs" href="{{ route('bulls_sales.create', 'bull=' . $bull->id) }}">Registrar venta</a>
 									@else
-									<a class="btn btn-info btn-xs" href="{{ route('cows_sales.show', $cow->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.edit', $cow->id) }}">Editar</a>
+									<a class="btn btn-info btn-xs" href="{{ route('bulls_sales.show', $bull->id) }}">Información</a>
+									<a class="btn btn-warning btn-xs" href="{{ route('bulls_sales.edit', $bull->id) }}">Editar</a>
 									@endif
 								</td>
 							</tr>
@@ -63,7 +63,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $cows->links() }}</div>
+					<div>{{ $bulls->links() }}</div>
 				</div>
 				@endif
 			</div>
