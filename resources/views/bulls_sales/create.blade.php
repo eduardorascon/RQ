@@ -23,6 +23,20 @@
 					{{ csrf_field() }}
 
 					<div class="form-group">
+					<label class="col-sm-3 control-label" for="bull_tag">Arete Siniga</label>
+					<div class="col-sm-9">
+						<p class="form-control-static">{{ $bull->cattle->tag }}</p>
+					</div>
+					</div>
+
+					<div class="form-group">
+					<label class="col-sm-3 control-label" for="bull_breed">Raza</label>
+					<div class="col-sm-9">
+						<p class="form-control-static">{{ $bull->cattle->breed->name }}</p>
+					</div>
+					</div>
+
+					<div class="form-group">
 					<label class="col-sm-3 control-label" for="client_id">Cliente</label>
 					<div class="col-sm-9">
 						<select class="form-control" name="client_id">
@@ -32,20 +46,6 @@
 							}
 							@endforeach
 						</select>
-					</div>
-					</div>
-
-					<div class="form-group">
-					<label class="col-sm-3 control-label" for="bull_tag">Arete Siniga</label>
-					<div class="col-sm-9">
-						<input type="text" name="bull_tag" class="form-control" readonly="readonly" value="{{ $bull->cattle->tag }}">
-					</div>
-					</div>
-
-					<div class="form-group">
-					<label class="col-sm-3 control-label" for="bull_breed">Raza</label>
-					<div class="col-sm-9">
-						<input type="text" name="bull_breed" class="form-control" readonly="readonly" value="{{ $bull->cattle->breed->name }}">
 					</div>
 					</div>
 
