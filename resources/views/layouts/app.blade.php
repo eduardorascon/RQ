@@ -76,7 +76,13 @@
                             </ul>
                         </li>
 
-                        <li><a href="{{ route('calves_sales.index') }}">Ventas</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('cows_sales.index') }}">Vacas</a></li>
+                                <li><a href="{{ route('calves_sales.index') }}">Becerros</a></li>
+                            </ul>
+                        </li>
                     @endif
                     </ul>
                     <!-- Right Side Of Navbar -->
