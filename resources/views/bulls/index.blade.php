@@ -28,10 +28,16 @@
 								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>
 									@if(count($bull->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('bulls_sales.create', 'bull=' . $bull->id) }}">Registrar venta</a>
+									<a class="btn btn-success btn-xs" href="{{ route('bulls_sales.create', 'bull=' . $bull->id) }}">
+										<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Registrar venta
+									</a>
 									@else
-									<a class="btn btn-info btn-xs" href="{{ route('bulls_sales.show', $bull->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('bulls_sales.edit', $bull->id) }}">Editar</a>
+									<a class="btn btn-info btn-xs" href="{{ route('bulls_sales.show', $bull->id) }}">
+										<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información
+									</a>
+									<a class="btn btn-success btn-xs" href="{{ route('bulls_sales.edit', $bull->id) }}">
+										<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Editar
+									</a>
 									@endif
 								</td>
 								<td>{{ $bull->cattle->breed->name }}</td>
