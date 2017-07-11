@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateBullSaleRequest;
 use App\Bull;
 use App\BullSale;
 use App\Client;
