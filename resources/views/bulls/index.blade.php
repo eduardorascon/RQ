@@ -15,9 +15,8 @@
 								<th>Arete Siniga</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
-								<th>Venta</th>
 								<th>Raza</th>
-								<th></th>
+								<th colspan="3">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -26,6 +25,7 @@
 								<td>{{ $bull->cattle->tag }}</td>
 								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->cattle->breed->name }}</td>
 								<td>
 									@if(count($bull->sale) == 0)
 									<a class="btn btn-success btn-xs" href="{{ route('bulls_sales.create', 'bull=' . $bull->id) }}">
@@ -35,26 +35,26 @@
 									<a class="btn btn-info btn-xs" href="{{ route('bulls_sales.show', $bull->id) }}">
 										<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información
 									</a>
-									<a class="btn btn-success btn-xs" href="{{ route('bulls_sales.edit', $bull->id) }}">
-										<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Editar
+									<a class="btn btn-warning btn-xs" href="{{ route('bulls_sales.edit', $bull->id) }}">
+										<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Modificar
 									</a>
 									@endif
 								</td>
-								<td>{{ $bull->cattle->breed->name }}</td>
 								<td>
-									<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
-										<input type="hidden" name="_method" value="delete">
-                    					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-info btn-xs" href="{{ route('bulls.show', $bull->id) }}">
-                    						<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información
-                    					</a>
-                    					<a class="btn btn-success btn-xs" href="{{ route('bulls.edit', $bull->id) }}">
-                    						<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Editar
-                    					</a>
+                					<a class="btn btn-info btn-xs" href="{{ route('bulls.show', $bull->id) }}">
+                						<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información
+                					</a>
+                					<a class="btn btn-warning btn-xs" href="{{ route('bulls.edit', $bull->id) }}">
+                						<span class="glyphicon glyphicon-open" aria-hidden="true"></span> Modificar
+                					</a>
+                    			</td>
+                    			<td>
+                    				<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
+                    					<input type="hidden" name="_method" value="delete">
+                						<input type="hidden" name="_token" value="{{ csrf_token() }}">
                     					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" onclick="return confirm('El registro será eliminado');">
                     						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Eliminar
                     					</button>
-
 									</form>
 								</td>
 							</tr>
