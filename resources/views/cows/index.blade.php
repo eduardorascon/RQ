@@ -5,43 +5,49 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Vacas ({{ $total_cows }}), <a href="{{ route('cows.create') }}">Agregar nueva vaca</a></div>
+				<div class="panel-heading">
+					<strong>{{ $total_cows }} Registros en total</strong>
+					<a class="btn btn-success btn-sm" href="{{ route('cows.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+				</div>
 				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
+								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
-								<th>Venta</th>
-								<th>Raza</th>
-								<th></th>
+								<th>Fecha de venta</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($cows as $cow)
 							<tr>
 								<td>{{ $cow->cattle->tag }}</td>
+								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>
-									@if(count($cow->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.create', 'cow=' . $cow->id) }}">Registrar venta</a>
-									@else
-									<a class="btn btn-info btn-xs" href="{{ route('cows_sales.show', $cow->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('cows_sales.edit', $cow->id) }}">Editar</a>
+									@if(count($cow->sale))
+									{{ $cow->sale->getSaleDateWithFormat() }}
 									@endif
 								</td>
-								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
+										<a class="btn btn-info btn-sm" href="{{ route('cows.show', $cow->id) }}">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										</a>
+	                    				<a class="btn btn-warning btn-sm" href="{{ route('cows.edit', $cow->id) }}">
+	                    					<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+	                    				</a>
 										<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-info btn-xs" href="{{ route('cows.show', $cow->id) }}">Información</a>
-                    					<a class="btn btn-warning btn-xs" href="{{ route('cows.edit', $cow->id) }}">Editar</a>
-                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-sm" onclick="return confirm('El registro será eliminado');">
+                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                    					</button>
 									</form>
 								</td>
 							</tr>
