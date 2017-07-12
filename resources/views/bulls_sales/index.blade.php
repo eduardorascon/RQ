@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Vacas ({{ count($bulls) }})</div>
+				<div class="panel-heading">Toros ({{ count($bulls) }})</div>
 				@if($bulls->count() > 0)
 				<div class="panel-body">
 					<div class="table table-responsive">
