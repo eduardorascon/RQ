@@ -6,13 +6,13 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>{{ $total_cows }} Registros en total</strong>
-					<a class="btn btn-success btn-sm" href="{{ route('cows.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+					<strong>Total de Registros: {{ $total_cows }} </strong>
+					<a class="btn btn-primary btn-sm" href="{{ route('cows.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 				</div>
 				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
