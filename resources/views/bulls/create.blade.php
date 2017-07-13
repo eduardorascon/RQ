@@ -99,17 +99,16 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-sm-offset-3 col-sm-3">
-								<button type="submit" class="btn btn-success btn-sm">
-	        						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Guardar registro
-	        					</button>
-							</div>
-
-							<div class="col-sm-offset-3 col-sm-3">
-								<a class="btn btn-danger btn-sm pull-right" href="{{ route('bulls.index') }}">
-	            					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar registro
-	            				</a>
-							</div>
+						<div class="col-sm-offset-3 col-sm-3">
+							<button type="submit" class="btn btn-success btn-sm">
+        						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Guardar registro
+        					</button>
+						</div>
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-danger btn-sm pull-right" href="{{ route('bulls.index') }}">
+            					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar registro
+            				</a>
+						</div>
 						</div>
 					</form>
 				</div>

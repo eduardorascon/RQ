@@ -6,8 +6,8 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>Total de Registros: {{ $total_calves }} </strong>
-					<a class="btn btn-primary btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Agregar nuevo registro" href="{{ route('calfs.create') }}">
+					<strong>BECERROS, Total de Registros: {{ $total_calves }} </strong>
+					<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Agregar nuevo registro" href="{{ route('calfs.create') }}">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</a>
 				</div>
