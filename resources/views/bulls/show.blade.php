@@ -99,7 +99,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-success pull-right">Guardar fotografia</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									</button>
 								</div>
 								</div>
 							</div>
@@ -170,7 +172,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-success pull-right">Guardar peso</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar peso
+									</button>
 								</div>
 								</div>
 							</div>
@@ -215,7 +219,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>Vacunación</div>
+					<strong>Vacunación</strong>
 				</div>
 				@if (count($errors->log_vaccine_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
@@ -263,7 +267,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-success pull-right">Guardar vacuna</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar vacuna
+									</button>
 								</div>
 								</div>
 							</div>
