@@ -181,7 +181,7 @@
 							<div class="col-sm-7">
 								@if($weight_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Peso</th>
@@ -276,7 +276,7 @@
 							<div class="col-sm-7">
 								@if($vaccine_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Vacuna</th>

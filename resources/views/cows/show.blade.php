@@ -116,7 +116,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar fotografia</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									</button>
 								</div>
 								</div>
 							</div>
@@ -144,8 +146,9 @@
 				<div class="panel-heading">Crías ({{ count($offspring) }}), <a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a></div>
 				@if($offspring->count() > 0)
 				<div class="panel-body">
+					<div class="panel panel-default">
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-condensed table-hover">
 						<thead>
 							<tr>
 								<th>Etiqueta</th>
@@ -163,12 +166,14 @@
 								<td>{{ $o->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $o->cattle->breed->name }}</td>
 								<td>
-									<a class="btn btn-info btn-xs" href="{{ route('calfs.show', $o->id) }}">Información</a>
+									<a class="btn btn-info btn-sm" href="{{ route('calfs.show', $o->id) }}">
+									<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información</a>
 								</td>
 							</tr>
 						@endforeach
 						</tbody>
 						</table>
+					</div>
 					</div>
 				</div>
 				@else
@@ -225,14 +230,16 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar peso</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar peso
+									</button>
 								</div>
 								</div>
 							</div>
 							<div class="col-sm-7">
 								@if($weight_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Peso</th>
@@ -269,7 +276,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de vacunación</div>
+				<div class="panel-heading">
+					<strong>Vacunación</strong>
+				</div>
 				@if (count($errors->log_vaccine_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -316,14 +325,16 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar vacuna</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar vacuna
+									</button>
 								</div>
 								</div>
 							</div>
 							<div class="col-sm-7">
 								@if($vaccine_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Vacuna</th>
@@ -395,7 +406,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar palpación</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right"> 
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar palpación
+									</button>
 								</div>
 								</div>
 							</div>
@@ -403,7 +416,7 @@
 								@if($palpations->count() > 0)
 									<div class="panel-body">
 										<div class="table-responsive">
-											<table class="table table-striped">
+											<table class="table table-condensed table-hover">
 											<thead>
 												<tr>
 													<th>Meses</th>
