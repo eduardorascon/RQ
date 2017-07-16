@@ -62,7 +62,7 @@ class CowFilterController extends Controller
             {
                 $sold_since = Carbon::createFromFormat('d/m/Y', $request->cow_sale_date_since);
                 $sold_until = Carbon::createFromFormat('d/m/Y', $request->cow_sale_date_until);
-                $cows->whereBetween('cows_sales.purchase_date', array($sold_since, $sold_until));
+                $cows->whereBetween('cows_sales.sale_date', array($sold_since, $sold_until));
             }
 
             //search by cattle breed
@@ -92,8 +92,7 @@ class CowFilterController extends Controller
             $cows->orderBy('cattle.tag', 'asc');
         }
 
-        $cattle = Cow::select('cattle.*')->
-            join('cattle', 'cows.cattle_id', '=', 'cattle.id');
+        //$cattle = Cow::select('cattle.*')->join('cattle', 'cows.cattle_id', '=', 'cattle.id');
 
     	return view('cow_filters.index', [
             'cows' => $cows->paginate(12),
