@@ -17,12 +17,13 @@ class CowFilterController extends Controller
         if($_GET == false)
             $cows = Cow::select('cows.*')->
                 join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
-                join('cows_sales', 'cows.sale_id', '=', 'cows_sales.id')->
+                leftJoin('cows_sales', 'cows.sale_id', '=', 'cows_sales.id')->
                 orderBy('cattle.tag', 'asc');
         else
         {
             $cows = (new Cow)->newQuery()->select('cows.*')->
-                join('cattle', 'cows.cattle_id', '=', 'cattle.id');
+                join('cattle', 'cows.cattle_id', '=', 'cattle.id')->
+                leftJoin('cows_sales', 'cows.sale_id', '=', 'cows_sales.id')->;
 
             //search by cow fertility
             if($request->has('cow_fertility'))
