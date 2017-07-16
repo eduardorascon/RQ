@@ -57,7 +57,7 @@ class CowFilterController extends Controller
                 $cows->whereBetween('cattle.purchase_date', array($purchase_since, $purchase_until));
             }
 
-            //search by cattle purchase date
+            //search by cattle sale date
             if($request->has('cow_sale_date_since') && $request->has('cow_sale_date_until'))
             {
                 $sold_since = Carbon::createFromFormat('d/m/Y', $request->cow_sale_date_since);

@@ -67,7 +67,7 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="cattle_owner">Dueño</label>
+							<label class="control-label col-sm-3" for="cattle_owner">Dueño</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="cattle_owner">
 									<option value="">Todas las opciones</option>
@@ -79,7 +79,7 @@
 								</select>
 							</div>
 
-							<label class="col-sm-1 control-label" for="cattle_paddock">Potrero</label>
+							<label class="control-label col-sm-1" for="cattle_paddock">Potrero</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="cattle_paddock">
 									<option value="">Todas las opciones</option>

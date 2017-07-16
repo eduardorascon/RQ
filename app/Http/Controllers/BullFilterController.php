@@ -17,11 +17,13 @@ class BullFilterController extends Controller
     	if($_GET == false)
     		$bulls = Bull::select('bulls.*')->
                 join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+                leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id')->
     			orderBy('cattle.tag', 'asc');
     	else
     	{
     		$bulls = (new Bull)->newQuery()->select('bulls.*')->
-    			join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
+    			join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+                leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id');
 
             //search by cattle tag
             if($request->has('cattle_tag'))
@@ -41,6 +43,14 @@ class BullFilterController extends Controller
                 $purchase_since = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_since);
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
                 $bulls->whereBetween('cattle.purchase_date', array($purchase_since, $purchase_until));
+            }
+
+            //search by cattle sale date
+            if($request->has('bull_sale_date_since') && $request->has('bull_sale_date_until'))
+            {
+                $sold_since = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_since);
+                $sold_until = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_until);
+                $bulls->whereBetween('bulls_sales.sale_date', array($sold_since, $sold_until));
             }
 
             //search by cattle breed
@@ -70,8 +80,7 @@ class BullFilterController extends Controller
             $bulls->orderBy('cattle.tag', 'asc');
     	}
 
-        $cattle = Bull::select('cattle.*')->
-            join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
+        //$cattle = Bull::select('cattle.*')->join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(12),
