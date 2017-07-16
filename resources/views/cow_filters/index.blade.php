@@ -45,6 +45,20 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_sale_date_since">Fecha de venta (desde)</label>
+						<div class="col-sm-9">
+							<input type="text" name="cow_sale_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_sale_date_until">Fecha de venta (hasta)</label>
+						<div class="col-sm-9">
+							<input type="text" name="cow_sale_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<select class="form-control" name="cattle_breed">
