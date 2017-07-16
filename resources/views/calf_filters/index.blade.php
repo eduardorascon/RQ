@@ -112,6 +112,17 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="calf_currently_sold">¿Fue vendido?</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="calf_currently_sold">
+								<option value="">Todas las opciones</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
 							<input type="submit" class="btn btn-primary" value="Buscar">
 						</div>
