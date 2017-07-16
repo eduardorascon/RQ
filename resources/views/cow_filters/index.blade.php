@@ -5,7 +5,9 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Filtros para vacas</div>
+				<div class="panel-heading">
+					<strong>VACAS, filtros </strong>
+				</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="{{ route('cow_filters.index') }}" method="get">
 
@@ -166,21 +168,29 @@
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
+								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
-								<th>Raza</th>
-								<th></th>
+								<th>Fecha de venta</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($cows as $cow)
 							<tr>
 								<td>{{ $cow->cattle->tag }}</td>
+								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>
-                    				<a class="btn btn-info btn-xs" href="{{ route('cows.show', $cow->id) }}">Información</a>
+									@if(count($cow->sale))
+									{{ $cow->sale->getSaleDateWithFormat() }}
+									@endif
+								</td>
+								<td>
+                    				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">
+                    					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                    				</a>
 								</td>
 							</tr>
 						@endforeach
