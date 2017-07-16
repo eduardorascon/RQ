@@ -19,45 +19,39 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_birth_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
+							<label class="control-label col-sm-3" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cattle_birth_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
+
+							<label class="control-label col-sm-1" for="cattle_birth_until">(hasta)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cattle_birth_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_birth_until">Fecha de nacimiento (hasta)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_birth_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
+							<label class="control-label col-sm-3" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cattle_purchase_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
+
+							<label class="control-label col-sm-1" for="cattle_purchase_date_until">(hasta)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cattle_purchase_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_purchase_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
-						</div>
+							<label class="control-label col-sm-3" for="cow_sale_date_since">Fecha de venta (desde)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cow_sale_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
 
-						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_purchase_date_until">Fecha de compra (hasta)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_purchase_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
-						</div>
-
-						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_sale_date_since">Fecha de venta (desde)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cow_sale_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
-						</div>
-
-						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_sale_date_until">Fecha de venta (hasta)</label>
-						<div class="col-sm-9">
-							<input type="text" name="cow_sale_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
-						</div>
+							<label class="control-label col-sm-1" for="cow_sale_date_until">(hasta)</label>
+							<div class="col-sm-4">
+								<input type="text" name="cow_sale_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -164,7 +158,7 @@
 				@if($cows->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
