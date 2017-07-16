@@ -64,6 +64,14 @@ class CalfFilterController extends Controller
             if($request->has('cattle_is_alive'))
                 $calves->where('cattle.is_alive', $request->cattle_is_alive);
 
+            //search by sold status
+            if($request->has('calf_currently_sold')){
+                if($request->calf_currently_sold == 'Si')
+                    $calves->whereNotNull('sale_id');
+                else
+                    $calves->whereNull('sale_id');
+            }
+
             $calves->orderBy('cattle.tag', 'asc');
     	}
 

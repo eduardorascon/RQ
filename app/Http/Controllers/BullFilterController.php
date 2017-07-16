@@ -59,6 +59,14 @@ class BullFilterController extends Controller
             if($request->has('cattle_is_alive'))
                 $bulls->where('cattle.is_alive', $request->cattle_is_alive);
 
+            //search by sold status
+            if($request->has('bull_currently_sold')){
+                if($request->bull_currently_sold == 'Si')
+                    $bulls->whereNotNull('sale_id');
+                else
+                    $bulls->whereNull('sale_id');
+            }
+
             $bulls->orderBy('cattle.tag', 'asc');
     	}
 

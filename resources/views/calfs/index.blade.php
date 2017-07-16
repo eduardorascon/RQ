@@ -5,44 +5,52 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Becerros ({{ $total_calves }}), <a href="{{ route('calfs.create') }}">Agregar nuevo becerro</a></div>
+				<div class="panel-heading">
+					<strong>BECERROS, registros: {{ $total_calves }}, </strong>
+					<a href="{{ route('calfs.create') }}">Agregar nuevo registro</a>
+				</div>
 				@if($calfs->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>Arete Siniga</th>
+								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
-								<th>Venta</th>
-								<th>Raza</th>
-								<th></th>
+								<th>Fecha de venta</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($calfs as $calf)
 							<tr>
 								<td>{{ $calf->cattle->tag }}</td>
+								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>{{ $calf->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $calf->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>
-									@if(count($calf->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.create', 'calf=' . $calf->id) }}">Registrar venta</a>
-									@else
-									<a class="btn btn-info btn-xs" href="{{ route('calves_sales.show', $calf->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.edit', $calf->id) }}">Editar</a>
+									@if(count($calf->sale))
+									{{ $calf->sale->getSaleDateWithFormat() }}
 									@endif
 								</td>
-								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>
 									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
+										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										</a>
+										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro de la madre" href="{{ route('cows.show', $calf->mother->id) }}">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Madre
+										</a>
+	                    				<a class="btn btn-warning btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro" href="{{ route('calfs.edit', $calf->id) }}">
+	                    					<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+	                    				</a>
 										<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-info btn-xs" href="{{ route('calfs.show', $calf->id) }}">Información</a>
-                    					<a class="btn btn-info btn-xs" href="{{ route('cows.show', $calf->mother->id) }}">Madre</a>
-                    					<a class="btn btn-warning btn-xs" href="{{ route('calfs.edit', $calf->id) }}">Editar</a>
-                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro" onclick="return confirm('El registro será eliminado');">
+                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                    					</button>
 									</form>
 								</td>
 							</tr>

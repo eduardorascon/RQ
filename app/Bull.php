@@ -16,4 +16,9 @@ class Bull extends Model
 	{
 		return $this->hasOne('App\Cattle' , 'id', 'cattle_id');
 	}
+
+	public function sale()
+	{
+		return $this->hasOne('App\BullSale', 'id', 'sale_id');
+	}
 }
