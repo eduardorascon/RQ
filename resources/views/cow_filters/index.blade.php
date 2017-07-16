@@ -142,7 +142,9 @@
 
 						<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
-							<input type="submit" class="btn btn-primary" value="Buscar">
+							<button type="submit" class="btn btn-info">
+								<span class="glyphicon glyphicon-search"></span> Buscar
+							</button>
 						</div>
 						</div>
 					</form>
