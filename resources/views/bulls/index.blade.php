@@ -6,10 +6,8 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>TOROS, Total de Registros: {{ $total_bulls }}</strong>
-					<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Agregar nuevo registro" href="{{ route('bulls.create') }}">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>
+					<strong>TOROS, registros: {{ $total_bulls }}, </strong>
+					<a href="{{ route('bulls.create') }}">Agregar nuevo registro</a>
 				</div>
 				@if($bulls->count() > 0)
 				<div class="panel-body">

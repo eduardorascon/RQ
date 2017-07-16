@@ -6,10 +6,8 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>BECERROS, Total de Registros: {{ $total_calves }} </strong>
-					<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Agregar nuevo registro" href="{{ route('calfs.create') }}">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>
+					<strong>BECERROS, registros: {{ $total_calves }}, </strong>
+					<a href="{{ route('calfs.create') }}">Agregar nuevo registro</a>
 				</div>
 				@if($calfs->count() > 0)
 				<div class="panel-body">

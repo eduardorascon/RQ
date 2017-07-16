@@ -6,10 +6,8 @@
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>VACAS, Total de Registros: {{ $total_cows }} </strong>
-					<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Agregar nuevo registro" href="{{ route('cows.create') }}">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>
+					<strong>VACAS, registros: {{ $total_cows }}, </strong>
+					<a href="{{ route('cows.create') }}">Agregar nuevo registro</a>
 				</div>
 				@if($cows->count() > 0)
 				<div class="panel-body">
