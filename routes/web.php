@@ -99,6 +99,8 @@ Route::group(['middleware' => ['web']], function() {
 
 	//Sales
 	Route::resource('calves_sales', 'CalfSaleController');
+	Route::resource('cows_sales', 'CowSaleController');
+	Route::resource('bulls_sales', 'BullSaleController');
 });
 
 Route::get('/admin', [

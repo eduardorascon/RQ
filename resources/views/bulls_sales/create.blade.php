@@ -19,20 +19,20 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calves_sales.store', 'calf=' . $calf->id) }}" method="post">
+				<form class="form-horizontal" action="{{ route('bulls_sales.store', 'bull=' . $bull->id) }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Arete Siniga</label>
+					<label class="col-sm-3 control-label" for="bull_tag">Arete Siniga</label>
 					<div class="col-sm-9">
-						<p class="form-control-static">{{ $calf->cattle->tag }}</p>
+						<p class="form-control-static">{{ $bull->cattle->tag }}</p>
 					</div>
 					</div>
 
 					<div class="form-group">
-					<label class="col-sm-3 control-label" for="calf_tag">Raza</label>
+					<label class="col-sm-3 control-label" for="bull_breed">Raza</label>
 					<div class="col-sm-9">
-						<p class="form-control-static">{{ $calf->cattle->breed->name }}</p>
+						<p class="form-control-static">{{ $bull->cattle->breed->name }}</p>
 					</div>
 					</div>
 

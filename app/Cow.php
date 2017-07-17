@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cow extends Model
 {
+	protected $table = 'cows';
 	public $timestamps = false;
 
     public function cattle()
@@ -22,4 +23,9 @@ class Cow extends Model
     {
     	return $this->hasMany('App\PalpationLog');
     }
+
+    public function sale()
+	{
+		return $this->hasOne('App\CowSale', 'id', 'sale_id');
+	}
 }

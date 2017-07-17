@@ -18,11 +18,13 @@ class CalfFilterController extends Controller
     	if($_GET == false)
     		$calves = Calf::select('calves.*')->
     			join('cattle', 'calves.cattle_id', '=', 'cattle.id')->
+                leftJoin('calves_sales', 'calves.sale_id', '=', 'calves_sales.id')->
     			orderBy('cattle.tag', 'asc');
     	else
     	{
     		$calves = (new Calf)->newQuery()->select('calves.*')->
-    			join('cattle', 'calves.cattle_id', '=', 'cattle.id');
+    			join('cattle', 'calves.cattle_id', '=', 'cattle.id')->
+                leftJoin('calves_sales', 'calves.sale_id', '=', 'calves_sales.id');
 
             //search by calf mother
             if($request->has('cow_id'))
@@ -48,6 +50,14 @@ class CalfFilterController extends Controller
                 $calves->whereBetween('cattle.purchase_date', array($purchase_since, $purchase_until));
             }
 
+            //search by cattle sale date
+            if($request->has('calf_sale_date_since') && $request->has('calf_sale_date_until'))
+            {
+                $sold_since = Carbon::createFromFormat('d/m/Y', $request->calf_sale_date_since);
+                $sold_until = Carbon::createFromFormat('d/m/Y', $request->calf_sale_date_until);
+                $calves->whereBetween('calves_sales.sale_date', array($sold_since, $sold_until));
+            }
+
             //search by cattle breed
             if($request->has('cattle_breed'))
                 $calves->where('cattle.breed_id', $request->cattle_breed);
@@ -64,11 +74,18 @@ class CalfFilterController extends Controller
             if($request->has('cattle_is_alive'))
                 $calves->where('cattle.is_alive', $request->cattle_is_alive);
 
+            //search by sold status
+            if($request->has('calf_currently_sold')){
+                if($request->calf_currently_sold == 'Si')
+                    $calves->whereNotNull('sale_id');
+                else
+                    $calves->whereNull('sale_id');
+            }
+
             $calves->orderBy('cattle.tag', 'asc');
     	}
 
-    	$cattle = Calf::select('cattle.*')->
-            join('cattle', 'calves.cattle_id', '=', 'cattle.id');
+    	//$cattle = Calf::select('cattle.*')->join('cattle', 'calves.cattle_id', '=', 'cattle.id');
 
         $cow_list = Cow::whereHas('cattle', function ($q) {
             $q->orderBy('tag', 'asc');

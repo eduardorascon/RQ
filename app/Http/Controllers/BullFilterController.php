@@ -17,11 +17,13 @@ class BullFilterController extends Controller
     	if($_GET == false)
     		$bulls = Bull::select('bulls.*')->
                 join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+                leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id')->
     			orderBy('cattle.tag', 'asc');
     	else
     	{
     		$bulls = (new Bull)->newQuery()->select('bulls.*')->
-    			join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
+    			join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+                leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id');
 
             //search by cattle tag
             if($request->has('cattle_tag'))
@@ -43,6 +45,14 @@ class BullFilterController extends Controller
                 $bulls->whereBetween('cattle.purchase_date', array($purchase_since, $purchase_until));
             }
 
+            //search by cattle sale date
+            if($request->has('bull_sale_date_since') && $request->has('bull_sale_date_until'))
+            {
+                $sold_since = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_since);
+                $sold_until = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_until);
+                $bulls->whereBetween('bulls_sales.sale_date', array($sold_since, $sold_until));
+            }
+
             //search by cattle breed
             if($request->has('cattle_breed'))
                 $bulls->where('cattle.breed_id', $request->cattle_breed);
@@ -59,11 +69,18 @@ class BullFilterController extends Controller
             if($request->has('cattle_is_alive'))
                 $bulls->where('cattle.is_alive', $request->cattle_is_alive);
 
+            //search by sold status
+            if($request->has('bull_currently_sold')){
+                if($request->bull_currently_sold == 'Si')
+                    $bulls->whereNotNull('sale_id');
+                else
+                    $bulls->whereNull('sale_id');
+            }
+
             $bulls->orderBy('cattle.tag', 'asc');
     	}
 
-        $cattle = Bull::select('cattle.*')->
-            join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
+        //$cattle = Bull::select('cattle.*')->join('cattle', 'bulls.cattle_id', '=', 'cattle.id');
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(12),
