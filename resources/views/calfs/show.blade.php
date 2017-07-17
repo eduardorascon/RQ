@@ -5,7 +5,9 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Becerro</div>
+				<div class="panel-heading">
+					<strong>BECERRO, Arete {{ $calf->cattle->tag }}</strong>
+				</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
 						<div class="form-group">
@@ -78,7 +80,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Fotográfias</div>
+				<div class="panel-heading">
+					<strong>Fotográfias</strong>
+				</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -137,7 +141,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de peso</div>
+				<div class="panel-heading">
+					<strong>Peso</strong>
+				</div>
 				@if (count($errors->log_weight_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -188,7 +194,7 @@
 							<div class="col-sm-7">
 								@if($weight_logs->count() > 0)
 									<div class="table-responsive">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Peso</th>
@@ -225,7 +231,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de vacunación</div>
+				<div class="panel-heading">
+					<strong>Vacunación</strong>
+				</div>
 				@if (count($errors->log_vaccine_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -279,7 +287,7 @@
 							<div class="col-sm-7">
 								@if($vaccine_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Vacuna</th>
