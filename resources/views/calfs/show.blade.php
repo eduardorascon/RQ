@@ -12,11 +12,15 @@
 					<div class="form-horizontal">
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="mother_tag">Madre</label>
-						<div class="col-sm-7">
+						<div class="col-sm-9">
+							<div class="input-group">
 							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
-						</div>
-						<div class="col-sm-2">
-							<a class="btn btn-info" href="{{ route('cows.show', $calf->mother->id) }}">Información</a>
+							<span class="input-group-btn">
+								<a class="btn btn-info" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $calf->mother->id) }}">
+									<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								</a>
+							</span>
+							</div>
 						</div>
 						</div>
 
