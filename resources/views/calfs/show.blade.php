@@ -120,7 +120,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar fotografia</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									</button>
 								</div>
 								</div>
 							</div>
@@ -191,7 +193,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar peso</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar peso
+									</button>
 								</div>
 								</div>
 							</div>
@@ -284,7 +288,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar vacuna</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar vacuna
+									</button>
 								</div>
 								</div>
 							</div>
