@@ -46,6 +46,17 @@
 						</div>
 
 						<div class="form-group">
+						<label class="col-sm-3 control-label" for="calf_sale_date">Fecha de venta</label>
+						<div class="col-sm-9">
+							@if(count($calf->sale) > 0)
+							<input type="text" name="calf_sale_date" class="form-control" readonly="readonly" value="{{ $calf->sale->getSaleDateWithFormat() }}" />
+							@else
+							<input type="text" name="calf_sale_date" class="form-control" readonly="readonly" value="" />
+							@endif
+						</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_breed">Raza</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_breed" class="form-control" readonly="readonly" value="{{ $breed }}" />
