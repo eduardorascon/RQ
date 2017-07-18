@@ -5,7 +5,9 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Editar</div>
+                <div class="panel-heading">
+                    <strong>POTREROS, Cambios en registro</strong>
+                </div>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -19,7 +21,7 @@
                     </div>
                 @endif
                 <div class="panel-body">
-                    <form class="" action="{{route('paddocks.update',$paddock->id)}}" method="post">
+                    <form class="" action="{{ route('paddocks.update',$paddock->id) }}" method="post">
                         <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
 
@@ -31,11 +33,17 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <input type="submit" class="btn btn-primary" value="Guardar" />
-                            </div>
+                        <div class="col-sm-offset-3 col-sm-3">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Modificar registro
+                            </button>
                         </div>
-
+                        <div class="col-sm-offset-3 col-sm-3">
+                            <a class="btn btn-danger btn-sm pull-right" href="{{ route('paddocks.index') }}">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar registro
+                            </a>
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>
