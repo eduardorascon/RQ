@@ -15,7 +15,7 @@
 						<div class="form-group">
 						<label class="control-label col-sm-3" for="search">Arete Siniga:</label>
 						<div class="col-sm-9">
-							<div class="input-group">
+							<div class="input-group col-sm-6">
 								<input type="text" class="form-control" name="search" placeholder="Buscar...">
 								<span class="input-group-btn">
 									<button type="submit" class="btn btn-info">
