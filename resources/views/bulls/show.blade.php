@@ -198,6 +198,7 @@
 												<th>Peso</th>
 												<th>Fecha</th>
 												<th>Comentario</th>
+												<th>Acciones</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -206,6 +207,15 @@
 												<td>{{ $log->weight }} kgs</td>
 												<td>{{ $log->getDateAttributeWithFormat() }}</td>
 												<td>{{ $log->comment }}</td>
+												<td>
+													<form class="" action="{{ route('bull_delete_weight', $log->id) }}" method="post">
+				                    					<input type="hidden" name="_method" value="delete">
+				                						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro" onclick="return confirm('El registro será eliminado');">
+				                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+				                    					</button>
+													</form>
+												</td>
 											</tr>
 										@endforeach
 										</tbody>
