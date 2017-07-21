@@ -130,6 +130,14 @@ class BullController extends Controller
         return redirect()->route('bulls.show', $bull->id);
     }
 
+    public function log_weight_delete(StoreUpdateLogWeightRequest $request, $id)
+    {
+        $log = WeightLog::findOrFail($id);
+        $log->delete();
+
+        return redirect()->route('bulls.show', $bull->id);
+    }
+
     public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
         $bull = Bull::findOrFail($id);
