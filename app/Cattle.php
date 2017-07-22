@@ -34,6 +34,12 @@ class Cattle extends Model
     	return $this->hasMany('App\WeightLog');
     }
 
+    public function currentWeight()
+    {
+        $currentWeight = $this->hasMany('App\WeightLog')->orderBy('date', 'desc')->first();
+        return ($currentWeight["weight"] > 0 ? $currentWeight["weight"] : 0);
+    }
+
     public function vaccinationLog()
     {
     	return $this->hasMany('App\VaccineLog');

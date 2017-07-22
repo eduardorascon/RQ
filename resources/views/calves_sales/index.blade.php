@@ -5,13 +5,17 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Ventas</div>
+				<div class="panel-heading">
+					<strong>VENTA DE BECERROS</strong>
+				</div>
 				<div class="panel-body">
+					<form class="form-horizontal" action="{{ route('calves_sales.index') }}" method="get">
+						{{ csrf_field() }}
 
-					<div class="row">
-						<div class="col-lg-6">
-							<form class="" action="{{ route('calves_sales.index') }}" method="get">
-							<div class="input-group">
+						<div class="form-group">
+						<label class="control-label col-sm-3" for="search">Arete Siniga:</label>
+						<div class="col-sm-9">
+							<div class="input-group col-sm-6">
 								<input type="text" class="form-control" name="search" placeholder="Buscar...">
 								<span class="input-group-btn">
 									<button type="submit" class="btn btn-info">
@@ -19,26 +23,24 @@
 									</button>
 								</span>
 							</div>
-							</form>
 						</div>
-					</div>
+						</div>
 
+					</form>
 				</div>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Becerros ({{ count($calves) }})</div>
-				@if($calves->count() > 0)
 				<div class="panel-body">
-					<div class="table table-responsive">
-						<table class="table table-striped">
+				@if($calves->count() > 0)
+					<div class="table-responsive">
+						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>Becerro</th>
 								<th>Raza</th>
 								<th>Madre</th>
+								<th>Fecha de nacimiento</th>
+								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
-								<th></th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,6 +49,8 @@
 								<td>{{ $calf->cattle->tag }}</td>
 								<td>{{ $calf->cattle->breed->name }}</td>
 								<td>{{ $calf->mother->cattle->tag }}</td>
+								<td>{{ $calf->cattle->getBirthWithFormat() }}</td>
+								<td>{{ $calf->cattle->getPurchaseDateWithFormat() }}</td>
 								<td>
 									@if(count($calf->sale) > 0)
 									{{ $calf->sale->getSaleDateWithFormat()}}
@@ -54,10 +58,16 @@
 								</td>
 								<td>
 									@if(count($calf->sale) == 0)
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.create', 'calf=' . $calf->id) }}">Registrar venta</a>
+									<a class="btn btn-success btn-sm" href="{{ route('calves_sales.create', 'calf=' . $calf->id) }}" data-container="body" data-toggle="tooltip" data-placement="top" title="Crear registro de venta">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									</a>
 									@else
-									<a class="btn btn-info btn-xs" href="{{ route('calves_sales.show', $calf->id) }}">Información</a>
-									<a class="btn btn-warning btn-xs" href="{{ route('calves_sales.edit', $calf->id) }}">Editar</a>
+									<a class="btn btn-info btn-sm" href="{{ route('calves_sales.show', $calf->id) }}" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro">
+										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									</a>
+									<a class="btn btn-warning btn-sm" href="{{ route('calves_sales.edit', $calf->id) }}" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro">
+										<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+									</a>
 									@endif
 								</td>
 							</tr>
@@ -66,8 +76,8 @@
 						</table>
 					</div>
 					<div>{{ $calves->links() }}</div>
-				</div>
 				@endif
+				</div>
 			</div>
 		</div>
 	</div>

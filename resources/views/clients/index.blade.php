@@ -5,10 +5,13 @@
     <div class="row">
         <div class="col-md-offset-1 col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Clientes ({{ count($clients) }}), <a href="{{route('clients.create')}}" >Agregar nuevo cliente</a></div>
+                <div class="panel-heading">
+                    <strong>CLIENTES, registros {{ count($clients) }}, </strong>
+                    <a href="{{ route('clients.create') }}" >Agregar nuevo registro</a>
+                </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-hover table-condensed">
                     	<thead>
                     		<tr>
                     			<th>Nombre</th>
@@ -16,7 +19,7 @@
                     			<th>Dirección</th>
                     			<th>Teléfono</th>
                     			<th>Empresa</th>
-                    			<th></th>
+                    			<th>Acciones</th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -31,8 +34,13 @@
                     				<form class="" action="{{ route('clients.destroy', $client->id) }}" method="post">
                     					<input type="hidden" name="_method" value="delete">
                     					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    					<a class="btn btn-primary btn-xs" href="{{ route('clients.edit',$client->id) }}">Editar</a>
-                    					<input class="btn btn-danger btn-xs" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar">
+
+                    					<a class="btn btn-warning btn-sm" href="{{ route('clients.edit', $client->id) }}" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro">
+                                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                                        </a>
+                    					<button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('El registro será eliminado');" name="btnBorrar" value="Eliminar" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro">
+                                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                                        </button>
                     				</form>
                     			</td>
                     		</tr>

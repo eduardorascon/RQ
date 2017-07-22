@@ -5,16 +5,22 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Becerro</div>
+				<div class="panel-heading">
+					<strong>BECERRO, Arete {{ $calf->cattle->tag }}</strong>
+				</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
 						<div class="form-group">
 						<label class="col-sm-3 control-label" for="mother_tag">Madre</label>
-						<div class="col-sm-7">
+						<div class="col-sm-9">
+							<div class="input-group">
 							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $calf->mother->cattle->tag }}" />
-						</div>
-						<div class="col-sm-2">
-							<a class="btn btn-info" href="{{ route('cows.show', $calf->mother->id) }}">Información</a>
+							<span class="input-group-btn">
+								<a class="btn btn-info" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $calf->mother->id) }}">
+									<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								</a>
+							</span>
+							</div>
 						</div>
 						</div>
 
@@ -36,6 +42,17 @@
 						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $calf->cattle->getPurchaseDateWithFormat() }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="calf_sale_date">Fecha de venta</label>
+						<div class="col-sm-9">
+							@if(count($calf->sale) > 0)
+							<input type="text" name="calf_sale_date" class="form-control" readonly="readonly" value="{{ $calf->sale->getSaleDateWithFormat() }}" />
+							@else
+							<input type="text" name="calf_sale_date" class="form-control" readonly="readonly" value="" />
+							@endif
 						</div>
 						</div>
 
@@ -78,7 +95,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Fotográfias</div>
+				<div class="panel-heading">
+					<strong>Fotográfias</strong>
+				</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -112,7 +131,9 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar fotografia</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									</button>
 								</div>
 								</div>
 							</div>
@@ -137,7 +158,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de peso</div>
+				<div class="panel-heading">
+					<strong>Peso</strong>
+				</div>
 				@if (count($errors->log_weight_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -181,14 +204,16 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar peso</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar peso
+									</button>
 								</div>
 								</div>
 							</div>
 							<div class="col-sm-7">
 								@if($weight_logs->count() > 0)
 									<div class="table-responsive">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Peso</th>
@@ -225,7 +250,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de vacunación</div>
+				<div class="panel-heading">
+					<strong>Vacunación</strong>
+				</div>
 				@if (count($errors->log_vaccine_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -272,14 +299,16 @@
 
 								<div class="form-group">
 								<div class="col-sm-12">
-									<button type="submit" class="btn btn-primary pull-right">Guardar vacuna</button>
+									<button type="submit" class="btn btn-success btn-sm pull-right">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar vacuna
+									</button>
 								</div>
 								</div>
 							</div>
 							<div class="col-sm-7">
 								@if($vaccine_logs->count() > 0)
 									<div class="panel panel-default">
-										<table class="table table-striped table-condensed table-bordered">
+										<table class="table table-condensed table-hover">
 										<thead>
 											<tr>
 												<th>Vacuna</th>

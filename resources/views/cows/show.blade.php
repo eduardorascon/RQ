@@ -5,7 +5,9 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">Vaca</div>
+				<div class="panel-heading">
+					<strong>VACA, Arete {{ $cow->cattle->tag }}</strong>
+				</div>
 				<div class="panel-body">
 					<div class="form-horizontal">
 						<div class="form-group">
@@ -26,6 +28,17 @@
 						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $cow->cattle->getPurchaseDateWithFormat() }}" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<label class="col-sm-3 control-label" for="cow_sale_date">Fecha de venta</label>
+						<div class="col-sm-9">
+							@if(count($cow->sale) > 0)
+							<input type="text" name="cow_sale_date" class="form-control" readonly="readonly" value="{{ $cow->sale->getSaleDateWithFormat() }}" />
+							@else
+							<input type="text" name="cow_sale_date" class="form-control" readonly="readonly" value="" />
+							@endif
 						</div>
 						</div>
 
@@ -82,7 +95,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Fotográfias</div>
+				<div class="panel-heading">
+					<strong>Fotográfias</strong>
+				</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -143,7 +158,10 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Crías ({{ count($offspring) }}), <a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a></div>
+				<div class="panel-heading">
+					<strong>Crías ({{ count($offspring) }}), </strong>
+					<a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a>
+				</div>
 				@if($offspring->count() > 0)
 				<div class="panel-body">
 					<div class="panel panel-default">
@@ -151,23 +169,30 @@
 						<table class="table table-condensed table-hover">
 						<thead>
 							<tr>
-								<th>Etiqueta</th>
+								<th>Arete Siniga</th>
+								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
-								<th>Raza</th>
-								<th></th>
+								<th>Fecha de venta</th>
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($offspring as $o)
 							<tr>
 								<td>{{ $o->cattle->tag }}</td>
+								<td>{{ $o->cattle->breed->name }}</td>
 								<td>{{ $o->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $o->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>{{ $o->cattle->breed->name }}</td>
 								<td>
-									<a class="btn btn-info btn-sm" href="{{ route('calfs.show', $o->id) }}">
-									<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Información</a>
+									@if(count($o->sale))
+									{{ $o->sale->getSaleDateWithFormat() }}
+									@endif
+								</td>
+								<td>
+									<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $o->id) }}">
+										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									</a>
 								</td>
 							</tr>
 						@endforeach
@@ -186,7 +211,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de peso</div>
+				<div class="panel-heading">
+					<strong>Peso</strong>
+				</div>
 				@if (count($errors->log_weight_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -365,7 +392,9 @@
 			</div>
 
 			<div class="panel panel-default">
-				<div class="panel-heading">Registro de palpaciones</div>
+				<div class="panel-heading">
+					<strong>Palpaciones</strong>
+				</div>
 				@if (count($errors->log_palpation_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
