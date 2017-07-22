@@ -67,7 +67,7 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'BullController@log_weight',
 		'as' => 'bull_log_weight']);
 
-	Route::post('/bulls/{id}/log_weight_delete', [
+	Route::post('/bulls/{id}', [
 		'uses' => 'BullController@log_weight_delete',
 		'as' => 'bull_delete_weight']);
 

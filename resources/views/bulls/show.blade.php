@@ -141,22 +141,22 @@
 					<strong>Peso</strong>
 				</div>
 				@if (count($errors->log_weight_errors) > 0)
-					<div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <ul>
-                            @foreach ($errors->log_weight_errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+				<div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul>
+                        @foreach ($errors->log_weight_errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
 				@endif
 				<div class="panel-body">
-					<form class="form-horizontal" action="{{ route('bull_log_weight', $bull->id) }}" method="post">
-						{{ csrf_field() }}
-						<div class="row">
-							<div class="col-sm-5">
+					<div class="row">
+						<div class="col-sm-5">
+							<form class="form-horizontal" action="{{ route('bull_log_weight', $bull->id) }}" method="post">
+								{{ csrf_field() }}
 								<div class="form-group">
 								<label class="col-sm-3 control-label" for="weight">Peso</label>
 								<div class="col-sm-9">
@@ -188,47 +188,47 @@
 									</button>
 								</div>
 								</div>
-							</div>
-							<div class="col-sm-7">
-								@if($weight_logs->count() > 0)
-									<div class="panel panel-default">
-										<table class="table table-condensed table-hover">
-										<thead>
-											<tr>
-												<th>Peso</th>
-												<th>Fecha</th>
-												<th>Comentario</th>
-												<th>Acciones</th>
-											</tr>
-										</thead>
-										<tbody>
-										@foreach($weight_logs as $log)
-											<tr>
-												<td>{{ $log->weight }} kgs</td>
-												<td>{{ $log->getDateAttributeWithFormat() }}</td>
-												<td>{{ $log->comment }}</td>
-												<td>
-													<form class="" action="{{ route('bull_delete_weight', $log->id) }}" method="post">
-				                    					<input type="hidden" name="_method" value="delete">
-				                						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro" onclick="return confirm('El registro será eliminado');">
-				                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-				                    					</button>
-													</form>
-												</td>
-											</tr>
-										@endforeach
-										</tbody>
-										</table>
-									</div>
-								@else
-									<div class="alert alert-warning text-center">
-									No hay registros para mostrar.
-				                    </div>
-								@endif
-							</div>
+							</form>
 						</div>
-					</form>
+						<div class="col-sm-7">
+							@if($weight_logs->count() > 0)
+							<div class="panel panel-default">
+								<table class="table table-condensed table-hover">
+								<thead>
+									<tr>
+										<th>Peso</th>
+										<th>Fecha</th>
+										<th>Comentario</th>
+										<th>Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+								@foreach($weight_logs as $log)
+									<tr>
+										<td>{{ $log->weight }} kgs</td>
+										<td>{{ $log->getDateAttributeWithFormat() }}</td>
+										<td>{{ $log->comment }}</td>
+										<td>
+											<form class="form-horizontal" action="{{ route('bull_delete_weight', $bull->id) }}" method="post">
+		                						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		                						<input type="hidden" name="log_weight_id" value="{{ $log->id }}">
+		                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-xs" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro" onclick="return confirm('El registro será eliminado');">
+		                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+		                    					</button>
+											</form>
+										</td>
+									</tr>
+								@endforeach
+								</tbody>
+								</table>
+							</div>
+							@else
+							<div class="alert alert-warning text-center">
+							No hay registros para mostrar.
+		                    </div>
+							@endif
+						</div>
+					</div>
 				</div>
 				@if($weight_logs->count() > 0)
 				<div class="panel-body">
