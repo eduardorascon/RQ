@@ -74,8 +74,8 @@ class BullController extends Controller
             'owner' => $bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
             'paddock' => $bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list' => $vaccine_list,
-            'weight_logs' => $bull->cattle->weightLog->sortBy("date"),
-            'vaccine_logs' => $bull->cattle->vaccinationLog->sortBy("date"),
+            'weight_logs' => $bull->cattle->weightLog->sortByDesc("date"),
+            'vaccine_logs' => $bull->cattle->vaccinationLog->sortByDesc("date"),
             'pictures' => $bull->cattle->pictures->sortBy('filename')
         ]);
     }

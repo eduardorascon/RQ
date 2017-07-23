@@ -104,8 +104,8 @@ class CalfController extends Controller
             'owner'=>$calf->cattle->owner === NULL ? '' : $calf->cattle->owner->name,
             'paddock'=>$calf->cattle->paddock === NULL ? '' : $calf->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
-            'weight_logs'=>$calf->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$calf->cattle->vaccinationLog->sortBy("date"),
+            'weight_logs'=>$calf->cattle->weightLog->sortByDesc("date"),
+            'vaccine_logs'=>$calf->cattle->vaccinationLog->sortByDesc("date"),
             'pictures'=>$calf->cattle->pictures->sortBy('filename')]);
     }
 
