@@ -20,6 +20,7 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -34,6 +35,9 @@
 									@if(count($cow->sale))
 									{{ $cow->sale->getSaleDateWithFormat() }}
 									@endif
+								</td>
+								<td>
+									{{ $cow->cattle->currentWeight() }}
 								</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">

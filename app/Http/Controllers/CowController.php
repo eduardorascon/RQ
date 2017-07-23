@@ -79,10 +79,10 @@ class CowController extends Controller
             'owner'=>$cow->cattle->owner === NULL ? '' : $cow->cattle->owner->name,
             'paddock'=>$cow->cattle->paddock === NULL ? '' : $cow->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,
-            'weight_logs'=>$cow->cattle->weightLog->sortBy("date"),
-            'vaccine_logs'=>$cow->cattle->vaccinationLog->sortBy("date"),
+            'weight_logs'=>$cow->cattle->weightLog->sortByDesc("date"),
+            'vaccine_logs'=>$cow->cattle->vaccinationLog->sortByDesc("date"),
             'offspring'=>$cow->offspring,
-            'palpations'=>$cow->palpationLog,
+            'palpations'=>$cow->palpationLog->sortByDesc('date'),
             'pictures'=>$cow->cattle->pictures->sortBy('filename')
         ]);
     }
