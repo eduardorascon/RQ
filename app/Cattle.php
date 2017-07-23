@@ -40,6 +40,19 @@ class Cattle extends Model
         return ($currentWeight["weight"] > 0 ? $currentWeight["weight"] : 0) . ' kgs';
     }
 
+    public function currentMonths()
+    {
+        if(!isset($this->birth)){
+            return 0;
+        }
+        
+        $to = Carbon::createFromFormat('Y-m-d', $this->birth);
+        $from = Carbon::today();
+        $currentMonths = $to->diffInMonths($from);        
+        
+        return $currentMonths;
+    }
+
     public function vaccinationLog()
     {
     	return $this->hasMany('App\VaccineLog');

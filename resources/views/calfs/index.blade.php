@@ -21,6 +21,7 @@
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
 								<th>Peso actual</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -38,6 +39,9 @@
 								</td>
 								<td>
 									{{ $calf->cattle->currentWeight() }}
+								</td>
+								<td>
+									{{ $calf->cattle->currentMonths() }}
 								</td>
 								<td>
 									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
