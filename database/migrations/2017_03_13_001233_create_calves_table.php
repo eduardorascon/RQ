@@ -23,6 +23,6 @@ class CreateCalvesTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('calves_sales');
     }
 }

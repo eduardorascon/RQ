@@ -21,6 +21,6 @@ class CreateBullsSalesTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('bulls_sales');
     }
 }

@@ -21,6 +21,6 @@ class CreatePalpationsLogTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('palpation_logs');
     }
 }

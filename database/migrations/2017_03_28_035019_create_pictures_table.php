@@ -20,6 +20,6 @@ class CreatePicturesTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('pictures');
     }
 }

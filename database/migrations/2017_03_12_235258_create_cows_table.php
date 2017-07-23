@@ -24,6 +24,6 @@ class CreateCowsTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('cows');
     }
 }

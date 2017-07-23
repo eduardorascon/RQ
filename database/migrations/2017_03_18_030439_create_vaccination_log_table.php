@@ -23,6 +23,6 @@ class CreateVaccinationLogTable extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('vaccination_logs');
     }
 }
