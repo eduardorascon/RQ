@@ -37,7 +37,7 @@
 									@endif
 								</td>
 								<td>
-									{{ $calf->cattle->currentWeight() }} kgs
+									{{ $calf->cattle->currentWeight() }}
 								</td>
 								<td>
 									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
