@@ -11,7 +11,7 @@ class CreateCattlesTable extends Migration
         Schema::create('cattle', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('tag');
+            $table->string('tag')->nullable();
             $table->date('purchase_date');
             $table->date('birth');
             $table->string('is_alive');
