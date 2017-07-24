@@ -25,9 +25,9 @@ class CalfController extends Controller
     public function index()
     {
         $calfs = Calf::whereHas('cattle', function ($q) {
-                $q;
+                $q->where('is_alive', '=', 'Si');
             })->paginate(12);
-        $total_calves = Calf::count();
+        $total_calves = $calfs->count();
 
         return view('calfs.index', [
             'calfs' => $calfs,
