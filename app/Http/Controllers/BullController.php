@@ -18,6 +18,7 @@ use App\VaccineLog;
 use App\Picture;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BullController extends Controller
 {
@@ -185,5 +186,19 @@ class BullController extends Controller
         }
 
         $chart = \Lava::LineChart('MyStocks', $stocksTable);
+    }
+
+    public function export_index()
+    {
+        Excel::create('Lista de Toros', function($excel) {
+            $excel->sheet('Toros', function($sheet) {
+                $bulls = Bull::select('cattle.*')->
+                join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
+                //leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id')->
+                orderBy('cattle.tag', 'asc')->get();
+
+                $sheet->fromArray($bulls);
+            });
+        })->export('xlsx');
     }
 }
