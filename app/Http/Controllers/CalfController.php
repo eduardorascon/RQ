@@ -166,6 +166,14 @@ class CalfController extends Controller
         return redirect()->route('calfs.show', $calf->id);
     }
 
+    public function log_weight_delete(Request $request, $id)
+    {
+        $log = WeightLog::findOrFail($request->log_weight_id);
+        $log->delete();
+
+        return redirect()->route('calfs.show', $id);
+    }
+
     public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
         $calf = Calf::findOrFail($id);

@@ -142,6 +142,14 @@ class CowController extends Controller
         return redirect()->route('cows.show', $cow->id);
     }
 
+    public function log_weight_delete(Request $request, $id)
+    {
+        $log = WeightLog::findOrFail($request->log_weight_id);
+        $log->delete();
+
+        return redirect()->route('cows.show', $id);
+    }
+
     public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
