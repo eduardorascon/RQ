@@ -1,0 +1,3 @@
+INSERT INTO `breeds` (`id`, `name`) VALUES
+(1, 'CORRIENTES'),
+(2, 'BRANGUS COMERCIAL');
