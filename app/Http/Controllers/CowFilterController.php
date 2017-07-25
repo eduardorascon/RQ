@@ -89,6 +89,11 @@ class CowFilterController extends Controller
                     $cows->whereNull('sale_id');
             }
 
+            //search by age in months
+            if($request->has('cow_age_months')){               
+                $cows->where(\DB::raw('TIMESTAMPDIFF(MONTH, cattle.birth, CURDATE())'), '=', $request->cow_age_months);
+            }
+
             $cows->orderBy('cattle.tag', 'asc');
         }
 

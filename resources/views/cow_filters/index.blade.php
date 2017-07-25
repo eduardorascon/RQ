@@ -114,6 +114,7 @@
 						</div>
 
 						<div class="form-group">
+							
 							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta viva?</label>
 							<div class="col-sm-3">
 								<select class="form-control" name="cattle_is_alive">
@@ -134,10 +135,18 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
-						<div class="col-sm-3">
-							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
-						</div>
+						
+							<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
+							<div class="col-sm-3">
+								<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
+							</div>		
+							
+							
+							<lavel class="col-sm-3 control-label" for="cow_age_months">Meses de edad</lavel>
+							<div class="col-sm-3">
+									<input type="number" name="cow_age_months" class="form-control" placeholder="Meses de edad">
+							</div>
+							
 						</div>
 
 						<div class="form-group">
@@ -160,6 +169,7 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -170,6 +180,8 @@
 								<td>{{ $cow->cattle->breed->name }}</td>
 								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
 								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
+								<td>not implemented</td>
+								<td>{{ $cow->cattle->currentMonths() }}</td>
 								<td>
 									@if(count($cow->sale))
 									{{ $cow->sale->getSaleDateWithFormat() }}
