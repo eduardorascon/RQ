@@ -45,11 +45,11 @@ class Cattle extends Model
         if(!isset($this->birth)){
             return 0;
         }
-        
+
         $to = Carbon::createFromFormat('Y-m-d', $this->birth);
         $from = Carbon::today();
-        $currentMonths = $to->diffInMonths($from);        
-        
+        $currentMonths = $to->diffInMonths($from);
+
         return $currentMonths;
     }
 

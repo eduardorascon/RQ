@@ -10,7 +10,6 @@ class CreateBullsTable extends Migration
     {
         Schema::create('bulls', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
             $table->integer('sale_id')->unsigned()->nullable();

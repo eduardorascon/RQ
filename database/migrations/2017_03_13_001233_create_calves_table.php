@@ -11,7 +11,6 @@ class CreateCalvesTable extends Migration
     {
         Schema::create('calves', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->integer('cattle_id')->unsigned();
             $table->foreign('cattle_id')->references('id')->on('cattle');
             $table->integer('cow_id')->unsigned();

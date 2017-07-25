@@ -10,7 +10,6 @@ class CreateBullsSalesTable extends Migration
     {
         Schema::create('bulls_sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->date('sale_date');
             $table->float('sale_weight', 8, 3);
             $table->float('price_per_kilo', 8, 3);

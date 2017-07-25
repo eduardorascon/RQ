@@ -10,7 +10,6 @@ class CreateCowsTable extends Migration
     {
         Schema::create('cows', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('is_fertile');
             $table->string('pregnancy_status');
             $table->date('last_pregnancy_check')->nullable();
