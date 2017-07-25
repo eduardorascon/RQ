@@ -6,7 +6,7 @@ class BreedsTableSeeder extends Seeder
 {
     public function run()
     {
-        $breeds = ['CORRIENTES', 'BRANGUS'];
+        $breeds = ['CORRIENTES', 'BRANGUS COMERCIAL'];
 
         array_map(function($name){
         	DB::table('breeds')->insert([
