@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 
 class BullsTableSeeder extends Seeder
 {
-
     public function run()
     {
         Eloquent::unguard();

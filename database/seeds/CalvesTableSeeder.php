@@ -2,13 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class VaccinesTableSeeder extends Seeder
+class CalvesTableSeeder extends Seeder
 {
     public function run()
     {
         Eloquent::unguard();
         DB::disableQueryLog();
-        $path = 'database/seeds/sql/vaccines.sql';
+        $path = 'database/seeds/sql/calves.sql';
         DB::unprepared(file_get_contents($path));
     }
 }
