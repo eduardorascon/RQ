@@ -10,9 +10,8 @@ class CreateCattlesTable extends Migration
     {
         Schema::create('cattle', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('tag')->nullable();
-            $table->date('purchase_date');
+            $table->date('purchase_date')->nullable();
             $table->date('birth');
             $table->string('is_alive');
             $table->string('gender');
