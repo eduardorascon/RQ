@@ -138,15 +138,11 @@
 						<tbody>
 						@foreach($bulls as $bull)
 							<tr>
-								<td>{{ $bull->cattle->tag }}</td>
-								<td>{{ $bull->cattle->breed->name }}</td>
-								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($bull->sale))
-									{{ $bull->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
+								<td>{{ $bull->tag }}</td>
+								<td>{{ $bull->breed_name }}</td>
+								<td>{{ $bull->getBirthWithFormat() }}</td>
+								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->sale_date }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('bulls.show', $bull->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
