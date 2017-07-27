@@ -81,9 +81,8 @@ class CalfFilterController extends Controller
             $calves->orderBy('calves_view.tag', 'asc');
     	}
 
-        $cow_list = Cow::whereHas('cattle', function ($q) {
-            $q->orderBy('tag', 'asc');
-        })->with('cattle')->get();
+        $cow_list = Cow::select('calves.cow_id', 'cattle.tag')->join('calves', 'cows.id', '=', 'calves.cow_id')
+            ->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
 
     	return view('calf_filters.index', [
     		'calves' => $calves->paginate(9),

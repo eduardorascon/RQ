@@ -18,7 +18,7 @@
 								<option value="">Todas las opciones</option>
 								@foreach ($cow_list as $cow)
 								{
-								<option value="{{ $cow->id }}">{{ $cow->cattle->tag }}</option>
+								<option value="{{ $cow->cow_id }}">{{ $cow->tag }}</option>
 								}
 								@endforeach
 							</select>
