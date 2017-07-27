@@ -15,7 +15,8 @@ left join bulls_sales bs on b.sale_id = bs.id;
 
 create view cows_view as
 select
-	co.id, c.tag, c.purchase_date, c.birth, c.is_alive, c.gender,
+	co.id, co.is_fertile, co.pregnancy_status, co.number_of_calves,
+	c.tag, c.purchase_date, c.birth, c.is_alive, c.gender,
 	br.id as breed_id, br.name as breed_name,
 	o.id as owner_id, o.name as owner_name,
 	p.id as paddock_id, p.name as paddock_name,
