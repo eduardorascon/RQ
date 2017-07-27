@@ -152,14 +152,11 @@
 						<tbody>
 						@foreach($calves as $calf)
 							<tr>
-								<td>{{ $calf->cattle->tag }}</td>
-								<td>{{ $calf->cattle->breed->name }}</td>
-								<td>{{ $calf->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $calf->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($calf->sale))
-									{{ $calf->sale->getSaleDateWithFormat() }}
-									@endif
+								<td>{{ $calf->tag }}</td>
+								<td>{{ $calf->breed_name }}</td>
+								<td>{{ $calf->getBirthWithFormat() }}</td>
+								<td>{{ $calf->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $calf->getSaleDateWithFormat() }}
 								</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
