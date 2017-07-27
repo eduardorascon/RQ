@@ -16,7 +16,7 @@ class CalfFilterController extends Controller
     public function index(Request $request)
     {
     	if($_GET == false)
-    		$calves = Calf::select('calves_view.*')->orderBy('calves_view.tag', 'asc');
+    		$calves = CalfView::select('calves_view.*')->orderBy('calves_view.tag', 'asc');
     	else
     	{
     		$calves = (new CalfView)->newQuery()->select('calves_view.*');
