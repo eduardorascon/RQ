@@ -5,6 +5,7 @@ select
 	o.id as owner_id, upper(o.name) as owner_name,
 	p.id as paddock_id, upper(p.name) as paddock_name,
 	bs.id as sale_id, bs.sale_date,
+	timestampdiff(month, c.birth, curdate()) as age_in_months,
 	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight
 from bulls b
 inner join cattle c on b.cattle_id = c.id
@@ -21,6 +22,7 @@ select
 	o.id as owner_id, upper(o.name) as owner_name,
 	p.id as paddock_id, upper(p.name) as paddock_name,
 	cs.id as sale_id, cs.sale_date,
+	timestampdiff(month, c.birth, curdate()) as age_in_months,
 	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight
 from cows co
 inner join cattle c on co.cattle_id = c.id
@@ -36,6 +38,7 @@ select
 	o.id as owner_id, upper(o.name) as owner_name,
 	p.id as paddock_id, upper(p.name) as paddock_name,
 	cs.id as sale_id, cs.sale_date,
+	timestampdiff(month, c.birth, curdate()) as age_in_months,
 	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight
 from calves ca
 inner join cattle c on ca.cattle_id = c.id
