@@ -132,6 +132,8 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -143,6 +145,8 @@
 								<td>{{ $bull->getBirthWithFormat() }}</td>
 								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $bull->getSaleDateWithFormat() }}</td>
+								<td>{{ $bull->current_weight }} kgs</td>
+								<td></td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('bulls.show', $bull->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

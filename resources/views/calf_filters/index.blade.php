@@ -146,6 +146,8 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -156,8 +158,9 @@
 								<td>{{ $calf->breed_name }}</td>
 								<td>{{ $calf->getBirthWithFormat() }}</td>
 								<td>{{ $calf->getPurchaseDateWithFormat() }}</td>
-								<td>{{ $calf->getSaleDateWithFormat() }}
-								</td>
+								<td>{{ $calf->getSaleDateWithFormat() }}</td>
+								<td>{{ $calf->current_weight }} kgs</td>
+								<td></td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
