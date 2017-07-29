@@ -48,6 +48,10 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'CowController@log_weight',
 		'as' => 'cow_log_weight']);
 
+	Route::post('/cows/{id}', [
+		'uses' => 'CowController@log_weight_delete',
+		'as' => 'cow_delete_weight']);
+
 	Route::post('/cows/{id}/log_vaccine', [
 		'uses' => 'CowController@log_vaccine',
 		'as' => 'cow_log_vaccine']);
@@ -79,12 +83,20 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'BullController@save_picture',
 		'as' => 'bull_save_picture']);
 
+	Route::get('/bulls/excel', [
+		'uses' => 'BullController@export_index',
+		'as' => 'bull_export_all']);
+
 	Route::resource('bulls', 'BullController');
 
 	//Calves
 	Route::post('/calfs/{id}/log_weight', [
 		'uses' => 'CalfController@log_weight',
 		'as' => 'calf_log_weight']);
+
+	Route::post('/calfs/{id}', [
+		'uses' => 'CalfController@log_weight_delete',
+		'as' => 'calf_delete_weight']);
 
 	Route::post('/calfs/{id}/log_vaccine', [
 		'uses' => 'CalfController@log_vaccine',

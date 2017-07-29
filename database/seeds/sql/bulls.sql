@@ -1,9 +1,9 @@
-INSERT INTO `bulls` (`id`, `cattle_id`) VALUES
-(27, 136),
-(28, 137),
-(29, 138),
-(30, 139),
-(31, 140),
-(32, 141),
-(33, 142),
-(34, 143);
+INSERT INTO `bulls` (`id`, `cattle_id`, `sale_id`) VALUES
+(27, 136, NULL),
+(28, 137, NULL),
+(29, 138, NULL),
+(30, 139, NULL),
+(31, 140, NULL),
+(32, 141, NULL),
+(33, 142, NULL),
+(34, 143, NULL);

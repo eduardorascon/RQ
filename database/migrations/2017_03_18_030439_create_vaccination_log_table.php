@@ -11,7 +11,6 @@ class CreateVaccinationLogTable extends Migration
     {
         Schema::create('vaccination_logs', function(Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->date('date');
             $table->string('comment');
             $table->integer('cattle_id')->unsigned();

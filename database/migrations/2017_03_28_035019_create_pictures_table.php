@@ -10,7 +10,6 @@ class CreatePicturesTable extends Migration
     {
         Schema::create('pictures', function(Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('filename');
             $table->string('comment');
             $table->integer('cattle_id')->unsigned();
