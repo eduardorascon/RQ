@@ -85,6 +85,13 @@ class CowFilterController extends Controller
                     $cows->whereNull('sale_id');
             }
 
+            //search by age
+            if($request->has('cow_age_in_months'))
+            {
+                if($request->cow_age_in_months > 0)
+                    $cows->where('age_in_months', '=' ,$request->cow_age_in_months);
+            }
+
             $cows->orderBy('cows_view.tag', 'asc');
         }
 

@@ -113,6 +113,13 @@
 						</div>
 
 						<div class="form-group">
+							<label class="col-sm-3 control-label" for="bull_age_in_months">Edad en meses</label>
+							<div class="col-sm-3">
+								<input type="number" name="bull_age_in_months" class="form-control" placeholder="Edad en meses" value="0">
+							</div>
+						</div>
+
+						<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
@@ -146,7 +153,7 @@
 								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $bull->getSaleDateWithFormat() }}</td>
 								<td>{{ $bull->current_weight }} kgs</td>
-								<td></td>
+								<td>{{ $bull->age_in_months }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('bulls.show', $bull->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
