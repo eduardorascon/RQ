@@ -13,11 +13,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class BullFilterController extends Controller
 {
-
     public function export(Request $request)
     {
-        Excel::create('Filtro', function($excel) use($request) {
-            $excel->sheet('Toros', function($sheet) use($request) {
+        Excel::create('Filtro de Toros', function($excel) use($request) {
+            $excel->sheet('Listado', function($sheet) use($request) {
                 $bulls = $this->get_data($request);
                 $sheet->fromArray($bulls->get());
             });

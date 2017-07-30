@@ -9,10 +9,34 @@ use App\Breed;
 use App\Owner;
 use App\Paddock;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CowFilterController extends Controller
 {
+    public function export(Request $request)
+    {
+        Excel::create('Filtro de Vacas', function($excel) use($request) {
+            $excel->sheet('Listado', function($sheet) use($request) {
+                $cows = $this->get_data($request);
+                $sheet->fromArray($cows->get());
+            });
+        })->export('xlsx');
+    }
+
     public function index(Request $request)
+    {
+        $cows = $this->get_data($request);
+
+        return view('cow_filters.index', [
+            'cows' => $cows->paginate(9),
+            'breed_list' => Breed::orderBy('name', 'asc')->get(),
+            'owner_list' => Owner::orderBy('name', 'asc')->get(),
+            'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
+            'qs' => $_GET
+        ]);
+    }
+
+    public function get_data(Request $request)
     {
         if($_GET == false)
             $cows = CowView::select('cows_view.*')->orderBy('cows_view.tag', 'asc');
@@ -95,11 +119,6 @@ class CowFilterController extends Controller
             $cows->orderBy('cows_view.tag', 'asc');
         }
 
-    	return view('cow_filters.index', [
-            'cows' => $cows->paginate(9),
-            'breed_list' => Breed::orderBy('name', 'asc')->get(),
-            'owner_list' => Owner::orderBy('name', 'asc')->get(),
-            'paddock_list' => Paddock::orderBy('name', 'asc')->get()
-        ]);
+    	return $cows;
     }
 }
