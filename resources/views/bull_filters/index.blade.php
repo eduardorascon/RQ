@@ -113,17 +113,22 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="bull_age_in_months">Edad en meses</label>
-							<div class="col-sm-3">
-								<input type="number" name="bull_age_in_months" class="form-control" placeholder="Edad en meses" value="0">
-							</div>
+						<label class="control-label col-sm-3" for="bull_age_in_months">Edad en meses</label>
+						<div class="col-sm-4">
+							<input type="number" name="bull_age_in_months" class="form-control" placeholder="0" value="" />
+						</div>
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
+						<div class="col-sm-offset-3 col-sm-3">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
 							</button>
+						</div>
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-success pull-right" href="{{ route('bull_filters.export', $qs) }}">
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar filtro
+            				</a>
 						</div>
 						</div>
 					</form>
