@@ -10,10 +10,38 @@ use App\Owner;
 use App\Paddock;
 use App\Cow;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CalfFilterController extends Controller
 {
+    public function export(Request $request)
+    {
+        Excel::create('Filtro de Becerros', function($excel) use($request) {
+            $excel->sheet('Listado', function($sheet) use($request) {
+                $calves = $this->get_data($request);
+                $sheet->fromArray($calves->get());
+            });
+        })->export('xlsx');
+    }
+
     public function index(Request $request)
+    {
+        $calves = $this->get_data($request);
+
+        $cow_list = Cow::select('calves.cow_id', 'cattle.tag')->join('calves', 'cows.id', '=', 'calves.cow_id')
+            ->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
+
+        return view('calf_filters.index', [
+            'calves' => $calves->paginate(9),
+            'cow_list' => $cow_list,
+            'breed_list' => Breed::orderBy('name', 'asc')->get(),
+            'owner_list' => Owner::orderBy('name', 'asc')->get(),
+            'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
+            'qs' => $_GET
+        ]);
+    }
+
+    public function get_data(Request $request)
     {
     	if($_GET == false)
     		$calves = CalfView::select('calves_view.*')->orderBy('calves_view.tag', 'asc');
@@ -88,15 +116,6 @@ class CalfFilterController extends Controller
             $calves->orderBy('calves_view.tag', 'asc');
     	}
 
-        $cow_list = Cow::select('calves.cow_id', 'cattle.tag')->join('calves', 'cows.id', '=', 'calves.cow_id')
-            ->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
-
-    	return view('calf_filters.index', [
-    		'calves' => $calves->paginate(9),
-            'cow_list' => $cow_list,
-    		'breed_list' => Breed::orderBy('name', 'asc')->get(),
-            'owner_list' => Owner::orderBy('name', 'asc')->get(),
-            'paddock_list' => Paddock::orderBy('name', 'asc')->get()
-    	]);
+        return $calves;
     }
 }

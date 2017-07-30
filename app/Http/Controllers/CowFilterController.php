@@ -44,18 +44,6 @@ class CowFilterController extends Controller
         {
             $cows = (new CowView)->newQuery()->select('cows_view.*');
 
-            //search by cow fertility
-            if($request->has('cow_fertility'))
-                $cows->where('cows_view.is_fertile', $request->cow_fertility);
-
-            //search by cow pregnancy status
-            if($request->has('cow_pregnancy_status'))
-                $cows->where('cows_view.pregnancy_status', $request->cow_pregnancy_status);
-
-            //search by number of calves
-            if($request->has('cow_number_of_calves'))
-                $cows->where('cows_view.number_of_calves', $request->cow_number_of_calves);
-
             //search by cattle tag
             if($request->has('cattle_tag'))
                 $cows->where('cows_view.tag', $request->cattle_tag)->orWhere('cows_view.tag', 'like', '%' . $request->cattle_tag . '%');
@@ -115,6 +103,18 @@ class CowFilterController extends Controller
                 if($request->cow_age_in_months > 0)
                     $cows->where('age_in_months', '=' ,$request->cow_age_in_months);
             }
+
+            //search by cow fertility
+            if($request->has('cow_fertility'))
+                $cows->where('cows_view.is_fertile', $request->cow_fertility);
+
+            //search by cow pregnancy status
+            if($request->has('cow_pregnancy_status'))
+                $cows->where('cows_view.pregnancy_status', $request->cow_pregnancy_status);
+
+            //search by number of calves
+            if($request->has('cow_number_of_calves'))
+                $cows->where('cows_view.number_of_calves', $request->cow_number_of_calves);
 
             $cows->orderBy('cows_view.tag', 'asc');
         }

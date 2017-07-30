@@ -134,10 +134,15 @@
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
+						<div class="col-sm-offset-3 col-sm-3">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
 							</button>
+						</div>
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-success pull-right" href="{{ route('calf_filters.export', $qs) }}">
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar filtro
+            				</a>
 						</div>
 						</div>
 					</form>
