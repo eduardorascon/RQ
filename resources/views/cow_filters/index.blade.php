@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-10">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>VACAS, filtros </strong>
@@ -93,6 +93,26 @@
 						</div>
 
 						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta viva?</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cattle_is_alive">
+									<option value="">Todas las opciones</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<label class="control-label col-sm-3" for="cow_currently_sold">¿Fue vendida?</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cow_currently_sold">
+									<option value="">Todas las opciones</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-sm-3" for="cow_fertility">Fertilidad</label>
 							<div class="col-sm-3">
 								<select class="form-control" name="cow_fertility">
@@ -114,47 +134,30 @@
 						</div>
 
 						<div class="form-group">
-							
-							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta viva?</label>
-							<div class="col-sm-3">
-								<select class="form-control" name="cattle_is_alive">
-									<option value="">Todas las opciones</option>
-									<option value="Si">Si</option>
-									<option value="No">No</option>
-								</select>
-							</div>
-
-							<label class="control-label col-sm-3" for="cow_currently_sold">¿Fue vendida?</label>
-							<div class="col-sm-3">
-								<select class="form-control" name="cow_currently_sold">
-									<option value="">Todas las opciones</option>
-									<option value="Si">Si</option>
-									<option value="No">No</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
-						
 							<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
 							<div class="col-sm-3">
-								<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
-							</div>		
-							
-							
-							<lavel class="col-sm-3 control-label" for="cow_age_months">Meses de edad</lavel>
-							<div class="col-sm-3">
-									<input type="number" name="cow_age_months" class="form-control" placeholder="Meses de edad">
+								<input type="number" name="cow_number_of_calves" class="form-control" value="" placeholder="0">
 							</div>
-							
+
+							<label class="col-sm-3 control-label" for="cow_age_in_months">Edad en meses</label>
+							<div class="col-sm-3">
+								<input type="number" name="cow_age_in_months" class="form-control" value="" placeholder="0" >
+							</div>
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
+						<div class="col-sm-offset-3 col-sm-3">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
 							</button>
 						</div>
+						@if($cows->count() > 0)
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-success pull-right" href="{{ route('cow_filters.export', $qs) }}">
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar
+            				</a>
+						</div>
+						@endif
 						</div>
 					</form>
 				</div>
@@ -169,24 +172,23 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
 								<th>Meses de edad</th>
+								<th>Meses sin parir</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($cows as $cow)
 							<tr>
-								<td>{{ $cow->cattle->tag }}</td>
-								<td>{{ $cow->cattle->breed->name }}</td>
-								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>not implemented</td>
-								<td>{{ $cow->cattle->currentMonths() }}</td>
-								<td>
-									@if(count($cow->sale))
-									{{ $cow->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
+								<td>{{ $cow->tag }}</td>
+								<td>{{ $cow->breed_name }}</td>
+								<td>{{ $cow->getBirthWithFormat() }}</td>
+								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $cow->getSaleDateWithFormat() }}</td>
+								<td>{{ $cow->current_weight }} kgs</td>
+								<td>{{ $cow->age_in_months }}</td>
+								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

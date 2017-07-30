@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-10">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">Registro de venta</div>
 				@if (count($errors) > 0)

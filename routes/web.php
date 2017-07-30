@@ -33,14 +33,29 @@ Route::group(['middleware' => ['web']], function() {
 		'as' => 'cow_filters.index'
 	]);
 
+	Route::get('/cow_filters/excel', [
+		'uses' => 'CowFilterController@export',
+		'as' => 'cow_filters.export'
+	]);
+
 	Route::get('bull_filters', [
 		'uses' => 'BullFilterController@index',
 		'as' => 'bull_filters.index'
 	]);
 
+	Route::get('/bull_filters/excel', [
+		'uses' => 'BullFilterController@export',
+		'as' => 'bull_filters.export'
+	]);
+
 	Route::get('calf_filters', [
 		'uses' => 'CalfFilterController@index',
 		'as' => 'calf_filters.index'
+	]);
+
+	Route::get('/calf_filters/excel', [
+		'uses' => 'CalfFilterController@export',
+		'as' => 'calf_filters.export'
 	]);
 
 	//Cows

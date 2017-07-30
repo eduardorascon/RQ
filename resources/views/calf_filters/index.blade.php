@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-10">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>BECERROS, filtros</strong>
@@ -18,7 +18,7 @@
 								<option value="">Todas las opciones</option>
 								@foreach ($cow_list as $cow)
 								{
-								<option value="{{ $cow->id }}">{{ $cow->cattle->tag }}</option>
+								<option value="{{ $cow->cow_id }}">{{ $cow->tag }}</option>
 								}
 								@endforeach
 							</select>
@@ -127,11 +127,25 @@
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
+							<label class="col-sm-3 control-label" for="calf_age_in_months">Edad en meses</label>
+							<div class="col-sm-3">
+								<input type="number" name="calf_age_in_months" class="form-control" value="" placeholder="0" />
+							</div>
+						</div>
+
+						<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-3">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
 							</button>
 						</div>
+						@if($calves->count() > 0)
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-success pull-right" href="{{ route('calf_filters.export', $qs) }}">
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar
+            				</a>
+						</div>
+						@endif
 						</div>
 					</form>
 				</div>
@@ -146,21 +160,21 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($calves as $calf)
 							<tr>
-								<td>{{ $calf->cattle->tag }}</td>
-								<td>{{ $calf->cattle->breed->name }}</td>
-								<td>{{ $calf->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $calf->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($calf->sale))
-									{{ $calf->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
+								<td>{{ $calf->tag }}</td>
+								<td>{{ $calf->breed_name }}</td>
+								<td>{{ $calf->getBirthWithFormat() }}</td>
+								<td>{{ $calf->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $calf->getSaleDateWithFormat() }}</td>
+								<td>{{ $calf->current_weight }} kgs</td>
+								<td>{{ $calf->age_in_months }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

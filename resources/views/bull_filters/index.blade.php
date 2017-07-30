@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-10">
+		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>TOROS, filtros</strong>
@@ -113,11 +113,25 @@
 						</div>
 
 						<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
+						<label class="control-label col-sm-3" for="bull_age_in_months">Edad en meses</label>
+						<div class="col-sm-4">
+							<input type="number" name="bull_age_in_months" class="form-control" placeholder="0" value="" />
+						</div>
+						</div>
+
+						<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-3">
 							<button type="submit" class="btn btn-info">
 								<span class="glyphicon glyphicon-search"></span> Buscar
 							</button>
 						</div>
+						@if($bulls->count() > 0)
+						<div class="col-sm-offset-3 col-sm-3">
+							<a class="btn btn-success pull-right" href="{{ route('bull_filters.export', $qs) }}">
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar
+            				</a>
+						</div>
+						@endif
 						</div>
 					</form>
 				</div>
@@ -132,21 +146,21 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Peso actual</th>
+								<th>Meses de edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($bulls as $bull)
 							<tr>
-								<td>{{ $bull->cattle->tag }}</td>
-								<td>{{ $bull->cattle->breed->name }}</td>
-								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($bull->sale))
-									{{ $bull->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
+								<td>{{ $bull->tag }}</td>
+								<td>{{ $bull->breed_name }}</td>
+								<td>{{ $bull->getBirthWithFormat() }}</td>
+								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->getSaleDateWithFormat() }}</td>
+								<td>{{ $bull->current_weight }} kgs</td>
+								<td>{{ $bull->age_in_months }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('bulls.show', $bull->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

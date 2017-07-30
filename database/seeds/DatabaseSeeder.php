@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BullsTableSeeder::class);
         //logs
         $this->call(WeightLogsTableSeeder::class);
+        //views
+        $this->call(TableViewsSeeder::class);
     }
 }
