@@ -98,6 +98,13 @@ class BullFilterController extends Controller
                     $bulls->whereNull('sale_id');
             }
 
+            //search by age
+            if($request->has('bull_age_in_months'))
+            {
+                if($request->bull_age_in_months > 0)
+                    $bulls->where('age_in_months', '=' ,$request->bull_age_in_months);
+            }
+
             $bulls->orderBy('bulls_view.tag', 'asc');
         }
 

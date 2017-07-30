@@ -134,10 +134,15 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
-						<div class="col-sm-3">
-							<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
-						</div>
+							<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
+							<div class="col-sm-3">
+								<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
+							</div>
+
+							<label class="col-sm-3 control-label" for="cow_age_in_months">Edad en meses</label>
+							<div class="col-sm-3">
+								<input type="number" name="cow_age_in_months" class="form-control" placeholder="Edad en meses" value="0">
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -174,7 +179,7 @@
 								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
-								<td></td>
+								<td>{{ $cow->age_in_months }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
