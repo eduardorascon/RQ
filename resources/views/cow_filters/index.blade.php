@@ -93,6 +93,26 @@
 						</div>
 
 						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta viva?</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cattle_is_alive">
+									<option value="">Todas las opciones</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<label class="control-label col-sm-3" for="cow_currently_sold">¿Fue vendida?</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cow_currently_sold">
+									<option value="">Todas las opciones</option>
+									<option value="Si">Si</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-sm-3" for="cow_fertility">Fertilidad</label>
 							<div class="col-sm-3">
 								<select class="form-control" name="cow_fertility">
@@ -114,34 +134,14 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta viva?</label>
-							<div class="col-sm-3">
-								<select class="form-control" name="cattle_is_alive">
-									<option value="">Todas las opciones</option>
-									<option value="Si">Si</option>
-									<option value="No">No</option>
-								</select>
-							</div>
-
-							<label class="control-label col-sm-3" for="cow_currently_sold">¿Fue vendida?</label>
-							<div class="col-sm-3">
-								<select class="form-control" name="cow_currently_sold">
-									<option value="">Todas las opciones</option>
-									<option value="Si">Si</option>
-									<option value="No">No</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
 							<label class="col-sm-3 control-label" for="cow_number_of_calves">Número de becerros</label>
 							<div class="col-sm-3">
-								<input type="number" name="cow_number_of_calves" class="form-control" placeholder="Numero de becerros" value="0">
+								<input type="number" name="cow_number_of_calves" class="form-control" value="" placeholder="0">
 							</div>
 
 							<label class="col-sm-3 control-label" for="cow_age_in_months">Edad en meses</label>
 							<div class="col-sm-3">
-								<input type="number" name="cow_age_in_months" class="form-control" placeholder="Edad en meses" value="0">
+								<input type="number" name="cow_age_in_months" class="form-control" value="" placeholder="0" >
 							</div>
 						</div>
 

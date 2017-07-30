@@ -129,7 +129,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="calf_age_in_months">Edad en meses</label>
 							<div class="col-sm-3">
-								<input type="number" name="calf_age_in_months" class="form-control" placeholder="Edad en meses" value="0">
+								<input type="number" name="calf_age_in_months" class="form-control" value="" placeholder="0" />
 							</div>
 						</div>
 
