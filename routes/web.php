@@ -38,6 +38,10 @@ Route::group(['middleware' => ['web']], function() {
 		'as' => 'bull_filters.index'
 	]);
 
+	Route::get('/bull_filters/excel', [
+		'uses' => 'BullFilterController@export',
+		'as' => 'bull_filters.export']);
+
 	Route::get('calf_filters', [
 		'uses' => 'CalfFilterController@index',
 		'as' => 'calf_filters.index'

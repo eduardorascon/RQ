@@ -9,16 +9,41 @@ use App\Breed;
 use App\Owner;
 use App\Paddock;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BullFilterController extends Controller
 {
+
+    public function export(Request $request)
+    {
+        Excel::create('Filtro', function($excel) use($request) {
+            $excel->sheet('Toros', function($sheet) use($request) {
+                $bulls = $this->get_data($request);
+                $sheet->fromArray($bulls->get());
+            });
+        })->export('xlsx');
+    }
+
     public function index(Request $request)
+    {
+        $bulls = $this->get_data($request);
+
+    	return view('bull_filters.index', [
+    		'bulls' => $bulls->paginate(9),
+    		'breed_list' => Breed::orderBy('name', 'asc')->get(),
+            'owner_list' => Owner::orderBy('name', 'asc')->get(),
+            'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
+            'qs' => $_GET
+    	]);
+    }
+
+    private function get_data(Request $request)
     {
         if($_GET == false)
             $bulls = BullView::select('bulls_view.*')->orderBy('bulls_view.tag', 'asc');
         else
         {
-    		$bulls = (new BullView)->newQuery()->select('bulls_view.*');
+            $bulls = (new BullView)->newQuery()->select('bulls_view.*');
 
             //search by cattle tag
             if($request->has('cattle_tag'))
@@ -76,11 +101,6 @@ class BullFilterController extends Controller
             $bulls->orderBy('bulls_view.tag', 'asc');
         }
 
-    	return view('bull_filters.index', [
-    		'bulls' => $bulls->paginate(9),
-    		'breed_list' => Breed::orderBy('name', 'asc')->get(),
-            'owner_list' => Owner::orderBy('name', 'asc')->get(),
-            'paddock_list' => Paddock::orderBy('name', 'asc')->get()
-    	]);
+        return $bulls;
     }
 }
