@@ -167,6 +167,7 @@
 								<th>Fecha de venta</th>
 								<th>Peso actual</th>
 								<th>Meses de edad</th>
+								<th>Meses sin parir</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -180,6 +181,7 @@
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
 								<td>{{ $cow->age_in_months }}</td>
+								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

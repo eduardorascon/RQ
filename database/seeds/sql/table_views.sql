@@ -23,7 +23,15 @@ select
 	p.id as paddock_id, upper(p.name) as paddock_name,
 	cs.id as sale_id, cs.sale_date,
 	timestampdiff(month, c.birth, curdate()) as age_in_months,
-	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight
+	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight,
+	timestampdiff(month,
+	        coalesce((select birth
+              from calves
+                left join cattle
+                    on calves.cattle_id = cattle.id
+              where cow_id = co.id
+              order by calves.id desc limit 1)),
+            curdate()) as months_since_last_birth
 from cows co
 inner join cattle c on co.cattle_id = c.id
 left join breeds br on c.breed_id = br.id
