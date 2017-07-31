@@ -13,11 +13,28 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CowFilterController extends Controller
 {
+    private $ALL_COLUMNS;
+    private $EXPORT_COLUMNS;
+    private $columns;
+
+    public function __construct()
+    {
+        $this->ALL_COLUMNS = ['cows_view.*'];
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_fertile as ¿ES FERTIL?', 'pregnancy_status as ESTADO DE GESTACION', 'is_alive as ¿ESTA VIVA?', 'current_weight as PESO ACTUAL',
+        'number_of_calves as NUMERO DE BECERROS', 'months_since_last_birth as MESES DESDE ULTIMO NACIMIENTO', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+
+        $this->columns = $this->ALL_COLUMNS;
+    }
+
     public function export(Request $request)
     {
-        Excel::create('Filtro de Vacas', function($excel) use($request) {
-            $excel->sheet('Listado', function($sheet) use($request) {
-                $cows = $this->get_data($request);
+        $this->columns = $this->EXPORT_COLUMNS;
+        $cows = $this->get_data($request);
+
+        Excel::create('Filtro de Vacas', function($excel) use($cows) {
+            $excel->sheet('Listado', function($sheet) use($cows) {
                 $sheet->fromArray($cows->get());
             });
         })->export('xlsx');
@@ -25,6 +42,7 @@ class CowFilterController extends Controller
 
     public function index(Request $request)
     {
+        $this->columns = $this->ALL_COLUMNS;
         $cows = $this->get_data($request);
 
         return view('cow_filters.index', [
@@ -39,10 +57,10 @@ class CowFilterController extends Controller
     public function get_data(Request $request)
     {
         if($_GET == false)
-            $cows = CowView::select('cows_view.*')->orderBy('cows_view.tag', 'asc');
+            $cows = CowView::select($this->columns)->orderBy('cows_view.tag', 'asc');
         else
         {
-            $cows = (new CowView)->newQuery()->select('cows_view.*');
+            $cows = (new CowView)->newQuery()->select($this->columns);
 
             //search by cattle tag
             if($request->has('cattle_tag'))

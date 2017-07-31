@@ -14,11 +14,27 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CalfFilterController extends Controller
 {
+    private $ALL_COLUMNS;
+    private $EXPORT_COLUMNS;
+    private $columns;
+
+    public function __construct()
+    {
+        $this->ALL_COLUMNS = ['calves_view.*'];
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+
+        $this->columns = $this->ALL_COLUMNS;
+    }
+
     public function export(Request $request)
     {
-        Excel::create('Filtro de Becerros', function($excel) use($request) {
-            $excel->sheet('Listado', function($sheet) use($request) {
-                $calves = $this->get_data($request);
+        $this->columns = $this->EXPORT_COLUMNS;
+        $calves = $this->get_data($request);
+
+        Excel::create('Filtro de Becerros', function($excel) use($calves) {
+            $excel->sheet('Listado', function($sheet) use($calves) {
                 $sheet->fromArray($calves->get());
             });
         })->export('xlsx');
@@ -26,6 +42,7 @@ class CalfFilterController extends Controller
 
     public function index(Request $request)
     {
+        $this->columns = $this->ALL_COLUMNS;
         $calves = $this->get_data($request);
 
         $cow_list = Cow::select('calves.cow_id', 'cattle.tag')->join('calves', 'cows.id', '=', 'calves.cow_id')
@@ -44,10 +61,10 @@ class CalfFilterController extends Controller
     public function get_data(Request $request)
     {
     	if($_GET == false)
-    		$calves = CalfView::select('calves_view.*')->orderBy('calves_view.tag', 'asc');
+    		$calves = CalfView::select($this->columns)->orderBy('calves_view.tag', 'asc');
     	else
     	{
-    		$calves = (new CalfView)->newQuery()->select('calves_view.*');
+    		$calves = (new CalfView)->newQuery()->select($this->columns);
 
             //search by calf mother
             if($request->has('cow_id'))

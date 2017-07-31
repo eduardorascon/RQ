@@ -13,25 +13,24 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class BullFilterController extends Controller
 {
-    private $TODOS;
-    private $FILTRO;
+    private $ALL_COLUMNS;
+    private $EXPORT_COLUMNS;
     private $columns;
 
     public function __construct()
     {
-        $this->TODOS = ['bulls_view.*'];
-        $this->FILTRO = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
-        'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        $this->ALL_COLUMNS = ['bulls_view.*'];
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_alive as ¿ESTA VIVO?', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
         'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
 
-        $this->columns = $this->TODOS;
+        $this->columns = $this->ALL_COLUMNS;
     }
 
     public function export(Request $request)
     {
-        $this->columns = $this->FILTRO;
+        $this->columns = $this->EXPORT_COLUMNS;
         $bulls = $this->get_data($request);
-        //dd($bulls);
 
         Excel::create('Filtro de Toros', function($excel) use($bulls) {
             $excel->sheet('Listado', function($sheet) use($bulls) {
@@ -42,9 +41,8 @@ class BullFilterController extends Controller
 
     public function index(Request $request)
     {
-        $this->columns = $this->TODOS;
+        $this->columns = $this->ALL_COLUMNS;
         $bulls = $this->get_data($request);
-        //dd($bulls);
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(9),
