@@ -21,7 +21,7 @@ class CalfFilterController extends Controller
     public function __construct()
     {
         $this->ALL_COLUMNS = ['calves_view.*'];
-        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'mother_tag as MADRE', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
         'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
         'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
 
