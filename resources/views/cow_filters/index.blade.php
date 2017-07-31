@@ -154,7 +154,7 @@
 						@if($cows->count() > 0)
 						<div class="col-sm-offset-3 col-sm-3">
 							<a class="btn btn-success pull-right" href="{{ route('cow_filters.export', $qs) }}">
-            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar {{ $cows->total() }} registro(s)
             				</a>
 						</div>
 						@endif
