@@ -13,19 +13,38 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class BullFilterController extends Controller
 {
+    private $TODOS;
+    private $FILTRO;
+    private $columns;
+
+    public function __construct()
+    {
+        $this->TODOS = ['bulls_view.*'];
+        $this->FILTRO = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+
+        $this->columns = $this->TODOS;
+    }
+
     public function export(Request $request)
     {
-        Excel::create('Filtro de Toros', function($excel) use($request) {
-            $excel->sheet('Listado', function($sheet) use($request) {
-                $bulls = $this->get_data($request);
-                $sheet->fromArray($bulls->get());
+        $this->columns = $this->FILTRO;
+        $bulls = $this->get_data($request);
+        //dd($bulls);
+
+        Excel::create('Filtro de Toros', function($excel) use($bulls) {
+            $excel->sheet('Listado', function($sheet) use($bulls) {
+                $sheet->fromModel($bulls->get());
             });
         })->export('xlsx');
     }
 
     public function index(Request $request)
     {
+        $this->columns = $this->TODOS;
         $bulls = $this->get_data($request);
+        //dd($bulls);
 
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(9),
@@ -39,10 +58,10 @@ class BullFilterController extends Controller
     private function get_data(Request $request)
     {
         if($_GET == false)
-            $bulls = BullView::select('bulls_view.*')->orderBy('bulls_view.tag', 'asc');
+            $bulls = BullView::select($this->columns)->orderBy('bulls_view.tag', 'asc');
         else
         {
-            $bulls = (new BullView)->newQuery()->select('bulls_view.*');
+            $bulls = (new BullView)->newQuery()->select($this->columns);
 
             //search by cattle tag
             if($request->has('cattle_tag'))
