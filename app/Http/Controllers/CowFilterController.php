@@ -90,6 +90,14 @@ class CowFilterController extends Controller
                 $cows->whereBetween('cows_view.sale_date', array($sold_since, $sold_until));
             }
 
+            //search by cattle weight
+            if($request->has('cow_weight_from') && $request->has('cow_weight_to'))
+            {
+                $weight_from = $request->cow_weight_from;
+                $weight_to = $request->cow_weight_to;
+                $cows->whereBetween('cows_view.current_weight', array($weight_from, $weight_to));
+            }
+
             //search by cattle breed
             if($request->has('cattle_breed'))
                 $cows->where('cows_view.breed_id', $request->cattle_breed);
