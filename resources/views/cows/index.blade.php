@@ -22,8 +22,9 @@
 								<th>Fecha de venta</th>
 								<th>Peso actual</th>
 								<th>Meses de edad</th>
+								<th>Estado</th>
 								<th>Meses sin parir</th>
-								<th>Acciones</th>
+								<th class="col-md-2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -36,6 +37,7 @@
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
 								<td>{{ $cow->age_in_months }}</td>
+								<td>{{ $cow->pregnancy_status }}</td>
 								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
