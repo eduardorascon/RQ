@@ -67,6 +67,18 @@
 						</div>
 
 						<div class="form-group">
+							<label class="control-label col-sm-3" for="bull_weight_from">Peso (desde)</label>
+							<div class="col-sm-4">
+								<input type="number" name="bull_weight_from" class="form-control" placeholder="0" />
+							</div>
+
+							<label class="control-label col-sm-1" for="bull_weight_to">(hasta)</label>
+							<div class="col-sm-4">
+								<input type="number" name="bull_weight_to" class="form-control" placeholder="0" />
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_owner">Dueño</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="cattle_owner">

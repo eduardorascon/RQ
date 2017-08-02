@@ -89,6 +89,14 @@ class BullFilterController extends Controller
                 $bulls->whereBetween('bulls_view.sale_date', array($sold_since, $sold_until));
             }
 
+            //search by cattle weight
+            if($request->has('bull_weight_from') && $request->has('bull_weight_to'))
+            {
+                $weight_from = $request->bull_weight_from;
+                $weight_to = $request->bull_weight_to;
+                $bulls->whereBetween('bulls_view.current_weight', array($weight_from, $weight_to));
+            }
+
             //search by cattle breed
             if($request->has('cattle_breed'))
                 $bulls->where('bulls_view.breed_id', $request->cattle_breed);
