@@ -71,7 +71,8 @@ class CowFilterController extends Controller
             {
                 $birth_since = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_since);
                 $birth_until = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_until);
-                $cows->whereBetween('cows_view.birth', array($birth_since, $birth_until));
+                $cows->whereBetween('cows_view.birth', array($birth_since, $birth_until))->
+                    orWhereBetween('cows_view.birth', array($birth_until, $birth_since));
             }
 
             //search by cattle purchase date
@@ -79,7 +80,8 @@ class CowFilterController extends Controller
             {
                 $purchase_since = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_since);
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
-                $cows->whereBetween('cows_view.purchase_date', array($purchase_since, $purchase_until));
+                $cows->whereBetween('cows_view.purchase_date', array($purchase_since, $purchase_until))->
+                    orWhereBetween('cows_view.purchase_date', array($purchase_until, $purchase_since));
             }
 
             //search by cattle sale date
@@ -87,7 +89,8 @@ class CowFilterController extends Controller
             {
                 $sold_since = Carbon::createFromFormat('d/m/Y', $request->cow_sale_date_since);
                 $sold_until = Carbon::createFromFormat('d/m/Y', $request->cow_sale_date_until);
-                $cows->whereBetween('cows_view.sale_date', array($sold_since, $sold_until));
+                $cows->whereBetween('cows_view.sale_date', array($sold_since, $sold_until))->
+                    orWhereBetween('cows_view.sale_date', array($sold_until, $sold_since));
             }
 
             //search by cattle weight
@@ -95,7 +98,8 @@ class CowFilterController extends Controller
             {
                 $weight_from = $request->cow_weight_from;
                 $weight_to = $request->cow_weight_to;
-                $cows->whereBetween('cows_view.current_weight', array($weight_from, $weight_to));
+                $cows->whereBetween('cows_view.current_weight', array($weight_from, $weight_to))->
+                    orWhereBetween('cows_view.current_weight', array($weight_to, $weight_from));
             }
 
             //search by cattle breed
