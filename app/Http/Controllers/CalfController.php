@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
 use App\Calf;
+use App\CalfView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -24,10 +25,8 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = Calf::whereHas('cattle', function ($q) {
-                $q->where('is_alive', '=', 'Si');
-            })->paginate(12);
-        $total_calves = $calfs->count();
+        $calfs = CalfView::orderBy('calves_view.tag', 'asc')->paginate(9);
+        $total_calves = CalfView::count();
 
         return view('calfs.index', [
             'calfs' => $calfs,

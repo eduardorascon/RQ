@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
 use App\Bull;
+use App\BullView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -23,8 +24,9 @@ class BullController extends Controller
 {
     public function index()
     {
-        $bulls = Bull::paginate(12);
-        $total_bulls = Bull::count();
+        $bulls = BullView::orderBy('bulls_view.tag', 'asc')->paginate(9);
+        $total_bulls = BullView::count();
+
         return view('bulls.index', [
             'bulls' => $bulls,
             'total_bulls' => $total_bulls
