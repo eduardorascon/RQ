@@ -114,8 +114,16 @@ class BullController extends Controller
 
     public function destroy($id)
     {
-        $bull = Bull::findOrFail($id);
-        $bull->delete();
+        try
+        {
+            $bull = Bull::findOrFail($id);
+            $bull->delete();
+        }
+        catch(\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+
         return redirect()->route('bulls.index');
     }
 

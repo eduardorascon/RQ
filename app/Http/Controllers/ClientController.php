@@ -56,9 +56,17 @@ class ClientController extends Controller
     	return redirect()->route('clients.index');
     }
 
-    public function destroy($id){
-    	$client = Client::findOrFail($id);
-    	$client->delete();
+    public function destroy($id)
+    {
+        try{
+            $client = Client::findOrFail($id);
+            $client->delete();
+        }
+        catch(\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+
     	return redirect()->route('clients.index');
     }
 }
