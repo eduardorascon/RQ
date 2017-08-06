@@ -51,8 +51,16 @@ class OwnerController extends Controller
 
     public function destroy($id)
     {
-        $owner = Owner::findOrFail($id);
-        $owner->delete();
+        try
+        {
+            $owner = Owner::findOrFail($id);
+            $owner->delete();
+        }
+        catch (Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+        
         return redirect()->route('owners.index');
     }
 }

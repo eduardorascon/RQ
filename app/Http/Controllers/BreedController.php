@@ -43,7 +43,8 @@ class BreedController extends Controller
     	return redirect()->route('breeds.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try
         {
             $breed = Breed::findOrFail($id);

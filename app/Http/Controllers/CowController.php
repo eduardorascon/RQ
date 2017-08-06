@@ -126,8 +126,16 @@ class CowController extends Controller
 
     public function destroy($id)
     {
-        $cow = Cow::findOrFail($id);
-        $cow->delete();
+        try
+        {
+            $cow = Cow::findOrFail($id);
+            $cow->delete();
+        }
+        catch (\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+        
         return redirect()->route('cows.index');
     }
 
