@@ -53,8 +53,16 @@ class PaddockController extends Controller
 
     public function destroy($id)
     {
-        $paddock = Paddock::findOrFail($id);
-        $paddock->delete();
+        try
+        {
+            $paddock = Paddock::findOrFail($id);
+            $paddock->delete();
+        }
+        catch (Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+        
         return redirect()->route('paddocks.index');
     }
 }

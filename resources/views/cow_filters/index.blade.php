@@ -67,6 +67,18 @@
 						</div>
 
 						<div class="form-group">
+							<label class="control-label col-sm-3" for="cow_weight_from">Peso (desde)</label>
+							<div class="col-sm-4">
+								<input type="number" name="cow_weight_from" class="form-control" placeholder="0" />
+							</div>
+
+							<label class="control-label col-sm-1" for="cow_weight_to">(hasta)</label>
+							<div class="col-sm-4">
+								<input type="number" name="cow_weight_to" class="form-control" placeholder="0" />
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_owner">Dueño</label>
 							<div class="col-sm-4">
 								<select class="form-control" name="cattle_owner">
@@ -154,7 +166,7 @@
 						@if($cows->count() > 0)
 						<div class="col-sm-offset-3 col-sm-3">
 							<a class="btn btn-success pull-right" href="{{ route('cow_filters.export', $qs) }}">
-            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar
+            					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar {{ $cows->total() }} registro(s)
             				</a>
 						</div>
 						@endif
@@ -174,8 +186,9 @@
 								<th>Fecha de venta</th>
 								<th>Peso actual</th>
 								<th>Meses de edad</th>
+								<th>Estado</th>
 								<th>Meses sin parir</th>
-								<th>Acciones</th>
+								<th class="col-sm-2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -187,6 +200,7 @@
 								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
+								<td>{{ $cow->pregnancy_status }}</td>
 								<td>{{ $cow->age_in_months }}</td>
 								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>

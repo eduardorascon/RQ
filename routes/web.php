@@ -98,10 +98,6 @@ Route::group(['middleware' => ['web']], function() {
 		'uses' => 'BullController@save_picture',
 		'as' => 'bull_save_picture']);
 
-	Route::get('/bulls/excel', [
-		'uses' => 'BullController@export_index',
-		'as' => 'bull_export_all']);
-
 	Route::resource('bulls', 'BullController');
 
 	//Calves

@@ -28,21 +28,13 @@
 						<tbody>
 						@foreach($bulls as $bull)
 							<tr>
-								<td>{{ $bull->cattle->tag }}</td>
-								<td>{{ $bull->cattle->breed->name }}</td>
-								<td>{{ $bull->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $bull->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($bull->sale))
-									{{ $bull->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
-								<td>
-									{{ $bull->cattle->currentWeight() }}
-								</td>
-								<td>
-									{{ $bull->cattle->currentMonths() }}
-								</td>
+								<td>{{ $bull->tag }}</td>
+								<td>{{ $bull->breed_name }}</td>
+								<td>{{ $bull->getBirthWithFormat() }}</td>
+								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->getSaleDateWithFormat() }}</td>
+								<td>{{ $bull->current_weight }} kgs</td>
+								<td>{{ $bull->age_in_months }}</td>
 								<td>
 									<form class="" action="{{ route('bulls.destroy', $bull->id) }}" method="post">
 	                					<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('bulls.show', $bull->id) }}">

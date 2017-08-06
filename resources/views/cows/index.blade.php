@@ -22,27 +22,23 @@
 								<th>Fecha de venta</th>
 								<th>Peso actual</th>
 								<th>Meses de edad</th>
-								<th>Acciones</th>
+								<th>Estado</th>
+								<th>Meses sin parir</th>
+								<th class="col-md-2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($cows as $cow)
 							<tr>
-								<td>{{ $cow->cattle->tag }}</td>
-								<td>{{ $cow->cattle->breed->name }}</td>
-								<td>{{ $cow->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $cow->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($cow->sale))
-									{{ $cow->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
-								<td>
-									{{ $cow->cattle->currentWeight() }}
-								</td>
-								<td>
-									{{ $cow->cattle->currentMonths() }}
-								</td>
+								<td>{{ $cow->tag }}</td>
+								<td>{{ $cow->breed_name }}</td>
+								<td>{{ $cow->getBirthWithFormat() }}</td>
+								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $cow->getSaleDateWithFormat() }}</td>
+								<td>{{ $cow->current_weight }} kgs</td>
+								<td>{{ $cow->age_in_months }}</td>
+								<td>{{ $cow->pregnancy_status }}</td>
+								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>
 									<form class="" action="{{ route('cows.destroy', $cow->id) }}" method="post">
 										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">

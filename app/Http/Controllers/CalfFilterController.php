@@ -14,11 +14,27 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CalfFilterController extends Controller
 {
+    private $ALL_COLUMNS;
+    private $EXPORT_COLUMNS;
+    private $columns;
+
+    public function __construct()
+    {
+        $this->ALL_COLUMNS = ['calves_view.*'];
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'mother_tag as MADRE', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+
+        $this->columns = $this->ALL_COLUMNS;
+    }
+
     public function export(Request $request)
     {
-        Excel::create('Filtro de Becerros', function($excel) use($request) {
-            $excel->sheet('Listado', function($sheet) use($request) {
-                $calves = $this->get_data($request);
+        $this->columns = $this->EXPORT_COLUMNS;
+        $calves = $this->get_data($request);
+
+        Excel::create('Filtro de Becerros', function($excel) use($calves) {
+            $excel->sheet('Listado', function($sheet) use($calves) {
                 $sheet->fromArray($calves->get());
             });
         })->export('xlsx');
@@ -26,6 +42,7 @@ class CalfFilterController extends Controller
 
     public function index(Request $request)
     {
+        $this->columns = $this->ALL_COLUMNS;
         $calves = $this->get_data($request);
 
         $cow_list = Cow::select('calves.cow_id', 'cattle.tag')->join('calves', 'cows.id', '=', 'calves.cow_id')
@@ -44,10 +61,10 @@ class CalfFilterController extends Controller
     public function get_data(Request $request)
     {
     	if($_GET == false)
-    		$calves = CalfView::select('calves_view.*')->orderBy('calves_view.tag', 'asc');
+    		$calves = CalfView::select($this->columns)->orderBy('calves_view.tag', 'asc');
     	else
     	{
-    		$calves = (new CalfView)->newQuery()->select('calves_view.*');
+    		$calves = (new CalfView)->newQuery()->select($this->columns);
 
             //search by calf mother
             if($request->has('cow_id'))
@@ -62,7 +79,8 @@ class CalfFilterController extends Controller
             {
                 $birth_since = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_since);
                 $birth_until = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_until);
-                $calves->whereBetween('calves_view.birth', array($birth_since, $birth_until));
+                $calves->whereBetween('calves_view.birth', array($birth_since, $birth_until))->
+                    orWhereBetween('calves_view.birth', array($birth_until, $birth_since));
             }
 
             //search by cattle purchase date
@@ -70,7 +88,8 @@ class CalfFilterController extends Controller
             {
                 $purchase_since = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_since);
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
-                $calves->whereBetween('calves_view.purchase_date', array($purchase_since, $purchase_until));
+                $calves->whereBetween('calves_view.purchase_date', array($purchase_since, $purchase_until))->
+                    orWhereBetween('calves_view.purchase_date', array($purchase_until, $purchase_since));
             }
 
             //search by cattle sale date
@@ -78,7 +97,17 @@ class CalfFilterController extends Controller
             {
                 $sold_since = Carbon::createFromFormat('d/m/Y', $request->calf_sale_date_since);
                 $sold_until = Carbon::createFromFormat('d/m/Y', $request->calf_sale_date_until);
-                $calves->whereBetween('calves_view.sale_date', array($sold_since, $sold_until));
+                $calves->whereBetween('calves_view.sale_date', array($sold_since, $sold_until))->
+                    orWhereBetween('calves_view.sale_date', array($sold_until, $sold_since));
+            }
+
+            //search by cattle weight
+            if($request->has('calf_weight_from') && $request->has('calf_weight_to'))
+            {
+                $weight_from = $request->calf_weight_from;
+                $weight_to = $request->calf_weight_to;
+                $calves->whereBetween('calves_view.current_weight', array($weight_from, $weight_to))->
+                    orWhereBetween('calves_view.current_weight', array($weight_to, $weight_from));
             }
 
             //search by cattle breed

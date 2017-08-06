@@ -50,8 +50,16 @@ class VaccineController extends Controller
 
     public function destroy($id)
     {
-    	$vaccine = Vaccine::findOrFail($id);
-    	$vaccine->delete();
+        try
+        {
+            $vaccine = Vaccine::findOrFail($id);
+            $vaccine->delete();
+        } 
+        catch (Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+    	
     	return redirect()->route('vaccines.index');
     }
 }

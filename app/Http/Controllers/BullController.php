@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
 use App\Bull;
+use App\BullView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -18,14 +19,14 @@ use App\VaccineLog;
 use App\Picture;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
-use Maatwebsite\Excel\Facades\Excel;
 
 class BullController extends Controller
 {
     public function index()
     {
-        $bulls = Bull::paginate(12);
-        $total_bulls = Bull::count();
+        $bulls = BullView::orderBy('bulls_view.tag', 'asc')->paginate(9);
+        $total_bulls = BullView::count();
+
         return view('bulls.index', [
             'bulls' => $bulls,
             'total_bulls' => $total_bulls
@@ -113,8 +114,16 @@ class BullController extends Controller
 
     public function destroy($id)
     {
-        $bull = Bull::findOrFail($id);
-        $bull->delete();
+        try
+        {
+            $bull = Bull::findOrFail($id);
+            $bull->delete();
+        }
+        catch(\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+
         return redirect()->route('bulls.index');
     }
 
@@ -186,19 +195,5 @@ class BullController extends Controller
         }
 
         $chart = \Lava::LineChart('MyStocks', $stocksTable);
-    }
-
-    public function export_index()
-    {
-        Excel::create('Lista de Toros', function($excel) {
-            $excel->sheet('Toros', function($sheet) {
-                $bulls = Bull::select('cattle.*')->
-                join('cattle', 'bulls.cattle_id', '=', 'cattle.id')->
-                //leftJoin('bulls_sales', 'bulls.sale_id', '=', 'bulls_sales.id')->
-                orderBy('cattle.tag', 'asc')->get();
-
-                $sheet->fromArray($bulls);
-            });
-        })->export('xlsx');
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
 use App\Http\Requests\StoreLogPalpationRequest;
 use App\Cow;
+use App\CowView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -25,8 +26,9 @@ class CowController extends Controller
 {
     public function index()
     {
-        $cows = Cow::paginate(12);
-        $total_cows = Cow::count();
+        $cows = CowView::orderBy('cows_view.tag', 'asc')->paginate(9);
+        $total_cows = CowView::count();
+
         return view('cows.index', [
             'cows' => $cows,
             'total_cows' => $total_cows
@@ -124,8 +126,16 @@ class CowController extends Controller
 
     public function destroy($id)
     {
-        $cow = Cow::findOrFail($id);
-        $cow->delete();
+        try
+        {
+            $cow = Cow::findOrFail($id);
+            $cow->delete();
+        }
+        catch (\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+        
         return redirect()->route('cows.index');
     }
 

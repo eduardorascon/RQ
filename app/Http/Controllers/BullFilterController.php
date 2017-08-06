@@ -13,18 +13,35 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class BullFilterController extends Controller
 {
+    private $ALL_COLUMNS;
+    private $EXPORT_COLUMNS;
+    private $columns;
+
+    public function __construct()
+    {
+        $this->ALL_COLUMNS = ['bulls_view.*'];
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        'is_alive as ¿ESTA VIVO?', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+
+        $this->columns = $this->ALL_COLUMNS;
+    }
+
     public function export(Request $request)
     {
-        Excel::create('Filtro de Toros', function($excel) use($request) {
-            $excel->sheet('Listado', function($sheet) use($request) {
-                $bulls = $this->get_data($request);
-                $sheet->fromArray($bulls->get());
+        $this->columns = $this->EXPORT_COLUMNS;
+        $bulls = $this->get_data($request);
+
+        Excel::create('Filtro de Toros', function($excel) use($bulls) {
+            $excel->sheet('Listado', function($sheet) use($bulls) {
+                $sheet->fromModel($bulls->get());
             });
         })->export('xlsx');
     }
 
     public function index(Request $request)
     {
+        $this->columns = $this->ALL_COLUMNS;
         $bulls = $this->get_data($request);
 
     	return view('bull_filters.index', [
@@ -39,10 +56,10 @@ class BullFilterController extends Controller
     private function get_data(Request $request)
     {
         if($_GET == false)
-            $bulls = BullView::select('bulls_view.*')->orderBy('bulls_view.tag', 'asc');
+            $bulls = BullView::select($this->columns)->orderBy('bulls_view.tag', 'asc');
         else
         {
-            $bulls = (new BullView)->newQuery()->select('bulls_view.*');
+            $bulls = (new BullView)->newQuery()->select($this->columns);
 
             //search by cattle tag
             if($request->has('cattle_tag'))
@@ -53,7 +70,8 @@ class BullFilterController extends Controller
             {
                 $birth_since = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_since);
                 $birth_until = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_until);
-                $bulls->whereBetween('bulls_view.birth', array($birth_since, $birth_until));
+                $bulls->whereBetween('bulls_view.birth', array($birth_since, $birth_until))->
+                    orWhereBetween('bulls_view.birth', array($birth_until, $birth_since));
             }
 
             //search by cattle purchase date
@@ -61,7 +79,8 @@ class BullFilterController extends Controller
             {
                 $purchase_since = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_since);
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
-                $bulls->whereBetween('bulls_view.purchase_date', array($purchase_since, $purchase_until));
+                $bulls->whereBetween('bulls_view.purchase_date', array($purchase_since, $purchase_until))->
+                    orWhereBetween('bulls_view.purchase_date', array($purchase_until, $purchase_since));
             }
 
             //search by cattle sale date
@@ -69,7 +88,17 @@ class BullFilterController extends Controller
             {
                 $sold_since = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_since);
                 $sold_until = Carbon::createFromFormat('d/m/Y', $request->bull_sale_date_until);
-                $bulls->whereBetween('bulls_view.sale_date', array($sold_since, $sold_until));
+                $bulls->whereBetween('bulls_view.sale_date', array($sold_since, $sold_until))->
+                    orWhereBetween('bulls_view.sale_date', array($sold_until, $sold_since));
+            }
+
+            //search by cattle weight
+            if($request->has('bull_weight_from') && $request->has('bull_weight_to'))
+            {
+                $weight_from = $request->bull_weight_from;
+                $weight_to = $request->bull_weight_to;
+                $bulls->whereBetween('bulls_view.current_weight', array($weight_from, $weight_to))->
+                    orWhereBetween('bulls_view.current_weight', array($weight_to, $weight_from));
             }
 
             //search by cattle breed

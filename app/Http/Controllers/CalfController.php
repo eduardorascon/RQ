@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
 use App\Calf;
+use App\CalfView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -24,10 +25,8 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = Calf::whereHas('cattle', function ($q) {
-                $q->where('is_alive', '=', 'Si');
-            })->paginate(12);
-        $total_calves = $calfs->count();
+        $calfs = CalfView::orderBy('calves_view.tag', 'asc')->paginate(9);
+        $total_calves = CalfView::count();
 
         return view('calfs.index', [
             'calfs' => $calfs,
@@ -76,12 +75,12 @@ class CalfController extends Controller
         $cattle->tag = $request->cattle_tag;
         if($request->cattle_birth_date != NULL)
             $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        
+
         $cattle->purchase_date = ($request->cattle_purchase_date != NULL)?
                                     Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date)
                                     :
                                     $cattle->birth;
-        
+
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
@@ -148,8 +147,15 @@ class CalfController extends Controller
 
     public function destroy($id)
     {
-        $calf = Calf::findOrFail($id);
-        $calf->delete();
+        try{
+            $calf = Calf::findOrFail($id);
+            $calf->delete();
+        }
+        catch(\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+
         return redirect()->route('calfs.index');
     }
 

@@ -43,9 +43,18 @@ class BreedController extends Controller
     	return redirect()->route('breeds.index');
     }
 
-    public function destroy($id){
-    	$breed = Breed::findOrFail($id);
-    	$breed->delete();
-    	return redirect()->route('breeds.index');
+    public function destroy($id)
+    {
+        try
+        {
+            $breed = Breed::findOrFail($id);
+            $breed->delete();
+        }
+        catch(\Exception $e)
+        {
+            $errors = array('El registro no puede ser eliminado.');
+        }
+
+    	return redirect()->route('breeds.index')->withErrors($errors);
     }
 }
