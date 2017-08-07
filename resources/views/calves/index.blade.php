@@ -7,9 +7,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>BECERROS, registros: {{ $total_calves }}, </strong>
-					<a href="{{ route('calfs.create') }}">Agregar nuevo registro</a>
+					<a href="{{ route('calves.create') }}">Agregar nuevo registro</a>
 				</div>
-				@if($calfs->count() > 0)
+				@if($calves->count() > 0)
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-hover table-condensed">
@@ -26,7 +26,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach($calfs as $calf)
+						@foreach($calves as $calf)
 							<tr>
 								<td>{{ $calf->tag }}</td>
 								<td>{{ $calf->breed_name }}</td>
@@ -36,14 +36,14 @@
 								<td>{{ $calf->current_weight }} kgs</td>
 								<td>{{ $calf->age_in_months }}</td>
 								<td>
-									<form class="" action="{{ route('calfs.destroy', $calf->id) }}" method="post">
-										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
+									<form class="" action="{{ route('calves.destroy', $calf->id) }}" method="post">
+										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $calf->id) }}">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 										</a>
 										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro de la madre" href="{{ route('cows.show', $calf->mother_id) }}">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span> Madre
 										</a>
-	                    				<a class="btn btn-warning btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro" href="{{ route('calfs.edit', $calf->id) }}">
+	                    				<a class="btn btn-warning btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro" href="{{ route('calves.edit', $calf->id) }}">
 	                    					<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
 	                    				</a>
 										<input type="hidden" name="_method" value="delete">
@@ -58,7 +58,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $calfs->links() }}</div>
+					<div>{{ $calves->links() }}</div>
 				</div>
 				@endif
 			</div>
