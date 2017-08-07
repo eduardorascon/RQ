@@ -101,28 +101,28 @@ Route::group(['middleware' => ['web']], function() {
 	Route::resource('bulls', 'BullController');
 
 	//Calves
-	Route::post('/calfs/{id}/log_weight', [
+	Route::post('/calves/{id}/log_weight', [
 		'uses' => 'CalfController@log_weight',
 		'as' => 'calf_log_weight']);
 
-	Route::post('/calfs/{id}', [
+	Route::post('/calves/{id}', [
 		'uses' => 'CalfController@log_weight_delete',
 		'as' => 'calf_delete_weight']);
 
-	Route::post('/calfs/{id}/log_vaccine', [
+	Route::post('/calves/{id}/log_vaccine', [
 		'uses' => 'CalfController@log_vaccine',
 		'as' => 'calf_log_vaccine']);
 
-	Route::get('calfs/create_offspring/c={id}', [
+	Route::get('calves/create_offspring/c={id}', [
 		'uses' => 'CalfController@create_offspring',
 		'as' => 'calf_create_offspring'
 		]);
 
-	Route::post('/calfs/{id}/calf_save_picture', [
+	Route::post('/calves/{id}/calf_save_picture', [
 		'uses' => 'CalfController@save_picture',
 		'as' => 'calf_save_picture']);
 
-	Route::resource('calfs', 'CalfController');
+	Route::resource('calves', 'CalfController');
 
 	//Sales
 	Route::resource('calves_sales', 'CalfSaleController');
