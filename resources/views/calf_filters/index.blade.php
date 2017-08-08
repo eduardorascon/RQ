@@ -188,7 +188,7 @@
 								<td>{{ $calf->current_weight }} kgs</td>
 								<td>{{ $calf->age_in_months }}</td>
 								<td>
-                    				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $calf->id) }}">
+                    				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $calf->id) }}">
                     					<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                     				</a>
 								</td>
