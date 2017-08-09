@@ -21,7 +21,7 @@ class CowFilterController extends Controller
     {
         $this->ALL_COLUMNS = ['cows_view.*'];
         $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
-        'is_fertile as ¿ES FERTIL?', 'pregnancy_status as ESTADO DE GESTACION', 'is_alive as ¿ESTA VIVA?', 'current_weight as PESO ACTUAL',
+        'is_fertile as FERTIL', 'pregnancy_status as ESTADO DE GESTACION', 'is_alive as VIVA', 'current_weight as PESO ACTUAL',
         'number_of_calves as NUMERO DE BECERROS', 'months_since_last_birth as MESES DESDE ULTIMO NACIMIENTO', 'age_in_months as EDAD EN MESES',
         'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
 
@@ -64,7 +64,7 @@ class CowFilterController extends Controller
 
             //search by cattle tag
             if($request->has('cattle_tag'))
-                $cows->where('cows_view.tag', $request->cattle_tag)->orWhere('cows_view.tag', 'like', '%' . $request->cattle_tag . '%');
+                $cows->where('cows_view.tag', '=', $request->cattle_tag)->orWhere('cows_view.tag', 'like', '%' . $request->cattle_tag . '%');
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))

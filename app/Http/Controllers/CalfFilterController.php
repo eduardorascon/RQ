@@ -22,7 +22,7 @@ class CalfFilterController extends Controller
     {
         $this->ALL_COLUMNS = ['calves_view.*'];
         $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'mother_tag as MADRE', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
-        'is_alive as ¿ESTA VIVO?', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'is_alive as VIVO', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
         'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
 
         $this->columns = $this->ALL_COLUMNS;
@@ -72,7 +72,7 @@ class CalfFilterController extends Controller
 
             //search by cattle tag
             if($request->has('cattle_tag'))
-                $calves->where('calves_view.tag', $request->cattle_tag)->orWhere('calves_view.tag', 'like', '%' . $request->cattle_tag . '%');
+                $calves->where('calves_view.tag', '=', $request->cattle_tag)->orWhere('calves_view.tag', 'like', '%' . $request->cattle_tag . '%');
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
