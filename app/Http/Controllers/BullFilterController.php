@@ -21,7 +21,7 @@ class BullFilterController extends Controller
     {
         $this->ALL_COLUMNS = ['bulls_view.*'];
         $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
-        'is_alive as ¿ESTA VIVO?', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
+        'is_alive as VIVO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
         'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
 
         $this->columns = $this->ALL_COLUMNS;
@@ -44,6 +44,8 @@ class BullFilterController extends Controller
         $this->columns = $this->ALL_COLUMNS;
         $bulls = $this->get_data($request);
 
+        //dd($bulls->toSql());
+        //dd($bulls->getBindings());
     	return view('bull_filters.index', [
     		'bulls' => $bulls->paginate(9),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
@@ -63,7 +65,7 @@ class BullFilterController extends Controller
 
             //search by cattle tag
             if($request->has('cattle_tag'))
-                $bulls->where('bulls_view.tag', $request->cattle_tag)->orWhere('bulls_view.tag', 'like', '%' . $request->cattle_tag . '%');
+                $bulls->where('bulls_view.tag', '=', $request->cattle_tag)->orWhere('bulls_view.tag', 'like', '%' . $request->cattle_tag . '%');
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
