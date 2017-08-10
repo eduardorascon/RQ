@@ -119,6 +119,17 @@
 						</div>
 
 						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_gender">Sexo</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cattle_gender">
+									<option value="">Todas las opciones</option>
+									<option value="Macho">Macho</option>
+									<option value="Hembra">Hembra</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_is_alive">¿Esta vivo?</label>
 							<div class="col-sm-3">
 								<select class="form-control" name="cattle_is_alive">
