@@ -20,6 +20,7 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Sexo</th>
 								<th>Peso actual</th>
 								<th>Meses de edad</th>
 								<th>Acciones</th>
@@ -33,6 +34,7 @@
 								<td>{{ $calf->getBirthWithFormat() }}</td>
 								<td>{{ $calf->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $calf->getSaleDateWithFormat() }}</td>
+								<td>{{ $calf->gender }}</td>
 								<td>{{ $calf->current_weight }} kgs</td>
 								<td>{{ $calf->age_in_months }}</td>
 								<td>
