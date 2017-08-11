@@ -12,7 +12,7 @@ class BullView extends Model
 
     protected $table = 'bulls_view';
 	public $timestamps = false;
-    public $sortable = ['tag'];
+    public $sortable = ['tag', 'breed_name', 'birth', 'purchase_date', 'sale_date', 'current_weight', 'age_in_months'];
 
     public function getBirthWithFormat()
     {
