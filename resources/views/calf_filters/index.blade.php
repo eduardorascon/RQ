@@ -13,7 +13,7 @@
 
 						<div class="form-group">
 						<label class="control-label col-sm-3" for="cow_id">Madre</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<select class="form-control" name="cow_id">
 								<option value="">Todas las opciones</option>
 								@foreach ($cow_list as $cow)
@@ -27,12 +27,12 @@
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_tag">Arete Siniga</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" />
 							</div>
 
-							<label class="control-label col-sm-1" for="cattle_breed">Raza</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="cattle_breed">Raza</label>
+							<div class="col-sm-3">
 								<select class="form-control" name="cattle_breed">
 									<option value="">Todas las opciones</option>
 									@foreach ($breed_list as $b)
@@ -46,55 +46,55 @@
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_birth_since">Fecha de nacimiento (desde)</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input type="text" name="cattle_birth_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 
-							<label class="control-label col-sm-1" for="cattle_birth_until">(hasta)</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="cattle_birth_until">(hasta)</label>
+							<div class="col-sm-3">
 								<input type="text" name="cattle_birth_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_purchase_date_since">Fecha de compra (desde)</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input type="text" name="cattle_purchase_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 
-							<label class="control-label col-sm-1" for="cattle_purchase_date_until">(hasta)</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="cattle_purchase_date_until">(hasta)</label>
+							<div class="col-sm-3">
 								<input type="text" name="cattle_purchase_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="calf_sale_date_since">Fecha de venta (desde)</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input type="text" name="calf_sale_date_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 
-							<label class="control-label col-sm-1" for="calf_sale_date_until">(hasta)</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="calf_sale_date_until">(hasta)</label>
+							<div class="col-sm-3">
 								<input type="text" name="calf_sale_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="calf_weight_from">Peso (desde)</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<input type="number" name="calf_weight_from" class="form-control" placeholder="0" />
 							</div>
 
-							<label class="control-label col-sm-1" for="calf_weight_to">(hasta)</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="calf_weight_to">(hasta)</label>
+							<div class="col-sm-3">
 								<input type="number" name="calf_weight_to" class="form-control" placeholder="0" />
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-sm-3" for="cattle_owner">Dueño</label>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<select class="form-control" name="cattle_owner">
 									<option value="">Todas las opciones</option>
 									@foreach ($owner_list as $o)
@@ -105,8 +105,8 @@
 								</select>
 							</div>
 
-							<label class="control-label col-sm-1" for="cattle_paddock">Potrero</label>
-							<div class="col-sm-4">
+							<label class="control-label col-sm-2" for="cattle_paddock">Potrero</label>
+							<div class="col-sm-3">
 								<select class="form-control" name="cattle_paddock">
 									<option value="">Todas las opciones</option>
 									@foreach ($paddock_list as $p)
@@ -114,17 +114,6 @@
 									<option value="{{ $p->id }}">{{ $p->name }}</option>
 									}
 									@endforeach
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-3" for="cattle_gender">Sexo</label>
-							<div class="col-sm-3">
-								<select class="form-control" name="cattle_gender">
-									<option value="">Todas las opciones</option>
-									<option value="Macho">Macho</option>
-									<option value="Hembra">Hembra</option>
 								</select>
 							</div>
 						</div>
@@ -139,7 +128,7 @@
 								</select>
 							</div>
 
-							<label class="control-label col-sm-3" for="calf_currently_sold">¿Fue vendido?</label>
+							<label class="control-label col-sm-2" for="calf_currently_sold">¿Fue vendido?</label>
 							<div class="col-sm-3">
 								<select class="form-control" name="calf_currently_sold">
 									<option value="">Todas las opciones</option>
@@ -150,9 +139,18 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="calf_age_in_months">Edad en meses</label>
+							<label class="control-label col-sm-3" for="calf_age_in_months">Edad en meses</label>
 							<div class="col-sm-3">
 								<input type="number" name="calf_age_in_months" class="form-control" value="" placeholder="0" />
+							</div>
+
+							<label class="control-label col-sm-2" for="cattle_gender">Sexo</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cattle_gender">
+									<option value="">Todas las opciones</option>
+									<option value="Macho">Macho</option>
+									<option value="Hembra">Hembra</option>
+								</select>
 							</div>
 						</div>
 
@@ -163,7 +161,7 @@
 							</button>
 						</div>
 						@if($calves->count() > 0)
-						<div class="col-sm-offset-3 col-sm-3">
+						<div class="col-sm-offset-2 col-sm-3">
 							<a class="btn btn-success pull-right" href="{{ route('calf_filters.export', $qs) }}">
             					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar {{ $calves->total() }} registro(s)
             				</a>
