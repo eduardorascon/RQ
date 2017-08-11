@@ -153,7 +153,7 @@
 						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>Arete Siniga</th>
+								<th> @sortablelink('tag', 'Arete Siniga')</th>
 								<th>Raza</th>
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>

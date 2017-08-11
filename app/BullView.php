@@ -4,11 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Kyslik\ColumnSortable\Sortable;
 
 class BullView extends Model
 {
+    use Sortable;
+
     protected $table = 'bulls_view';
 	public $timestamps = false;
+    public $sortable = ['tag'];
 
     public function getBirthWithFormat()
     {

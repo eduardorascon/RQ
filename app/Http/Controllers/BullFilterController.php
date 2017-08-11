@@ -47,7 +47,7 @@ class BullFilterController extends Controller
         //dd($bulls->toSql());
         //dd($bulls->getBindings());
     	return view('bull_filters.index', [
-    		'bulls' => $bulls->paginate(9),
+    		'bulls' => $bulls->sortable('tag')->paginate(9),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
@@ -135,7 +135,7 @@ class BullFilterController extends Controller
                     $bulls->where('age_in_months', '=' ,$request->bull_age_in_months);
             }
 
-            $bulls->orderBy('bulls_view.tag', 'asc');
+            //$bulls->orderBy('bulls_view.tag', 'asc');
         }
 
         return $bulls;
