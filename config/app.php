@@ -171,10 +171,13 @@ return [
         */
         Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
+         * Columnd sortable
+        */
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        /*
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-
         /*
          * Application Service Providers...
          */

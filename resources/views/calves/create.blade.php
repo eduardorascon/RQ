@@ -21,7 +21,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-				<form class="form-horizontal" action="{{ route('calfs.store') }}" method="post">
+				<form class="form-horizontal" action="{{ route('calves.store') }}" method="post">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -135,7 +135,7 @@
     					</button>
 					</div>
 					<div class="col-sm-offset-3 col-sm-3">
-						<a class="btn btn-danger btn-sm pull-right" href="{{ route('calfs.index') }}">
+						<a class="btn btn-danger btn-sm pull-right" href="{{ route('calves.index') }}">
         					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar registro
         				</a>
 					</div>

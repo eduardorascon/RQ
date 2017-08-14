@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!--Font Awesome!-->
+    <script src="https://use.fontawesome.com/86ca5aaa76.js"></script>
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.css" rel="stylesheet">
@@ -52,7 +54,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ganado <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('cows.index') }}">Vacas</a></li>
-                                <li><a href="{{ route('calfs.index') }}">Becerros</a></li>
+                                <li><a href="{{ route('calves.index') }}">Becerros</a></li>
                                 <li><a href="{{ route('bulls.index') }}">Toros</a></li>
                             </ul>
                         </li>

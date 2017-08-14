@@ -126,6 +126,10 @@ class CalfFilterController extends Controller
             if($request->has('cattle_is_alive'))
                 $calves->where('calves_view.is_alive', $request->cattle_is_alive);
 
+            //search by cattle gender
+            if($request->has('cattle_gender'))
+                $calves->where('calves_view.gender', $request->cattle_gender);
+
             //search by sold status
             if($request->has('calf_currently_sold'))
             {
@@ -142,7 +146,8 @@ class CalfFilterController extends Controller
                     $calves->where('age_in_months', '=' ,$request->calf_age_in_months);
             }
 
-            $calves->orderBy('calves_view.tag', 'asc');
+            if($request->has('sort'))
+                $calves->sortable($request->sort, $request->order);
     	}
 
         return $calves;

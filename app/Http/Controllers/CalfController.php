@@ -25,11 +25,11 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calfs = CalfView::orderBy('calves_view.tag', 'asc')->paginate(9);
+        $calves = CalfView::orderBy('calves_view.tag', 'asc')->paginate(9);
         $total_calves = CalfView::count();
 
-        return view('calfs.index', [
-            'calfs' => $calfs,
+        return view('calves.index', [
+            'calves' => $calves,
             'total_calves' => $total_calves
         ]);
     }
@@ -43,7 +43,7 @@ class CalfController extends Controller
             $q->orderBy('tag', 'asc');
         })->with('cattle')->get();
 
-        return view('calfs.create', [
+        return view('calves.create', [
             'breed_list'=>$breed_list,
             'owner_list'=>$owner_list,
             'paddock_list'=>$paddock_list,
@@ -58,7 +58,7 @@ class CalfController extends Controller
         $paddock_list = Paddock::orderBy('name', 'asc')->get();
         $cow = Cow::findOrFail($cow_id);
 
-        return view('calfs.create', [
+        return view('calves.create', [
             'breed_list'=>$breed_list,
             'owner_list'=>$owner_list,
             'paddock_list'=>$paddock_list,
@@ -93,7 +93,7 @@ class CalfController extends Controller
         $calf->cow_id = $cow->id;
         $calf->save();
 
-        return redirect()->route('calfs.index');
+        return redirect()->route('calves.index');
     }
 
     public function show($id)
@@ -101,7 +101,7 @@ class CalfController extends Controller
         $calf = Calf::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
         $this->weight_chart($calf->cattle);
-        return view('calfs.show', [
+        return view('calves.show', [
             'calf'=>$calf,
             'breed'=>$calf->cattle->breed->name,
             'owner'=>$calf->cattle->owner === NULL ? '' : $calf->cattle->owner->name,
@@ -118,7 +118,7 @@ class CalfController extends Controller
         $breed_list = Breed::orderBy('name', 'asc')->get();
         $owner_list = Owner::orderBy('name', 'asc')->get();
         $paddock_list = Paddock::orderBy('name', 'asc')->get();
-        return view('calfs.edit', [
+        return view('calves.edit', [
             'calf'=>$calf,
             'breed_list'=>$breed_list,
             'owner_list'=>$owner_list,
@@ -142,7 +142,7 @@ class CalfController extends Controller
         $cattle->is_alive = $request->cattle_is_alive;
         $cattle->update();
 
-        return redirect()->route('calfs.index');
+        return redirect()->route('calves.index');
     }
 
     public function destroy($id)
@@ -156,7 +156,7 @@ class CalfController extends Controller
             $errors = array('El registro no puede ser eliminado.');
         }
 
-        return redirect()->route('calfs.index');
+        return redirect()->route('calves.index');
     }
 
     public function log_weight(StoreUpdateLogWeightRequest $request, $id)
@@ -169,7 +169,7 @@ class CalfController extends Controller
         $log->cattle_id = $calf->cattle_id;
         $log->save();
 
-        return redirect()->route('calfs.show', $calf->id);
+        return redirect()->route('calves.show', $calf->id);
     }
 
     public function log_weight_delete(Request $request, $id)
@@ -177,7 +177,7 @@ class CalfController extends Controller
         $log = WeightLog::findOrFail($request->log_weight_id);
         $log->delete();
 
-        return redirect()->route('calfs.show', $id);
+        return redirect()->route('calves.show', $id);
     }
 
     public function log_vaccine(StoreUpdateLogVaccineRequest $request, $id)
@@ -190,7 +190,7 @@ class CalfController extends Controller
         $log->vaccine_id = $request->vaccine;
         $log->save();
 
-        return redirect()->route('calfs.show', $calf->id);
+        return redirect()->route('calves.show', $calf->id);
     }
 
     public function save_picture(StorePictureRequest $request, $id)
@@ -210,7 +210,7 @@ class CalfController extends Controller
             $pic->save();
         }
 
-        return redirect()->route('calfs.show', $calf->id);
+        return redirect()->route('calves.show', $calf->id);
     }
 
     public function weight_chart(Cattle $cattle)

@@ -21,7 +21,7 @@
                     </div>
                 @endif
 				<div class="panel-body">
-					<form class="form-horizontal" action="{{ route('calfs.update', $calf->id) }}" method="post">
+					<form class="form-horizontal" action="{{ route('calves.update', $calf->id) }}" method="post">
 						<input type="hidden" name="_method" value="PATCH" />
 						{{ csrf_field() }}
 
@@ -147,7 +147,7 @@
         					</button>
 						</div>
 						<div class="col-sm-offset-3 col-sm-3">
-							<a class="btn btn-danger btn-sm pull-right" href="{{ route('calfs.index') }}">
+							<a class="btn btn-danger btn-sm pull-right" href="{{ route('calves.index') }}">
             					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar registro
             				</a>
 						</div>
