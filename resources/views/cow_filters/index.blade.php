@@ -179,15 +179,15 @@
 						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>Arete Siniga</th>
-								<th>Raza</th>
-								<th>Fecha de nacimiento</th>
-								<th>Fecha de compra</th>
-								<th>Fecha de venta</th>
-								<th>Peso actual</th>
-								<th>Meses de edad</th>
-								<th>Estado</th>
-								<th>Meses sin parir</th>
+								<th>@sortablelink('tag', 'Arete Siniga')</th>
+								<th>@sortablelink('breed_name', 'Raza')</th>
+								<th>@sortablelink('birth', 'Fecha de nacimiento')</th>
+								<th>@sortablelink('purchase_date', 'Fecha de compra')</th>
+								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
+								<th>@sortablelink('current_weight', 'Peso actual')</th>
+								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
+								<th>@sortablelink('pregnancy_status', 'Estado')</th>
+								<th>@sortablelink('months_since_last_birth', 'Meses sin parir')</th>
 								<th class="col-sm-2">Acciones</th>
 							</tr>
 						</thead>
@@ -200,8 +200,8 @@
 								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
-								<td>{{ $cow->pregnancy_status }}</td>
 								<td>{{ $cow->age_in_months }}</td>
+								<td>{{ $cow->pregnancy_status }}</td>
 								<td>{{ $cow->months_since_last_birth }}</td>
 								<td>
                     				<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('cows.show', $cow->id) }}">
