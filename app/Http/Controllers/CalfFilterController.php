@@ -146,7 +146,8 @@ class CalfFilterController extends Controller
                     $calves->where('age_in_months', '=' ,$request->calf_age_in_months);
             }
 
-            $calves->orderBy('calves_view.tag', 'asc');
+            if($request->has('sort'))
+                $calves->sortable($request->sort, $request->order);
     	}
 
         return $calves;

@@ -146,7 +146,8 @@ class CowFilterController extends Controller
             if($request->has('cow_number_of_calves'))
                 $cows->where('cows_view.number_of_calves', $request->cow_number_of_calves);
 
-            $cows->orderBy('cows_view.tag', 'asc');
+            if($request->has('sort'))
+                $cows->sortable($request->sort, $request->order);
         }
 
     	return $cows;
