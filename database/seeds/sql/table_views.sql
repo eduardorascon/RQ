@@ -16,6 +16,13 @@ left join owners o on c.owner_id = o.id
 left join paddocks p on c.paddock_id = p.id
 left join bulls_sales bs on b.sale_id = bs.id;
 
+create view last_calf_born_view as
+select co.id as cow_id, max(catt.birth) as last_calf_born
+from cows co
+join calves ca on co.id = ca.cow_id
+join cattle catt on ca.cattle_id = catt.id
+group by co.id;
+
 create view cows_view as
 select
 	co.id, co.is_fertile, upper(co.pregnancy_status) as pregnancy_status, co.number_of_calves,
@@ -27,20 +34,14 @@ select
 	cs.id as sale_id, cs.sale_date, date_format(cs.sale_date, '%d/%m/%Y') as sale_date_with_format,
 	timestampdiff(month, c.birth, curdate()) as age_in_months,
 	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight,
-	timestampdiff(month,
-	        coalesce((select birth
-              from calves
-                left join cattle
-                    on calves.cattle_id = cattle.id
-              where cow_id = co.id
-              order by calves.id desc limit 1)),
-            curdate()) as months_since_last_birth
+	timestampdiff(month, lcbv.last_calf_born, curdate()) as months_since_last_birth
 from cows co
 inner join cattle c on co.cattle_id = c.id
 left join breeds br on c.breed_id = br.id
 left join owners o on c.owner_id = o.id
 left join paddocks p on c.paddock_id = p.id
-left join cows_sales cs on co.sale_id = cs.id;
+left join cows_sales cs on co.sale_id = cs.id
+left join last_calf_born_view lcbv on c.id = lcbv.cow_id;
 
 create view calves_view as
 select
