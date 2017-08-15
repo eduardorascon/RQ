@@ -190,7 +190,7 @@
 									@endif
 								</td>
 								<td>
-									<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calfs.show', $o->id) }}">
+									<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $o->id) }}">
 										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 									</a>
 								</td>
