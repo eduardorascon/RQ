@@ -208,7 +208,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $calves->links() }}</div>
+					<div>{{ $calves->appends(\Request::except('page'))->render() }}</div>
 				</div>
 				@else
 				<div class="panel-body">
