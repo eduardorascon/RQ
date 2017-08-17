@@ -183,7 +183,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $bulls->links() }}</div>
+					<div>{{ $bulls->appends(\Request::except('page'))->render() }}</div>
 				</div>
 				@else
 				<div class="panel-body">

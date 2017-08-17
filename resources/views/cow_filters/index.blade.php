@@ -213,7 +213,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $cows->links() }}</div>
+					<div>{{ $cows->appends(\Request::except('page'))->render() }}</div>
 				</div>
 				@else
 				<div class="panel-body">
