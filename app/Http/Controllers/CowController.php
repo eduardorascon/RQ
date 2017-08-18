@@ -26,7 +26,7 @@ class CowController extends Controller
 {
     public function index()
     {
-        $cows = CowView::orderBy('cows_view.tag', 'asc')->paginate(9);
+        $cows = CowView::sortable()->paginate(9);
         $total_cows = CowView::count();
 
         return view('cows.index', [

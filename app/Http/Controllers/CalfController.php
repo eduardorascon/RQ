@@ -25,7 +25,7 @@ class CalfController extends Controller
 {
     public function index()
     {
-        $calves = CalfView::orderBy('calves_view.tag', 'asc')->paginate(9);
+        $calves = CalfView::sortable()->paginate(9);
         $total_calves = CalfView::count();
 
         return view('calves.index', [
