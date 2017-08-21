@@ -160,7 +160,7 @@
 								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
 								<th>@sortablelink('current_weight', 'Peso actual')</th>
 								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
-								<th>Acciones</th>
+								<th class="col-sm-2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>

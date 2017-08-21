@@ -184,7 +184,7 @@
 								<th>@sortablelink('gender', 'Sexo')</th>
 								<th>@sortablelink('current_weight', 'Peso actual')</th>
 								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
-								<th>Acciones</th>
+								<th class="col-sm-3">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
