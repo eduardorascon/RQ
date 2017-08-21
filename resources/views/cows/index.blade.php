@@ -15,16 +15,16 @@
 						<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>Arete Siniga</th>
-								<th>Raza</th>
-								<th>Fecha de nacimiento</th>
-								<th>Fecha de compra</th>
-								<th>Fecha de venta</th>
-								<th>Peso actual</th>
-								<th>Meses de edad</th>
-								<th>Estado</th>
-								<th>Meses sin parir</th>
-								<th class="col-md-2">Acciones</th>
+								<th>@sortablelink('tag', 'Arete Siniga')</th>
+								<th>@sortablelink('breed_name', 'Raza')</th>
+								<th>@sortablelink('birth', 'Fecha de nacimiento')</th>
+								<th>@sortablelink('purchase_date', 'Fecha de compra')</th>
+								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
+								<th>@sortablelink('current_weight', 'Peso actual')</th>
+								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
+								<th>@sortablelink('pregnancy_status', 'Estado')</th>
+								<th>@sortablelink('months_since_last_birth', 'Meses sin parir')</th>
+								<th class="col-sm-2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -59,7 +59,7 @@
 						</tbody>
 						</table>
 					</div>
-					<div>{{ $cows->links() }}</div>
+					<div>{{ $cows->appends(\Request::except('page'))->render() }}</div>
 				</div>
 				@endif
 			</div>
