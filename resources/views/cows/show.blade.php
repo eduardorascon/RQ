@@ -174,21 +174,23 @@
 								<th>Fecha de nacimiento</th>
 								<th>Fecha de compra</th>
 								<th>Fecha de venta</th>
+								<th>Sexo</th>
+								<th>Peso</th>
+								<th>Edad</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach($offspring as $o)
 							<tr>
-								<td>{{ $o->cattle->tag }}</td>
-								<td>{{ $o->cattle->breed->name }}</td>
-								<td>{{ $o->cattle->getBirthWithFormat() }}</td>
-								<td>{{ $o->cattle->getPurchaseDateWithFormat() }}</td>
-								<td>
-									@if(count($o->sale))
-									{{ $o->sale->getSaleDateWithFormat() }}
-									@endif
-								</td>
+								<td>{{ $o->tag }}</td>
+								<td>{{ $o->breed_name }}</td>
+								<td>{{ $o->getBirthWithFormat() }}</td>
+								<td>{{ $o->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $o->getSaleDateWithFormat() }}</td>
+								<td>{{ $o->gender }}</td>
+								<td>{{ $o->current_weight }} kgs</td>
+								<td>{{ $o->age_in_months }} mes(es)</td>
 								<td>
 									<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $o->id) }}">
 										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
