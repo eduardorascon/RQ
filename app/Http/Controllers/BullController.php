@@ -24,7 +24,7 @@ class BullController extends Controller
 {
     public function index()
     {
-        $bulls = BullView::orderBy('bulls_view.tag', 'asc')->paginate(9);
+        $bulls = BullView::sortable()->paginate(9);
         $total_bulls = BullView::count();
 
         return view('bulls.index', [

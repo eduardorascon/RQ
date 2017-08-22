@@ -10,6 +10,7 @@ use App\Http\Requests\StorePictureRequest;
 use App\Http\Requests\StoreLogPalpationRequest;
 use App\Cow;
 use App\CowView;
+use App\CalfView;
 use App\Cattle;
 use App\Breed;
 use App\Owner;
@@ -26,7 +27,7 @@ class CowController extends Controller
 {
     public function index()
     {
-        $cows = CowView::orderBy('cows_view.tag', 'asc')->paginate(9);
+        $cows = CowView::sortable()->paginate(9);
         $total_cows = CowView::count();
 
         return view('cows.index', [
@@ -74,6 +75,7 @@ class CowController extends Controller
     {
         $cow = Cow::findOrFail($id);
         $vaccine_list = Vaccine::orderBy('name', 'asc')->get();
+        $offspring = CalfView::where('calves_view.mother_id', '=', $id)->orderBy('calves_view.tag', 'asc')->get();
         $this->weight_chart($cow->cattle);
         return view('cows.show', [
             'cow'=>$cow,
@@ -83,7 +85,7 @@ class CowController extends Controller
             'vaccine_list'=>$vaccine_list,
             'weight_logs'=>$cow->cattle->weightLog->sortByDesc("date"),
             'vaccine_logs'=>$cow->cattle->vaccinationLog->sortByDesc("date"),
-            'offspring'=>$cow->offspring,
+            'offspring'=>$offspring,
             'palpations'=>$cow->palpationLog->sortByDesc('date'),
             'pictures'=>$cow->cattle->pictures->sortBy('filename')
         ]);

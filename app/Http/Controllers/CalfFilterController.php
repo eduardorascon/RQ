@@ -49,7 +49,7 @@ class CalfFilterController extends Controller
             ->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
 
         return view('calf_filters.index', [
-            'calves' => $calves->paginate(9),
+            'calves' => $calves->sortable()->paginate(9),
             'cow_list' => $cow_list,
             'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
@@ -145,9 +145,6 @@ class CalfFilterController extends Controller
                 if($request->calf_age_in_months > 0)
                     $calves->where('age_in_months', '=' ,$request->calf_age_in_months);
             }
-
-            if($request->has('sort'))
-                $calves->sortable($request->sort, $request->order);
     	}
 
         return $calves;

@@ -46,7 +46,7 @@ class CowFilterController extends Controller
         $cows = $this->get_data($request);
 
         return view('cow_filters.index', [
-            'cows' => $cows->paginate(9),
+            'cows' => $cows->sortable()->paginate(9),
             'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
@@ -146,8 +146,6 @@ class CowFilterController extends Controller
             if($request->has('cow_number_of_calves'))
                 $cows->where('cows_view.number_of_calves', $request->cow_number_of_calves);
 
-            if($request->has('sort'))
-                $cows->sortable($request->sort, $request->order);
         }
 
     	return $cows;
