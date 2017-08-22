@@ -190,11 +190,21 @@
 								<td>{{ $o->getSaleDateWithFormat() }}</td>
 								<td>{{ $o->gender }}</td>
 								<td>{{ $o->current_weight }} kgs</td>
-								<td>{{ $o->age_in_months }} mes(es)</td>
+								<td>{{ $o->age_in_months }} meses</td>
 								<td>
-									<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $o->id) }}">
-										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-									</a>
+									<form class="" action="{{ route('calves.destroy', $o->id) }}" method="post">
+										<a class="btn btn-info btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Mostrar información del registro" href="{{ route('calves.show', $o->id) }}">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										</a>
+	                    				<a class="btn btn-warning btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Editar información del registro" href="{{ route('calves.edit', $o->id) }}">
+	                    					<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+	                    				</a>
+										<input type="hidden" name="_method" value="delete">
+                    					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    					<button type="submit" name="btnBorrar" class="btn btn-danger btn-sm" data-container="body" data-toggle="tooltip" data-placement="top" title="Eliminar el registro" onclick="return confirm('El registro será eliminado');">
+                    						<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                    					</button>
+									</form>
 								</td>
 							</tr>
 						@endforeach
