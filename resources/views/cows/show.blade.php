@@ -141,9 +141,11 @@
 								@if($pictures->count() > 0)
 								<div class="row">
 									@foreach($pictures as $pic)
+									@if(!is_null($pic->filename))
 									<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3" data-title="{{ $cow->cattle->tag }}" data-footer="{{ $pic->comment }}">
 						                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive img-thumbnail" >
 						            </a>
+						            @endif
 						            @endforeach
 								</div>
 								@else
@@ -162,12 +164,15 @@
 							<table class="table table-condensed table-hover">
 							<thead>
 								<tr>
-									<th>Comentario</th>
+									<th>Lista de comentarios</th>
 								</tr>
 							</thead>
 							<tbody>
 							@foreach($pictures as $pic)
-								<tr>{{ $pic->comment }}</tr>
+								<tr>
+									<td>{{ $pic->comment }}</td>
+								</tr>
+							@endforeach
 							</tbody>
 							</table>
 						</div>
