@@ -201,6 +201,12 @@ class CowController extends Controller
             $pic->cattle_id = $cow->cattle_id;
             $pic->save();
         }
+        else {
+            $pic = new Picture;
+            $pic->comment = $request->comment;
+            $pic->cattle_id = $cow->cattle_id;
+            $pic->save();
+        }
 
         return redirect()->route('cows.show', $cow->id);
     }

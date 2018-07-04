@@ -96,7 +96,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>Fotográfias</strong>
+					<strong>Comentarios</strong>
 				</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
@@ -132,7 +132,7 @@
 								<div class="form-group">
 								<div class="col-sm-12">
 									<button type="submit" class="btn btn-success btn-sm pull-right">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar comentario
 									</button>
 								</div>
 								</div>
@@ -148,13 +148,32 @@
 								</div>
 								@else
 									<div class="alert alert-warning text-center">
-									No hay fotografias para mostrar.
+									No existen fotografias para mostrar.
 				                    </div>
 								@endif
 							</div>
 						</div>
 					</form>
 				</div>
+				@if($pictures->count() > 0)
+				<div class="panel-body">
+					<div class="panel panel-default">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover">
+							<thead>
+								<tr>
+									<th>Comentario</th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach($pictures as $pic)
+								<tr>{{ $pic->comment }}</tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				@endif
 			</div>
 
 			<div class="panel panel-default">
