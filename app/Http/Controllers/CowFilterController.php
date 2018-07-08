@@ -46,7 +46,7 @@ class CowFilterController extends Controller
         $cows = $this->get_data($request);
 
         return view('cow_filters.index', [
-            'cows' => $cows->sortable()->paginate(9),
+            'cows' => $cows->sortable()->orderBy('id', 'asc')->paginate(9),
             'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),

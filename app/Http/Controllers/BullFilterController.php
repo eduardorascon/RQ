@@ -45,7 +45,7 @@ class BullFilterController extends Controller
         $bulls = $this->get_data($request);
 
     	return view('bull_filters.index', [
-    		'bulls' => $bulls->sortable()->paginate(9),
+    		'bulls' => $bulls->sortable()->orderBy('id', 'asc')->paginate(9),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),
