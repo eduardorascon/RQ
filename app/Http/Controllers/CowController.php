@@ -190,23 +190,18 @@ class CowController extends Controller
     public function save_picture(StorePictureRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
+        $pic = new Picture;
 
         if($request->hasFile('picture')) {
             $imageName = $cow->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
-            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
-
-            $pic = new Picture;
             $pic->filename = $imageName;
-            $pic->comment = $request->comment;
-            $pic->cattle_id = $cow->cattle_id;
-            $pic->save();
+            
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
         }
-        else {
-            $pic = new Picture;
-            $pic->comment = $request->comment;
-            $pic->cattle_id = $cow->cattle_id;
-            $pic->save();
-        }
+
+        $pic->comment = $request->comment;
+        $pic->cattle_id = $cow->cattle_id;
+        $pic->save();
 
         return redirect()->route('cows.show', $cow->id);
     }
