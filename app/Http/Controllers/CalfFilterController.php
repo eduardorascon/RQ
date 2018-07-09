@@ -49,7 +49,7 @@ class CalfFilterController extends Controller
             ->join('cattle', 'cows.cattle_id', '=', 'cattle.id')->orderBy('cattle.tag', 'asc')->get();
 
         return view('calf_filters.index', [
-            'calves' => $calves->sortable()->paginate(9),
+            'calves' => $calves->sortable()->orderBy('id', 'asc')->paginate(9),
             'cow_list' => $cow_list,
             'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
