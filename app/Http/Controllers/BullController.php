@@ -178,7 +178,7 @@ class BullController extends Controller
 
             $request->file('picture')->move(base_path() . '/public/images/', $imageName);
         }
-            
+
         $pic->comment = $request->comment;
         $pic->cattle_id = $bull->cattle_id;
         $pic->save();
