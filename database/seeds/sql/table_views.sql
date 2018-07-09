@@ -1,20 +1,22 @@
 create view bulls_view as
-select
-	b.id, c.tag, c.purchase_date, date_format(c.purchase_date, '%d/%m/%Y') as purchase_date_with_format,
-    c.birth, date_format(c.birth, '%d/%m/%Y') as birth_with_format,
-    c.is_alive, c.gender,
-	br.id as breed_id, upper(br.name) as breed_name,
-	o.id as owner_id, upper(o.name) as owner_name,
-	p.id as paddock_id, upper(p.name) as paddock_name,
-	bs.id as sale_id, bs.sale_date, date_format(bs.sale_date, '%d/%m/%Y') as sale_date_with_format,
-	timestampdiff(month, c.birth, curdate()) as age_in_months,
-	coalesce((select weight from weight_logs where cattle_id = c.id order by date desc limit 1), 0) as current_weight
-from bulls b
-inner join cattle c on b.cattle_id = c.id
-left join breeds br on c.breed_id = br.id
-left join owners o on c.owner_id = o.id
+select 
+	b.id, c.tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	c.birth, date_format(c.birth,'%d/%m/%Y') AS birth_with_format,
+	c.is_alive, c.gender, 
+	br.id AS breed_id, upper(br.name) AS breed_name,
+	o.id AS owner_id, upper(o.name) AS owner_name,
+	p.id AS paddock_id, upper(p.name) AS paddock_name,
+	bs.id AS sale_id, bs.sale_date AS sale_date,date_format(bs.sale_date,'%d/%m/%Y') AS sale_date_with_format,
+	timestampdiff(MONTH,c.birth,curdate()) AS age_in_months,
+	coalesce((select weight_logs.weight from weight_logs where weight_logs.cattle_id = c.id order by weight_logs.date desc limit 1),0) AS current_weight,
+	upper(cv.concat_comments) as comments
+from bulls b 
+inner join cattle c on b.cattle_id = c.id 
+left join breeds br on c.breed_id = br.id 
+left join owners o on c.owner_id = o.id 
 left join paddocks p on c.paddock_id = p.id
-left join bulls_sales bs on b.sale_id = bs.id;
+left join bulls_sales bs on b.sale_id = bs.id
+left join comments_view cv on b.cattle_id = cv.cattle_id;
 
 create view calves_view as
 select
