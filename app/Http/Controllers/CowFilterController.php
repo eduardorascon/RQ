@@ -24,7 +24,7 @@ class CowFilterController extends Controller
         'is_fertile as FERTIL', 'pregnancy_status as ESTADO DE GESTACION', 'is_alive as VIVA', 'current_weight as PESO ACTUAL',
         'number_of_calves as NUMERO DE BECERROS', 'number_of_registered_calves as NUMERO DE BECERROS REGISTRADOS',
         'months_since_last_birth as MESES DESDE ULTIMO NACIMIENTO', 'age_in_months as EDAD EN MESES',
-        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
 
         $this->columns = $this->ALL_COLUMNS;
     }
