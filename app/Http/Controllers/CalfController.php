@@ -86,6 +86,9 @@ class CalfController extends Controller
         $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = $request->cattle_gender;
         $cattle->is_alive = $request->cattle_is_alive;
+        $cattle->control_tag = $request->control_tag;
+        if($request->empadre_date != NULL)
+            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
         $cattle->save();
 
         $calf = new Calf;
@@ -140,6 +143,9 @@ class CalfController extends Controller
         $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = $request->cattle_gender;
         $cattle->is_alive = $request->cattle_is_alive;
+        $cattle->control_tag = $request->control_tag;
+        if($request->empadre_date != NULL)
+            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
         $cattle->update();
 
         return redirect()->route('calves.index');

@@ -11,7 +11,7 @@ class Cattle extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'tag', 'purchase_date', 'birth', 'breed_id'
+        'tag', 'purchase_date', 'birth', 'breed_id', 'control_tag', 'empadre_date'
     ];
 
     public function breed()

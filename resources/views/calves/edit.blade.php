@@ -41,10 +41,24 @@
 						</div>
 
 						<div class="form-group">
+							<label class="col-sm-3 control-label" for="control_tag">Arete de control</label>
+							<div class="col-sm-9">
+								<input type="text" name="control_tag" class="form-control" placeholder="Etiqueta" value="{{ $calf->cattle->control_tag }}">
+							</div>
+						</div>
+
+						<div class="form-group">
 						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
 						<div class="col-sm-9">
 							<input type="text" name="cattle_birth_date" class="form-control input-date" placeholder="dd/mm/aaaa" value="{{ $calf->cattle->getBirthWithFormat2() }}" />
 						</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="empadre_date">Fecha de empadre</label>
+							<div class="col-sm-9">
+								<input type="text" name="empadre_date" class="form-control input-date" placeholder="dd/mm/aaaa" value="{{ $calf->cattle->empadre_date }}" >
+							</div>
 						</div>
 
 						<div class="form-group">
