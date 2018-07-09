@@ -22,7 +22,7 @@ class BullFilterController extends Controller
         $this->ALL_COLUMNS = ['bulls_view.*'];
         $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
         'is_alive as VIVO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
-        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
 
         $this->columns = $this->ALL_COLUMNS;
     }
@@ -45,7 +45,7 @@ class BullFilterController extends Controller
         $bulls = $this->get_data($request);
 
     	return view('bull_filters.index', [
-    		'bulls' => $bulls->sortable()->paginate(9),
+    		'bulls' => $bulls->sortable()->orderBy('id', 'asc')->paginate(9),
     		'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),

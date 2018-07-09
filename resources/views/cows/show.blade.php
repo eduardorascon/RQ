@@ -96,7 +96,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>Fotográfias</strong>
+					<strong>Comentarios</strong>
 				</div>
 				@if (count($errors->save_picture_errors) > 0)
 					<div class="alert alert-danger alert-dismissible">
@@ -132,7 +132,7 @@
 								<div class="form-group">
 								<div class="col-sm-12">
 									<button type="submit" class="btn btn-success btn-sm pull-right">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar fotografia
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Guardar comentario
 									</button>
 								</div>
 								</div>
@@ -141,20 +141,44 @@
 								@if($pictures->count() > 0)
 								<div class="row">
 									@foreach($pictures as $pic)
+									@if(!is_null($pic->filename))
 									<a href="{{ URL::asset('/images/') . '/' . $pic->filename }}" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-3" data-title="{{ $cow->cattle->tag }}" data-footer="{{ $pic->comment }}">
 						                <img src="{{ URL::asset('/images/') . '/' .$pic->filename }}" class="img-responsive img-thumbnail" >
 						            </a>
+						            @endif
 						            @endforeach
 								</div>
 								@else
 									<div class="alert alert-warning text-center">
-									No hay fotografias para mostrar.
+									No existen fotografias para mostrar.
 				                    </div>
 								@endif
 							</div>
 						</div>
 					</form>
 				</div>
+				@if($pictures->count() > 0)
+				<div class="panel-body">
+					<div class="panel panel-default">
+						<div class="table-responsive">
+							<table class="table table-condensed table-hover">
+							<thead>
+								<tr>
+									<th>Lista de comentarios</th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach($pictures as $pic)
+								<tr>
+									<td>{{ $pic->comment }}</td>
+								</tr>
+							@endforeach
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				@endif
 			</div>
 
 			<div class="panel panel-default">

@@ -22,8 +22,9 @@ class CowFilterController extends Controller
         $this->ALL_COLUMNS = ['cows_view.*'];
         $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
         'is_fertile as FERTIL', 'pregnancy_status as ESTADO DE GESTACION', 'is_alive as VIVA', 'current_weight as PESO ACTUAL',
-        'number_of_calves as NUMERO DE BECERROS', 'months_since_last_birth as MESES DESDE ULTIMO NACIMIENTO', 'age_in_months as EDAD EN MESES',
-        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA'];
+        'number_of_calves as NUMERO DE BECERROS', 'number_of_registered_calves as NUMERO DE BECERROS REGISTRADOS',
+        'months_since_last_birth as MESES DESDE ULTIMO NACIMIENTO', 'age_in_months as EDAD EN MESES',
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
 
         $this->columns = $this->ALL_COLUMNS;
     }
@@ -46,7 +47,7 @@ class CowFilterController extends Controller
         $cows = $this->get_data($request);
 
         return view('cow_filters.index', [
-            'cows' => $cows->sortable()->paginate(9),
+            'cows' => $cows->sortable()->orderBy('id', 'asc')->paginate(9),
             'breed_list' => Breed::orderBy('name', 'asc')->get(),
             'owner_list' => Owner::orderBy('name', 'asc')->get(),
             'paddock_list' => Paddock::orderBy('name', 'asc')->get(),

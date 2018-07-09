@@ -24,7 +24,7 @@ class BullController extends Controller
 {
     public function index()
     {
-        $bulls = BullView::sortable()->paginate(9);
+        $bulls = BullView::sortable()->orderBy('id', 'asc')->paginate(9);
         $total_bulls = BullView::count();
 
         return view('bulls.index', [
@@ -164,17 +164,18 @@ class BullController extends Controller
     public function save_picture(StorePictureRequest $request, $id)
     {
         $bull = Bull::findOrFail($id);
+        $pic = new Picture;
 
         if($request->hasFile('picture')) {
             $imageName = $bull->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
-            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
-
-            $pic = new Picture;
             $pic->filename = $imageName;
-            $pic->comment = $request->comment;
-            $pic->cattle_id = $bull->cattle_id;
-            $pic->save();
+
+            $request->file('picture')->move(base_path() . '/public/images/', $imageName);
         }
+            
+        $pic->comment = $request->comment;
+        $pic->cattle_id = $bull->cattle_id;
+        $pic->save();
 
         return redirect()->route('bulls.show', $bull->id);
     }
