@@ -56,6 +56,9 @@ class BullController extends Controller
         $cattle->paddock_id = $request->cattle_paddock;
         $cattle->gender = 'Macho';
         $cattle->is_alive = $request->cattle_is_alive;
+        $cattle->control_tag = $request->control_tag;
+        if($request->empadre_date != NULL)
+            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
         $cattle->save();
 
         $bull = new Bull;
@@ -107,6 +110,9 @@ class BullController extends Controller
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
         $cattle->is_alive = $request->cattle_is_alive;
+        $cattle->control_tag = $request->control_tag;
+        if($request->empadre_date != NULL)
+            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
         $cattle->update();
 
         return redirect()->route('bulls.index');

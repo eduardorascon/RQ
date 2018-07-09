@@ -32,17 +32,31 @@
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $calf->cattle->getBirthWithFormat() }}" />
-						</div>
+							<label class="col-sm-3 control-label" for="control_tag">Arete de control</label>
+							<div class="col-sm-9">
+								<input type="text" name="control_tag" class="form-control" readonly="readonly" placeholder="Etiqueta" value="{{ $calf->cattle->control_tag }}">
+							</div>
 						</div>
 
 						<div class="form-group">
-						<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
-						<div class="col-sm-9">
-							<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $calf->cattle->getPurchaseDateWithFormat() }}" />
+							<label class="col-sm-3 control-label" for="cattle_birth_date">Fecha de nacimiento</label>
+							<div class="col-sm-9">
+								<input type="text" name="cattle_birth_date" class="form-control" readonly="readonly" value="{{ $calf->cattle->getBirthWithFormat() }}" />
+							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="cattle_purchase_date">Fecha de compra</label>
+							<div class="col-sm-9">
+								<input type="text" name="cattle_purchase_date" class="form-control" readonly="readonly" value="{{ $calf->cattle->getPurchaseDateWithFormat() }}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="empadre_date">Fecha de empadre</label>
+							<div class="col-sm-9">
+								<input type="text" name="empadre_date" class="form-control input-date" readonly="readonly" placeholder="dd/mm/aaaa" value="{{ $calf->cattle->empadre_date }}" >
+							</div>
 						</div>
 
 						<div class="form-group">
