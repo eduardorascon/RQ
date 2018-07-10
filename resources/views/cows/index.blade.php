@@ -16,9 +16,11 @@
 						<thead>
 							<tr>
 								<th>@sortablelink('tag', 'Arete Siniga')</th>
+								<th>@sortablelink('control_tag', 'Arete de Control')</th>
 								<th>@sortablelink('breed_name', 'Raza')</th>
 								<th>@sortablelink('birth', 'Fecha de nacimiento')</th>
 								<th>@sortablelink('purchase_date', 'Fecha de compra')</th>
+								<th>@sortablelink('empadre_date', 'Fecha de empadre')</th>
 								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
 								<th>@sortablelink('current_weight', 'Peso actual')</th>
 								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
@@ -31,9 +33,11 @@
 						@foreach($cows as $cow)
 							<tr>
 								<td>{{ $cow->tag }}</td>
+								<td>{{ $cow->control_tag }}</td>
 								<td>{{ $cow->breed_name }}</td>
 								<td>{{ $cow->getBirthWithFormat() }}</td>
 								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $cow->getEmpadreDateWithFormat() }}</td>
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
 								<td>{{ $cow->age_in_months }}</td>

@@ -12,7 +12,7 @@ class BullView extends Model
 
     protected $table = 'bulls_view';
 	public $timestamps = false;
-    public $sortable = ['tag', 'breed_name', 'birth', 'purchase_date', 'sale_date', 'current_weight', 'age_in_months'];
+    public $sortable = ['tag', 'control_tag', 'empadre_date', 'breed_name', 'birth', 'purchase_date', 'sale_date', 'current_weight', 'age_in_months'];
 
     public function getBirthWithFormat()
     {
@@ -30,6 +30,15 @@ class BullView extends Model
 
         setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
         return Carbon::parse($this->purchase_date)->formatLocalized('%d/%B/%Y');
+    }
+
+    public function getEmpadreDateWithFormat()
+    {
+        if($this->empadre_date === NULL)
+            return null;
+
+        setLocale(LC_TIME, 'es_MX.UTF-8', 'Spanish_Spain.1252');
+        return Carbon::parse($this->empadre_date)->formatLocalized('%d/%B/%Y');
     }
 
     public function getSaleDateWithFormat()

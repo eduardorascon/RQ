@@ -1,6 +1,7 @@
-create view bulls_view as
+create or replace view bulls_view as
 select 
-	b.id, c.tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	b.id, c.tag, c.control_tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	c.empadre_date, date_format(c.empadre_date,'%d/%m/%Y') AS empadre_date_with_format,
 	c.birth, date_format(c.birth,'%d/%m/%Y') AS birth_with_format,
 	c.is_alive, c.gender, 
 	br.id AS breed_id, upper(br.name) AS breed_name,
@@ -18,9 +19,10 @@ left join paddocks p on c.paddock_id = p.id
 left join bulls_sales bs on b.sale_id = bs.id
 left join comments_view cv on b.cattle_id = cv.cattle_id;
 
-create view calves_view as
+create or replace view calves_view as
 select 
-	ca.id, c.tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	ca.id, c.tag, c.control_tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	c.empadre_date, date_format(c.empadre_date,'%d/%m/%Y') AS empadre_date_with_format,
 	c.birth, date_format(c.birth,'%d/%m/%Y') AS birth_with_format, c.is_alive, c.gender,
 	br.id AS breed_id, upper(br.name) AS breed_name,
 	o.id AS owner_id, upper(o.name) AS owner_name,
@@ -50,11 +52,12 @@ inner join cattle catt2 on co.cattle_id = catt2.id
 where ca.cow_id is not null
 group by co.id;
 
-create view cows_view as
+create or replace view cows_view as
 select 
 	co.id, co.is_fertile, upper(co.pregnancy_status) AS pregnancy_status, co.number_of_calves,
 	(select count(0) from (calves left join cattle on((calves.cattle_id = cattle.id))) where (calves.cow_id = co.id)) AS number_of_registered_calves,
-	c.tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	c.tag, c.control_tag, c.purchase_date, date_format(c.purchase_date,'%d/%m/%Y') AS purchase_date_with_format,
+	c.empadre_date, date_format(c.empadre_date,'%d/%m/%Y') AS empadre_date_with_format,
 	c.birth, date_format(c.birth,'%d/%m/%Y') AS birth_with_format, c.is_alive, c.gender,
 	br.id AS breed_id, upper(br.name) AS breed_name,
 	o.id AS owner_id, upper(o.name) AS owner_name,
