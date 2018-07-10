@@ -12,13 +12,18 @@
 					<form class="form-horizontal" action="{{ route('cow_filters.index') }}" method="get">
 
 						<div class="form-group">
-							<label class="control-label col-sm-3" for="cattle_tag">Arete Siniga</label>
-							<div class="col-sm-3">
+							<label class="control-label col-sm-2" for="cattle_tag">Arete Siniga</label>
+							<div class="col-sm-2">
 								<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
 							</div>
 
+							<label class="control-label col-sm-2" for="control_tag">Arete de control</label>
+							<div class="col-sm-2">
+								<input type="text" name="control_tag" class="form-control" placeholder="Etiqueta" />
+							</div>
+
 							<label class="control-label col-sm-2" for="cattle_breed">Raza</label>
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<select class="form-control" name="cattle_breed">
 									<option value="">Todas las opciones</option>
 									@foreach ($breed_list as $b)
@@ -51,6 +56,18 @@
 							<label class="control-label col-sm-2" for="cattle_purchase_date_until">(hasta)</label>
 							<div class="col-sm-3">
 								<input type="text" name="cattle_purchase_date_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_empadre_since">Fecha de empadre (desde)</label>
+							<div class="col-sm-3">
+								<input type="text" name="cattle_empadre_since" class="form-control input-date" placeholder="dd/mm/aaaa" />
+							</div>
+
+							<label class="control-label col-sm-2" for="cattle_empadre_until">(hasta)</label>
+							<div class="col-sm-3">
+								<input type="text" name="cattle_empadre_until" class="form-control input-date" placeholder="dd/mm/aaaa" />
 							</div>
 						</div>
 

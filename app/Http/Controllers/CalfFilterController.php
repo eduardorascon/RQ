@@ -21,9 +21,9 @@ class CalfFilterController extends Controller
     public function __construct()
     {
         $this->ALL_COLUMNS = ['calves_view.*'];
-        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'mother_tag as MADRE', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'control_tag as ARETE DE CONTROL', 'breed_name as RAZA', 'mother_tag as MADRE', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
         'is_alive as VIVO', 'gender as SEXO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
-        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'empadre_date_with_format as FECHA DE EMPADRE', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
 
         $this->columns = $this->ALL_COLUMNS;
     }
@@ -70,9 +70,12 @@ class CalfFilterController extends Controller
             if($request->has('cow_id'))
                 $calves->where('calves_view.mother_id', $request->cow_id);
 
-            //search by cattle tag
             if($request->has('cattle_tag'))
                 $calves->where('calves_view.tag', '=', $request->cattle_tag)->orWhere('calves_view.tag', 'like', '%' . $request->cattle_tag . '%');
+
+            //search by cattle control_tag
+            if($request->has('control_tag'))
+                $calves->where('calves_view.control_tag', '=', $request->control_tag)->orWhere('calves_view.control_tag', 'like', '%' . $request->control_tag . '%');
 
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
@@ -90,6 +93,24 @@ class CalfFilterController extends Controller
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
                 $calves->whereBetween('calves_view.purchase_date', array($purchase_since, $purchase_until))->
                     orWhereBetween('calves_view.purchase_date', array($purchase_until, $purchase_since));
+            }
+
+            //search by cattle empadre date
+            if($request->has('cattle_empadre_since') && $request->has('cattle_empadre_until'))
+            {
+                $empadre_since = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_since);
+                $empadre_until = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_until);
+                $calves->whereBetween('calves_view.empadre_date', array($empadre_since, $empadre_until))->
+                    orWhereBetween('calves_view.empadre_date', array($empadre_until, $empadre_since));
+            }
+
+            //search by cattle empadre date
+            if($request->has('cattle_empadre_since') && $request->has('cattle_empadre_until'))
+            {
+                $empadre_since = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_since);
+                $empadre_until = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_until);
+                $calves->whereBetween('calves_view.empadre_date', array($empadre_since, $empadre_until))->
+                    orWhereBetween('calves_view.empadre_date', array($empadre_until, $empadre_since));
             }
 
             //search by cattle sale date

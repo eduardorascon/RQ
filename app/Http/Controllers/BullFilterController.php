@@ -20,9 +20,9 @@ class BullFilterController extends Controller
     public function __construct()
     {
         $this->ALL_COLUMNS = ['bulls_view.*'];
-        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
+        $this->EXPORT_COLUMNS = ['tag as ETIQUETA SINIGA', 'control_tag as ARETE DE CONTROL', 'breed_name as RAZA', 'owner_name as DUEÑO', 'paddock_name as POTRERO',
         'is_alive as VIVO', 'current_weight as PESO ACTUAL', 'age_in_months as EDAD EN MESES',
-        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
+        'birth_with_format as FECHA DE NACIMIENTO', 'purchase_date_with_format as FECHA DE COMPRA', 'empadre_date_with_format as FECHA DE EMPADRE', 'sale_date_with_format as FECHA DE VENTA', 'comments as COMENTARIOS'];
 
         $this->columns = $this->ALL_COLUMNS;
     }
@@ -65,6 +65,10 @@ class BullFilterController extends Controller
             if($request->has('cattle_tag'))
                 $bulls->where('bulls_view.tag', '=', $request->cattle_tag)->orWhere('bulls_view.tag', 'like', '%' . $request->cattle_tag . '%');
 
+            //search by control tag
+            if($request->has('control_tag'))
+                $bulls->where('bulls_view.control_tag', '=', $request->control_tag)->orWhere('bulls_view.control_tag', 'like', '%' . $request->control_tag . '%');
+
             //search by cattle birth
             if($request->has('cattle_birth_since') && $request->has('cattle_birth_until'))
             {
@@ -81,6 +85,15 @@ class BullFilterController extends Controller
                 $purchase_until = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date_until);
                 $bulls->whereBetween('bulls_view.purchase_date', array($purchase_since, $purchase_until))->
                     orWhereBetween('bulls_view.purchase_date', array($purchase_until, $purchase_since));
+            }
+
+            //search by cattle empadre date
+            if($request->has('cattle_empadre_since') && $request->has('cattle_empadre_until'))
+            {
+                $empadre_since = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_since);
+                $empadre_until = Carbon::createFromFormat('d/m/Y', $request->cattle_empadre_until);
+                $bulls->whereBetween('bulls_view.empadre_date', array($empadre_since, $empadre_until))->
+                    orWhereBetween('bulls_view.empadre_date', array($empadre_until, $empadre_since));
             }
 
             //search by cattle sale date
