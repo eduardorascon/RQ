@@ -12,27 +12,29 @@
 					<form class="form-horizontal" action="{{ route('bull_filters.index') }}" method="get">
 
 						<div class="form-group">
-						<label class="control-label col-sm-2" for="cattle_tag">Arete Siniga</label>
-						<div class="col-sm-2">
-							<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" />
+							<label class="control-label col-sm-3" for="cattle_tag">Arete Siniga</label>
+							<div class="col-sm-3">
+								<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta" />
+							</div>
+
+							<label class="control-label col-sm-2" for="control_tag">Arete de control</label>
+							<div class="col-sm-3">
+								<input type="text" name="control_tag" class="form-control" placeholder="Etiqueta" />
+							</div>
 						</div>
 
-						<label class="control-label col-sm-2" for="control_tag">Arete de control</label>
-						<div class="col-sm-2">
-							<input type="text" name="control_tag" class="form-control" placeholder="Etiqueta" />
-						</div>
-
-						<label class="control-label col-sm-2" for="cattle_breed">Raza</label>
-						<div class="col-sm-2">
-							<select class="form-control" name="cattle_breed">
-								<option value="">Todas las opciones</option>
-								@foreach ($breed_list as $b)
-								{
-								<option value="{{ $b->id }}">{{ $b->name }}</option>
-								}
-								@endforeach
-							</select>
-						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_breed">Raza</label>
+							<div class="col-sm-3">
+								<select class="form-control" name="cattle_breed">
+									<option value="">Todas las opciones</option>
+									@foreach ($breed_list as $b)
+									{
+									<option value="{{ $b->id }}">{{ $b->name }}</option>
+									}
+									@endforeach
+								</select>
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -171,9 +173,11 @@
 						<thead>
 							<tr>
 								<th>@sortablelink('tag', 'Arete Siniga')</th>
+								<th>@sortablelink('control_tag', 'Arete de control')</th>
 								<th>@sortablelink('breed_name', 'Raza')</th>
 								<th>@sortablelink('birth', 'Fecha de nacimiento')</th>
 								<th>@sortablelink('purchase_date', 'Fecha de compra')</th>
+								<th>@sortablelink('empadre_date', 'Fecha de empadre')</th>
 								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
 								<th>@sortablelink('current_weight', 'Peso actual')</th>
 								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
@@ -184,9 +188,11 @@
 						@foreach($bulls as $bull)
 							<tr>
 								<td>{{ $bull->tag }}</td>
+								<td>{{ $bull->control_tag }}</td>
 								<td>{{ $bull->breed_name }}</td>
 								<td>{{ $bull->getBirthWithFormat() }}</td>
 								<td>{{ $bull->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $bull->getEmpadreDateWithFormat() }}</td>
 								<td>{{ $bull->getSaleDateWithFormat() }}</td>
 								<td>{{ $bull->current_weight }} kgs</td>
 								<td>{{ $bull->age_in_months }}</td>

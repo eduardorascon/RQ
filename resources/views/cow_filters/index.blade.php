@@ -12,18 +12,20 @@
 					<form class="form-horizontal" action="{{ route('cow_filters.index') }}" method="get">
 
 						<div class="form-group">
-							<label class="control-label col-sm-2" for="cattle_tag">Arete Siniga</label>
-							<div class="col-sm-2">
+							<label class="control-label col-sm-3" for="cattle_tag">Arete Siniga</label>
+							<div class="col-sm-3">
 								<input type="text" name="cattle_tag" class="form-control" placeholder="Etiqueta">
 							</div>
 
 							<label class="control-label col-sm-2" for="control_tag">Arete de control</label>
-							<div class="col-sm-2">
+							<div class="col-sm-3">
 								<input type="text" name="control_tag" class="form-control" placeholder="Etiqueta" />
 							</div>
 
-							<label class="control-label col-sm-2" for="cattle_breed">Raza</label>
-							<div class="col-sm-2">
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="cattle_breed">Raza</label>
+							<div class="col-sm-3">
 								<select class="form-control" name="cattle_breed">
 									<option value="">Todas las opciones</option>
 									@foreach ($breed_list as $b)
@@ -197,9 +199,11 @@
 						<thead>
 							<tr>
 								<th>@sortablelink('tag', 'Arete Siniga')</th>
+								<th>@sortablelink('control_tag', 'Arete de control')</th>
 								<th>@sortablelink('breed_name', 'Raza')</th>
 								<th>@sortablelink('birth', 'Fecha de nacimiento')</th>
 								<th>@sortablelink('purchase_date', 'Fecha de compra')</th>
+								<th>@sortablelink('empadre_date', 'Fecha de empadre')</th>
 								<th>@sortablelink('sale_date', 'Fecha de venta')</th>
 								<th>@sortablelink('current_weight', 'Peso actual')</th>
 								<th>@sortablelink('age_in_months', 'Meses de edad')</th>
@@ -212,9 +216,11 @@
 						@foreach($cows as $cow)
 							<tr>
 								<td>{{ $cow->tag }}</td>
+								<td>{{ $cow->control_tag }}</td>
 								<td>{{ $cow->breed_name }}</td>
 								<td>{{ $cow->getBirthWithFormat() }}</td>
 								<td>{{ $cow->getPurchaseDateWithFormat() }}</td>
+								<td>{{ $cow->getEmpadreDateWithFormat() }}</td>
 								<td>{{ $cow->getSaleDateWithFormat() }}</td>
 								<td>{{ $cow->current_weight }} kgs</td>
 								<td>{{ $cow->age_in_months }}</td>
