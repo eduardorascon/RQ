@@ -40,7 +40,7 @@
 
                     <!-- Branding Image -->
                     <div class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <img class="img-responsive" style="height:40px;" src="/images/LogoRancho.png" />
                     </div>
                 </div>
 
