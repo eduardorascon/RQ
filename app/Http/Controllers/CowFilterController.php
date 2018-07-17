@@ -38,7 +38,7 @@ class CowFilterController extends Controller
             $excel->sheet('Listado', function($sheet) use($cows) {
             	$sheet->setColumnFormat(array(
 				    'I' => '0.00',
-				    'J' => '0', 'K' => '0', 'L' => '0', 'M' => '0',
+				    'A' => '0', 'J' => '0', 'K' => '0', 'L' => '0', 'M' => '0',
 				    'N' => 'dd/mm/yyyy', 'O' => 'dd/mm/yyyy', 'P' => 'dd/mm/yyyy', 'Q' => 'dd/mm/yyyy'
 				));
                 $sheet->fromArray($cows->get());

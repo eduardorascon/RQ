@@ -34,6 +34,11 @@ class BullFilterController extends Controller
 
         Excel::create('Filtro de Toros', function($excel) use($bulls) {
             $excel->sheet('Listado', function($sheet) use($bulls) {
+                $sheet->setColumnFormat(array(
+                    'G' => '0.00',
+                    'A' => '0', 'B' => '0', 'H' => '0',
+                    'I' => 'dd/mm/yyyy', 'J' => 'dd/mm/yyyy', 'K' => 'dd/mm/yyyy', 'L' => 'dd/mm/yyyy'
+                ));
                 $sheet->fromModel($bulls->get());
             });
         })->export('xlsx');

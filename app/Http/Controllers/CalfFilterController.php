@@ -35,6 +35,11 @@ class CalfFilterController extends Controller
 
         Excel::create('Filtro de Becerros', function($excel) use($calves) {
             $excel->sheet('Listado', function($sheet) use($calves) {
+                $sheet->setColumnFormat(array(
+                    'I' => '0.00',
+                    'D' => '0', 'J' => '0',
+                    'K' => 'dd/mm/yyyy', 'L' => 'dd/mm/yyyy', 'M' => 'dd/mm/yyyy', 'N' => 'dd/mm/yyyy'
+                ));
                 $sheet->fromArray($calves->get());
             });
         })->export('xlsx');
