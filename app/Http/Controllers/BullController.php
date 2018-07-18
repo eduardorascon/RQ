@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateCattleRequest;
+use App\Http\Requests\StoreBullRequest;
+use App\Http\Requests\UpdateBullRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
@@ -45,7 +46,7 @@ class BullController extends Controller
         ]);
     }
 
-    public function store(StoreUpdateCattleRequest $request)
+    public function store(StoreBullRequest $request)
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
@@ -99,7 +100,7 @@ class BullController extends Controller
         ]);
     }
 
-    public function update(StoreUpdateCattleRequest $request, $id)
+    public function update(UpdateBullRequest $request, $id)
     {
         $bull = Bull::findOrFail($id);
         $cattle = $bull->cattle;
