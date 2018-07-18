@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUpdateCowRequest;
+use App\Http\Requests\StoreCowRequest;
+use App\Http\Requests\UpdateCowRequest;
 use App\Http\Requests\StoreUpdateLogWeightRequest;
 use App\Http\Requests\StoreUpdateLogVaccineRequest;
 use App\Http\Requests\StorePictureRequest;
@@ -48,7 +49,7 @@ class CowController extends Controller
         ]);
     }
 
-    public function store(StoreUpdateCowRequest $request)
+    public function store(StoreCowRequest $request)
     {
         $cattle = new Cattle;
         $cattle->tag = $request->cattle_tag;
@@ -108,7 +109,7 @@ class CowController extends Controller
         ]);
     }
 
-    public function update(StoreUpdateCowRequest $request, $id)
+    public function update(UpdateCowRequest $request, $id)
     {
         $cow = Cow::findOrFail($id);
         $cow->is_fertile = $request->cow_fertility;
@@ -143,7 +144,7 @@ class CowController extends Controller
         {
             $errors = array('El registro no puede ser eliminado.');
         }
-        
+
         return redirect()->route('cows.index');
     }
 
@@ -201,7 +202,7 @@ class CowController extends Controller
         if($request->hasFile('picture')) {
             $imageName = $cow->cattle_id . '-' . Carbon::now()->timestamp . '.' . $request->file('picture')->getClientOriginalExtension();
             $pic->filename = $imageName;
-            
+
             $request->file('picture')->move(base_path() . '/public/images/', $imageName);
         }
 
