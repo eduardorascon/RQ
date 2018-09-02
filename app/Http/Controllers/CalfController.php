@@ -21,6 +21,7 @@ use App\Cow;
 use App\Picture;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
+use DB;
 
 class CalfController extends Controller
 {
@@ -69,33 +70,30 @@ class CalfController extends Controller
 
     public function store(StoreCalfRequest $request)
     {
-        $cow_id = $request->cow_id;
-        $cow = Cow::findOrFail($cow_id);
+        DB::transaction(function() use ($request) {
+            $cow_id = $request->cow_id;
+            $cow = Cow::findOrFail($cow_id);
 
-        $cattle = new Cattle;
-        $cattle->tag = $request->cattle_tag;
-        if($request->cattle_birth_date != NULL)
+            $cattle = new Cattle;
+            $cattle->tag = $request->cattle_tag;
             $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+            $cattle->purchase_date = $request->cattle_purchase_date === NULL ? $cattle->birth : Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
 
-        $cattle->purchase_date = ($request->cattle_purchase_date != NULL)?
-                                    Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date)
-                                    :
-                                    $cattle->birth;
+            $cattle->breed_id = $request->cattle_breed;
+            $cattle->owner_id = $request->cattle_owner;
+            $cattle->paddock_id = $request->cattle_paddock;
+            $cattle->gender = $request->cattle_gender;
+            $cattle->is_alive = $request->cattle_is_alive;
+            $cattle->control_tag = $request->control_tag;
+            if($request->empadre_date != NULL)
+                $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
+            $cattle->save();
 
-        $cattle->breed_id = $request->cattle_breed;
-        $cattle->owner_id = $request->cattle_owner;
-        $cattle->paddock_id = $request->cattle_paddock;
-        $cattle->gender = $request->cattle_gender;
-        $cattle->is_alive = $request->cattle_is_alive;
-        $cattle->control_tag = $request->control_tag;
-        if($request->empadre_date != NULL)
-            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
-        $cattle->save();
-
-        $calf = new Calf;
-        $calf->cattle_id = $cattle->id;
-        $calf->cow_id = $cow->id;
-        $calf->save();
+            $calf = new Calf;
+            $calf->cattle_id = $cattle->id;
+            $calf->cow_id = $cow->id;
+            $calf->save();
+        });
 
         return redirect()->route('calves.index');
     }

@@ -23,6 +23,7 @@ use App\PalpationLog;
 use App\Picture;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
+Use DB;
 
 class CowController extends Controller
 {
@@ -51,26 +52,28 @@ class CowController extends Controller
 
     public function store(StoreCowRequest $request)
     {
-        $cattle = new Cattle;
-        $cattle->tag = $request->cattle_tag;
-        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
-        $cattle->breed_id = $request->cattle_breed;
-        $cattle->owner_id = $request->cattle_owner;
-        $cattle->paddock_id = $request->cattle_paddock;
-        $cattle->gender = 'Hembra';
-        $cattle->is_alive = $request->cattle_is_alive;
-        $cattle->control_tag = $request->control_tag;
-        if($request->empadre_date != NULL)
-            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
-        $cattle->save();
+        DB::transaction(function() use ($request) {
+            $cattle = new Cattle;
+            $cattle->tag = $request->cattle_tag;
+            $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+            $cattle->purchase_date = $request->cattle_purchase_date === NULL ? NULL : Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+            $cattle->breed_id = $request->cattle_breed;
+            $cattle->owner_id = $request->cattle_owner;
+            $cattle->paddock_id = $request->cattle_paddock;
+            $cattle->gender = 'Hembra';
+            $cattle->is_alive = $request->cattle_is_alive;
+            $cattle->control_tag = $request->control_tag;
+            if($request->empadre_date != NULL)
+                $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
+            $cattle->save();
 
-        $cow = new Cow;
-        $cow->cattle_id = $cattle->id;
-        $cow->is_fertile = $request->cow_fertility;
-        $cow->pregnancy_status = 'Vacia';
-        $cow->number_of_calves = $request->cow_number_of_calves;
-        $cow->save();
+            $cow = new Cow;
+            $cow->cattle_id = $cattle->id;
+            $cow->is_fertile = $request->cow_fertility;
+            $cow->pregnancy_status = 'Vacia';
+            $cow->number_of_calves = $request->cow_number_of_calves;
+            $cow->save();
+        });
 
         return redirect()->route('cows.index');
     }

@@ -20,6 +20,7 @@ use App\VaccineLog;
 use App\Picture;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
+use DB;
 
 class BullController extends Controller
 {
@@ -48,23 +49,25 @@ class BullController extends Controller
 
     public function store(StoreBullRequest $request)
     {
-        $cattle = new Cattle;
-        $cattle->tag = $request->cattle_tag;
-        $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
-        $cattle->breed_id = $request->cattle_breed;
-        $cattle->owner_id = $request->cattle_owner;
-        $cattle->paddock_id = $request->cattle_paddock;
-        $cattle->gender = 'Macho';
-        $cattle->is_alive = $request->cattle_is_alive;
-        $cattle->control_tag = $request->control_tag;
-        if($request->empadre_date != NULL)
-            $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
-        $cattle->save();
+        DB::transaction(function() use ($request) {
+            $cattle = new Cattle;
+            $cattle->tag = $request->cattle_tag;
+            $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
+            $cattle->purchase_date = $request->cattle_purchase_date === NULL ? NULL : Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+            $cattle->breed_id = $request->cattle_breed;
+            $cattle->owner_id = $request->cattle_owner;
+            $cattle->paddock_id = $request->cattle_paddock;
+            $cattle->gender = 'Macho';
+            $cattle->is_alive = $request->cattle_is_alive;
+            $cattle->control_tag = $request->control_tag;
+            if($request->empadre_date != NULL)
+                $cattle->empadre_date = Carbon::createFromFormat('d/m/Y', $request->empadre_date);
+            $cattle->save();
 
-        $bull = new Bull;
-        $bull->cattle_id = $cattle->id;
-        $bull->save();
+            $bull = new Bull;
+            $bull->cattle_id = $cattle->id;
+            $bull->save();
+        });
 
         return redirect()->route('bulls.index');
     }
