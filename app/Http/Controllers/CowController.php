@@ -86,7 +86,7 @@ class CowController extends Controller
         $this->weight_chart($cow->cattle);
         return view('cows.show', [
             'cow'=>$cow,
-            'breed'=>$cow->cattle->breed === NULL ? '' : $cow->cattle->breed->name,
+            'breed'=>$cow->cattle->breed->name,
             'owner'=>$cow->cattle->owner === NULL ? '' : $cow->cattle->owner->name,
             'paddock'=>$cow->cattle->paddock === NULL ? '' : $cow->cattle->paddock->name,
             'vaccine_list'=>$vaccine_list,

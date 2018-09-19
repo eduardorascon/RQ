@@ -16,6 +16,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/selectize.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('css/selectize.bootstrap3.css') }}" />
 
     <!-- Scripts -->
     <script>
@@ -40,7 +42,7 @@
 
                     <!-- Branding Image -->
                     <div class="navbar-brand" href="{{ url('/') }}">
-                    <img class="img-responsive" style="height:46px;margin-top:-14px;" src="/images/LogoRancho.png" />
+                    <img class="img-responsive" style="height:46px;margin-top:-14px;" src="/public/images/LogoRancho.png" />
                     </div>
                 </div>
 
@@ -132,6 +134,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.1.1/ekko-lightbox.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
+    <script src="{{ URL::to('js/selectize.min.js') }}"></script>
     <script>
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             event.preventDefault();
@@ -150,6 +153,12 @@
 
         //Bootstrap tooltip initialization.
         $(function () {$('[data-toggle="tooltip"]').tooltip()})
+
+        $('.select-beast').selectize({
+            create: false, 
+            sortField: 'text'
+        });
     </script>
+    @yield('scripts')
 </body>
 </html>

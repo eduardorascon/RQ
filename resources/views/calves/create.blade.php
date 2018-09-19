@@ -31,12 +31,10 @@
 							<input type="hidden" name="cow_id" value="{{ $cow->id }}" />
 							<input type="text" id="mother_tag" name="mother_tag" class="form-control" placeholder="Madre" readonly="readonly" value="{{ $cow->cattle->tag }}" />
 						@else
-						<select class="form-control" name="cow_id">
+						<select class="form-control select-beast" name="cow_id">
 							<option value="">Elige una opción.</option>
 							@foreach ($cow_list as $cow)
-							{
 							<option value="{{ $cow->id }}">{{ $cow->cattle->tag }}</option>
-							}
 							@endforeach
 						</select>
 						@endif

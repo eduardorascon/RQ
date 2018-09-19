@@ -124,7 +124,7 @@ Route::group(['middleware' => ['web']], function() {
 
 	Route::resource('calves', 'CalfController');
 
-	//Unified
+	//Unified input
 	Route::resource('cattle', 'CattleController');
 
 	//Sales

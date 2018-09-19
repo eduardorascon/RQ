@@ -198,7 +198,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Crías ({{ count($offspring) }}), </strong>
-					<a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a>
+					<!--a href="{{ route('calf_create_offspring', $cow->id) }}">Agregar nueva cría</a-->
 				</div>
 				@if($offspring->count() > 0)
 				<div class="panel-body">

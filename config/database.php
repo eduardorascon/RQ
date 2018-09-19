@@ -50,7 +50,10 @@ return [
             'collation' => 'utf8_general_ci',
             'prefix' => '',
             'strict' => true,
-            'engine' => 'InnoDB',
+            'engine' => null,
+            'options' => [
+                \PDO::ATTR_EMULATE_PREPARES => true
+            ]
         ],
 
         'pgsql' => [

@@ -79,7 +79,7 @@ class BullController extends Controller
         $this->weight_chart($bull->cattle);
         return view('bulls.show', [
             'bull' => $bull,
-            'breed'=>$bull->cattle->breed === NULL ? '' : $bull->cattle->breed->name,
+            'breed' => $bull->cattle->breed->name,
             'owner' => $bull->cattle->owner === NULL ? '' : $bull->cattle->owner->name,
             'paddock' => $bull->cattle->paddock === NULL ? '' : $bull->cattle->paddock->name,
             'vaccine_list' => $vaccine_list,
