@@ -57,22 +57,26 @@ left join calves_sales cs on ca.sale_id = cs.id
 left join cows co on co.id = ca.cow_id;
 
 create view all_cattle_view as
-select
-bu.id, bu.tag, bu.control_tag, bu.breed_name,
-bu.birth_with_format, bu.birth, bu.purchase_date_with_format, bu.purchase_date,
+select 
+bu.id, bu.tag, bu.control_tag, bu.breed_name, 'Toro' AS kind, 
+bu.birth_with_format , bu.birth, bu.purchase_date_with_format, bu.purchase_date,
 bu.empadre_date_with_format, bu.empadre_date, bu.sale_date_with_format, bu.sale_date,
-'Macho' AS gender, bu.current_weight, bu.age_in_months, NULL AS pregnancy_status, NULL AS months_since_last_birth 
+'Macho' AS gender, bu.current_weight, bu.age_in_months,
+NULL AS pregnancy_status, NULL AS months_since_last_birth, NULL AS mother_id 
 from bulls_view bu 
 union 
 select 
-co.id, co.tag, co.control_tag, co.breed_name,
+co.id, co.tag, co.control_tag, co.breed_name, 'Vaca',
 co.birth_with_format, co.birth, co.purchase_date_with_format, co.purchase_date,
 co.empadre_date_with_format, co.empadre_date, co.sale_date_with_format, co.sale_date,
-'Hembra', co.current_weight, co.age_in_months, co.pregnancy_status, co.months_since_last_birth
+'Hembra', co.current_weight, co.age_in_months,
+co.pregnancy_status, co.months_since_last_birth, NULL
 from cows_view co 
 union 
-select ca.id, ca.tag, ca.control_tag, ca.breed_name,
+select 
+ca.id, ca.tag, ca.control_tag, ca.breed_name, 'Becerro',
 ca.birth_with_format, ca.birth, ca.purchase_date_with_format, ca.purchase_date,
-ca.empadre_date_with_format, ca.empadre_date, ca.sale_date_with_format, ca.sale_date,
-ca.gender, ca.current_weight, ca.age_in_months, NULL, NULL
-from calves_view ca 
+ca.empadre_date_with_format, ca.empadre_date, ca.sale_date_with_format ,ca.sale_date,
+ca.gender, ca.current_weight, ca.age_in_months,
+NULL, NULL, ca.mother_id AS mother_id
+from calves_view ca
