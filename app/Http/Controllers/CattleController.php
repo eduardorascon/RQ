@@ -21,7 +21,7 @@ class CattleController extends Controller
     public function index()
     {
         $all_cattle = AllCattleView::sortable()->orderBy('id', 'asc')->paginate(9);
-        $contador = 'XXXXXXXX';
+        $contador = AllCattleView::count();
 
         return view('cattle.index', [
             'CONTADOR' => $contador,
