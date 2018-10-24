@@ -109,7 +109,7 @@ class BullController extends Controller
         $cattle = $bull->cattle;
         $cattle->tag = $request->cattle_tag;
         $cattle->birth = Carbon::createFromFormat('d/m/Y', $request->cattle_birth_date);
-        $cattle->purchase_date = Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
+        $cattle->purchase_date = $request->cattle_purchase_date === NULL ? NULL : Carbon::createFromFormat('d/m/Y', $request->cattle_purchase_date);
         $cattle->breed_id = $request->cattle_breed;
         $cattle->owner_id = $request->cattle_owner;
         $cattle->paddock_id = $request->cattle_paddock;
