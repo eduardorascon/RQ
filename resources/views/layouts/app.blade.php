@@ -55,6 +55,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ganado <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                            	<li><a href="{{ route('cattle.index') }}">Todos los registros</a></li>
                                 <li><a href="{{ route('cows.index') }}">Vacas</a></li>
                                 <li><a href="{{ route('calves.index') }}">Becerros</a></li>
                                 <li><a href="{{ route('bulls.index') }}">Toros</a></li>
